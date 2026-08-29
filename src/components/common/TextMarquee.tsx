@@ -22,10 +22,14 @@ export const TextMarquee: React.FC = () => {
     // Outer clipping wrapper: strictly w-full (never wider than the document flow),
     // so the oversized/rotated inner band below is always clipped to the page width
     // instead of pushing the whole site into horizontal scroll.
-    <div className="relative w-full overflow-hidden">
+    // `isolate` + z-30 forces this to sit above any other page content (hero
+    // photos, decorative particles, etc.) regardless of DOM/stacking-context
+    // quirks from those sections, while staying below the Navbar (z-50) and
+    // CustomCursor (z-9999).
+    <div className="relative isolate z-30 w-full overflow-hidden">
       <div
         data-cursor="ROLES"
-        className="relative w-[110%] -ml-[5%] overflow-hidden bg-text-primary border-y border-foreground/5 py-6 md:py-8 select-none -rotate-3 md:-rotate-1 -translate-y-4 z-10"
+        className="relative w-[110%] -ml-[5%] overflow-hidden bg-text-primary border-y border-foreground/5 py-6 md:py-8 select-none -rotate-3 md:-rotate-1 -translate-y-4"
       >
         <div className="flex whitespace-nowrap animate-marquee group w-max">
           {repeated.map((item, idx) => (

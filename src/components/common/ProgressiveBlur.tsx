@@ -28,11 +28,12 @@ export const ProgressiveBlur: React.FC = () => {
   }, []);
 
   return (
+    // Fixed to the viewport bottom (not "sticky" in the CSS sense) so the blur
+    // stays pinned above the footer as the user scrolls, then fades out via
+    // the opacity calculated above once the real footer comes into view.
     <div
-      className="sticky left-0 right-0 z-40 pointer-events-none select-none min-h-[15vh] md:min-h-[20vh] -mt-[15vh] md:-mt-[20vh] transition-opacity duration-300 ease-out"
+      className="fixed bottom-0 left-0 right-0 z-40 pointer-events-none select-none h-[15vh] md:h-[20vh] transition-opacity duration-300 ease-out"
       style={{
-        bottom:
-          "calc(calc(100% - min(var(--framer-viewport-height, 100dvh), 100%)) + 0px)",
         opacity: opacity,
       }}
     >
