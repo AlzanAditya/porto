@@ -1,12 +1,39 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 export const ProgressiveBlur: React.FC = () => {
+  const [opacity, setOpacity] = useState(1);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (typeof window === "undefined") return;
+
+      const scrollY = window.scrollY;
+      const windowHeight = window.innerHeight;
+      const docHeight = document.documentElement.scrollHeight;
+      const distFromBottom = docHeight - (scrollY + windowHeight);
+
+      // Threshold in pixels before bottom of page where blur smoothly fades out
+      const threshold = 350;
+      if (distFromBottom < threshold) {
+        const calculated = Math.max(0, distFromBottom / threshold);
+        setOpacity(calculated);
+      } else {
+        setOpacity(1);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
     <div
-      className="sticky left-0 right-0 z-40 pointer-events-none select-none min-h-[15vh] md:min-h-[20vh] -mt-[15vh] md:-mt-[20vh]"
+      className="sticky left-0 right-0 z-40 pointer-events-none select-none min-h-[15vh] md:min-h-[20vh] -mt-[15vh] md:-mt-[20vh] transition-opacity duration-300 ease-out"
       style={{
         bottom:
           "calc(calc(100% - min(var(--framer-viewport-height, 100dvh), 100%)) + 0px)",
+        opacity: opacity,
       }}
     >
       <div className="absolute inset-0 overflow-hidden">

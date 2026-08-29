@@ -116,7 +116,7 @@ export const ProjectDetailHeader: React.FC<ProjectDetailHeaderProps> = ({
         id="project-detail-action-buttons"
         className="lg:col-span-5 flex gap-3 items-center md:items-end lg:justify-end animate-buttons"
       >
-        {project.demoUrl && (
+        {Boolean(project.demoUrl && project.demoUrl.trim()) && (
           <a
             id="view-live-demo-button"
             target="_blank"

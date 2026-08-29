@@ -238,15 +238,15 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onNavigate }) => {
             width="500"
             height="100"
             className="about-phone object-cover w-full"
-            src="/phone/about.png"
+            src="/assets/phone.png"
           />
           <img
             alt="hero"
             loading="lazy"
             width="320"
             height="100"
-            className="about-avatar object-cover md:w-full lg:w-100 absolute bottom-0 left-4"
-            src="/avatar/about.png"
+            className="about-avatar object-cover w-full md:w-full lg:w-100 absolute bottom-0 left-0 md:left-4"
+            src="/avatar/secondary.png"
           />
           <div className="about-overlay absolute inset-0 bg-linear-to-b from-transparent via-transparent to-white pointer-events-none"></div>
 

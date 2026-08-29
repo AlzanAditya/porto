@@ -101,7 +101,7 @@ export const LatestProjectsSection: React.FC<LatestProjectsSectionProps> = ({
                   className="rounded-xl group-hover/card:brightness-60 md:rounded-2xl object-cover group-hover/card:scale-95 transition ease-in-out duration-500 w-full h-full shadow-lg"
                   src={
                     project.images[0] ||
-                    "/_next/89400f8b2cbce856effc07b8414055a6e0de9079-1080x13502e18.png"
+                    "/projects/Taksu Explore - Tour & Travel Booking/cover.png"
                   }
                 />
                 <div className="absolute inset-0 flex flex-col justify-end p-6 opacity-0 group-hover/card:opacity-100 transition-opacity duration-300 pointer-events-none bg-gradient-to-t from-black/80 via-black/20 to-transparent rounded-xl md:rounded-2xl">

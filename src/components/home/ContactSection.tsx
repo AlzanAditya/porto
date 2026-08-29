@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useState, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
@@ -8,6 +8,8 @@ gsap.registerPlugin(ScrollTrigger);
 
 export const ContactSection: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
 
   useGSAP(
     () => {
@@ -50,7 +52,7 @@ export const ContactSection: React.FC = () => {
                 "-=0.6"
               )
               .from(
-                ".contact-visual",
+                ".contact-form",
                 {
                   y: 50,
                   opacity: 0,
@@ -85,6 +87,17 @@ export const ContactSection: React.FC = () => {
               duration: 0.8,
               ease: "back.out(1.5)",
             });
+            gsap.from(".contact-form", {
+              scrollTrigger: {
+                trigger: ".contact-form",
+                start: "top 70%",
+                toggleActions: "play none none none",
+              },
+              y: 30,
+              opacity: 0,
+              duration: 0.8,
+              ease: "power2.out",
+            });
           }
         }
       );
@@ -95,22 +108,26 @@ export const ContactSection: React.FC = () => {
   const socials = [
     {
       name: "Mahendra Arya",
-      icon: "/contact/linkedin.png",
+      type: "linkedin",
+      icon: null,
       url: "https://www.linkedin.com/in/karyasite-12a6a130b/",
     },
     {
       name: "aryndraa",
-      icon: "/contact/github-contact.png",
+      type: "github",
+      icon: "/icons/github-logo.png",
       url: "https://github.com/aryndraa",
     },
     {
       name: "karyasite",
-      icon: "/contact/tiktok.png",
+      type: "tiktok",
+      icon: "/icons/tiktok.png",
       url: "https://www.tiktok.com/@karyasite",
     },
     {
       name: "karyasite",
-      icon: "/contact/instagram.png",
+      type: "instagram",
+      icon: "/icons/instagram.png",
       url: "https://www.instagram.com/karyasite/",
     },
   ];
@@ -121,50 +138,78 @@ export const ContactSection: React.FC = () => {
       id="contact"
       className="py-12 lg:py-20 px-4 md:px-12 lg:px-36 xl:px-48 2xl:container mx-auto overflow-x-hidden select-none"
     >
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-        {/* Left Column: Visual Avatar with Phone & Badges */}
-        <div className="contact-visual col-span-1 lg:col-span-5 relative flex justify-center items-center">
-          <div className="relative w-full max-w-sm flex justify-center items-end min-h-[380px] md:min-h-[460px] bg-card rounded-2xl p-4 overflow-hidden">
-            <div className="relative w-full h-full flex justify-center items-end">
+      <div className="grid grid-cols-1 lg:grid-cols-12 items-stretch gap-8 p-4 py-6 md:p-10 bg-linear-to-r from-primary/10 to-secondary/10 rounded-2xl md:rounded-3xl">
+        {/* Left Column: Form */}
+        <div className="contact-form bg-white order-last lg:order-first flex flex-col gap-8 items-center rounded-2xl col-span-1 lg:col-span-5 p-6 md:p-8 shadow-xs">
+          <div className="flex flex-col gap-4 items-center">
+            <div className="p-3 w-fit bg-linear-to-r from-primary/10 to-secondary/10 rounded-full">
               <img
-                alt="Arya"
+                alt="Mahendra Arya"
                 loading="lazy"
-                width="400"
-                height="450"
-                className="contact-avatar object-contain relative z-5 max-w-[260px] md:max-w-[300px]"
-                src="/avatar/contact.png"
-              />
-
-              {/* Floating badges */}
-              <img
-                alt="whatsapp"
-                width="160"
-                height="160"
-                className="contact-badge absolute -left-2 top-16 w-16 md:w-20 z-10 drop-shadow-md animate-float-slow"
-                src="/contact/whatsapp.png"
-              />
-              <img
-                alt="email"
-                width="160"
-                height="160"
-                className="contact-badge absolute -right-2 top-8 w-16 md:w-20 z-10 drop-shadow-md animate-float-delayed"
-                src="/contact/email.png"
-              />
-              <img
-                alt="chat"
-                width="200"
+                width="100"
                 height="100"
-                className="contact-badge absolute left-8 -bottom-2 w-28 md:w-36 z-10 drop-shadow-lg animate-float-slow"
-                src="/contact/chat.png"
+                className="w-20 h-20 md:w-24 md:h-24 rounded-full object-cover shadow-sm"
+                src="/logo.png"
               />
+            </div>
+            <h3 className="text-xl font-semibold text-text-primary">Connect With Me!</h3>
+          </div>
+
+          <div className="w-full">
+            <div className="flex flex-col gap-4 mb-6">
+              <input
+                type="email"
+                placeholder="Enter Your Email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="focus:outline-none focus:ring-2 focus:ring-primary/20 bg-card w-full rounded-xl font-medium px-5 py-4 transition-all text-text-primary placeholder:text-text-secondary/60"
+              />
+              <textarea
+                placeholder="Your Message"
+                value={message}
+                onChange={(e) => setMessage(e.target.value)}
+                className="focus:outline-none focus:ring-2 focus:ring-primary/20 min-h-28 max-h-28 bg-card w-full rounded-xl font-medium px-5 py-4 transition-all text-text-primary placeholder:text-text-secondary/60"
+              ></textarea>
+            </div>
+
+            <div className="flex justify-end">
+              <a
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center cursor-pointer font-medium gap-2 group transition-all duration-300 ease-in-out bg-gradient-to-br from-primary to-secondary text-white px-6 btn-hover py-2.5 rounded-full"
+                href={`mailto:aryacoder1102@gmail.com?subject=Contact from ${encodeURIComponent(
+                  email
+                )}&body=${encodeURIComponent(message)}`}
+              >
+                <div className="flex gap-2 items-center">
+                  <span className="scroll-text flex">
+                    <span className="font-semibold">Send Message</span>
+                    <span className="font-semibold">Send Message</span>
+                  </span>
+                  <div className="p-1.5 bg-white/20 rounded-full transition-all duration-300 ease-in-out group-hover:bg-white/40">
+                    <svg
+                      stroke="currentColor"
+                      fill="currentColor"
+                      strokeWidth="0"
+                      viewBox="0 0 512 512"
+                      className="text-lg"
+                      height="1em"
+                      width="1em"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path d="M435.9 64.9l-367.1 160c-6.5 3.1-6.3 12.4.3 15.3l99.3 56.1c5.9 3.3 13.2 2.6 18.3-1.8l195.8-168.8c1.3-1.1 4.4-3.2 5.6-2 1.3 1.3-.7 4.3-1.8 5.6L216.9 320.1c-4.7 5.3-5.4 13.1-1.6 19.1l64.9 104.1c3.2 6.3 12.3 6.2 15.2-.2L447.2 76c3.3-7.2-4.2-14.5-11.3-11.1z"></path>
+                    </svg>
+                  </div>
+                </div>
+              </a>
             </div>
           </div>
         </div>
 
         {/* Right Column: Say Hello Content & Social Buttons */}
-        <div className="col-span-1 lg:col-span-7 flex flex-col gap-8 md:gap-10 justify-center">
+        <div className="col-span-1 lg:col-span-7 flex flex-col gap-10 justify-center">
           <div className="contact-header">
-            <h2 className="font-semibold text-4xl md:text-6xl mb-4 md:mb-6 leading-[1.1] tracking-tight text-text-primary">
+            <h2 className="font-medium text-4xl md:text-6xl mb-4 md:mb-6 leading-[1.1] tracking-tight text-text-primary">
               <SplitWords text="Say Hello" />
             </h2>
             <p className="md:text-lg font-medium text-text-secondary lg:w-[85%] leading-relaxed">
@@ -179,17 +224,32 @@ export const ContactSection: React.FC = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   data-cursor="visit"
-                  className="p-4 md:p-5 flex flex-col justify-between gap-8 md:gap-10 btn-hover rounded-xl group transition-all duration-300 bg-white hover:bg-card border border-foreground/10 shadow-xs"
+                  className="p-4 md:p-5 flex flex-col justify-between gap-8 md:gap-10 btn-hover rounded-xl group transition-all duration-300 bg-white hover:bg-card shadow-xs"
                   href={social.url}
                 >
                   <div className="flex items-center justify-between">
-                    <div className="relative w-8 h-8">
-                      <img
-                        alt={social.name}
-                        loading="lazy"
-                        className="object-contain w-full h-full"
-                        src={social.icon}
-                      />
+                    <div className="relative w-8 h-8 flex items-center justify-center">
+                      {social.icon ? (
+                        <img
+                          alt={social.name}
+                          loading="lazy"
+                          className="object-contain w-full h-full"
+                          src={social.icon}
+                        />
+                      ) : (
+                        <svg
+                          stroke="currentColor"
+                          fill="currentColor"
+                          strokeWidth="0"
+                          viewBox="0 0 448 512"
+                          className="w-7 h-7 text-[#0A66C2]"
+                          height="1em"
+                          width="1em"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path d="M100.28 448H7.4V148.9h92.88zM53.79 108.1C24.09 108.1 0 83.5 0 53.8a53.79 53.79 0 0 1 107.58 0c0 29.7-24.1 54.3-53.79 54.3zM447.9 448h-92.68V302.4c0-34.7-.7-79.2-48.29-79.2-48.29 0-55.69 37.7-55.69 76.7V448h-92.78V148.9h89.08v40.8h1.3c12.4-23.5 42.69-48.3 87.88-48.3 94 0 111.28 61.9 111.28 142.3V448z"></path>
+                        </svg>
+                      )}
                     </div>
                     <div className="p-2.5 bg-card group-hover:bg-primary rounded-full transition-all duration-400 ease-in-out">
                       <svg

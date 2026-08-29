@@ -12,11 +12,11 @@ export const ProjectGridItem: React.FC<ProjectGridItemProps> = ({
 }) => {
   const primaryImg =
     project.images[0] ||
-    "/_next/89400f8b2cbce856effc07b8414055a6e0de9079-1080x1350218d.png";
+    "/projects/Taksu Explore - Tour & Travel Booking/cover.png";
   const hoverImg =
     project.images[1] ||
     project.images[0] ||
-    "/_next/eff8e4bc8ba379a53dc14684b4c83615fe22e0e5-1080x13500ef4.png";
+    "/projects/Taksu Explore - Tour & Travel Booking/content-1.png";
 
   return (
     <div className="project-card-wrapper">

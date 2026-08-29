@@ -1,6 +1,6 @@
 {
-  "name": "Karyasite - Mahendra Arya Portfolio",
-  "description": "Personal Portfolio & Blog Insights of Mahendra Arya, full-stack website developer and freelancer, reverse engineered into a clean modular React Vite architecture.",
+  "name": "Karyasite",
+  "description": "Personal portfolio, showcases, project catalog, and tech blog website",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

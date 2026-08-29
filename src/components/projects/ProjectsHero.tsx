@@ -140,7 +140,7 @@ export const ProjectsHero: React.FC<ProjectsHeroProps> = ({
         height="900"
         decoding="async"
         className="hero-bg-particle absolute -right-48 lg:-right-96 -bottom-32 lg:-bottom-72 -z-1 pointer-events-none select-none"
-        src="/_next/purple892e.png"
+        src="/particle/purple.png"
       />
       <img
         alt=""
@@ -148,7 +148,7 @@ export const ProjectsHero: React.FC<ProjectsHeroProps> = ({
         height="900"
         decoding="async"
         className="hero-bg-particle absolute -left-48 lg:-left-96 -bottom-32 lg:-bottom-72 -z-1 pointer-events-none select-none"
-        src="/_next/bluea392.png"
+        src="/particle/blue.png"
       />
     </section>
   );

@@ -15,12 +15,15 @@ export const projectsData: Project[] = [
       "Transportation Booking",
       "Online Reservation System",
     ],
-    demoUrl: "https://taksuexplore.com",
+    demoUrl: undefined,
     githubUrl: "https://github.com/aryndraa/taksu-explore",
     sourceCodeUrl: "https://github.com/aryndraa/taksu-explore",
     images: [
-      "https://cdn.sanity.io/images/6rdtpnze/production/89400f8b2cbce856effc07b8414055a6e0de9079-1080x1350.png",
-      "https://cdn.sanity.io/images/6rdtpnze/production/eff8e4bc8ba379a53dc14684b4c83615fe22e0e5-1080x1350.png",
+      "/projects/Taksu Explore - Tour & Travel Booking/cover.png",
+      "/projects/Taksu Explore - Tour & Travel Booking/content-1.png",
+      "/projects/Taksu Explore - Tour & Travel Booking/content-2.png",
+      "/projects/Taksu Explore - Tour & Travel Booking/content-3.png",
+      "/projects/Taksu Explore - Tour & Travel Booking/content-4.png",
     ],
     uploadedDate: "2026-05-24",
     collaborators: "2 Collaborator",
@@ -39,11 +42,11 @@ export const projectsData: Project[] = [
     techStack: [
       {
         name: "nextjs",
-        url: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg",
+        url: "/icons/nextjs.png",
       },
       {
         name: "tailwind",
-        url: "https://cdn.sanity.io/images/6rdtpnze/production/2ab24671f65bd66c3091374082c3bfe06dd3998e-346x193.png",
+        url: "/icons/tailwind.png",
       },
       {
         name: "typescript",
@@ -73,8 +76,11 @@ export const projectsData: Project[] = [
     githubUrl: "https://github.com/aryndraa/taksu-erp",
     sourceCodeUrl: "https://github.com/aryndraa/taksu-erp",
     images: [
-      "https://cdn.sanity.io/images/6rdtpnze/production/0e8e6cdc7b0e48edabaa96d3057bff7d9dc83722-1080x1350.png",
-      "https://cdn.sanity.io/images/6rdtpnze/production/0e8e6cdc7b0e48edabaa96d3057bff7d9dc83722-1080x1350.png",
+      "/projects/Taksu Explore - Travel Operational System/cover.png",
+      "/projects/Taksu Explore - Travel Operational System/content-1.png",
+      "/projects/Taksu Explore - Travel Operational System/content-2.png",
+      "/projects/Taksu Explore - Travel Operational System/content-3.png",
+      "/projects/Taksu Explore - Travel Operational System/content-4.png",
     ],
     uploadedDate: "2026-05-24",
     collaborators: "1 Collaborator",
@@ -88,7 +94,7 @@ export const projectsData: Project[] = [
     techStack: [
       {
         name: "laravel",
-        url: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/laravel/laravel-original.svg",
+        url: "/icons/laravel.png",
       },
       {
         name: "filament",
@@ -100,11 +106,11 @@ export const projectsData: Project[] = [
       },
       {
         name: "tailwind",
-        url: "https://cdn.sanity.io/images/6rdtpnze/production/2ab24671f65bd66c3091374082c3bfe06dd3998e-346x193.png",
+        url: "/icons/tailwind.png",
       },
       {
         name: "livewire",
-        url: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/livewire/livewire-original.svg",
+        url: "/icons/laravel-livewire.png",
       },
     ],
     featured: true,
@@ -129,11 +135,11 @@ export const projectsData: Project[] = [
     githubUrl: "https://github.com/ryanpermanaa/sprintlab-athlix",
     sourceCodeUrl: "https://github.com/ryanpermanaa/sprintlab-athlix",
     images: [
-      "https://cdn.sanity.io/images/6rdtpnze/production/f6a241a5889345a00062cc2cf3fef2098a8a9f57-1080x1350.png",
-      "https://cdn.sanity.io/images/6rdtpnze/production/b904cfadc3698ddd9d90e268262916bf69f36820-1080x1350.png",
-      "https://cdn.sanity.io/images/6rdtpnze/production/0007a8ddbf66f31ceccbab888c1d51d26955c48f-1080x1350.png",
-      "https://cdn.sanity.io/images/6rdtpnze/production/ce5bbd6a6ddfcf2cbd93409d900f88fbffd18dd6-1080x1350.png",
-      "https://cdn.sanity.io/images/6rdtpnze/production/6d411714f96199e9529e6f60e28493933a3ce2c1-1080x1350.png",
+      "/projects/Athlix Sport Platform/cover.png",
+      "/projects/Athlix Sport Platform/content-1.png",
+      "/projects/Athlix Sport Platform/content-2.png",
+      "/projects/Athlix Sport Platform/content-3.png",
+      "/projects/Athlix Sport Platform/content-4.png",
     ],
     uploadedDate: "2026-05-23",
     collaborators: "4 Collaborator",
@@ -162,7 +168,11 @@ export const projectsData: Project[] = [
     techStack: [
       {
         name: "tailwind",
-        url: "https://cdn.sanity.io/images/6rdtpnze/production/2ab24671f65bd66c3091374082c3bfe06dd3998e-346x193.png",
+        url: "/icons/tailwind.png",
+      },
+      {
+        name: "react",
+        url: "/icons/react.png",
       },
     ],
     featured: true,
@@ -182,12 +192,14 @@ export const projectsData: Project[] = [
       "Smart Library",
       "Modern Web Platform",
     ],
-    demoUrl: "https://perpusku-demo.vercel.app/",
+    demoUrl: undefined,
     githubUrl: "https://github.com/aryndraa/perpusku-web",
     sourceCodeUrl: "https://github.com/aryndraa/perpusku-web",
     images: [
-      "https://cdn.sanity.io/images/6rdtpnze/production/51ce6124541868332f481ea86707f2301ecbe2c6-1080x1350.png",
-      "https://cdn.sanity.io/images/6rdtpnze/production/51ce6124541868332f481ea86707f2301ecbe2c6-1080x1350.png",
+      "/projects/Perpusku - Smart Library Platform/cover.png",
+      "/projects/Perpusku - Smart Library Platform/content-1.png",
+      "/projects/Perpusku - Smart Library Platform/content-2.png",
+      "/projects/Perpusku - Smart Library Platform/content-3.png",
     ],
     uploadedDate: "2026-05-12",
     collaborators: "1 Collaborator",
@@ -201,7 +213,7 @@ export const projectsData: Project[] = [
     techStack: [
       {
         name: "react",
-        url: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
+        url: "/icons/react.png",
       },
       {
         name: "vite",
@@ -209,7 +221,7 @@ export const projectsData: Project[] = [
       },
       {
         name: "tailwind",
-        url: "https://cdn.sanity.io/images/6rdtpnze/production/2ab24671f65bd66c3091374082c3bfe06dd3998e-346x193.png",
+        url: "/icons/tailwind.png",
       },
       {
         name: "express",
@@ -232,12 +244,14 @@ export const projectsData: Project[] = [
       "CTWA Reservation",
       "Available For Production",
     ],
-    demoUrl: "https://suryanitya.com",
+    demoUrl: "https://luxury-surya-nitya.vercel.app/",
     githubUrl: "https://github.com/aryndraa/luxury-surya-nitya",
     sourceCodeUrl: "https://github.com/aryndraa/luxury-surya-nitya",
     images: [
-      "https://cdn.sanity.io/images/6rdtpnze/production/f96d45b69a2f5baf60f9a121441d09a1e3598070-1080x1350.jpeg",
-      "https://cdn.sanity.io/images/6rdtpnze/production/c35445d5c1a35b5a428f7844ae758c1331c116af-1080x1350.jpeg",
+      "/projects/Luxury Surya Nitya/cover.jpeg",
+      "/projects/Luxury Surya Nitya/content-1.jpeg",
+      "/projects/Luxury Surya Nitya/content-2.jpeg",
+      "/projects/Luxury Surya Nitya/content-3.jpeg",
     ],
     uploadedDate: "2026-05-02",
     collaborators: "1 Collaborator",
@@ -251,11 +265,11 @@ export const projectsData: Project[] = [
     techStack: [
       {
         name: "nextjs",
-        url: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg",
+        url: "/icons/nextjs.png",
       },
       {
         name: "tailwind",
-        url: "https://cdn.sanity.io/images/6rdtpnze/production/2ab24671f65bd66c3091374082c3bfe06dd3998e-346x193.png",
+        url: "/icons/tailwind.png",
       },
       {
         name: "framermotion",
@@ -287,8 +301,10 @@ export const projectsData: Project[] = [
     githubUrl: "https://github.com/aryndraa/pos-restaurant",
     sourceCodeUrl: "https://github.com/aryndraa/pos-restaurant",
     images: [
-      "https://cdn.sanity.io/images/6rdtpnze/production/237e4b456629def52172c95e67ea863ab49ae0bf-1080x1350.jpeg",
-      "https://cdn.sanity.io/images/6rdtpnze/production/d1677afdc5d34bb8491961f5131a4bbe42cfad99-1080x1350.jpeg",
+      "/projects/Point Of Sale Restaurant/cover.jpeg",
+      "/projects/Point Of Sale Restaurant/content-1.jpeg",
+      "/projects/Point Of Sale Restaurant/content-2.jpeg",
+      "/projects/Point Of Sale Restaurant/content-3.jpeg",
     ],
     uploadedDate: "2026-05-02",
     collaborators: "1 Collaborator",
@@ -302,15 +318,15 @@ export const projectsData: Project[] = [
     techStack: [
       {
         name: "laravel",
-        url: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/laravel/laravel-original.svg",
+        url: "/icons/laravel.png",
       },
       {
         name: "livewire",
-        url: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/livewire/livewire-original.svg",
+        url: "/icons/laravel-livewire.png",
       },
       {
         name: "tailwind",
-        url: "https://cdn.sanity.io/images/6rdtpnze/production/2ab24671f65bd66c3091374082c3bfe06dd3998e-346x193.png",
+        url: "/icons/tailwind.png",
       },
       {
         name: "postgresql",
@@ -338,8 +354,10 @@ export const projectsData: Project[] = [
     githubUrl: "https://github.com/aryndraa/DocLink",
     sourceCodeUrl: "https://github.com/aryndraa/DocLink",
     images: [
-      "https://cdn.sanity.io/images/6rdtpnze/production/05a52c2be319b5af90febdc34c11e5e8aa3ec4b9-1920x844.jpeg",
-      "https://cdn.sanity.io/images/6rdtpnze/production/cc6077be1d4a0ae63642fbba8ead9d01141439b2-1920x1301.jpeg",
+      "/projects/DocLink - Doctor & Patient Appointment/cover.jpeg",
+      "/projects/DocLink - Doctor & Patient Appointment/content-1.jpeg",
+      "/projects/DocLink - Doctor & Patient Appointment/content-2.jpeg",
+      "/projects/DocLink - Doctor & Patient Appointment/content-3.jpeg",
     ],
     uploadedDate: "2026-05-01",
     collaborators: "3 Collaborator",
@@ -363,15 +381,15 @@ export const projectsData: Project[] = [
     techStack: [
       {
         name: "laravel",
-        url: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/laravel/laravel-original.svg",
+        url: "/icons/laravel.png",
       },
       {
         name: "livewire",
-        url: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/livewire/livewire-original.svg",
+        url: "/icons/laravel-livewire.png",
       },
       {
         name: "tailwind",
-        url: "https://cdn.sanity.io/images/6rdtpnze/production/2ab24671f65bd66c3091374082c3bfe06dd3998e-346x193.png",
+        url: "/icons/tailwind.png",
       },
       {
         name: "mysql",
@@ -402,8 +420,11 @@ export const projectsData: Project[] = [
     githubUrl: "https://github.com/aryndraa/perpusku-erp",
     sourceCodeUrl: "https://github.com/aryndraa/perpusku-erp",
     images: [
-      "https://cdn.sanity.io/images/6rdtpnze/production/9524d241191b0f18fc1ecd569145c6987d813271-1080x1350.png",
-      "https://cdn.sanity.io/images/6rdtpnze/production/8f2da68073d841a0d966c0b246cbebcf59a584f0-1080x1350.png",
+      "/projects/Perpusku - ERP Library Management System/cover.png",
+      "/projects/Perpusku - ERP Library Management System/content-1.png",
+      "/projects/Perpusku - ERP Library Management System/content-2.png",
+      "/projects/Perpusku - ERP Library Management System/content-3.png",
+      "/projects/Perpusku - ERP Library Management System/content-4.png",
     ],
     uploadedDate: "2026-05-01",
     collaborators: "1 Collaborator",
@@ -417,7 +438,7 @@ export const projectsData: Project[] = [
     techStack: [
       {
         name: "laravel",
-        url: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/laravel/laravel-original.svg",
+        url: "/icons/laravel.png",
       },
       {
         name: "filament",
@@ -429,7 +450,7 @@ export const projectsData: Project[] = [
       },
       {
         name: "tailwind",
-        url: "https://cdn.sanity.io/images/6rdtpnze/production/2ab24671f65bd66c3091374082c3bfe06dd3998e-346x193.png",
+        url: "/icons/tailwind.png",
       },
     ],
     featured: true,
@@ -453,8 +474,7 @@ export const projectsData: Project[] = [
     githubUrl: "https://github.com/aryndraa/timedoor-academy-final-project",
     sourceCodeUrl: "https://github.com/aryndraa/timedoor-academy-final-project",
     images: [
-      "https://cdn.sanity.io/images/6rdtpnze/production/0bc23a55bd316068752a06ca1b938642822634af-1080x1350.jpeg",
-      "https://cdn.sanity.io/images/6rdtpnze/production/0bc23a55bd316068752a06ca1b938642822634af-1080x1350.jpeg",
+      "/projects/Aurora Cinema - Ticket Booking/cover.jpeg",
     ],
     uploadedDate: "2026-05-01",
     collaborators: "1 Collaborator",
@@ -468,7 +488,7 @@ export const projectsData: Project[] = [
     techStack: [
       {
         name: "react",
-        url: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
+        url: "/icons/react.png",
       },
       {
         name: "vite",
@@ -476,7 +496,7 @@ export const projectsData: Project[] = [
       },
       {
         name: "tailwind",
-        url: "https://cdn.sanity.io/images/6rdtpnze/production/2ab24671f65bd66c3091374082c3bfe06dd3998e-346x193.png",
+        url: "/icons/tailwind.png",
       },
       {
         name: "framermotion",

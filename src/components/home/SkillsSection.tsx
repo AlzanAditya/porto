@@ -225,14 +225,14 @@ export const SkillsSection: React.FC = () => {
       {/* Content Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-5">
         {/* Visual Stage (Left) */}
-        <div className="why-visual min-h-[350px] lg:h-auto lg:col-span-4 bg-card rounded-xl justify-center p-4">
-          <div className="relative h-full min-h-[320px] rounded-xl bg-linear-to-br from-primary/10 to-secondary/10 overflow-hidden flex items-end justify-center">
+        <div className="why-visual h-[50vh] lg:h-auto lg:col-span-4 bg-card rounded-xl justify-center p-4">
+          <div className="relative h-full rounded-xl bg-linear-to-br from-primary/10 to-secondary/10 overflow-hidden">
             <img
               alt="Collaboration"
               loading="lazy"
               width="500"
               height="400"
-              className="why-avatar object-contain relative z-5 max-w-[280px] lg:max-w-full"
+              className="why-avatar absolute inset-0 left-auto top-auto md:min-w-120 lg:min-w-89 max-w-79 2xl:min-w-96 2xl:max-w-96 object-contain"
               src="/avatar/why.png"
             />
             {/* Floating Particles */}
@@ -241,24 +241,24 @@ export const SkillsSection: React.FC = () => {
               loading="lazy"
               width="400"
               height="400"
-              className="why-particle absolute -left-4 top-24 w-20 drop-shadow-md animate-float-slow"
-              src="/particle/github-logo.png"
+              className="why-particle absolute inset-0 right-auto -left-8 md:left-34 lg:-left-14 top-26 w-24"
+              src="/icons/github-logo.png"
             />
             <img
               alt="postman"
               loading="lazy"
               width="400"
               height="400"
-              className="why-particle absolute left-12 top-6 w-16 drop-shadow-md animate-float-delayed"
-              src="/particle/postman.png"
+              className="why-particle absolute inset-0 right-auto left-6 md:left-48 lg:-left-5 top-9 md:top-6 w-18"
+              src="/icons/postman-logo.png"
             />
             <img
               alt="notion"
               loading="lazy"
               width="400"
               height="400"
-              className="why-particle absolute right-4 top-10 w-14 drop-shadow-md animate-float-slow"
-              src="/particle/notion.png"
+              className="why-particle absolute inset-0 right-auto left-12 md:left-64 lg:left-12 -top-6 md:-top-6 w-12 md:w-16"
+              src="/icons/notion-logo.png"
             />
           </div>
         </div>

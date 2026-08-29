@@ -8,7 +8,7 @@ interface ProjectCardProps {
 }
 
 export const ProjectCard: React.FC<ProjectCardProps> = ({ project, onSelect }) => {
-  const coverImage = project.images[0] || '/_next/f6a241a5889345a00062cc2cf3fef2098a8a9f57-1080x135076e5.png';
+  const coverImage = project.images[0] || '/projects/Taksu Explore - Tour & Travel Booking/cover.png';
 
   return (
     <div

@@ -2,11 +2,316 @@ import { Blog } from "../types";
 
 export const blogsData: Blog[] = [
   {
+    "id": "7148175a-2db0-44ca-a18f-7fbaee97e907",
+    "slug": "bangun-sistem-farming-leads-dengan-meta-ads-untuk-freelancer",
+    "title": "Bangun Sistem Farming Leads Dengan Meta Ads Untuk Freelancer",
+    "category": "Freelance",
+    "excerpt": "Jujur, aku sempat skeptis. Paid ads kayak Meta ads itu kesannya mahal, ribet, dan lebih cocok buat brand besar. Tapi aku liat banyak banget freelancer yang udah nyobain dan mereka berhasil dealing terus-terusan...",
+    "coverImage": "/blogs/bangun-sistem-farming-leads-dengan-meta-ads-untuk-freelancer/cover.jpeg",
+    "publishDate": "24 May 2026",
+    "readTime": "5 min read",
+    "tags": [
+      "Freelance",
+      "Digital Marketing",
+      "Meta Ads",
+      "Lead Generation"
+    ],
+    "content": "Jujur, aku sempat skeptis. Paid ads kayak Meta ads itu kesannya mahal, ribet, dan lebih cocok buat brand besar...",
+    "author": {
+      "name": "Mahendra Arya",
+      "role": "Web Developer",
+      "avatar": "/avatar/photo-profile.jpeg"
+    },
+    "contentBlocks": [
+      {
+        "_key": "225903aefba7",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "d9451ff71185",
+            "_type": "span",
+            "marks": [],
+            "text": "Jujur, aku sempat skeptis. Paid ads kayak Meta ads itu kesannya mahal, ribet, dan lebih cocok buat brand besar. Tapi aku liat banyak banget freelancer yang udah nyobain dan mereka berhasil dealing terus-terusan. First time aku coba memang hasilnya agak kurang memuaskan (hampir boncos). Cuman setelah aku susun sistem ini tuh terus aku coba lagi, akhirnya aku berhasil closing 2 juta dari modal spen ads cuman 150k aja."
+          }
+        ],
+        "markDefs": [],
+        "style": "normal"
+      },
+      {
+        "_key": "6f4cd6a31560",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "6bc61eccaa7a",
+            "_type": "span",
+            "marks": [],
+            "text": "Bukan gara-gara lagi hoki aja, tapi gara-gara aku punya sistemnya. Dan di artikel ini aku mau breakdown sistemnya dari nol."
+          }
+        ],
+        "markDefs": [],
+        "style": "normal"
+      },
+      {
+        "_key": "308403b8ae28",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "13039b83ccc7",
+            "_type": "span",
+            "marks": [],
+            "text": "Apa itu Farming Leads?"
+          }
+        ],
+        "markDefs": [],
+        "style": "h2"
+      },
+      {
+        "_key": "7f7073a19e54",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "8502e8a25937",
+            "_type": "span",
+            "marks": [],
+            "text": "Beda sama iklan biasa yang tujuannya cuma biar nama kita dikenal, farming leads itu lebih ke arah ngumpulin calon klien secara sistematis. Setiap uang yang keluar harus punya tujuan jelas: dapetin kontak orang yang genuinely tertarik sama jasa kita."
+          }
+        ],
+        "markDefs": [],
+        "style": "normal"
+      },
+      {
+        "_key": "4076b22daacf",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "5dfe404c9fd0",
+            "_type": "span",
+            "marks": [],
+            "text": "Buat freelancer seperti aku yang menawarkan jasa web development, ini jauh lebih efektif daripada sekadar boost postingan berharap ada yang DM."
+          }
+        ],
+        "markDefs": [],
+        "style": "normal"
+      },
+      {
+        "_key": "8732442af4e1",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "b8771f7783d8",
+            "_type": "span",
+            "marks": [],
+            "text": "Step by Step Sistemnya"
+          }
+        ],
+        "markDefs": [],
+        "style": "h2"
+      },
+      {
+        "_key": "46481844de88",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "942824c19b97",
+            "_type": "span",
+            "marks": [],
+            "text": "1. Pilih satu niche, jangan generalis"
+          }
+        ],
+        "markDefs": [],
+        "style": "h3"
+      },
+      {
+        "_key": "ce5a48fd16a3",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "f10dbff65fbd",
+            "_type": "span",
+            "marks": [],
+            "text": "Ini pelajaran paling mahal yang aku pelajari. Awalnya aku jalankan iklan untuk semua niche sekaligus bisnis kuliner, toko fashion, jasa, dll. Hasilnya? Nihil. Begitu aku fokus ke satu niche spesifik yaitu bisnis travel, leads mulai masuk dan closing terjadi. Satu niche = pesan yang lebih tajam = konversi lebih tinggi."
+          }
+        ],
+        "markDefs": [],
+        "style": "normal"
+      },
+      {
+        "_key": "5e487d0c7918",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "942824c19b97",
+            "_type": "span",
+            "marks": [],
+            "text": "2. Buat creative yang langsung to the point"
+          }
+        ],
+        "markDefs": [],
+        "style": "h3"
+      },
+      {
+        "_key": "adfa4e45d558",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "f434d64ad803",
+            "_type": "span",
+            "marks": [],
+            "text": "Nah di sinilah enaknya sekarang. Meta punya fitur bawaan namanya "
+          },
+          {
+            "_key": "57c5e2b68de6",
+            "_type": "span",
+            "marks": [
+              "strong"
+            ],
+            "text": "Advantage+ Creative"
+          },
+          {
+            "_key": "3425ef170721",
+            "_type": "span",
+            "marks": [],
+            "text": " AI dari Meta yang bantu kamu bikin dan optimasi creative iklan tanpa harus setting semuanya manual. Kamu cukup bikin 1 konten creative yang langsung mengarah ke niche kamu dan biarkan AI yang bantu biar iklan kamu disampaikan ke audiens yang tepat sesuai dari isi konten kamu."
+          }
+        ],
+        "markDefs": [],
+        "style": "normal"
+      },
+      {
+        "_key": "c92750e3282b",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "942824c19b97",
+            "_type": "span",
+            "marks": [],
+            "text": "3. Arahin traffic langsung ke WhatsApp, bukan form"
+          }
+        ],
+        "markDefs": [],
+        "style": "h3"
+      },
+      {
+        "_key": "0007f835f6bf",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "ea388a53e9ab",
+            "_type": "span",
+            "marks": [],
+            "text": "Aku pilih CTA langsung ke WhatsApp karena orang Indonesia lebih nyaman ngobrol di WA. Form terasa formal dan sering diabaikan. Dengan WA, leads masuk langsung bisa difollow up, conversion rate-nya jauh lebih tinggi. "
+          }
+        ],
+        "markDefs": [],
+        "style": "normal"
+      },
+      {
+        "_key": "a9bee81e19f5",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "942824c19b97",
+            "_type": "span",
+            "marks": [],
+            "text": "4. Jalanin testing kecil dulu sebelum scale"
+          }
+        ],
+        "markDefs": [],
+        "style": "h3"
+      },
+      {
+        "_key": "621d4f4351ee",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "efca2f42fd71",
+            "_type": "span",
+            "marks": [],
+            "text": "Jangan langsung keluar budget besar di awal. Aku biasanya test beberapa creative, audience, atau angle dulu dengan budget kecil. Dari situ keliatan mana yang perform, mana yang enggak. Kalau hasilnya bagus baru dinaikin budget-nya dan dijalanin terus. Ini bikin iklan lebih hemat dan keputusan yang diambil juga lebih berdasarkan data, bukan feeling."
+          }
+        ],
+        "markDefs": [],
+        "style": "normal"
+      },
+      {
+        "_key": "751bf5844d0e",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "942824c19b97",
+            "_type": "span",
+            "marks": [],
+            "text": "5. Leads = Assets"
+          }
+        ],
+        "markDefs": [],
+        "style": "h3"
+      },
+      {
+        "_key": "e040ad38cb6c",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "942824c19b97",
+            "_type": "span",
+            "marks": [],
+            "text": "Kebanyakan orang fokus terus cari leads baru, padahal leads lama yang belum closing itu sebenernya aset yang belum dimaksimalin. Aku punya satu leads yang udah lama banget nyangkut di WA. Awalnya dia cuma nanya-nanya biasa, terus diem. Normalnya orang udah move on dan anggap leads itu cold. Tapi aku coba follow up lagi kali ini aku tawarin bundle paket yang lebih relevan sama kebutuhannya. Ternyata dia langsung tertarik, aku ajak meeting, dan akhirnya dealing."
+          }
+        ],
+        "markDefs": [],
+        "style": "normal"
+      },
+      {
+        "_key": "d38f7cba03f1",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "cab4619d32b2",
+            "_type": "span",
+            "marks": [],
+            "text": "Mindset yang aku pakai sekarang: "
+          },
+          {
+            "_key": "c73a0209451a",
+            "_type": "span",
+            "marks": [
+              "strong"
+            ],
+            "text": "setiap leads yang masuk itu udah \"bayar\" dari budget iklanmu"
+          },
+          {
+            "_key": "47509d5a650c",
+            "_type": "span",
+            "marks": [],
+            "text": ". Kalau kamu sia-siain tanpa follow up, kamu buang dua kali budget iklannya dan peluang closingnya. Pelajari gimana cara aku keloal leads yang masuk di next artikel.\n\nIntinya, daripada kamu nunggu klien yang mencari kamu, lebih baik kamu yang menjemput kliennya. Sistem ini sudah beberapa kali aku terapkan dan berhasil menghasilkan banyak dealing project."
+          }
+        ],
+        "markDefs": [],
+        "style": "normal"
+      },
+      {
+        "_key": "d0c92322284d",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "afce2df1a15a",
+            "_type": "span",
+            "marks": [],
+            "text": "Tapi perlu diingat, ini berdasarkan pengalamanku pribadi. Jadi mungkin ada beberapa hal yang belum aku paparkan secara lengkap. Karena itu, akan lebih baik kalau kamu juga mendalami paid ads seperti Meta Ads dari orang-orang yang memang sudah lebih berpengalaman di bidangnya."
+          }
+        ],
+        "markDefs": [],
+        "style": "normal"
+      }
+    ]
+  },
+  {
     "id": "053f9a45-d5d5-44df-b88a-d69de2f9c3b1",
     "slug": "cara-menjelaskan-hal-teknis-ke-klien-yang-bukan-programmer-pelajaran-dari-proyek-nyata",
     "title": "Cara Menjelaskan Hal Teknis ke Klien yang Bukan Programmer: Pelajaran dari Proyek Nyata",
+    "category": "Freelance",
     "excerpt": "Waktu itu aku lagi meeting bareng klien pertamaku, pemilik bisnis tour dan travel di Bali. Proyek pertama nih bos semangat masih membara. Sampai di bagian pembahasan teknis...",
-    "coverImage": "/_next/87e15ddd6f00dc656962d0fbbc50937f4d28aa63-5607x373855ac.jpeg",
+    "coverImage": "/blogs/cara-menjelaskan-hal-teknis-ke-klien-yang-bukan-programmer-pelajaran-dari-proyek-nyata/cover.jpeg",
     "publishDate": "24 May 2026",
     "readTime": "5 min read",
     "tags": [
@@ -14,14 +319,503 @@ export const blogsData: Blog[] = [
       "Communication",
       "Client Management"
     ],
-    "content": "Waktu itu aku lagi meeting  bareng klien pertamaku, pemilik bisnis tour dan travel di Bali. Proyek pertama nih bos semangat masih membara. Sampai di bagian pembahasan teknis, aku mulai menjelaskan soal domain dan hosting. Aku sebutkan angkanya, aku jelasin bahwa itu biaya terpisah dari jasa pembuatan website.\n\nKlienku diam sebentar. Lalu dengan nada yang berubah, dia bilang: *\"Lho, tadi katanya sekian. Kok sekarang nambah lagi?\"*\n\nDia mengira aku menaikkan harga di tengah jalan.\n\nBukan karena dia tidak jujur. Bukan karena aku berniat menipu. Tapi karena aku gagal menjelaskan dari awal bahwa domain, hosting, dan jasa pembuatan website adalah tiga hal yang berbeda, seperti tanah, bangunan, dan tukang yang membangunnya.\n\nItu pelajaran pertama yang mahal, dan aku dapat gratis dari pengalaman sendiri.\n\n\n\n## Kenapa komunikasi teknis itu susah dan kenapa itu masalahmu, bukan masalah klien\n\nKita sebagai developer punya kecenderungan berbicara dalam bahasa solusi. \"Aku pakai Laravel untuk backend-nya, Next.js untuk frontend, deploy di VPS.\" Bagi sesama developer, kalimat itu padat makna. Bagi pemilik bisnis tour yang sehari-harinya mengurus itinerary dan tamu itu tidak ada artinya sama sekali.\n\nAda konsep yang disebut *the curse of knowledge* semakin kamu ahli di suatu bidang, semakin susah kamu membayangkan seperti apa rasanya tidak tahu hal itu. Kamu lupa bahwa kata \"hosting\" pernah terasa asing bagimu juga.\n\nDan ini penting untuk dipahami sejak awal: **ketika klien tidak mengerti penjelasanmu, itu bukan karena mereka lambat. Itu karena kamu belum menemukan cara yang tepat untuk menjelaskannya.**\n\nKomunikasi bukan bonus dari jasa yang kamu jual. Komunikasi adalah bagian inti dari jasa itu sendiri.\n\n\n\n## Framework komunikasi teknis yang aku pakai sekarang\n\nDari semua pengalaman itu, aku akhirnya menemukan pola yang bekerja. Bukan teori dari buku ini hasil trial and error di lapangan nyata.\n\n\n\n### 1. Tunjukkan, jangan hanya ceritakan.\n\nCara paling efektif yang aku temukan adalah menunjukkan demo dari proyek-proyek sebelumnya yang sudah online, atau menggunakan website orang lain sebagai referensi visual. Kalau klien tidak paham apa itu \"halaman booking real-time\", aku tinggal buka website tour lain yang sudah punya fitur itu dan bilang: *\"Kurang lebih seperti ini yang kita akan buat.\"* Pemahaman langsung terbentuk tanpa perlu penjelasan panjang.\n\n\n\n### 2. Analogikan dengan kehidupan sehari-hari.\n\nIni yang sering banget, untuk klien yang bingung soal domain dan hosting, aku sekarang pakai analogi ini: domain itu seperti alamat rumahmu, hosting itu tanahnya, dan website itu bangunannya. Ketiganya perlu ada, dan ketiganya punya biaya masing-masing. Analogi ini tidak 100% akurat secara teknis tapi cukup untuk membangun pemahaman yang benar di kepala klien.\n\nUntuk SEO, aku bilang begini: *\"Website yang baru selesai itu seperti toko baru yang buka di gang yang belum ada di Google Maps. Orang tidak akan tahu kalau tidak ada yang beritahu, atau kalau tokonya tidak terdaftar dengan benar.\"* Dengan analogi itu, klien langsung paham kenapa SEO bukan hal yang otomatis terjadi begitu website live.\n\n\n\n### 3. Ringkas setiap update dalam manfaat langsung, bukan istilah teknis.\n\nDaripada bilang *\"sudah saya deploy ke server\"*, aku kirim WhatsApp: *\"Kak, websitenya sudah bisa dicoba di link ini. Silakan dicek tampilan dan isinya, nanti kalau ada yang mau diubah kasih tahu aku ya.\"* Satu kalimat, jelas, dan klien tahu apa yang harus mereka lakukan selanjutnya.\n\n\n\n### 4. Selalu Buka Sesi Tanya Jawab (Feedback)\n\nPastikan klien kamu mengerti dengan apa yang kamu sampaikan dengan bertanya langsung kepadanya “Kira-kira ada bagian yang kakak kurang mengerti?“. Jangan sampai biarkan dia memahami semuanya sendiri agar tidak terjadi kesalah pahaman dan menghindari potensi dighosting saat selesai meeting.\n\nSelalu ingat\n\n`**“Skill teknis bikin kamu dipekerjakan. Komunikasi bikin kamu direferensikan.”**`\n\nSekolah / Kampus mengajarkan kita cara membangun sistem. Tapi tidak banyak yang mengajarkan cara menjelaskan sistem itu ke orang awam yang tidak peduli cara kerjanya mereka hanya peduli apakah sistemnya bisa membantu bisnis mereka.\n\nKlien yang puas bukan hanya yang dapat website bagus. Klien yang puas adalah yang merasa dipahami, tidak bingung, dan tidak pernah merasa dikejutkan di tengah jalan."
+    "content": "Waktu itu aku lagi meeting bareng klien pertamaku, pemilik bisnis tour dan travel di Bali...",
+    "author": {
+      "name": "Mahendra Arya",
+      "role": "Web Developer",
+      "avatar": "/avatar/photo-profile.jpeg"
+    },
+    "contentBlocks": [
+      {
+        "_key": "c6e48ae16e53",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "6a7d39706b48",
+            "_type": "span",
+            "marks": [],
+            "text": "Waktu itu aku lagi meeting  bareng klien pertamaku, pemilik bisnis tour dan travel di Bali. Proyek pertama nih bos semangat masih membara. Sampai di bagian pembahasan teknis, aku mulai menjelaskan soal domain dan hosting. Aku sebutkan angkanya, aku jelasin bahwa itu biaya terpisah dari jasa pembuatan website."
+          }
+        ],
+        "markDefs": [],
+        "style": "normal"
+      },
+      {
+        "_key": "946be01d026d",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "c227ec1675c9",
+            "_type": "span",
+            "marks": [],
+            "text": "Klienku diam sebentar. Lalu dengan nada yang berubah, dia bilang: "
+          },
+          {
+            "_key": "f08bc6718de9",
+            "_type": "span",
+            "marks": [
+              "em"
+            ],
+            "text": "\"Lho, tadi katanya sekian. Kok sekarang nambah lagi?\""
+          }
+        ],
+        "markDefs": [],
+        "style": "normal"
+      },
+      {
+        "_key": "635e0a5e6ca0",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "399724778a66",
+            "_type": "span",
+            "marks": [],
+            "text": "Dia mengira aku menaikkan harga di tengah jalan."
+          }
+        ],
+        "markDefs": [],
+        "style": "normal"
+      },
+      {
+        "_key": "52bb7f4062a0",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "09d9422e3ecb",
+            "_type": "span",
+            "marks": [],
+            "text": "Bukan karena dia tidak jujur. Bukan karena aku berniat menipu. Tapi karena aku gagal menjelaskan dari awal bahwa domain, hosting, dan jasa pembuatan website adalah tiga hal yang berbeda, seperti tanah, bangunan, dan tukang yang membangunnya."
+          }
+        ],
+        "markDefs": [],
+        "style": "normal"
+      },
+      {
+        "_key": "c1bbc0b81d67",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "e6061084b4bc",
+            "_type": "span",
+            "marks": [],
+            "text": "Itu pelajaran pertama yang mahal, dan aku dapat gratis dari pengalaman sendiri."
+          }
+        ],
+        "markDefs": [],
+        "style": "normal"
+      },
+      {
+        "_key": "b64ac5c0ba10",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "e6061084b4bc",
+            "_type": "span",
+            "marks": [],
+            "text": "Kenapa komunikasi teknis itu susah dan kenapa itu masalahmu, bukan masalah klien"
+          }
+        ],
+        "markDefs": [],
+        "style": "h2"
+      },
+      {
+        "_key": "63170955586c",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "efdc575a2984",
+            "_type": "span",
+            "marks": [],
+            "text": "Kita sebagai developer punya kecenderungan berbicara dalam bahasa solusi. \"Aku pakai Laravel untuk backend-nya, Next.js untuk frontend, deploy di VPS.\" Bagi sesama developer, kalimat itu padat makna. Bagi pemilik bisnis tour yang sehari-harinya mengurus itinerary dan tamu itu tidak ada artinya sama sekali."
+          }
+        ],
+        "markDefs": [],
+        "style": "normal"
+      },
+      {
+        "_key": "79e60c3e6cb7",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "14b9ac87bcf1",
+            "_type": "span",
+            "marks": [],
+            "text": "Ada konsep yang disebut "
+          },
+          {
+            "_key": "a7e885a1371d",
+            "_type": "span",
+            "marks": [
+              "em"
+            ],
+            "text": "the curse of knowledge"
+          },
+          {
+            "_key": "eddb7473c137",
+            "_type": "span",
+            "marks": [],
+            "text": " semakin kamu ahli di suatu bidang, semakin susah kamu membayangkan seperti apa rasanya tidak tahu hal itu. Kamu lupa bahwa kata \"hosting\" pernah terasa asing bagimu juga."
+          }
+        ],
+        "markDefs": [],
+        "style": "normal"
+      },
+      {
+        "_key": "0c7a8fc4d639",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "d044bd2721ec",
+            "_type": "span",
+            "marks": [],
+            "text": "Dan ini penting untuk dipahami sejak awal: "
+          },
+          {
+            "_key": "421678fdf125",
+            "_type": "span",
+            "marks": [
+              "strong"
+            ],
+            "text": "ketika klien tidak mengerti penjelasanmu, itu bukan karena mereka lambat. Itu karena kamu belum menemukan cara yang tepat untuk menjelaskannya."
+          }
+        ],
+        "markDefs": [],
+        "style": "normal"
+      },
+      {
+        "_key": "ef7b9ba71dcf",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "670fd75c2a2a",
+            "_type": "span",
+            "marks": [],
+            "text": "Komunikasi bukan bonus dari jasa yang kamu jual. Komunikasi adalah bagian inti dari jasa itu sendiri."
+          }
+        ],
+        "markDefs": [],
+        "style": "normal"
+      },
+      {
+        "_key": "86b228dd1fcb",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "623086b94ead",
+            "_type": "span",
+            "marks": [],
+            "text": "Framework komunikasi teknis yang aku pakai sekarang"
+          }
+        ],
+        "markDefs": [],
+        "style": "h2"
+      },
+      {
+        "_key": "5f5cf07c983d",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "9e60f02cea28",
+            "_type": "span",
+            "marks": [],
+            "text": "Dari semua pengalaman itu, aku akhirnya menemukan pola yang bekerja. Bukan teori dari buku ini hasil trial and error di lapangan nyata."
+          }
+        ],
+        "markDefs": [],
+        "style": "normal"
+      },
+      {
+        "_key": "a81ecf7d5ba9",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "0ad330ab5d69",
+            "_type": "span",
+            "marks": [],
+            "text": "1. Tunjukkan, jangan hanya ceritakan."
+          }
+        ],
+        "markDefs": [],
+        "style": "h3"
+      },
+      {
+        "_key": "441d93efbd72",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "00f45ee1120d",
+            "_type": "span",
+            "marks": [],
+            "text": "Cara paling efektif yang aku temukan adalah menunjukkan demo dari proyek-proyek sebelumnya yang sudah online, atau menggunakan website orang lain sebagai referensi visual. Kalau klien tidak paham apa itu \"halaman booking real-time\", aku tinggal buka website tour lain yang sudah punya fitur itu dan bilang: "
+          },
+          {
+            "_key": "7af153ab538a",
+            "_type": "span",
+            "marks": [
+              "em"
+            ],
+            "text": "\"Kurang lebih seperti ini yang kita akan buat.\""
+          },
+          {
+            "_key": "52f618b51d6f",
+            "_type": "span",
+            "marks": [],
+            "text": " Pemahaman langsung terbentuk tanpa perlu penjelasan panjang."
+          }
+        ],
+        "markDefs": [],
+        "style": "normal"
+      },
+      {
+        "_key": "69e9b25d2037",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "0ad330ab5d69",
+            "_type": "span",
+            "marks": [],
+            "text": "2. Analogikan dengan kehidupan sehari-hari."
+          }
+        ],
+        "markDefs": [],
+        "style": "h3"
+      },
+      {
+        "_key": "2f7e8be0ec3b",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "ff286a988a00",
+            "_type": "span",
+            "marks": [],
+            "text": "Ini yang sering banget, untuk klien yang bingung soal domain dan hosting, aku sekarang pakai analogi ini: domain itu seperti alamat rumahmu, hosting itu tanahnya, dan website itu bangunannya. Ketiganya perlu ada, dan ketiganya punya biaya masing-masing. Analogi ini tidak 100% akurat secara teknis tapi cukup untuk membangun pemahaman yang benar di kepala klien."
+          }
+        ],
+        "markDefs": [],
+        "style": "normal"
+      },
+      {
+        "_key": "990b7f7443af",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "adc972153ee1",
+            "_type": "span",
+            "marks": [],
+            "text": "Untuk SEO, aku bilang begini: "
+          },
+          {
+            "_key": "7870e5bdb99c",
+            "_type": "span",
+            "marks": [
+              "em"
+            ],
+            "text": "\"Website yang baru selesai itu seperti toko baru yang buka di gang yang belum ada di Google Maps. Orang tidak akan tahu kalau tidak ada yang beritahu, atau kalau tokonya tidak terdaftar dengan benar.\""
+          },
+          {
+            "_key": "66ef51148e53",
+            "_type": "span",
+            "marks": [],
+            "text": " Dengan analogi itu, klien langsung paham kenapa SEO bukan hal yang otomatis terjadi begitu website live."
+          }
+        ],
+        "markDefs": [],
+        "style": "normal"
+      },
+      {
+        "_key": "e2c99a179317",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "1135e323aa80",
+            "_type": "span",
+            "marks": [],
+            "text": "3. Ringkas setiap update dalam manfaat langsung, bukan istilah teknis."
+          }
+        ],
+        "markDefs": [],
+        "style": "h3"
+      },
+      {
+        "_key": "6ea280e85064",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "afbd6d2a3698",
+            "_type": "span",
+            "marks": [],
+            "text": "Daripada bilang "
+          },
+          {
+            "_key": "e507f9e90030",
+            "_type": "span",
+            "marks": [
+              "em"
+            ],
+            "text": "\"sudah saya deploy ke server\""
+          },
+          {
+            "_key": "4bf92188a2b5",
+            "_type": "span",
+            "marks": [],
+            "text": ", aku kirim WhatsApp: "
+          },
+          {
+            "_key": "599f0c8fa6e5",
+            "_type": "span",
+            "marks": [
+              "em"
+            ],
+            "text": "\"Kak, websitenya sudah bisa dicoba di link ini. Silakan dicek tampilan dan isinya, nanti kalau ada yang mau diubah kasih tahu aku ya.\""
+          },
+          {
+            "_key": "cd130cb158cb",
+            "_type": "span",
+            "marks": [],
+            "text": " Satu kalimat, jelas, dan klien tahu apa yang harus mereka lakukan selanjutnya."
+          }
+        ],
+        "markDefs": [],
+        "style": "normal"
+      },
+      {
+        "_key": "af81277af0ac",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "1135e323aa80",
+            "_type": "span",
+            "marks": [],
+            "text": "4. Selalu Buka Sesi Tanya Jawab (Feedback)"
+          }
+        ],
+        "markDefs": [],
+        "style": "h3"
+      },
+      {
+        "_key": "bdf858f94147",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "87fbe30979c2",
+            "_type": "span",
+            "marks": [],
+            "text": "Pastikan klien kamu mengerti dengan apa yang kamu sampaikan dengan bertanya langsung kepadanya “Kira-kira ada bagian yang kakak kurang mengerti?“. Jangan sampai biarkan dia memahami semuanya sendiri agar tidak terjadi kesalah pahaman dan menghindari potensi dighosting saat selesai meeting."
+          }
+        ],
+        "markDefs": [],
+        "style": "normal"
+      },
+      {
+        "_key": "ceb6117e8885",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "97315ac3c4dc",
+            "_type": "span",
+            "marks": [],
+            "text": ""
+          }
+        ],
+        "markDefs": [],
+        "style": "normal"
+      },
+      {
+        "_key": "74270747012e",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "6030189f55b3",
+            "_type": "span",
+            "marks": [],
+            "text": "Selalu ingat"
+          }
+        ],
+        "markDefs": [],
+        "style": "normal"
+      },
+      {
+        "_key": "9e2a28e39079",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "d4aebed7ff5a",
+            "_type": "span",
+            "marks": [
+              "strong",
+              "code"
+            ],
+            "text": "“Skill teknis bikin kamu dipekerjakan. Komunikasi bikin kamu direferensikan.”"
+          }
+        ],
+        "markDefs": [],
+        "style": "normal"
+      },
+      {
+        "_key": "c98fe1d9d319",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "8da7f5d5ef1f",
+            "_type": "span",
+            "marks": [],
+            "text": ""
+          }
+        ],
+        "markDefs": [],
+        "style": "normal"
+      },
+      {
+        "_key": "6dfde645344b",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "94d6ea88f105",
+            "_type": "span",
+            "marks": [],
+            "text": "Sekolah / Kampus mengajarkan kita cara membangun sistem. Tapi tidak banyak yang mengajarkan cara menjelaskan sistem itu ke orang awam yang tidak peduli cara kerjanya mereka hanya peduli apakah sistemnya bisa membantu bisnis mereka."
+          }
+        ],
+        "markDefs": [],
+        "style": "normal"
+      },
+      {
+        "_key": "2efabb576874",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "1e623b11ad4b",
+            "_type": "span",
+            "marks": [],
+            "text": "Klien yang puas bukan hanya yang dapat website bagus. Klien yang puas adalah yang merasa dipahami, tidak bingung, dan tidak pernah merasa dikejutkan di tengah jalan."
+          }
+        ],
+        "markDefs": [],
+        "style": "normal"
+      },
+      {
+        "_key": "0d3d36427f8d",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "9d7b6c4cfdab",
+            "_type": "span",
+            "marks": [],
+            "text": ""
+          }
+        ],
+        "markDefs": [],
+        "style": "normal"
+      }
+    ]
   },
   {
     "id": "33a91c3e-786d-4e79-8c59-948b5043159e",
     "slug": "rekomendasi-tech-stack-yang-aku-pakai-untuk-freelance-web-developer",
     "title": "Rekomendasi Tech Stack Yang Aku Pakai Untuk Freelance Web Developer",
+    "category": "Freelance",
     "excerpt": "Salah satu pertanyaan yang paling sering aku dapet dari sesama siswa IT adalah: \"belajar apa dulu buat freelance?\" Dan jawabannya nggak sesimple itu karena stack yang tepat tergantung dari klien...",
-    "coverImage": "/_next/e018d5ad05b2c9f3a171c143a932886f41e1343e-4272x28482d40.jpeg",
+    "coverImage": "/blogs/rekomendasi-tech-stack-yang-aku-pakai-untuk-freelance-web-developer/cover.jpeg",
     "publishDate": "24 May 2026",
     "readTime": "5 min read",
     "tags": [
@@ -31,30 +825,310 @@ export const blogsData: Blog[] = [
       "Laravel",
       "WordPress"
     ],
-    "content": "Salah satu pertanyaan yang paling sering aku dapet dari sesama siswa IT adalah: \"belajar apa dulu buat freelance?\" Dan jawabannya nggak sesimple itu karena stack yang tepat tergantung dari klien yang kamu hadapi.\n\nAku udah 3 tahun jalan di dunia web developer, dan sampai sekarang aku pakai tiga stack utama: WordPress, Next.js, dan Laravel. Bukan berarti aku pakai semua sekaligus di satu project, tapi masing-masing punya tempatnya sendiri. Di artikel ini aku mau breakdown kapan pakai yang mana, dari pengalaman langsung.\n\n\n\n## Tech stack yang aku pakai\n\n\n\n### Wordpresss\n\nWordPress masih jadi andalan aku untuk klien yang punya budget terbatas tapi butuh website yang bisa mereka kelola sendiri tanpa harus ngerti coding. Dengan page builder seperti Elementor atau Gutenberg, klien bisa update konten, tambah blog, atau ganti foto produk tanpa harus hubungi aku setiap saat. Ini value yang besar buat mereka.\n\nAku pakai ini di Klien dengan budget rendah, butuh website company profile atau toko online sederhana, dan ingin bisa kelola kontennya sendiri.\n\n\n\n## Next JS\n\nKebanyakan klien aku sekarang pakai Next.js, karena mereka mulai sadar bahwa website yang lambat itu langsung berdampak ke bisnis. Next.js dengan fitur SSR dan SSG-nya kasih performa yang jauh lebih baik, plus SEO yang lebih optimal secara teknikal. Deploy di Vercel juga sangat smooth. Kalau klien minta website yang fleksibel dari segi fitur dan nggak mau terikat sama plugin, ini pilihan utama aku.\n\nAku pakai ini di Klien yang ingin website dengan loading cepat, SEO yang baik, dan fleksibilitas fitur. biasanya bisnis yang udah lebih serius soal digital presence-nya.\n\n\n\n### Laravel\n\nLaravel aku pakai kalau project-nya butuh lebih dari sekadar website — misalnya sistem manajemen internal, admin panel custom, atau aplikasi web dengan logika bisnis yang kompleks. Laravel punya struktur yang rapi dan ekosistem yang mature, jadi cocok banget untuk project jangka panjang yang butuh maintenance berkelanjutan.\n\nAku pakai ini di Klien yang butuh sistem admin panel, manajemen user, atau fitur-fitur yang lebih dari sekadar website biasa.\n\n\n\n\n## Tips buat kamu yang baru mulai freelance\n\nJangan coba kuasai semua stack sekaligus. Mulai dari satu yang paling cepat bisa kamu jual. Untuk kebanyakan pemula, WordPress adalah entry point yang paling realistis karena demand-nya tinggi dan setup-nya cepat.\n\nPahami dulu kebutuhan klien sebelum nentuin stack. Jangan sampai kamu propose Next.js ke klien yang sebenernya cuma butuh landing page sederhana, overkill dan kamu sendiri yang repot.\n\nSkill yang sama pentingnya dengan coding: bisa jelasin perbedaan tiap stack ke klien dengan bahasa yang mereka ngerti. Klien nggak peduli soal SSR atau SSG, mereka peduli apakah website mereka bakal cepat dan gampang dipakai.\n\nStack apapun yang kamu pilih, pastikan kamu bisa deploy dengan lancar. Aku pakai Vercel untuk Next.js dan hasilnya sangat smooth, ini bagian dari value yang kamu jual ke klien juga."
-  },
-  {
-    "id": "7148175a-2db0-44ca-a18f-7fbaee97e907",
-    "slug": "bangun-sistem-farming-leads-dengan-meta-ads-untuk-freelancer",
-    "title": "Bangun Sistem Farming Leads Dengan Meta Ads Untuk Freelancer",
-    "excerpt": "Jujur, aku sempat skeptis. Paid ads kayak Meta ads itu kesannya mahal, ribet, dan lebih cocok buat brand besar. Tapi aku liat banyak banget freelancer yang udah nyobain dan mereka berhasil...",
-    "coverImage": "/_next/904deabff6f1c2e6a4042fc05832c1eddf882318-2952x21054637.jpeg",
-    "publishDate": "24 May 2026",
-    "readTime": "5 min read",
-    "tags": [
-      "Freelance",
-      "Digital Marketing",
-      "Meta Ads",
-      "Lead Generation"
-    ],
-    "content": "Jujur, aku sempat skeptis. Paid ads kayak Meta ads itu kesannya mahal, ribet, dan lebih cocok buat brand besar. Tapi aku liat banyak banget freelancer yang udah nyobain dan mereka berhasil dealing terus-terusan. First time aku coba memang hasilnya agak kurang memuaskan (hampir boncos). Cuman setelah aku susun sistem ini tuh terus aku coba lagi, akhirnya aku berhasil closing 2 juta dari modal spen ads cuman 150k aja.\n\nBukan gara-gara lagi hoki aja, tapi gara-gara aku punya sistemnya. Dan di artikel ini aku mau breakdown sistemnya dari nol.\n\n\n\n## Apa itu Farming Leads?\n\nBeda sama iklan biasa yang tujuannya cuma biar nama kita dikenal, farming leads itu lebih ke arah ngumpulin calon klien secara sistematis. Setiap uang yang keluar harus punya tujuan jelas: dapetin kontak orang yang genuinely tertarik sama jasa kita.\n\nBuat freelancer seperti aku yang menawarkan jasa web development, ini jauh lebih efektif daripada sekadar boost postingan berharap ada yang DM.\n\n\n\n## Step by Step Sistemnya\n\n\n\n### 1. Pilih satu niche, jangan generalis\n\nIni pelajaran paling mahal yang aku pelajari. Awalnya aku jalankan iklan untuk semua niche sekaligus bisnis kuliner, toko fashion, jasa, dll. Hasilnya? Nihil. Begitu aku fokus ke satu niche spesifik yaitu bisnis travel, leads mulai masuk dan closing terjadi. Satu niche = pesan yang lebih tajam = konversi lebih tinggi.\n\n\n\n### 2. Buat creative yang langsung to the point\n\nNah di sinilah enaknya sekarang. Meta punya fitur bawaan namanya **Advantage+ Creative** AI dari Meta yang bantu kamu bikin dan optimasi creative iklan tanpa harus setting semuanya manual. Kamu cukup bikin 1 konten creative yang langsung mengarah ke niche kamu dan biarkan AI yang bantu biar iklan kamu disampaikan ke audiens yang tepat sesuai dari isi konten kamu.\n\n\n\n### 3. Arahin traffic langsung ke WhatsApp, bukan form\n\nAku pilih CTA langsung ke WhatsApp karena orang Indonesia lebih nyaman ngobrol di WA. Form terasa formal dan sering diabaikan. Dengan WA, leads masuk langsung bisa difollow up, conversion rate-nya jauh lebih tinggi. \n\n\n\n### 4. Jalanin testing kecil dulu sebelum scale\n\nJangan langsung keluar budget besar di awal. Aku biasanya test beberapa creative, audience, atau angle dulu dengan budget kecil. Dari situ keliatan mana yang perform, mana yang enggak. Kalau hasilnya bagus baru dinaikin budget-nya dan dijalanin terus. Ini bikin iklan lebih hemat dan keputusan yang diambil juga lebih berdasarkan data, bukan feeling.\n\n\n\n### 5. Leads = Assets\n\nKebanyakan orang fokus terus cari leads baru, padahal leads lama yang belum closing itu sebenernya aset yang belum dimaksimalin. Aku punya satu leads yang udah lama banget nyangkut di WA. Awalnya dia cuma nanya-nanya biasa, terus diem. Normalnya orang udah move on dan anggap leads itu cold. Tapi aku coba follow up lagi kali ini aku tawarin bundle paket yang lebih relevan sama kebutuhannya. Ternyata dia langsung tertarik, aku ajak meeting, dan akhirnya dealing.\n\nMindset yang aku pakai sekarang: **setiap leads yang masuk itu udah \"bayar\" dari budget iklanmu**. Kalau kamu sia-siain tanpa follow up, kamu buang dua kali budget iklannya dan peluang closingnya. Pelajari gimana cara aku keloal leads yang masuk di next artikel.\n\nIntinya, daripada kamu nunggu klien yang mencari kamu, lebih baik kamu yang menjemput kliennya. Sistem ini sudah beberapa kali aku terapkan dan berhasil menghasilkan banyak dealing project.\n\nTapi perlu diingat, ini berdasarkan pengalamanku pribadi. Jadi mungkin ada beberapa hal yang belum aku paparkan secara lengkap. Karena itu, akan lebih baik kalau kamu juga mendalami paid ads seperti Meta Ads dari orang-orang yang memang sudah lebih berpengalaman di bidangnya."
+    "content": "Salah satu pertanyaan yang paling sering aku dapet dari sesama siswa IT adalah: \"belajar apa dulu buat freelance?\"...",
+    "author": {
+      "name": "Mahendra Arya",
+      "role": "Web Developer",
+      "avatar": "/avatar/photo-profile.jpeg"
+    },
+    "contentBlocks": [
+      {
+        "_key": "c4a5cd77dadd",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "67f8d7534010",
+            "_type": "span",
+            "marks": [],
+            "text": "Salah satu pertanyaan yang paling sering aku dapet dari sesama siswa IT adalah: \"belajar apa dulu buat freelance?\" Dan jawabannya nggak sesimple itu karena stack yang tepat tergantung dari klien yang kamu hadapi."
+          }
+        ],
+        "markDefs": [],
+        "style": "normal"
+      },
+      {
+        "_key": "39e8a7e4f490",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "c787f9a619ce",
+            "_type": "span",
+            "marks": [],
+            "text": "Aku udah 3 tahun jalan di dunia web developer, dan sampai sekarang aku pakai tiga stack utama: WordPress, Next.js, dan Laravel. Bukan berarti aku pakai semua sekaligus di satu project, tapi masing-masing punya tempatnya sendiri. Di artikel ini aku mau breakdown kapan pakai yang mana, dari pengalaman langsung."
+          }
+        ],
+        "markDefs": [],
+        "style": "normal"
+      },
+      {
+        "_key": "42352cda3c53",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "8bf9325ba948",
+            "_type": "span",
+            "marks": [],
+            "text": "Tech stack yang aku pakai"
+          }
+        ],
+        "markDefs": [],
+        "style": "h2"
+      },
+      {
+        "_key": "8a9aff17e7a6",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "1666ff417fe7",
+            "_type": "span",
+            "marks": [],
+            "text": "Wordpresss"
+          }
+        ],
+        "markDefs": [],
+        "style": "h3"
+      },
+      {
+        "_key": "6a7914642cf3",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "155792c0b354",
+            "_type": "span",
+            "marks": [],
+            "text": "WordPress masih jadi andalan aku untuk klien yang punya budget terbatas tapi butuh website yang bisa mereka kelola sendiri tanpa harus ngerti coding. Dengan page builder seperti Elementor atau Gutenberg, klien bisa update konten, tambah blog, atau ganti foto produk tanpa harus hubungi aku setiap saat. Ini value yang besar buat mereka."
+          }
+        ],
+        "markDefs": [],
+        "style": "normal"
+      },
+      {
+        "_key": "a958a0713b30",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "90670f2e6bfe",
+            "_type": "span",
+            "marks": [],
+            "text": "Aku pakai ini di Klien dengan budget rendah, butuh website company profile atau toko online sederhana, dan ingin bisa kelola kontennya sendiri."
+          }
+        ],
+        "markDefs": [],
+        "style": "normal"
+      },
+      {
+        "_key": "3555e6d7e4bd",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "d2136b8afeaa",
+            "_type": "span",
+            "marks": [],
+            "text": ""
+          }
+        ],
+        "markDefs": [],
+        "style": "normal"
+      },
+      {
+        "_key": "01dfdd84e7df",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "3abe124ef937",
+            "_type": "span",
+            "marks": [],
+            "text": "Next JS"
+          }
+        ],
+        "markDefs": [],
+        "style": "h2"
+      },
+      {
+        "_key": "922c349a63b3",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "ff66bdc81e9c",
+            "_type": "span",
+            "marks": [],
+            "text": "Kebanyakan klien aku sekarang pakai Next.js, karena mereka mulai sadar bahwa website yang lambat itu langsung berdampak ke bisnis. Next.js dengan fitur SSR dan SSG-nya kasih performa yang jauh lebih baik, plus SEO yang lebih optimal secara teknikal. Deploy di Vercel juga sangat smooth. Kalau klien minta website yang fleksibel dari segi fitur dan nggak mau terikat sama plugin, ini pilihan utama aku."
+          }
+        ],
+        "markDefs": [],
+        "style": "normal"
+      },
+      {
+        "_key": "65efe51a8895",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "4c4710ff3fcc",
+            "_type": "span",
+            "marks": [],
+            "text": "Aku pakai ini di Klien yang ingin website dengan loading cepat, SEO yang baik, dan fleksibilitas fitur. biasanya bisnis yang udah lebih serius soal digital presence-nya."
+          }
+        ],
+        "markDefs": [],
+        "style": "normal"
+      },
+      {
+        "_key": "05aeafb4bda4",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "bced2e52db54",
+            "_type": "span",
+            "marks": [],
+            "text": ""
+          }
+        ],
+        "markDefs": [],
+        "style": "normal"
+      },
+      {
+        "_key": "9463e6890a27",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "6cc58fc15308",
+            "_type": "span",
+            "marks": [],
+            "text": "Laravel"
+          }
+        ],
+        "markDefs": [],
+        "style": "h3"
+      },
+      {
+        "_key": "fbcda357f707",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "d09aa4a6c00a",
+            "_type": "span",
+            "marks": [],
+            "text": "Laravel aku pakai kalau project-nya butuh lebih dari sekadar website — misalnya sistem manajemen internal, admin panel custom, atau aplikasi web dengan logika bisnis yang kompleks. Laravel punya struktur yang rapi dan ekosistem yang mature, jadi cocok banget untuk project jangka panjang yang butuh maintenance berkelanjutan."
+          }
+        ],
+        "markDefs": [],
+        "style": "normal"
+      },
+      {
+        "_key": "9e7f657e7546",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "d9474a6ae804",
+            "_type": "span",
+            "marks": [],
+            "text": "Aku pakai ini di Klien yang butuh sistem admin panel, manajemen user, atau fitur-fitur yang lebih dari sekadar website biasa.\n"
+          }
+        ],
+        "markDefs": [],
+        "style": "normal"
+      },
+      {
+        "_key": "69bc264addd8",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "488c55c5c45b",
+            "_type": "span",
+            "marks": [],
+            "text": "Tips buat kamu yang baru mulai freelance"
+          }
+        ],
+        "markDefs": [],
+        "style": "h2"
+      },
+      {
+        "_key": "cd9da4688d9d",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "2a34fcdcb802",
+            "_type": "span",
+            "marks": [],
+            "text": "Jangan coba kuasai semua stack sekaligus. Mulai dari satu yang paling cepat bisa kamu jual. Untuk kebanyakan pemula, WordPress adalah entry point yang paling realistis karena demand-nya tinggi dan setup-nya cepat."
+          }
+        ],
+        "level": 1,
+        "listItem": "bullet",
+        "markDefs": [],
+        "style": "normal"
+      },
+      {
+        "_key": "de43a85feef1",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "ac899510f45f",
+            "_type": "span",
+            "marks": [],
+            "text": "Pahami dulu kebutuhan klien sebelum nentuin stack. Jangan sampai kamu propose Next.js ke klien yang sebenernya cuma butuh landing page sederhana, overkill dan kamu sendiri yang repot."
+          }
+        ],
+        "level": 1,
+        "listItem": "bullet",
+        "markDefs": [],
+        "style": "normal"
+      },
+      {
+        "_key": "e723e81b510b",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "cccd2a6711a6",
+            "_type": "span",
+            "marks": [],
+            "text": "Skill yang sama pentingnya dengan coding: bisa jelasin perbedaan tiap stack ke klien dengan bahasa yang mereka ngerti. Klien nggak peduli soal SSR atau SSG, mereka peduli apakah website mereka bakal cepat dan gampang dipakai."
+          }
+        ],
+        "level": 1,
+        "listItem": "bullet",
+        "markDefs": [],
+        "style": "normal"
+      },
+      {
+        "_key": "bfbd1e8c2bf9",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "6e45d75a2bbe",
+            "_type": "span",
+            "marks": [],
+            "text": "Stack apapun yang kamu pilih, pastikan kamu bisa deploy dengan lancar. Aku pakai Vercel untuk Next.js dan hasilnya sangat smooth, ini bagian dari value yang kamu jual ke klien juga."
+          }
+        ],
+        "level": 1,
+        "listItem": "bullet",
+        "markDefs": [],
+        "style": "normal"
+      },
+      {
+        "_key": "a56136955dd4",
+        "_type": "block",
+        "children": [
+          {
+            "_key": "989b7c8634f5",
+            "_type": "span",
+            "marks": [],
+            "text": ""
+          }
+        ],
+        "markDefs": [],
+        "style": "normal"
+      }
+    ]
   },
   {
     "id": "d53cf036-5fb2-45de-afb3-4419c4778ce6",
     "slug": "dari-0-ke-klien-pertama-roadmap-freelance-web-dev-untuk-pelajar-it",
     "title": "Dari 0 ke Klien Pertama : Roadmap Freelance Web Dev untuk pelajar IT",
+    "category": "Freelance",
     "excerpt": "Dulu aku sering mikir, “Gimana ya caranya dapetin uang dari skill ngodingku?” Aku lihat di sosial media banyak banget orang yang udah bisa menghasilkan puluhan juta cuma dari bikin website...",
-    "coverImage": "/_next/2b9c9e48ebaeaef2b5c236982da9e82cda6e6237-3456x51840ed1.jpeg",
+    "coverImage": "/blogs/dari-0-ke-klien-pertama-roadmap-freelance-web-dev-untuk-pelajar-it/cover.jpeg",
     "publishDate": "24 May 2026",
     "readTime": "5 min read",
     "tags": [
@@ -63,6 +1137,11 @@ export const blogsData: Blog[] = [
       "Roadmap",
       "Student"
     ],
-    "content": "Dulu aku sering mikir, “Gimana ya caranya dapetin uang dari skill ngodingku?” Aku lihat di sosial media banyak banget orang yang udah bisa menghasilkan puluhan juta cuma dari bikin website, dan itu bahkan nggak ngoding sama sekali, loh. Aku respect sama mereka. Walaupun pengalaman IT mereka mungkin masih di bawahku, mereka bisa memanfaatkan skill sesederhana itu untuk jadi sumber income mereka.\n\nSedangkan aku, yang udah berpengalaman 3 tahun bikin website, cuma bisa bikin web untuk tugas sekolah, lomba, dan mentok-mentok paling proyek portofolio untuk diriku sendiri. Setelah aku belajar dari mereka, aku mulai sadar, mereka bisa karena mereka mau memulai tak penting apapun skill yang kita punya selagi kita ada keinginan kita pasti bisa menghasilkan uang dari skill yang kita punya.\n\nArtikel ini aku tulis berdasarkan perjalanan nyata aku sebagai web developer yang sekarang menjalani freelance sambil sekolah. Bukan teori dari buku, bukan riset dari internet, ini hal-hal yang benar-benar aku alami, termasuk kesalahan-kesalahannya.\n\n\n\n## Kenapa freelance web dev cocok banget untuk pelajar IT?\n\nAda banyak alasan kenapa ini salah satu peluang terbaik yang bisa kamu ambil sekarang bukan nanti setelah lulus.\n\nPertama, modal utamamu sudah ada: skill yang kamu pelajari di sekolah/kampus. HTML, CSS, JavaScript, basis data, logika pemrograman. semua itu sudah cukup untuk bikin website yang nyata dan berguna bagi bisnis.\n\nKedua, pasar lokalmu lebih besar dari yang kamu kira. Di Bali saja, tempat aku tinggal, ada ribuan bisnis kecil: villa, warung, tour operator, jasa laundry, spa, dan sebagainya. Mayoritas belum punya website yang layak, atau bahkan belum punya sama sekali. Mereka butuh kamu, bukan developer dengan 10 tahun pengalaman.\n\nKetiga, ini bukan sekadar penghasilan tambahan. Setiap proyek yang kamu kerjakan adalah portofolio nyata, pengalaman nyata, dan bukti bahwa kamu bisa bekerja secara profesional, jauh lebih kuat dari nilai semester, peringkat kelas, bahkan sertifikat yang kamu pajang di CV mu.\n\n\n\n## Gimana caranya mulai merintis sebagai pelajar IT?\n\n\n\n### 1. Tentukan dulu kamu mau jadi \"web dev\" yang seperti apa\n\nKesalahan pertama yang hampir semua pemula lakukan adalah menawarkan segalanya. \"Aku bisa bikin website apa saja.\" Kedengarannya fleksibel, tapi di mata klien, itu justru terkesan tidak fokus.\n\nPilih niche yang spesifik sejak awal. Bukan karena kamu tidak bisa yang lain, tapi karena niche membuatmu lebih mudah ditemukan dan lebih mudah dipercaya.\n\nProyek pertamaku adalah website untuk bisnis tour dan travel di Bali. Bukan kebetulan, aku memang sudah familiar dengan industri ini karena lingkungan sekitarku. Dan justru karena spesifik itulah klienku merasa aku \"ngerti\" dunia mereka.\n\nCoba tulis satu kalimat ini sekarang: *\"Aku bikin website untuk [jenis bisnis] di [area/industri] supaya mereka bisa [manfaat konkret].\"*\n\n\n\n### 2. Bangun portofolio meski belum punya klien berbayar\n\nIni yang sering jadi alasan untuk tidak mulai: \"Aku belum punya portofolio.\" Padahal portofolio tidak harus datang dari klien berbayar.\n\nWaktu pertama kali aku mulai, aku bikin beberapa proyek sendiri dan deploy di Vercel gratis, tidak perlu beli hosting dulu. Idenya sederhana: simulasikan website untuk bisnis nyata yang ada di sekitarmu. Buat website fiktif untuk warung kopi favoritmu, untuk villa yang sering kamu lewati, atau redesign website lokal yang sudah ketinggalan zaman.\n\nYang paling penting: setiap proyek punya cerita. Bukan cuma \"ini website-nya,\" tapi jelaskan masalah apa yang dipecahkan, kenapa kamu pilih pendekatan itu, dan seperti apa hasilnya. Tiga proyek dengan case study yang baik lebih menjual dari sepuluh proyek tanpa konteks.\n\nStack yang aku pakai: Laravel dan Next.js untuk proyek yang lebih kompleks, WordPress untuk proyek kecil yang butuh delivery cepat. Sesuaikan dengan kebutuhan, tidak perlu selalu pakai yang paling canggih.\n\n\n\n### 3. Cari klien pertama dari lingkaran terdekat dulu\n\nangan langsung daftar Upwork atau Fiverr. Itu bukan langkah pertama yang tepat, persaingannya keras dan kamu belum punya ulasan apapun.\n\nKlien pertamaku datang dari orang-orang di sekitarku,  teman, kenalan, atau keluarga yang tahu aku bisa coding. Bukan karena aku aktif promosi besar-besaran, tapi karena aku mulai sering posting progress dan proyek yang aku kerjakan di media sosial.\n\nStrategi yang paling efektif untuk pemula: \n\nPosting WIP (work in progress) di sosial media (Instagram/Tik Tok/Status WA/dll) tunjukkan prosesnya ke orang orang, jangan cuman hasilnya.\n\nMasuk ke grup Facebook bisnis lokal (properti/UMKM/travel/dll) di kotamu banyak yang cari developer di sana\n\nTawarkan ke komunitas atau organisasi di sekitarmu yang butuh website\n\nMulai coba Paid Ads karena lebih optimal untuk mendapatkan klien pertama\n\n\n\n### 4. Harga berapa? jangan gratis, dan jangan takut untuk memberikan harga\n\nProyek pertamaku di kisaran Rp 500 ribu sampai Rp 2 juta. Untuk sekarang, angka itu mungkin terasa kecil dan memang kecil. Tapi bukan itu intinya.\n\nYang penting di proyek pertama bukan margin keuntungan, tapi pengalaman end-to-end: dari brief, pengerjaan, revisi, sampai serah terima dan pembayaran. Itu yang tidak bisa kamu dapat dari ngerjain tugas kuliah.\n\nSatu hal yang harus kamu pegang: jangan pernah gratis. Bahkan Rp 200 ribu pun jauh lebih baik dari gratis, karena harga menciptakan komitmen dari kamu dan dari klien. **Ingat selalu Minta DP 50% sebelum mulai kerja. Ini bukan soal tidak percaya, ini standar profesional.**\n\n\n\n### 5. Kerja profesional sejak hari pertama, belajar dari kesalahan aku\n\nIni bagian yang paling aku sesali dari proyek-proyek awalku, dan jujur masih jadi pelajaran berharga sampai sekarang.\n\nAda beberapa kesalahan klasik yang aku lakukan saat handle klien pertama:\n\nTerlalu banyak nanya hal-hal yang seharusnya jadi tugasku untuk aku riset sendiri\n\nKurang bisa menangkap kebutuhan sebenarnya di balik permintaan klien\n\nTerlalu memanjakan klien dengan memberikan revisi dan service di luar scope yang disepakati\n\nKesulitan menjelaskan hal-hal teknis dengan bahasa yang mudah dipahami klien awam\n\nSemua itu bisa dihindari seiring kamu handle klien dan jangan pernah takut untuk bertemu langsung dengan klien karena dengan bertemu langsung dapat meningkatkan potensi dealing kamu.\n\n`**\"Klien pertama bukan soal seberapa bagus skillmu. Ini soal seberapa berani kamu mengangkat tangan dan bilang, \"Aku bisa bantu.\"**`\n\n\n\n## Mulai sekarang, bukan nanti\n\nKalau aku merangkum semua ini jadi satu pesan: jangan tunggu sempurna. Portfolio-mu tidak perlu sempurna. Skill-mu tidak perlu setara senior developer. Harga pertamamu tidak perlu fantastis.\n\nYang perlu kamu lakukan sekarang cukup dua hal. Pertama, buat atau rapikan satu proyek yang bisa kamu tunjukkan. Kedua, beritahu orang di lingkaran terdekatmu bahwa kamu buka jasa web development.\n\n**Ringkasan roadmap-nya:**\n\n1. Tentukan niche spesifikmu, siapa klien idealmu dan website apa yang kamu buat.\n\n2. Bangun 2–3 proyek portofolio meski belum ada klien berbayar, deploy gratis di Vercel atau GitHub Pages.\n\n3. Cari klien pertama dari orang-orang terdekat, bukan platform internasional.\n\n4. Charge dengan harga yang wajar,  jangan gratis, minta DP 50% di depan.\n\n5. Kerjakan secara profesional sejak awal: brief yang baik, scope yang jelas, dan minta testimonial setelah selesai."
+    "content": "Dulu aku sering mikir, “Gimana ya caranya dapetin uang dari skill ngodingku?”...",
+    "author": {
+      "name": "Mahendra Arya",
+      "role": "Web Developer",
+      "avatar": "/avatar/photo-profile.jpeg"
+    }
   }
 ];

@@ -27,7 +27,7 @@ const SPECIALIZE_DATA: SpecializeItem[] = [
       "Performance & SEO",
       "Database Design",
     ],
-    image: "/_next/web-dev5af2.jpeg",
+    image: "/assets/web-dev.jpeg",
   },
   {
     number: "02.",
@@ -41,7 +41,7 @@ const SPECIALIZE_DATA: SpecializeItem[] = [
       "Dashboard Management",
       "Internal Tools Development",
     ],
-    image: "/_next/system-builder5212.jpeg",
+    image: "/assets/system-builder.jpeg",
   },
   {
     number: "03.",
@@ -55,7 +55,7 @@ const SPECIALIZE_DATA: SpecializeItem[] = [
       "Elementor & Gutenberg",
       "WordPress Security",
     ],
-    image: "/_next/wordpress4c44.jpeg",
+    image: "/assets/wordpress-service.jpeg",
   },
   {
     number: "04.",
@@ -69,9 +69,156 @@ const SPECIALIZE_DATA: SpecializeItem[] = [
       "Content Strategy",
       "Audience Targeting",
     ],
-    image: "/_next/advertising1387.jpeg",
+    image: "/assets/advertising.jpeg",
   },
 ];
+
+interface SpecializeItemProps {
+  index: number;
+  item: SpecializeItem;
+  isOpen: boolean;
+  onToggle: () => void;
+}
+
+const SpecializeAccordionItem: React.FC<SpecializeItemProps> = ({
+  index,
+  item,
+  isOpen,
+  onToggle,
+}) => {
+  const itemRef = useRef<HTMLDivElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
+  const imgRef = useRef<HTMLImageElement>(null);
+  const curtainRef = useRef<HTMLDivElement>(null);
+
+  useGSAP(
+    () => {
+      if (isOpen) {
+        gsap
+          .timeline()
+          .to(contentRef.current, {
+            height: "auto",
+            opacity: 1,
+            duration: 0.7,
+            ease: "power3.inOut",
+          })
+          .to(
+            curtainRef.current,
+            { yPercent: -100, duration: 1, ease: "power4.inOut" },
+            "-=0.4"
+          )
+          .to(imgRef.current, { y: 0, duration: 1, ease: "power4.inOut" }, "<")
+          .fromTo(
+            `.tag-item-${index}`,
+            { y: 15, opacity: 0 },
+            { y: 0, opacity: 1, stagger: 0.05, duration: 0.6, ease: "power2.out" },
+            "-=0.8"
+          );
+      } else {
+        gsap.to(contentRef.current, {
+          height: 0,
+          opacity: 0,
+          duration: 0.5,
+          ease: "power3.inOut",
+        });
+        gsap.set(curtainRef.current, { yPercent: 0 });
+        gsap.set(imgRef.current, { y: "100%" });
+        gsap.set(`.tag-item-${index}`, { opacity: 0 });
+      }
+    },
+    { dependencies: [isOpen], scope: itemRef }
+  );
+
+  return (
+    <div key={index} className="spec-item" ref={itemRef}>
+      <div
+        data-cursor={isOpen ? undefined : "Open"}
+        className={`transition-all duration-500 border-b border-foreground/15 last:border-0 ${
+          isOpen
+            ? "bg-linear-to-r from-primary/10 to-secondary/10 rounded-2xl p-4 md:p-8 my-4"
+            : "p-4 md:p-8 hover:bg-card/25"
+        }`}
+      >
+        {/* Accordion Trigger Row */}
+        <div
+          onClick={onToggle}
+          className="grid grid-cols-12 items-center cursor-pointer group"
+        >
+          <p className="col-span-1 hidden md:block text-3xl font-medium text-text-secondary">
+            {item.number}
+          </p>
+          <h3 className="col-span-10 text-xl md:text-3xl font-medium text-text-primary group-hover:text-primary transition-colors duration-300">
+            {item.title}
+          </h3>
+          <div className="col-span-2 md:col-span-1 flex justify-end">
+            <button
+              className={`flex items-center justify-center cursor-pointer font-medium gap-2 group transition-all duration-300 ease-in-out size-9 md:size-12 rounded-full btn-hover ${
+                isOpen ? "bg-primary text-white" : "bg-foreground text-text-primary"
+              }`}
+              aria-label="Toggle details"
+            >
+              <svg
+                stroke="currentColor"
+                fill="currentColor"
+                strokeWidth="0"
+                viewBox="0 0 448 512"
+                className={`text-lg md:text-2xl transition-transform duration-300 ${
+                  isOpen ? "rotate-45" : ""
+                }`}
+                height="1em"
+                width="1em"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 144L48 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l144 0 0 144c0 17.7 14.3 32 32 32s32-14.3 32-32l0-144 144 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-144 0 0-144z"></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        {/* Accordion Content with GSAP animated container */}
+        <div ref={contentRef} className="overflow-hidden h-0 opacity-0">
+          <div className="grid lg:grid-cols-12 items-end gap-8 pt-6">
+            <div className="hidden lg:block col-span-1 lg:order-1"></div>
+
+            {/* Description & Tags */}
+            <div className="order-2 lg:order-2 lg:col-span-6">
+              <p className="text-sm md:text-base mb-6 leading-relaxed text-text-secondary">
+                {item.description}
+              </p>
+              <div className="flex flex-wrap gap-2 md:gap-x-3">
+                {item.tags.map((tag, tIdx) => (
+                  <span
+                    key={tIdx}
+                    className={`tag-item-${index} px-3 md:px-4 py-2 text-xs md:text-sm bg-white shadow-2xs border border-foreground/20 text-text-primary font-medium rounded-full opacity-0`}
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            {/* Preview Image with curtain animation */}
+            <div className="order-1 lg:order-3 lg:col-span-5 overflow-hidden rounded-2xl relative h-48 md:h-56 p-2 bg-white shadow-xs">
+              <div
+                ref={curtainRef}
+                className="absolute inset-0 bg-white z-10 pointer-events-none"
+              ></div>
+              <img
+                ref={imgRef}
+                alt={item.title}
+                loading="lazy"
+                width="800"
+                height="400"
+                className="w-full h-full object-cover rounded-xl translate-y-full"
+                src={item.image}
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 export const ServicesSection: React.FC = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
@@ -131,95 +278,15 @@ export const ServicesSection: React.FC = () => {
 
       {/* Accordion List */}
       <div className="flex flex-col">
-        {SPECIALIZE_DATA.map((item, idx) => {
-          const isOpen = openIndex === idx;
-          return (
-            <div key={idx} className="spec-item">
-              <div
-                data-cursor={isOpen ? "Close" : "Open"}
-                className={`transition-all duration-500 border-b border-foreground/15 last:border-0 p-4 md:p-8 rounded-2xl ${
-                  isOpen
-                    ? "bg-linear-to-r from-primary/10 to-secondary/10 rounded-2xl p-4 md:p-8 my-4"
-                    : "hover:bg-card/25"
-                }`}
-              >
-                {/* Accordion Trigger Row */}
-                <div
-                  onClick={() => toggleItem(idx)}
-                  className="grid grid-cols-12 items-center cursor-pointer group"
-                >
-                  <p className="col-span-1 hidden md:block text-3xl font-medium text-text-secondary">
-                    {item.number}
-                  </p>
-                  <h3 className="col-span-10 text-xl md:text-3xl font-medium text-text-primary group-hover:text-primary transition-colors duration-300">
-                    {item.title}
-                  </h3>
-                  <div className="col-span-2 md:col-span-1 flex justify-end">
-                    <button
-                      className="flex items-center justify-center cursor-pointer font-medium gap-2 group transition-all duration-300 ease-in-out bg-foreground size-9 md:size-12 rounded-full btn-hover"
-                      aria-label="Toggle details"
-                    >
-                      <svg
-                        stroke="currentColor"
-                        fill="currentColor"
-                        strokeWidth="0"
-                        viewBox="0 0 448 512"
-                        className={`text-lg md:text-2xl transition-transform duration-300 ${
-                          isOpen ? "rotate-45 text-primary" : "text-text-primary"
-                        }`}
-                        height="1em"
-                        width="1em"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 144L48 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l144 0 0 144c0 17.7 14.3 32 32 32s32-14.3 32-32l0-144 144 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-144 0 0-144z"></path>
-                      </svg>
-                    </button>
-                  </div>
-                </div>
-
-                {/* Accordion Content */}
-                <div
-                  className={`transition-all duration-500 ease-in-out overflow-hidden ${
-                    isOpen ? "max-h-[600px] opacity-100 mt-6" : "max-h-0 opacity-0"
-                  }`}
-                >
-                  <div className="grid lg:grid-cols-12 items-center gap-8 pt-4">
-                    <div className="hidden lg:block col-span-1 lg:order-1"></div>
-
-                    {/* Description & Tags */}
-                    <div className="order-2 lg:order-2 lg:col-span-6">
-                      <p className="text-sm md:text-base mb-6 leading-relaxed text-text-secondary">
-                        {item.description}
-                      </p>
-                      <div className="flex flex-wrap gap-2 md:gap-x-3">
-                        {item.tags.map((tag, tIdx) => (
-                          <span
-                            key={tIdx}
-                            className={`tag-item-${idx} px-3 md:px-4 py-2 text-xs md:text-sm bg-white shadow-2xs border border-foreground/20 text-text-primary font-medium rounded-full`}
-                          >
-                            {tag}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-
-                    {/* Preview Image */}
-                    <div className="order-1 lg:order-3 lg:col-span-5 overflow-hidden rounded-2xl relative h-48 md:h-56 p-2 bg-white shadow-xs">
-                      <img
-                        alt={item.title}
-                        loading="lazy"
-                        width="800"
-                        height="400"
-                        className="w-full h-full object-cover rounded-xl"
-                        src={item.image}
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          );
-        })}
+        {SPECIALIZE_DATA.map((item, idx) => (
+          <SpecializeAccordionItem
+            key={idx}
+            index={idx}
+            item={item}
+            isOpen={openIndex === idx}
+            onToggle={() => toggleItem(idx)}
+          />
+        ))}
       </div>
     </section>
   );

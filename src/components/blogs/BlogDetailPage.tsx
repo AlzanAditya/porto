@@ -1,9 +1,10 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
-import { Blog } from "../../types";
-import { SplitWords } from "../common/SplitWords";
+import { Blog, BlogContentBlock } from "../../types";
+import { BlogCardItem } from "./BlogCardItem";
+import { ChevronRight, Calendar, Link as LinkIcon, Check } from "lucide-react";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -18,298 +19,579 @@ export const BlogDetailPage: React.FC<BlogDetailPageProps> = ({
   allBlogs,
   onNavigate,
 }) => {
-  const [copied, setCopied] = useState(false);
+  const [shareText, setShareText] = useState("Share Link");
+  const [isCopied, setIsCopied] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
-  const otherBlogs = allBlogs.filter((b) => b.id !== blog.id).slice(0, 2);
+
+  const relatedBlogs = allBlogs
+    .filter((b) => b.id !== blog.id && b.slug !== blog.slug)
+    .slice(0, 2);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [blog.slug, blog.id]);
 
   const handleCopyLink = () => {
-    navigator.clipboard.writeText(window.location.href);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
+    if (typeof navigator !== "undefined" && navigator.clipboard) {
+      navigator.clipboard.writeText(window.location.href);
+      setShareText("Copied!");
+      setIsCopied(true);
+      setTimeout(() => {
+        setShareText("Share Link");
+        setIsCopied(false);
+      }, 2000);
+    }
   };
 
   useGSAP(
     () => {
+      // Main Entrance Timeline matching reference GSAP animation exactly
       gsap
         .timeline()
-        .from(".blog-cover-sticky", {
-          y: 30,
+        .from(".animate-breadcrumb", {
+          x: -10,
           opacity: 0,
-          duration: 1,
+          duration: 0.8,
           ease: "power3.out",
         })
         .from(
-          ".blog-nav-crumb",
-          {
-            y: -10,
-            opacity: 0,
-            duration: 0.6,
-            ease: "power2.out",
-          },
-          "-=0.7"
-        )
-        .from(
-          ".blog-meta-row",
-          {
-            y: 15,
-            opacity: 0,
-            duration: 0.6,
-            ease: "power2.out",
-          },
-          "-=0.5"
-        )
-        .from(
-          ".blog-main-title",
+          ".animate-title .word",
           {
             y: 30,
             opacity: 0,
-            duration: 0.8,
-            ease: "power3.out",
+            filter: "blur(8px)",
+            duration: 1.2,
+            stagger: 0.08,
+            ease: "power4.out",
           },
-          "-=0.5"
+          "-=0.6"
         )
         .from(
-          ".blog-excerpt-box",
+          ".animate-date",
           {
             y: 20,
             opacity: 0,
             duration: 0.8,
             ease: "power3.out",
           },
-          "-=0.5"
+          "-=0.8"
         )
         .from(
-          ".blog-body-content",
+          ".animate-author-bar",
           {
             y: 20,
             opacity: 0,
             duration: 0.8,
-            ease: "power2.out",
+            ease: "power3.out",
           },
-          "-=0.5"
+          "-=0.6"
+        )
+        .from(
+          ".animate-image",
+          {
+            scale: 0.95,
+            opacity: 0,
+            y: 40,
+            duration: 1.2,
+            ease: "power3.out",
+          },
+          "-=0.8"
+        )
+        .from(
+          ".animate-content",
+          {
+            y: 30,
+            opacity: 0,
+            duration: 1.2,
+            ease: "power3.out",
+          },
+          "-=0.8"
         );
+
+      // Related blog cards ScrollTrigger animation
+      if (relatedBlogs.length > 0) {
+        gsap.from(".blog-card-wrapper", {
+          scrollTrigger: {
+            trigger: ".animate-related",
+            start: "top 85%",
+            toggleActions: "play none none none",
+          },
+          y: 40,
+          opacity: 0,
+          duration: 1,
+          stagger: 0.15,
+          ease: "power3.out",
+          clearProps: "all",
+        });
+      }
     },
-    { scope: containerRef, dependencies: [blog.id] }
+    { scope: containerRef, dependencies: [blog.slug, blog.id] }
   );
 
-  return (
-    <div ref={containerRef} className="min-h-screen py-6 md:py-10">
-      <section className="px-4 md:px-12 lg:px-36 xl:px-48 2xl:container mx-auto relative pb-16 md:pb-24">
-        {/* Main Grid: Left Cover Image (Sticky) + Right Content */}
-        <div className="grid lg:grid-cols-12 mt-4 md:mt-8 gap-8 lg:gap-12 mb-12 md:mb-16">
-          {/* Left Column: Sticky Cover Image */}
-          <div className="lg:col-span-5">
-            <div className="blog-cover-sticky relative overflow-hidden lg:sticky top-28 rounded-2xl aspect-4/5 bg-card w-full shadow-lg border border-foreground/10">
-              <img
-                alt={blog.title}
-                className="w-full h-full object-cover rounded-2xl transition-transform duration-500 hover:scale-105"
-                src={blog.coverImage}
-              />
-            </div>
-          </div>
+  // Helper to split text into animated words
+  const renderSplitTitle = (titleText: string) => {
+    const words = titleText.split(" ");
+    return words.map((word, idx) => (
+      <span key={idx} className="word inline-block mr-1.5">
+        {word}
+      </span>
+    ));
+  };
 
-          {/* Right Column: Breadcrumb, Meta, Title, and Article Content */}
-          <div className="lg:col-span-7 flex flex-col gap-6">
-            {/* Breadcrumb */}
-            <nav className="blog-nav-crumb flex items-center flex-wrap gap-2 text-sm md:text-base font-medium text-text-secondary">
+  // Helper to parse formatted inline marks (bold, italic, code, quotes, links)
+  const renderInlineFormatted = (text: string) => {
+    // Check if text has backtick code format `**"..."**` or `code`
+    const parts = text.split(/(`\*\*".*?"\*\*`|`.*?`|\*\*.*?\*\*|\*.*?\*|\[.*?\]\(.*?\))/g);
+    return parts.map((part, idx) => {
+      if (!part) return null;
+      if (part.startsWith("`**\"") && part.endsWith("\"**`")) {
+        const clean = part.replace(/^`\*\*"/, "").replace(/"\*\*`$/, "");
+        return (
+          <span
+            key={idx}
+            className="font-mono bg-card px-2.5 py-1 rounded text-sm text-text-primary border border-foreground/10 font-bold block my-3"
+          >
+            &ldquo;{clean}&rdquo;
+          </span>
+        );
+      }
+      if (part.startsWith("`") && part.endsWith("`")) {
+        const clean = part.slice(1, -1);
+        return (
+          <code
+            key={idx}
+            className="font-mono bg-card px-2 py-0.5 rounded text-sm text-text-primary border border-foreground/10 font-medium"
+          >
+            {clean}
+          </code>
+        );
+      }
+      if (part.startsWith("**") && part.endsWith("**")) {
+        const clean = part.slice(2, -2);
+        return (
+          <strong key={idx} className="font-semibold text-text-primary">
+            {clean}
+          </strong>
+        );
+      }
+      if (part.startsWith("*") && part.endsWith("*")) {
+        const clean = part.slice(1, -1);
+        return (
+          <em key={idx} className="italic">
+            {clean}
+          </em>
+        );
+      }
+      if (part.startsWith("[") && part.includes("](")) {
+        const match = part.match(/\[(.*?)\]\((.*?)\)/);
+        if (match) {
+          return (
+            <a
+              key={idx}
+              href={match[2]}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-primary hover:text-primary/80 hover:underline transition-all duration-300 font-semibold underline-offset-4"
+            >
+              {match[1]}
+            </a>
+          );
+        }
+      }
+      return <span key={idx}>{part}</span>;
+    });
+  };
+
+  // Helper to render Sanity structured blocks
+  const renderSanityBlocks = (blocks: BlogContentBlock[]) => {
+    const renderedElements: React.ReactNode[] = [];
+    let currentList: { type: "bullet" | "number"; items: React.ReactNode[] } | null = null;
+
+    const flushList = () => {
+      if (currentList) {
+        if (currentList.type === "bullet") {
+          renderedElements.push(
+            <ul
+              key={`list-${renderedElements.length}`}
+              className="list-disc pl-6 mb-6 text-text-secondary md:text-lg leading-relaxed flex flex-col gap-2 font-medium"
+            >
+              {currentList.items}
+            </ul>
+          );
+        } else {
+          renderedElements.push(
+            <ol
+              key={`list-${renderedElements.length}`}
+              className="list-decimal pl-6 mb-6 text-text-secondary md:text-lg leading-relaxed flex flex-col gap-2 font-medium"
+            >
+              {currentList.items}
+            </ol>
+          );
+        }
+        currentList = null;
+      }
+    };
+
+    blocks.forEach((block, index) => {
+      // Handle list items
+      if (block.listItem) {
+        const itemContent = block.children?.map((child, childIdx) => {
+          let childText: React.ReactNode = child.text;
+          if (child.marks && child.marks.length > 0) {
+            if (child.marks.includes("strong")) {
+              childText = <strong className="font-semibold text-text-primary">{childText}</strong>;
+            }
+            if (child.marks.includes("em")) {
+              childText = <em className="italic">{childText}</em>;
+            }
+            if (child.marks.includes("code")) {
+              childText = (
+                <code className="font-mono bg-card px-2 py-0.5 rounded text-sm text-text-primary border border-foreground/10">
+                  {childText}
+                </code>
+              );
+            }
+            // Check link marks in markDefs
+            const linkDef = block.markDefs?.find((m) => child.marks?.includes(m._key));
+            if (linkDef && linkDef.href) {
+              const isInternal = linkDef.href.startsWith("/") || linkDef.href.startsWith("#");
+              childText = (
+                <a
+                  href={linkDef.href}
+                  onClick={(e) => {
+                    if (isInternal) {
+                      e.preventDefault();
+                      onNavigate(linkDef.href!);
+                    }
+                  }}
+                  target={isInternal ? undefined : "_blank"}
+                  rel={isInternal ? undefined : "noopener noreferrer"}
+                  className="text-primary hover:text-primary/80 hover:underline transition-all duration-300 font-semibold underline-offset-4"
+                >
+                  {childText}
+                </a>
+              );
+            }
+          }
+          return <React.Fragment key={childIdx}>{childText}</React.Fragment>;
+        });
+
+        if (!currentList || currentList.type !== block.listItem) {
+          flushList();
+          currentList = { type: block.listItem, items: [] };
+        }
+        currentList.items.push(
+          <li key={`li-${index}`} className="font-medium">
+            {itemContent}
+          </li>
+        );
+        return;
+      }
+
+      // Flush any pending list before standard blocks
+      flushList();
+
+      // Render children spans
+      const childrenNodes = block.children?.map((child, childIdx) => {
+        let childText: React.ReactNode = child.text;
+        if (child.marks && child.marks.length > 0) {
+          if (child.marks.includes("strong")) {
+            childText = <strong className="font-semibold text-text-primary">{childText}</strong>;
+          }
+          if (child.marks.includes("em")) {
+            childText = <em className="italic">{childText}</em>;
+          }
+          if (child.marks.includes("code")) {
+            childText = (
+              <code className="font-mono bg-card px-2 py-0.5 rounded text-sm text-text-primary border border-foreground/10">
+                {childText}
+              </code>
+            );
+          }
+          const linkDef = block.markDefs?.find((m) => child.marks?.includes(m._key));
+          if (linkDef && linkDef.href) {
+            const isInternal = linkDef.href.startsWith("/") || linkDef.href.startsWith("#");
+            childText = (
               <a
-                href="/blogs"
+                href={linkDef.href}
                 onClick={(e) => {
-                  e.preventDefault();
-                  onNavigate("/blogs");
+                  if (isInternal) {
+                    e.preventDefault();
+                    onNavigate(linkDef.href!);
+                  }
                 }}
-                className="hover:text-text-primary transition-colors duration-300"
+                target={isInternal ? undefined : "_blank"}
+                rel={isInternal ? undefined : "noopener noreferrer"}
+                className="text-primary hover:text-primary/80 hover:underline transition-all duration-300 font-semibold underline-offset-4"
               >
-                Blogs
+                {childText}
               </a>
-              <svg
-                stroke="currentColor"
-                fill="none"
-                strokeWidth="2"
-                viewBox="0 0 24 24"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="text-xs text-text-secondary/40"
-                height="1em"
-                width="1em"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <polyline points="9 18 15 12 9 6"></polyline>
-              </svg>
-              <span className="text-text-primary font-semibold truncate max-w-xs">
-                {blog.tags[0]}
-              </span>
-            </nav>
+            );
+          }
+        }
+        return <React.Fragment key={childIdx}>{childText}</React.Fragment>;
+      });
 
-            {/* Meta Tags & Dates */}
-            <div className="blog-meta-row flex items-center gap-3">
-              <div className="flex gap-2 items-center bg-card px-3.5 py-1.5 rounded-full border border-foreground/10">
-                <div className="size-2.5 bg-linear-to-br from-primary to-secondary text-white rounded-full"></div>
-                <strong className="font-semibold text-xs text-text-primary">
-                  {blog.tags[0]}
-                </strong>
-              </div>
-              <span className="text-xs font-medium text-text-secondary">
-                {blog.publishDate}
-              </span>
-              <span className="text-xs text-text-secondary">•</span>
-              <span className="text-xs font-medium text-text-secondary">
-                {blog.readTime}
-              </span>
+      // Style switch
+      switch (block.style) {
+        case "h2":
+          renderedElements.push(
+            <h2
+              key={`h2-${index}`}
+              className="text-xl md:text-3xl font-semibold mt-10 mb-4 text-text-primary"
+            >
+              {childrenNodes}
+            </h2>
+          );
+          break;
+        case "h3":
+          renderedElements.push(
+            <h3
+              key={`h3-${index}`}
+              className="text-lg md:text-2xl font-semibold mt-8 mb-3 text-text-primary"
+            >
+              {childrenNodes}
+            </h3>
+          );
+          break;
+        case "blockquote":
+          renderedElements.push(
+            <blockquote
+              key={`quote-${index}`}
+              className="border-l-4 border-primary pl-4 italic my-6 text-text-secondary font-medium"
+            >
+              {childrenNodes}
+            </blockquote>
+          );
+          break;
+        default:
+          // Skip completely empty blocks
+          if (block.children?.length === 1 && block.children[0].text.trim() === "") {
+            return;
+          }
+          renderedElements.push(
+            <p
+              key={`p-${index}`}
+              className="md:text-lg text-text-secondary leading-relaxed mb-5 font-medium"
+            >
+              {childrenNodes}
+            </p>
+          );
+          break;
+      }
+    });
+
+    flushList();
+    return renderedElements;
+  };
+
+  // Helper to render markdown/plain text content if structured blocks not present
+  const renderMarkdownContent = (content: string) => {
+    const paragraphs = content.split("\n\n");
+    return paragraphs.map((para, index) => {
+      const trimmed = para.trim();
+      if (!trimmed) return null;
+
+      if (trimmed.startsWith("### ")) {
+        return (
+          <h3
+            key={index}
+            className="text-lg md:text-2xl font-semibold mt-8 mb-3 text-text-primary"
+          >
+            {trimmed.replace("### ", "")}
+          </h3>
+        );
+      }
+
+      if (trimmed.startsWith("## ")) {
+        return (
+          <h2
+            key={index}
+            className="text-xl md:text-3xl font-semibold mt-10 mb-4 text-text-primary"
+          >
+            {trimmed.replace("## ", "")}
+          </h2>
+        );
+      }
+
+      if (trimmed.startsWith("> ")) {
+        return (
+          <blockquote
+            key={index}
+            className="border-l-4 border-primary pl-4 italic my-6 text-text-secondary font-medium"
+          >
+            {renderInlineFormatted(trimmed.replace("> ", ""))}
+          </blockquote>
+        );
+      }
+
+      // Check if multi-line bullet list
+      if (trimmed.startsWith("- ") || trimmed.startsWith("* ")) {
+        const items = trimmed.split("\n").filter((l) => l.trim().length > 0);
+        return (
+          <ul
+            key={index}
+            className="list-disc pl-6 mb-6 text-text-secondary md:text-lg leading-relaxed flex flex-col gap-2 font-medium"
+          >
+            {items.map((it, itIdx) => (
+              <li key={itIdx}>
+                {renderInlineFormatted(it.replace(/^[-*]\s+/, ""))}
+              </li>
+            ))}
+          </ul>
+        );
+      }
+
+      return (
+        <p
+          key={index}
+          className="md:text-lg text-text-secondary leading-relaxed mb-5 font-medium"
+        >
+          {renderInlineFormatted(trimmed)}
+        </p>
+      );
+    });
+  };
+
+  const categoryName = blog.category || blog.tags?.[0] || "Freelance";
+  const authorName = blog.author?.name || "Mahendra Arya";
+  const authorRole = blog.author?.role || "Web Developer";
+  const authorAvatar = blog.author?.avatar || "/avatar/photo-profile.jpeg";
+
+  return (
+    <section
+      ref={containerRef}
+      className="px-4 md:px-12 lg:px-36 xl:px-48 2xl:container mx-auto relative pb-16 md:pb-24"
+    >
+      {/* Main Grid: Left Sticky Cover Media + Right Article Info & Body */}
+      <div className="grid lg:grid-cols-12 mt-8 md:mt-12 gap-8 lg:gap-12 mb-8 md:mb-16">
+        {/* Left Column: Sticky Cover Image */}
+        <div className="lg:col-span-5 animate-image">
+          <div className="relative overflow-hidden lg:sticky top-24 rounded-xl aspect-4/5 bg-card w-full">
+            <img
+              src={blog.coverImage}
+              alt={blog.title}
+              loading="lazy"
+              decoding="async"
+              className="w-full h-full object-cover rounded-2xl transition-transform duration-500 hover:scale-103"
+            />
+          </div>
+        </div>
+
+        {/* Right Column: Header, Breadcrumb, Title, Meta, Author Bar, and Body */}
+        <div className="lg:col-span-7 flex flex-col">
+          <div className="border-b mb-8 pb-8 border-black/10">
+            {/* Breadcrumb matching reference */}
+            <div className="animate-breadcrumb mb-6">
+              <nav className="flex items-center flex-wrap gap-2 gap-y-1 text-sm md:text-base font-medium select-none">
+                <a
+                  href="/blogs"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    onNavigate("/blogs");
+                  }}
+                  className="breadcrumb-item text-text-secondary hover:text-text-primary transition-colors duration-300 whitespace-nowrap"
+                >
+                  Blog
+                </a>
+                <ChevronRight className="breadcrumb-item text-text-secondary/40 text-lg shrink-0" />
+                <a
+                  href="/blogs"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    onNavigate("/blogs");
+                  }}
+                  className="breadcrumb-item text-text-secondary hover:text-text-primary transition-colors duration-300 whitespace-nowrap"
+                >
+                  {categoryName}
+                </a>
+                <ChevronRight className="breadcrumb-item text-text-secondary/40 text-lg shrink-0" />
+                <span className="breadcrumb-item text-text-primary font-medium whitespace-nowrap truncate max-w-64 md:max-w-82">
+                  {blog.title}
+                </span>
+              </nav>
             </div>
 
-            {/* Title */}
-            <h1 className="blog-main-title text-3xl md:text-5xl font-bold text-text-primary leading-tight">
-              <SplitWords text={blog.title} />
+            {/* Split Title for GSAP Staggered Entrance */}
+            <h1 className="text-2xl md:text-[32px] leading-[1.4] font-semibold text-text-primary animate-title mb-2.5">
+              {renderSplitTitle(blog.title)}
             </h1>
 
-            {/* Excerpt Highlight Box */}
-            <div className="blog-excerpt-box p-4 md:p-5 bg-card/70 border-l-4 border-primary rounded-r-xl text-text-primary font-medium text-base md:text-lg leading-relaxed">
-              {blog.excerpt}
+            {/* Date Badge */}
+            <div className="animate-date flex items-center gap-4 mb-12">
+              <div className="bg-card p-2.5 rounded-xl w-fit border border-foreground/5">
+                <Calendar className="text-xl w-5 h-5 text-text-primary" />
+              </div>
+              <strong className="font-medium text-sm md:text-base">
+                Uploaded : {blog.publishDate}
+              </strong>
             </div>
 
-            {/* Formatted Content */}
-            <div className="blog-body-content text-text-secondary leading-relaxed text-base md:text-lg flex flex-col gap-6 pt-4 border-t border-foreground/10">
-              {blog.content.split("\n\n").map((paragraph, pIdx) => {
-                if (paragraph.startsWith("### ")) {
-                  return (
-                    <h3
-                      key={pIdx}
-                      className="text-xl md:text-2xl font-bold text-text-primary mt-4"
-                    >
-                      {paragraph.replace("### ", "")}
-                    </h3>
-                  );
-                }
-                if (paragraph.startsWith("- ")) {
-                  const items = paragraph
-                    .split("\n")
-                    .map((item) => item.replace("- ", ""));
-                  return (
-                    <ul
-                      key={pIdx}
-                      className="list-disc list-inside flex flex-col gap-2 pl-2"
-                    >
-                      {items.map((item, iIdx) => (
-                        <li key={iIdx} className="text-text-secondary">
-                          {item}
-                        </li>
-                      ))}
-                    </ul>
-                  );
-                }
-                if (paragraph.startsWith("1. ")) {
-                  const items = paragraph.split("\n");
-                  return (
-                    <ol
-                      key={pIdx}
-                      className="list-decimal list-inside flex flex-col gap-2 pl-2"
-                    >
-                      {items.map((item, iIdx) => (
-                        <li key={iIdx} className="text-text-secondary">
-                          {item.replace(/^\d+\.\s*/, "")}
-                        </li>
-                      ))}
-                    </ol>
-                  );
-                }
-                return (
-                  <p key={pIdx} className="leading-relaxed">
-                    {paragraph}
-                  </p>
-                );
-              })}
-            </div>
-
-            {/* Author Profile Card */}
-            <div className="mt-8 p-6 bg-card rounded-2xl border border-foreground/10 flex flex-col sm:flex-row items-center gap-5 justify-between">
-              <div className="flex items-center gap-4 text-center sm:text-left">
-                <img
-                  alt="Mahendra Arya"
-                  className="size-16 rounded-full object-cover border-2 border-white shadow-sm"
-                  src="/avatar/BebArya.webp"
-                />
+            {/* Author Bar matching reference layout and styling */}
+            <div className="animate-author-bar flex items-center justify-between border-t border-b border-foreground/10 mt-8 py-3.5">
+              <div className="flex items-center gap-3.5">
+                <div className="size-11 rounded-full overflow-hidden bg-card relative border border-foreground/10">
+                  <img
+                    src={authorAvatar}
+                    alt={authorName}
+                    className="object-cover w-full h-full"
+                  />
+                </div>
                 <div>
-                  <strong className="text-lg font-bold block text-text-primary">
-                    Mahendra Arya
-                  </strong>
-                  <p className="text-xs text-text-secondary">
-                    Web Developer &amp; Founder at Karyasite
+                  <h4 className="font-semibold text-text-primary text-sm md:text-base mb-0.5">
+                    By {authorName}
+                  </h4>
+                  <p className="text-xs text-text-secondary font-medium">
+                    {authorRole}
                   </p>
                 </div>
               </div>
 
-              {/* Share & Copy button */}
+              {/* Share Link Interactive Button */}
               <button
                 onClick={handleCopyLink}
-                className="flex items-center gap-2 px-4 py-2.5 bg-white rounded-xl border border-foreground/10 hover:bg-neutral-50 text-sm font-medium transition-colors cursor-pointer shadow-2xs"
+                className="px-4 py-3 btn-hover hidden md:flex items-center gap-2 rounded-xl bg-card border border-foreground/10 hover:border-foreground/20 text-text-primary transition-all duration-300 font-medium text-sm cursor-pointer"
+                title="Copy blog link"
               >
-                <svg
-                  stroke="currentColor"
-                  fill="none"
-                  strokeWidth="2"
-                  viewBox="0 0 24 24"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  className="text-sm"
-                  height="1em"
-                  width="1em"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
-                  <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
-                </svg>
-                <span>{copied ? "Link Copied!" : "Share Article"}</span>
+                {isCopied ? (
+                  <Check className="text-base md:text-lg text-emerald-500" />
+                ) : (
+                  <LinkIcon className="text-base md:text-lg" />
+                )}
+                <span className="scroll-text flex font-semibold overflow-hidden">
+                  <span>{shareText}</span>
+                  <span>{shareText}</span>
+                </span>
               </button>
             </div>
           </div>
-        </div>
 
-        {/* More Articles */}
-        {otherBlogs.length > 0 && (
-          <div className="border-t border-foreground/10 pt-12">
-            <h2 className="text-2xl md:text-3xl font-bold text-text-primary mb-8">
-              Recent Articles You Might Like
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {otherBlogs.map((b) => (
-                <a
-                  key={b.id}
-                  data-cursor="read"
-                  href={`/blogs/${b.slug}`}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    onNavigate(`/blogs/${b.slug}`);
-                    window.scrollTo({ top: 0, behavior: "smooth" });
-                  }}
-                  className="group flex flex-col md:flex-row gap-4 bg-card p-4 rounded-2xl border border-foreground/10 hover:border-primary/40 transition-all duration-300 shadow-xs"
-                >
-                  <div className="overflow-hidden rounded-xl w-full md:w-44 h-36 shrink-0 bg-card">
-                    <img
-                      alt={b.title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 rounded-xl"
-                      src={b.coverImage}
-                    />
-                  </div>
-                  <div className="flex flex-col justify-between py-1">
-                    <div>
-                      <span className="text-xs font-semibold text-primary">
-                        {b.tags[0]}
-                      </span>
-                      <h4 className="font-semibold text-base text-text-primary group-hover:text-primary transition-colors duration-300 line-clamp-2 mt-1">
-                        {b.title}
-                      </h4>
-                    </div>
-                    <span className="text-xs text-text-secondary">
-                      {b.publishDate}
-                    </span>
-                  </div>
-                </a>
-              ))}
-            </div>
+          {/* Article Content Area */}
+          <div className="animate-content leading-relaxed mb-12">
+            {blog.contentBlocks && blog.contentBlocks.length > 0
+              ? renderSanityBlocks(blog.contentBlocks)
+              : renderMarkdownContent(blog.content)}
           </div>
-        )}
-      </section>
-    </div>
+        </div>
+      </div>
+
+      {/* Other Articles Section */}
+      {relatedBlogs.length > 0 && (
+        <div className="mt-16 md:mt-24 border-t border-foreground/10 pt-12 md:pt-16 animate-related">
+          <h2 className="text-2xl md:text-[32px] font-semibold mb-8 md:mb-12 text-left">
+            Other Articles
+          </h2>
+          <div className="grid md:grid-cols-2 gap-6 gap-y-10">
+            {relatedBlogs.map((item) => (
+              <BlogCardItem
+                key={item.id}
+                blog={item}
+                onNavigate={onNavigate}
+              />
+            ))}
+          </div>
+        </div>
+      )}
+    </section>
   );
 };

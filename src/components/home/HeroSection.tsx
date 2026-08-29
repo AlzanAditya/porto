@@ -117,7 +117,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onNavigate }) => {
     <section
       ref={containerRef}
       id="home"
-      className="px-4 pt-6 md:pt-8 min-h-[80vh] md:min-h-screen max-h-[95vh] md:max-h-[115vh] lg:max-h-[130vh] 2xl:max-h-[110vh] 2xl:container mx-auto relative overflow-y-clip select-none"
+      className="px-4 pt-6 md:pt-8 min-h-screen max-h-[112vh] md:max-h-[115vh] lg:max-h-[155vh] 2xl:max-h-[125vh] 2xl:container mx-auto relative overflow-y-clip select-none"
     >
       <div className="flex flex-col items-center">
         {/* Availability Badge */}
@@ -232,51 +232,51 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onNavigate }) => {
           width="600"
           height="1000"
           className="hero-phone w-auto h-auto -z-2 pointer-events-none"
-          src="/phone/hero.png"
+          src="/assets/phone.png"
         />
         <img
           alt="avatar"
           width="910"
           height="1000"
           className="hero-avatar absolute inset-0 object-contain scale-150 md:scale-112 lg:scale-100 ml-16 md:ml-24 lg:ml-84 2xl:ml-96 translate-y-6 lg:-translate-y-30 pointer-events-none"
-          src="/avatar/BebArya.webp"
+          src="/avatar/main.webp"
         />
 
-        {/* Floating tech particles */}
+        {/* Floating tech particles matching ref_index.html */}
         <img
           alt="nextjs"
           width="230"
           height="200"
-          className="hero-particles absolute inset-0 -top-20 lg:top-0 -left-26 md:left-0 object-contain lg:ml-68 translate-y-2 drop-shadow-lg scale-65 md:scale-80 lg:scale-100 animate-float-slow"
-          src="/particle/nextjs.png"
+          className="hero-particles absolute inset-0 -top-20 lg:top-0 -left-26 md:left-0 object-contain lg:ml-68 translate-y-2 drop-shadow-lg scale-65 md:scale-80 lg:scale-100"
+          src="/icons/nextjs-logo.png"
         />
         <img
           alt="laravel"
           width="160"
           height="160"
-          className="hero-particles absolute inset-0 object-contain rotate-30 -left-24 lg:left-0 md:ml-32 lg:ml-52 top-28 md:top-36 lg:top-64 drop-shadow-lg scale-65 md:scale-96 lg:scale-100 animate-float-delayed"
-          src="/particle/laravel.png"
+          className="hero-particles absolute inset-0 object-contain rotate-30 -left-24 lg:left-0 md:ml-32 lg:ml-52 top-28 md:top-36 lg:top-64 drop-shadow-lg scale-65 md:scale-96 lg:scale-100"
+          src="/icons/laravel-logo.png"
         />
         <img
           alt="wordpress"
           width="200"
           height="200"
-          className="hero-particles absolute inset-0 object-contain -rotate-20 -left-18 lg:left-0 lg:ml-64 top-58 md:top-68 lg:top-120 scale-65 lg:scale-100 drop-shadow-lg animate-float-slow"
-          src="/particle/wordpress.png"
+          className="hero-particles absolute inset-0 object-contain -rotate-20 -left-18 lg:left-0 lg:ml-64 top-58 md:top-68 lg:top-120 scale-65 lg:scale-100 drop-shadow-lg"
+          src="/icons/wordpress-logo.png"
         />
         <img
           alt="ads"
           width="400"
           height="200"
-          className="hero-particles absolute inset-0 left-auto -right-40 md:-right-20 lg:right-0 object-contain -top-6 md:top-0 lg:mr-30 drop-shadow-lg -z-1 scale-60 md:scale-80 lg:scale-100 animate-float-delayed"
-          src="/particle/ads.png"
+          className="hero-particles absolute inset-0 left-auto -right-40 md:-right-20 lg:right-0 object-contain -top-6 md:top-0 lg:mr-30 drop-shadow-lg -z-1 scale-60 md:scale-80 lg:scale-100"
+          src="/assets/ads.png"
         />
         <img
-          alt="github"
+          alt="github-activity"
           width="580"
           height="800"
-          className="hero-particles absolute inset-0 left-auto -right-24 top-auto object-contain lg:mr-32 bottom-6 md:bottom-24 lg:bottom-64 -z-1 drop-shadow-lg animate-float-slow"
-          src="/particle/github.png"
+          className="hero-particles absolute inset-0 left-auto -right-24 top-auto object-contain lg:mr-32 bottom-6 md:bottom-24 lg:bottom-64 -z-1 drop-shadow-lg"
+          src="/assets/github-activity.png"
         />
       </div>
 

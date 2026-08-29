@@ -3,6 +3,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { SplitWords } from "../common/SplitWords";
+import { TextMarquee } from "../common/TextMarquee";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -12,55 +13,111 @@ interface AboutPageViewProps {
 
 export const AboutPageView: React.FC<AboutPageViewProps> = ({ onNavigate }) => {
   const containerRef = useRef<HTMLDivElement>(null);
+  const leftSliderRef = useRef<HTMLDivElement>(null);
+  const rightSliderRef = useRef<HTMLDivElement>(null);
+  const galleryRef = useRef<HTMLDivElement>(null);
   const [openWorkExp, setOpenWorkExp] = useState<number | null>(0);
-  const [currentGalleryIdx, setCurrentGalleryIdx] = useState(0);
 
-  const galleryImages = [
+  const galleryList = [
     "/gallery/laptop.jpeg",
     "/gallery/image1.jpeg",
     "/gallery/image2.jpeg",
     "/gallery/image3.jpeg",
     "/gallery/image4.jpeg",
     "/gallery/image5.jpeg",
+    "/gallery/laptop.jpeg",
   ];
 
-  const sliderWebImages = [
-    "/gallery/laptop.jpeg",
-    "/gallery/image1.jpeg",
-    "/gallery/image2.jpeg",
-    "/gallery/image3.jpeg",
-    "/gallery/image4.jpeg",
-    "/gallery/image5.jpeg",
+  const heroProjectList = [
+    "/projects/Taksu Explore - Travel Operational System/cover.png",
+    "/projects/Perpusku - Smart Library Platform/cover.png",
+    "/projects/Athlix Sport Platform/cover.png",
+    "/projects/Perpusku - ERP Library Management System/cover.png",
+    "/projects/Taksu Explore - Tour & Travel Booking/cover.png",
+    "/projects/Point Of Sale Restaurant/cover.jpeg",
+    "/projects/Luxury Surya Nitya/cover.jpeg",
+    "/projects/DocLink - Doctor & Patient Appointment/cover.jpeg",
+    "/projects/Aurora Cinema - Ticket Booking/cover.jpeg",
   ];
+  const loopHeroProjects = [...heroProjectList, heroProjectList[0]];
 
   const techIcons = [
-    "/particle/techs/4168.png",
-    "/particle/techs/4169.png",
-    "/particle/techs/4170.png",
-    "/particle/techs/4171.png",
-    "/particle/techs/4172.png",
-    "/particle/techs/4173.png",
-    "/particle/techs/4174.png",
-    "/particle/techs/4175.png",
+    "/icons/react.png",
+    "/icons/nextjs.png",
+    "/icons/laravel.png",
+    "/icons/wordpress.png",
+    "/icons/tailwind.png",
+    "/icons/alpine-js.png",
+    "/icons/inertia-js.png",
+    "/icons/laravel-livewire.png",
+    "/icons/supabase.png",
   ];
 
   const toolIcons = [
-    "/particle/tools/4182.png",
-    "/particle/tools/4183.png",
-    "/particle/tools/4184.png",
-    "/particle/tools/4185.png",
-    "/particle/tools/4186.png",
-    "/particle/tools/4187.png",
-    "/particle/tools/4188.png",
+    "/icons/github.png",
+    "/icons/vercel.png",
+    "/icons/tiktok.png",
+    "/icons/instagram.png",
   ];
 
-  // Auto rotate gallery
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentGalleryIdx((prev) => (prev + 1) % galleryImages.length);
-    }, 3000);
-    return () => clearInterval(timer);
-  }, [galleryImages.length]);
+  // GSAP Right Slider (reverse slide up loop)
+  useGSAP(
+    () => {
+      const inner = rightSliderRef.current?.querySelector(".web-slider-inner");
+      const items = rightSliderRef.current?.querySelectorAll(".web-image");
+      if (inner && items && items.length > 1) {
+        const count = items.length;
+        gsap.set(inner, { yPercent: -100 * (count - 1) });
+        const tl = gsap.timeline({
+          repeat: -1,
+          defaults: { ease: "power4.inOut", duration: 0.8 },
+        });
+        for (let l = count - 2; l >= 0; l--) {
+          tl.to(inner, { yPercent: -100 * l, delay: 2 });
+        }
+        tl.set(inner, { yPercent: -100 * (count - 1) });
+      }
+    },
+    { scope: rightSliderRef }
+  );
+
+  // GSAP Left Slider (slide up forwards loop)
+  useGSAP(
+    () => {
+      const inner = leftSliderRef.current?.querySelector(".web-slider-inner");
+      const items = leftSliderRef.current?.querySelectorAll(".web-image");
+      if (inner && items && items.length > 1) {
+        const count = items.length;
+        const tl = gsap.timeline({
+          repeat: -1,
+          defaults: { ease: "power4.inOut", duration: 0.8 },
+        });
+        for (let l = 1; l < count; l++) {
+          tl.to(inner, { yPercent: -100 * l, delay: 2.2 });
+        }
+        tl.set(inner, { yPercent: 0 });
+      }
+    },
+    { scope: leftSliderRef }
+  );
+
+  // GSAP Gallery Carousel (horizontal loop)
+  useGSAP(
+    () => {
+      const inner = galleryRef.current?.querySelector(".image-slider-inner");
+      if (inner) {
+        const tl = gsap.timeline({
+          repeat: -1,
+          defaults: { ease: "power4.inOut", duration: 0.8 },
+        });
+        for (let t = 1; t < galleryList.length; t++) {
+          tl.to(inner, { xPercent: -100 * t, delay: 3 });
+        }
+        tl.set(inner, { xPercent: 0 });
+      }
+    },
+    { scope: galleryRef }
+  );
 
   useGSAP(
     () => {
@@ -95,7 +152,7 @@ export const AboutPageView: React.FC<AboutPageViewProps> = ({ onNavigate }) => {
         (context) => {
           const { isMobile } = context.conditions as { isMobile: boolean };
 
-          // Hero images
+          // Hero images & sliding window entrance
           gsap
             .timeline({
               scrollTrigger: {
@@ -105,33 +162,37 @@ export const AboutPageView: React.FC<AboutPageViewProps> = ({ onNavigate }) => {
               },
             })
             .from(".hero-phone", {
-              y: 100,
+              scale: 0.9,
               opacity: 0,
-              duration: 1.2,
-              ease: "power4.out",
+              filter: "blur(10px)",
+              duration: 1,
+              ease: "power3.out",
             })
             .from(
               ".hero-avatar",
               {
-                y: 80,
+                y: 60,
                 opacity: 0,
-                filter: "blur(15px)",
+                filter: "blur(10px)",
                 duration: 1.2,
-                ease: "power4.out",
-              },
-              "-=0.5"
-            )
-            .from(
-              ".slider-window",
-              {
-                scale: 0.8,
-                opacity: 0,
-                duration: 1.2,
-                stagger: 0.2,
                 ease: "power3.out",
               },
-              "-=0.8"
+              "-=0.4"
             );
+
+          gsap.from(".slider-window", {
+            scrollTrigger: {
+              trigger: ".hero-images",
+              start: "top 70%",
+              toggleActions: "play none none none",
+            },
+            scale: 0.8,
+            delay: 0.6,
+            opacity: 0,
+            duration: 1,
+            stagger: 0.2,
+            ease: "back.out(1.7)",
+          });
 
           gsap
             .timeline({
@@ -149,7 +210,7 @@ export const AboutPageView: React.FC<AboutPageViewProps> = ({ onNavigate }) => {
               ease: "power2.out",
             });
 
-          // Section 1: About Me story
+          // Section 1: About Me story (#about)
           gsap
             .timeline({
               scrollTrigger: {
@@ -177,14 +238,23 @@ export const AboutPageView: React.FC<AboutPageViewProps> = ({ onNavigate }) => {
               },
               "-=0.6"
             )
-            .from(
+            .to(
               ".about-image-curtain",
               {
-                xPercent: 0,
+                xPercent: -100,
                 duration: 1.2,
                 ease: "power4.inOut",
               },
               "-=0.8"
+            )
+            .from(
+              ".about-image",
+              {
+                xPercent: 100,
+                duration: 1.2,
+                ease: "power4.inOut",
+              },
+              "<"
             )
             .from(
               ".about-btns",
@@ -197,7 +267,7 @@ export const AboutPageView: React.FC<AboutPageViewProps> = ({ onNavigate }) => {
               "-=0.6"
             );
 
-          // Section 2: Background in Tech
+          // Section 2: Background in Tech (#background)
           gsap
             .timeline({
               scrollTrigger: {
@@ -255,6 +325,24 @@ export const AboutPageView: React.FC<AboutPageViewProps> = ({ onNavigate }) => {
                 ease: "power3.out",
               },
               "-=0.6"
+            )
+            .to(
+              ".image-slider-curtain",
+              {
+                xPercent: -100,
+                duration: 1.2,
+                ease: "power4.inOut",
+              },
+              "-=0.4"
+            )
+            .from(
+              ".image-slider-inner",
+              {
+                xPercent: 100,
+                duration: 1.2,
+                ease: "power4.inOut",
+              },
+              "<"
             );
 
           // Section 3: Say Hello
@@ -358,33 +446,41 @@ export const AboutPageView: React.FC<AboutPageViewProps> = ({ onNavigate }) => {
             width="910"
             height="1000"
             className="hero-avatar absolute inset-0 object-contain scale-150 md:scale-112 lg:scale-100 -translate-x-2 lg:translate-x-48 2xl:translate-x-70 translate-y-2 lg:-translate-y-41"
-            src="/avatar/arya-about.png"
+            src="/avatar/about.png"
           />
 
-          {/* Left Slider Window */}
-          <div className="slider-window absolute -z-5 top-12 md:top-24 2xl:top-12 -left-48 2xl:-left-64 w-96 h-76 md:w-148 md:h-124 2xl:w-180 2xl:h-132 overflow-hidden rounded-2xl border-4 border-white shadow-2xl -rotate-3 bg-card">
-            <div className="flex w-full h-full animate-marquee">
-              {sliderWebImages.map((img, idx) => (
+          {/* Right Slider Window */}
+          <div
+            ref={rightSliderRef}
+            className="slider-window absolute -z-5 bottom-8 md:bottom-24 2xl:bottom-12 -right-48 2xl:-right-64 w-96 h-76 md:w-148 md:h-124 2xl:w-180 2xl:h-132 overflow-hidden rounded-2xl border-4 border-white shadow-2xl rotate-3"
+          >
+            <div className="web-slider-inner w-full h-full flex flex-col">
+              {loopHeroProjects.map((imgSrc, idx) => (
                 <div key={idx} className="web-image w-full h-full shrink-0">
                   <img
                     alt="web"
+                    loading="lazy"
                     className="w-full h-full object-cover"
-                    src={img}
+                    src={imgSrc}
                   />
                 </div>
               ))}
             </div>
           </div>
 
-          {/* Right Slider Window */}
-          <div className="slider-window absolute -z-5 bottom-8 md:bottom-24 2xl:bottom-12 -right-48 2xl:-right-64 w-96 h-76 md:w-148 md:h-124 2xl:w-180 2xl:h-132 overflow-hidden rounded-2xl border-4 border-white shadow-2xl rotate-3 bg-card">
-            <div className="flex w-full h-full animate-marquee">
-              {[...sliderWebImages].reverse().map((img, idx) => (
+          {/* Left Slider Window */}
+          <div
+            ref={leftSliderRef}
+            className="slider-window absolute -z-5 bottom-8 md:bottom-24 2xl:bottom-12 -left-48 2xl:-left-64 w-96 h-76 md:w-148 md:h-124 2xl:w-180 2xl:h-132 overflow-hidden rounded-2xl border-4 border-white shadow-2xl -rotate-3"
+          >
+            <div className="web-slider-inner w-full h-full flex flex-col">
+              {loopHeroProjects.map((imgSrc, idx) => (
                 <div key={idx} className="web-image w-full h-full shrink-0">
                   <img
                     alt="web"
+                    loading="lazy"
                     className="w-full h-full object-cover"
-                    src={img}
+                    src={imgSrc}
                   />
                 </div>
               ))}
@@ -397,38 +493,20 @@ export const AboutPageView: React.FC<AboutPageViewProps> = ({ onNavigate }) => {
           alt=""
           width="900"
           height="900"
-          className="hero-bg-particle absolute -right-48 lg:-right-96 bottom-32 lg:-bottom-72 -z-1"
+          className="hero-bg-particle absolute -right-48 lg:-right-96 bottom-32 lg:-bottom-72 -z-1 pointer-events-none"
           src="/particle/purple.png"
         />
         <img
           alt=""
           width="900"
           height="900"
-          className="hero-bg-particle absolute -left-48 lg:-left-96 -bottom-32 lg:-bottom-72 -z-1"
+          className="hero-bg-particle absolute -left-48 lg:-left-96 -bottom-32 lg:-bottom-72 -z-1 pointer-events-none"
           src="/particle/blue.png"
         />
       </section>
 
       {/* ROLES MARQUEE BANNER */}
-      <div
-        data-cursor="ROLES"
-        className="relative w-[110%] overflow-hidden bg-text-primary border-y border-foreground/5 py-6 md:py-8 select-none -rotate-3 md:-rotate-1 -translate-x-4 -translate-y-4"
-      >
-        <div className="flex whitespace-nowrap animate-marquee group">
-          {[0, 1, 2, 3].map((rep) => (
-            <div key={rep} className="flex shrink-0 items-center gap-12 text-white mr-12">
-              <img alt="star" className="size-8" src="/particle/star-purple.svg" />
-              <p className="font-semibold text-2xl md:text-3xl">Solopreneur</p>
-              <img alt="star" className="size-8" src="/particle/star-blue.svg" />
-              <p className="font-semibold text-2xl md:text-3xl">Freelance Web Developer</p>
-              <img alt="star" className="size-8" src="/particle/star-purple.svg" />
-              <p className="font-semibold text-2xl md:text-3xl">Software engineer student</p>
-              <img alt="star" className="size-8" src="/particle/star-blue.svg" />
-              <p className="font-semibold text-2xl md:text-3xl">Robotic Enthusiast</p>
-            </div>
-          ))}
-        </div>
-      </div>
+      <TextMarquee />
 
       {/* SECTION 1: GET TO KNOW ME (#about) */}
       <section
@@ -457,9 +535,9 @@ export const AboutPageView: React.FC<AboutPageViewProps> = ({ onNavigate }) => {
             <div className="about-image-wrapper relative hidden lg:block overflow-hidden rounded-xl h-40">
               <div className="absolute inset-0 bg-card z-10 about-image-curtain pointer-events-none"></div>
               <img
-                alt="avatar"
+                alt="project preview"
                 className="w-full h-full object-cover about-image rounded-xl"
-                src="/blogs/blog.avif"
+                src="/projects/Taksu Explore - Travel Operational System/cover.png"
               />
             </div>
           </div>
@@ -481,9 +559,9 @@ export const AboutPageView: React.FC<AboutPageViewProps> = ({ onNavigate }) => {
             <div className="about-image-wrapper relative lg:hidden overflow-hidden rounded-xl h-40 mt-4">
               <div className="absolute inset-0 bg-card z-10 about-image-curtain pointer-events-none"></div>
               <img
-                alt="avatar"
+                alt="project preview"
                 className="w-full h-full object-cover about-image rounded-xl"
-                src="/blogs/blog.avif"
+                src="/projects/Taksu Explore - Travel Operational System/cover.png"
               />
             </div>
 
@@ -869,14 +947,22 @@ export const AboutPageView: React.FC<AboutPageViewProps> = ({ onNavigate }) => {
 
           {/* Photo Gallery Carousel (Col 4) */}
           <div className="lg:col-span-4">
-            <div className="rounded-xl overflow-hidden bg-card aspect-[4/4] lg:aspect-[4/4.5] relative group">
+            <div
+              ref={galleryRef}
+              className="rounded-xl overflow-hidden bg-card aspect-[4/4] lg:aspect-[4/4.5] relative group"
+            >
               <div className="absolute inset-0 bg-card z-10 image-slider-curtain pointer-events-none"></div>
               <div className="image-slider-inner flex w-full h-full relative">
-                <img
-                  alt="gallery"
-                  className="w-full h-full object-cover grayscale-100 group-hover:grayscale-0 transition-all duration-700 ease-in-out"
-                  src={galleryImages[currentGalleryIdx]}
-                />
+                {galleryList.map((imgSrc, idx) => (
+                  <div key={idx} className="web-image w-full h-full shrink-0">
+                    <img
+                      alt="gallery"
+                      loading="lazy"
+                      className="w-full h-full object-cover grayscale-100 group-hover:grayscale-0 transition-all duration-700 ease-in-out"
+                      src={imgSrc}
+                    />
+                  </div>
+                ))}
               </div>
             </div>
           </div>
@@ -907,16 +993,23 @@ export const AboutPageView: React.FC<AboutPageViewProps> = ({ onNavigate }) => {
                 target="_blank"
                 rel="noopener noreferrer"
                 data-cursor="visit"
-                className="p-4 flex flex-col gap-10 btn-hover rounded-xl group transition-all duration-300 bg-card"
+                className="p-4 flex flex-col gap-10 btn-hover rounded-xl group transition-all duration-300 bg-card hover:bg-white"
                 href="https://www.linkedin.com/in/karyasite-12a6a130b/"
               >
                 <div className="flex items-center justify-between">
-                  <div className="relative w-8 h-8">
-                    <img
-                      alt="Mahendra Arya"
-                      className="object-contain w-full h-full"
-                      src="/contact/linkedin.png"
-                    />
+                  <div className="relative w-8 h-8 flex items-center justify-center">
+                    <svg
+                      stroke="currentColor"
+                      fill="currentColor"
+                      strokeWidth="0"
+                      viewBox="0 0 448 512"
+                      className="w-7 h-7 text-[#0A66C2]"
+                      height="1em"
+                      width="1em"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path d="M100.28 448H7.4V148.9h92.88zM53.79 108.1C24.09 108.1 0 83.5 0 53.8a53.79 53.79 0 0 1 107.58 0c0 29.7-24.1 54.3-53.79 54.3zM447.9 448h-92.68V302.4c0-34.7-.7-79.2-48.29-79.2-48.29 0-55.69 37.7-55.69 76.7V448h-92.78V148.9h89.08v40.8h1.3c12.4-23.5 42.69-48.3 87.88-48.3 94 0 111.28 61.9 111.28 142.3V448z"></path>
+                    </svg>
                   </div>
                   <div className="p-3 bg-card group-hover:bg-primary rounded-full transition-all duration-400 ease-in-out">
                     <svg
@@ -945,15 +1038,15 @@ export const AboutPageView: React.FC<AboutPageViewProps> = ({ onNavigate }) => {
                 target="_blank"
                 rel="noopener noreferrer"
                 data-cursor="visit"
-                className="p-4 flex flex-col gap-10 btn-hover rounded-xl group transition-all duration-300 bg-card"
+                className="p-4 flex flex-col gap-10 btn-hover rounded-xl group transition-all duration-300 bg-card hover:bg-white"
                 href="https://github.com/aryndraa"
               >
                 <div className="flex items-center justify-between">
-                  <div className="relative w-8 h-8">
+                  <div className="relative w-8 h-8 flex items-center justify-center">
                     <img
                       alt="aryndraa"
                       className="object-contain w-full h-full"
-                      src="/contact/github-contact.png"
+                      src="/icons/github-logo.png"
                     />
                   </div>
                   <div className="p-3 bg-card group-hover:bg-primary rounded-full transition-all duration-400 ease-in-out">
@@ -983,15 +1076,15 @@ export const AboutPageView: React.FC<AboutPageViewProps> = ({ onNavigate }) => {
                 target="_blank"
                 rel="noopener noreferrer"
                 data-cursor="visit"
-                className="p-4 flex flex-col gap-10 btn-hover rounded-xl group transition-all duration-300 bg-card"
+                className="p-4 flex flex-col gap-10 btn-hover rounded-xl group transition-all duration-300 bg-card hover:bg-white"
                 href="https://www.tiktok.com/@karyasite"
               >
                 <div className="flex items-center justify-between">
-                  <div className="relative w-8 h-8">
+                  <div className="relative w-8 h-8 flex items-center justify-center">
                     <img
                       alt="karyasite"
                       className="object-contain w-full h-full"
-                      src="/contact/tiktok.png"
+                      src="/icons/tiktok.png"
                     />
                   </div>
                   <div className="p-3 bg-card group-hover:bg-primary rounded-full transition-all duration-400 ease-in-out">
@@ -1021,15 +1114,15 @@ export const AboutPageView: React.FC<AboutPageViewProps> = ({ onNavigate }) => {
                 target="_blank"
                 rel="noopener noreferrer"
                 data-cursor="visit"
-                className="p-4 flex flex-col gap-10 btn-hover rounded-xl group transition-all duration-300 bg-card"
+                className="p-4 flex flex-col gap-10 btn-hover rounded-xl group transition-all duration-300 bg-card hover:bg-white"
                 href="https://www.instagram.com/karyasite/"
               >
                 <div className="flex items-center justify-between">
-                  <div className="relative w-8 h-8">
+                  <div className="relative w-8 h-8 flex items-center justify-center">
                     <img
                       alt="karyasite"
                       className="object-contain w-full h-full"
-                      src="/contact/instagram.png"
+                      src="/icons/instagram.png"
                     />
                   </div>
                   <div className="p-3 bg-card group-hover:bg-primary rounded-full transition-all duration-400 ease-in-out">
