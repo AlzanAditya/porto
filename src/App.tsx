@@ -102,7 +102,7 @@ export default function App() {
 
     // 6. Home View: default /
     return (
-      <main className="flex flex-col w-full">
+      <main className="flex flex-col w-full overflow-x-clip">
         <HeroSection onNavigate={navigate} />
         <TextMarquee />
         <AboutSection onNavigate={navigate} />

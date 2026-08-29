@@ -162,22 +162,21 @@ export const AboutPageView: React.FC<AboutPageViewProps> = ({ onNavigate }) => {
               },
             })
             .from(".hero-phone", {
-              scale: 0.9,
+              y: 100,
               opacity: 0,
-              filter: "blur(10px)",
-              duration: 1,
-              ease: "power3.out",
+              duration: 1.2,
+              ease: "power4.out",
             })
             .from(
               ".hero-avatar",
               {
-                y: 60,
+                y: 80,
                 opacity: 0,
-                filter: "blur(10px)",
+                filter: "blur(15px)",
                 duration: 1.2,
-                ease: "power3.out",
+                ease: "power4.out",
               },
-              "-=0.4"
+              "-=0.5"
             );
 
           gsap.from(".slider-window", {
@@ -389,7 +388,7 @@ export const AboutPageView: React.FC<AboutPageViewProps> = ({ onNavigate }) => {
   );
 
   return (
-    <div ref={containerRef} className="min-h-screen">
+    <div ref={containerRef} className="min-h-screen overflow-x-clip">
       {/* SECTION 0: HERO */}
       <section className="px-4 pt-6 md:pt-8 min-h-[80vh] md:min-h-screen max-h-[95vh] md:max-h-[115vh] lg:max-h-[130vh] 2xl:max-h-[110vh] 2xl:container mx-auto relative overflow-y-clip select-none">
         <div className="flex flex-col items-center">

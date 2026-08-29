@@ -19,43 +19,41 @@ export const TextMarquee: React.FC = () => {
   ];
 
   return (
-    // Outer clipping wrapper: strictly w-full (never wider than the document flow),
-    // so the oversized/rotated inner band below is always clipped to the page width
-    // instead of pushing the whole site into horizontal scroll.
-    // Only overflow-x is clipped here (like `overflow-x-clip` on <main> in
-    // ref_index.html) — overflow-y is intentionally left open so the rotated
-    // band's vertical bleed can spill over and "menimpa" (overlap) the
-    // section above/below it, instead of being flattened/cut off.
-    // `isolate` + z-30 forces this to sit above any other page content (hero
-    // photos, decorative particles, etc.) regardless of DOM/stacking-context
-    // quirks from those sections, while staying below the Navbar (z-50) and
-    // CustomCursor (z-9999).
-    <div className="relative isolate z-30 w-full overflow-x-hidden overflow-y-visible">
-      <div
-        data-cursor="ROLES"
-        className="relative w-[110%] -ml-[5%] overflow-hidden bg-text-primary border-y border-foreground/5 py-6 md:py-8 select-none -rotate-3 md:-rotate-1 -translate-y-4"
-      >
-        <div className="flex whitespace-nowrap animate-marquee group w-max">
-          {repeated.map((item, idx) => (
-            <div
-              key={idx}
-              className="flex items-center gap-6 md:gap-10 px-4 md:px-10 shrink-0"
-            >
-              <span className="text-4xl md:text-5xl font-bold uppercase tracking-tighter text-background">
-                {item.text}
-              </span>
-              <img
-                alt=""
-                loading="lazy"
-                width="40"
-                height="40"
-                decoding="async"
-                className="w-6 h-6 md:w-10 md:h-10 group-hover:rotate-45 transition-all duration-800 shrink-0"
-                src={item.star}
-              />
-            </div>
-          ))}
-        </div>
+    // No extra clipping wrapper here — matches ref_index.html/ref_about.html exactly,
+    // where this rotated band is a direct child of <main class="overflow-x-clip">.
+    // That's the important bit: `overflow-x-clip` (not `overflow-x-hidden`) is used
+    // on the ancestor <main>, because per the CSS spec, if overflow-x is 'hidden'/'auto'
+    // while overflow-y is 'visible', the visible axis gets silently forced to 'auto'
+    // (which still clips). 'clip' is exempt from that auto-correction, so the ancestor
+    // clips X only and this band's rotated vertical bleed can still spill over/
+    // "menimpa" the section above and below it instead of being flattened.
+    // `isolate` + z-30 keeps it above other page content (hero photos, decorative
+    // particles, etc.) regardless of stacking-context quirks from those sections,
+    // while staying below the Navbar (z-50) and CustomCursor (z-9999).
+    <div
+      data-cursor="ROLES"
+      className="relative isolate z-30 w-[110%] -ml-[5%] overflow-hidden bg-text-primary border-y border-foreground/5 py-6 md:py-8 select-none -rotate-3 md:-rotate-1 -translate-y-4"
+    >
+      <div className="flex whitespace-nowrap animate-marquee group w-max">
+        {repeated.map((item, idx) => (
+          <div
+            key={idx}
+            className="flex items-center gap-6 md:gap-10 px-4 md:px-10 shrink-0"
+          >
+            <span className="text-4xl md:text-5xl font-bold uppercase tracking-tighter text-background">
+              {item.text}
+            </span>
+            <img
+              alt=""
+              loading="lazy"
+              width="40"
+              height="40"
+              decoding="async"
+              className="w-6 h-6 md:w-10 md:h-10 group-hover:rotate-45 transition-all duration-800 shrink-0"
+              src={item.star}
+            />
+          </div>
+        ))}
       </div>
     </div>
   );
