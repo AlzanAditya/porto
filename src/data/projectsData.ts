@@ -5,9 +5,17 @@ export const projectsData: Project[] = [
     id: "8d939329-bf6e-4f96-96aa-b01e0b59b5cc",
     slug: "taksu-explore-tour-and-travel-booking",
     title: "Taksu Explore - Tour & Travel Booking",
+    title_id: "Taksu Explore - Reservasi Tour & Travel",
+    title_en: "Taksu Explore - Tour & Travel Booking",
     overview:
       "Taksu Explore is a modern travel and booking platform designed to help travel businesses build a stronger online presence and attract more customers through a seamless digital experience. The platform allows visitors to explore and book tour packages, vehicle rentals, and airport transfers with ease, while also featuring a blog, gallery, and testimonial system to showcase services and build customer trust. Built with a clean and user-friendly interface, Taksu Explore helps travel businesses streamline their operations, improve credibility, and provide a more professional booking experience for their customers.",
+    overview_id:
+      "Taksu Explore adalah platform tour dan travel modern yang dirancang untuk membantu bisnis wisata memperkuat kehadiran digital mereka dan menarik lebih banyak wisatawan melalui pengalaman pemesanan yang mulus. Pengunjung dapat menjelajahi dan memesan paket wisata, sewa kendaraan, dan antar-jemput bandara dengan mudah, dilengkapi sistem blog, galeri, serta testimoni untuk membangun kepercayaan pelanggan.",
+    overview_en:
+      "Taksu Explore is a modern travel and booking platform designed to help travel businesses build a stronger online presence and attract more customers through a seamless digital experience. The platform allows visitors to explore and book tour packages, vehicle rentals, and airport transfers with ease, while also featuring a blog, gallery, and testimonial system to showcase services and build customer trust.",
     category: "Website",
+    category_id: "Website",
+    category_en: "Website",
     tags: [
       "Travel Website",
       "Tour Booking Platform",
@@ -27,15 +35,21 @@ export const projectsData: Project[] = [
     ],
     uploadedDate: "2026-05-24",
     collaborators: "2 Collaborator",
+    collaborators_id: "2 Kolaborator",
+    collaborators_en: "2 Collaborators",
     authors: [
       {
         name: "Mahendra Arya",
         role: "Web Developer",
+        role_id: "Pengembang Web",
+        role_en: "Web Developer",
         instagram: "karyasite",
       },
       {
         name: "Ryan Permana",
         role: "UI Designer & Web Developer",
+        role_id: "Desainer UI & Pengembang Web",
+        role_en: "UI Designer & Web Developer",
         instagram: "ryanproductions_",
       },
     ],
@@ -59,9 +73,17 @@ export const projectsData: Project[] = [
     id: "f64b4e92-6563-435b-ad81-f3f55c5d7a98",
     slug: "taksu-explore-travel-operational-system",
     title: "Taksu Explore - Travel Operational System",
+    title_id: "Taksu Explore - Sistem Operasional Travel",
+    title_en: "Taksu Explore - Travel Operational System",
     overview:
       "The Taksu Explore Admin Panel is a comprehensive management system built to simplify and streamline travel business operations in one centralized platform. It enables administrators to manage tour packages, transportation services, bookings, schedules, and agent coordination efficiently, while also providing tools to maintain website content such as blogs, galleries, and testimonials. Designed with a clean and organized workflow, the admin panel helps travel businesses handle daily operations more effectively, improve team coordination, and deliver a smoother experience for both staff and customers.",
+    overview_id:
+      "Panel Admin Taksu Explore adalah sistem manajemen operasional lengkap yang dibuat untuk menyederhanakan dan mengotomatiskan operasional bisnis travel dalam satu platform terpusat. Memungkinkan admin mengelola paket tour, layanan transportasi, pemesanan, penjadwalan, dan koordinasi agen secara efisien, serta mengelola konten web seperti blog dan galeri.",
+    overview_en:
+      "The Taksu Explore Admin Panel is a comprehensive management system built to simplify and streamline travel business operations in one centralized platform. It enables administrators to manage tour packages, transportation services, bookings, schedules, and agent coordination efficiently, while also providing tools to maintain website content.",
     category: "Dashboard System",
+    category_id: "Sistem Dashboard",
+    category_en: "Dashboard System",
     tags: [
       "Travel Management System",
       "Booking Management",
@@ -84,10 +106,14 @@ export const projectsData: Project[] = [
     ],
     uploadedDate: "2026-05-24",
     collaborators: "1 Collaborator",
+    collaborators_id: "1 Kolaborator",
+    collaborators_en: "1 Collaborator",
     authors: [
       {
         name: "Mahendra Arya",
         role: "System Developer",
+        role_id: "Pengembang Sistem",
+        role_en: "System Developer",
         instagram: "karyasite",
       },
     ],
@@ -119,9 +145,17 @@ export const projectsData: Project[] = [
     id: "8a8bc3f0-3a99-467a-a6ce-63d1f06ab15f",
     slug: "athlix-sport-platform",
     title: "Athlix Sport Platform",
+    title_id: "Athlix - Platform Olahraga Terpadu",
+    title_en: "Athlix Sport Platform",
     overview:
       "A dynamic multi-sport platform designed to connect athletes, simplify sports activities, and create a complete digital sports ecosystem in one place. Users can discover and book sports venues, join training sessions, find teammates or opponents, manage match schedules, and explore various sports communities with ease.",
+    overview_id:
+      "Platform multi-olahraga dinamis yang dirancang untuk menghubungkan para pegiat olahraga, mempermudah aktivitas olahraga, dan menciptakan ekosistem olahraga digital dalam satu wadah. Pengguna dapat mencari dan memesan lapangan olahraga, bergabung dengan sesi latihan, mencari rekan tim atau lawan tanding, serta mengatur jadwal pertandingan.",
+    overview_en:
+      "A dynamic multi-sport platform designed to connect athletes, simplify sports activities, and create a complete digital sports ecosystem in one place. Users can discover and book sports venues, join training sessions, find teammates or opponents, and manage match schedules.",
     category: "Website",
+    category_id: "Website",
+    category_en: "Website",
     tags: [
       "Sports Platform",
       "Sports Community",
@@ -143,25 +177,35 @@ export const projectsData: Project[] = [
     ],
     uploadedDate: "2026-05-23",
     collaborators: "4 Collaborator",
+    collaborators_id: "4 Kolaborator",
+    collaborators_en: "4 Collaborators",
     authors: [
       {
         name: "Mahendra Arya",
         role: "UI Designer",
+        role_id: "Desainer UI",
+        role_en: "UI Designer",
         instagram: "karyasite",
       },
       {
         name: "Ryan Permana",
         role: "Frontend Developer",
+        role_id: "Pengembang Frontend",
+        role_en: "Frontend Developer",
         instagram: "ryanproductions_",
       },
       {
         name: "Werdhika",
         role: "UI Designer",
+        role_id: "Desainer UI",
+        role_en: "UI Designer",
         instagram: "werdhika_",
       },
       {
         name: "Vincentius",
         role: "Frontend Developer",
+        role_id: "Pengembang Frontend",
+        role_en: "Frontend Developer",
         instagram: "valifer_vallen",
       },
     ],
@@ -181,9 +225,17 @@ export const projectsData: Project[] = [
     id: "9c5deca9-3de6-42a7-a133-695d2bf4432e",
     slug: "perpusku-smart-library-platform",
     title: "Perpusku - Smart Library Platform",
+    title_id: "Perpusku - Platform Perpustakaan Pintar",
+    title_en: "Perpusku - Smart Library Platform",
     overview:
       "This project is a digital library platform designed to enhance the member experience through a more modern, practical, and integrated library system. The platform allows members to check real-time availability of books and library rooms, making it easier to access information and plan visits more efficiently. Through the system, members can borrow books digitally, monitor their borrowing status, and reserve library rooms for studying, discussions, or other activities.",
+    overview_id:
+      "Platform perpustakaan digital cerdas yang dirancang untuk meningkatkan pengalaman anggota melalui sistem yang modern, praktis, dan terintegrasi. Anggota dapat mengecek ketersediaan buku dan ruangan secara real-time, meminjam buku secara digital, serta melakukan reservasi ruang belajar dan diskusi.",
+    overview_en:
+      "This project is a digital library platform designed to enhance the member experience through a more modern, practical, and integrated library system. The platform allows members to check real-time availability of books and library rooms, borrow books digitally, and reserve study rooms.",
     category: "Web App",
+    category_id: "Aplikasi Web",
+    category_en: "Web App",
     tags: [
       "Booking System",
       "Digital Library",
@@ -203,10 +255,14 @@ export const projectsData: Project[] = [
     ],
     uploadedDate: "2026-05-12",
     collaborators: "1 Collaborator",
+    collaborators_id: "1 Kolaborator",
+    collaborators_en: "1 Collaborator",
     authors: [
       {
         name: "Mahendra Arya",
         role: "Full Stack Developer",
+        role_id: "Pengembang Full Stack",
+        role_en: "Full Stack Developer",
         instagram: "karyasite",
       },
     ],
@@ -234,9 +290,17 @@ export const projectsData: Project[] = [
     id: "86179b3e-cfac-4479-b02d-42999594bb96",
     slug: "luxury-surya-nitya",
     title: "Luxury Surya Nitya",
+    title_id: "Luxury Surya Nitya",
+    title_en: "Luxury Surya Nitya",
     overview:
       "A modern villa deserves a website with an elegant and luxurious design—not just for display, but to enhance credibility and reach more potential guests. Visit one of the villa websites we've created, 'Luxury Surya Nitya.' This website is designed to deliver a premium feel, present information clearly, and provide the best possible experience for visitors from their very first impression.",
+    overview_id:
+      "Website villa mewah dengan estetika visual elegan untuk meningkatkan kredibilitas dan menjangkau tamu potensial internasional. Dirancang dengan nuansa premium, visualisasi ruang yang menawan, serta integrasi pemesanan langsung melalui WhatsApp untuk konversi maksimal.",
+    overview_en:
+      "A modern villa deserves a website with an elegant and luxurious design—not just for display, but to enhance credibility and reach more potential guests. This website delivers a premium feel, clear information, and direct WhatsApp reservation flows.",
     category: "Website",
+    category_id: "Website",
+    category_en: "Website",
     tags: [
       "Luxury Private Villa",
       "Villa Booking",
@@ -255,10 +319,14 @@ export const projectsData: Project[] = [
     ],
     uploadedDate: "2026-05-02",
     collaborators: "1 Collaborator",
+    collaborators_id: "1 Kolaborator",
+    collaborators_en: "1 Collaborator",
     authors: [
       {
         name: "Mahendra Arya",
         role: "Web Developer",
+        role_id: "Pengembang Web",
+        role_en: "Web Developer",
         instagram: "karyasite",
       },
     ],
@@ -282,9 +350,17 @@ export const projectsData: Project[] = [
     id: "d5c009eb-63c2-4c85-9170-fcc1858c3d99",
     slug: "point-of-sale-restaurant",
     title: "Point Of Sale Restaurant",
+    title_id: "Point Of Sale Restoran",
+    title_en: "Point Of Sale Restaurant",
     overview:
       "This Restaurant POS system provides a complete solution for managing restaurant operations through three main panels: Admin, Cashier, and Kitchen. It supports real-time order processing, menu management, voucher handling, and fast, accurate transaction recording. Orders placed by the cashier are instantly displayed on the Kitchen Display, while the admin can monitor sales reports, manage menus, and control user access.",
+    overview_id:
+      "Sistem POS Restoran lengkap untuk mengelola seluruh operasional restoran melalui tiga panel utama: Admin, Kasir, dan Dapur (Kitchen Display System). Mendukung pesanan real-time, manajemen menu & voucher, pencatatan transaksi cepat, dan pemantauan laporan penjualan harian.",
+    overview_en:
+      "This Restaurant POS system provides a complete solution for managing restaurant operations through three main panels: Admin, Cashier, and Kitchen. It supports real-time order processing, menu management, voucher handling, and fast, accurate transaction recording.",
     category: "Dashboard System",
+    category_id: "Sistem Dashboard",
+    category_en: "Dashboard System",
     tags: [
       "Laravel 12",
       "Real-Time Order",
@@ -308,10 +384,14 @@ export const projectsData: Project[] = [
     ],
     uploadedDate: "2026-05-02",
     collaborators: "1 Collaborator",
+    collaborators_id: "1 Kolaborator",
+    collaborators_en: "1 Collaborator",
     authors: [
       {
         name: "Mahendra Arya",
         role: "System Developer",
+        role_id: "Pengembang Sistem",
+        role_en: "System Developer",
         instagram: "karyasite",
       },
     ],
@@ -339,9 +419,17 @@ export const projectsData: Project[] = [
     id: "80836e55-6444-4f2f-9e31-76282e4ebf3c",
     slug: "doclink-doctor-and-patient-appointment",
     title: "DocLink - Doctor & Patient Appointment",
+    title_id: "DocLink - Temu Janji Dokter & Pasien",
+    title_en: "DocLink - Doctor & Patient Appointment",
     overview:
       "DocLink is a powerful digital solution designed to elevate hospital performance by streamlining the management of patient–doctor appointments across Indonesia. With a comprehensive set of features, DocLink simplifies scheduling, improves coordination, and ensures that both patient and doctor management run efficiently and in an organized manner. The result is a smoother operational workflow and a higher standard of healthcare service delivery.",
+    overview_id:
+      "DocLink adalah solusi digital inovatif yang dirancang untuk meningkatkan efisiensi rumah sakit dan klinik dengan menyederhanakan manajemen jadwal temu janji pasien dan dokter. Mempermudah penjadwalan, koordinasi poliklinik, dan rekam medis secara terorganisir.",
+    overview_en:
+      "DocLink is a powerful digital solution designed to elevate hospital performance by streamlining the management of patient–doctor appointments across Indonesia. It simplifies scheduling, improves coordination, and ensures that patient and doctor management run efficiently.",
     category: "Dashboard System",
+    category_id: "Sistem Dashboard",
+    category_en: "Dashboard System",
     tags: [
       "Appointment Booking System",
       "Patient Management",
@@ -361,20 +449,28 @@ export const projectsData: Project[] = [
     ],
     uploadedDate: "2026-05-01",
     collaborators: "3 Collaborator",
+    collaborators_id: "3 Kolaborator",
+    collaborators_en: "3 Collaborators",
     authors: [
       {
         name: "Mahendra Arya",
         role: "Full Stack Developer",
+        role_id: "Pengembang Full Stack",
+        role_en: "Full Stack Developer",
         instagram: "karyasite",
       },
       {
         name: "Ryan Permana",
         role: "UI Designer",
+        role_id: "Desainer UI",
+        role_en: "UI Designer",
         instagram: "ryanproductions_",
       },
       {
         name: "Vincentius",
         role: "Frontend Developer",
+        role_id: "Pengembang Frontend",
+        role_en: "Frontend Developer",
         instagram: "valifer_vallen",
       },
     ],
@@ -402,9 +498,17 @@ export const projectsData: Project[] = [
     id: "897fd096-b2ea-417e-baa4-1cdaa7536990",
     slug: "perpusku-erp-library-management-system",
     title: "Perpusku - ERP Library Management System",
+    title_id: "Perpusku - Sistem ERP Manajemen Perpustakaan",
+    title_en: "Perpusku - ERP Library Management System",
     overview:
       "A modern Library Management System built with Laravel 12 and Filament v3, designed to streamline and optimize library operations through a powerful multi-role architecture. This platform goes beyond basic management—offering a complete solution for handling book collections, memberships, borrowing and returns, fines, and even room reservations. With dedicated panels for Admin and Librarians, along with a user-friendly interface for Members, each role is equipped with the tools they need to work efficiently and seamlessly.",
+    overview_id:
+      "Sistem ERP Manajemen Perpustakaan modern yang dibangun dengan Laravel 12 dan Filament v3. Menawarkan arsitektur multi-role untuk mengelola koleksi buku, data keanggotaan, sirkulasi peminjaman dan pengembalian, kalkulasi denda, serta reservasi ruangan perpustakaan.",
+    overview_en:
+      "A modern Library Management System built with Laravel 12 and Filament v3, designed to streamline and optimize library operations through a powerful multi-role architecture, handling book collections, memberships, borrowing, fines, and room reservations.",
     category: "Dashboard System",
+    category_id: "Sistem Dashboard",
+    category_en: "Dashboard System",
     tags: [
       "Admin Panel",
       "CRUD",
@@ -428,10 +532,14 @@ export const projectsData: Project[] = [
     ],
     uploadedDate: "2026-05-01",
     collaborators: "1 Collaborator",
+    collaborators_id: "1 Kolaborator",
+    collaborators_en: "1 Collaborator",
     authors: [
       {
         name: "Mahendra Arya",
         role: "System Developer",
+        role_id: "Pengembang Sistem",
+        role_en: "System Developer",
         instagram: "karyasite",
       },
     ],
@@ -459,9 +567,17 @@ export const projectsData: Project[] = [
     id: "b5fb2b73-df88-4f6a-92cf-a1da3c51c922",
     slug: "aurora-cinema-ticket-booking",
     title: "Aurora Cinema - Ticket Booking",
+    title_id: "Aurora Cinema - Pemesanan Tiket Bioskop",
+    title_en: "Aurora Cinema - Ticket Booking",
     overview:
       "Aurora Cinema is a modern web-based movie ticket booking platform designed to deliver a seamless and enjoyable user experience. From discovering the latest films to selecting showtimes and reserving seats digitally, every step is crafted to be intuitive, fast, and hassle-free—bringing the convenience of cinema booking right to your fingertips.",
+    overview_id:
+      "Aurora Cinema adalah platform pemesanan tiket bioskop digital berbasis web yang dirancang untuk memberikan pengalaman pengguna yang cepat dan menyenangkan. Mulai dari melihat jadwal tayang film terbaru, memilih kursi secara interaktif, hingga reservasi tiket secara instan.",
+    overview_en:
+      "Aurora Cinema is a modern web-based movie ticket booking platform designed to deliver a seamless and enjoyable user experience. From discovering the latest films to selecting showtimes and reserving seats digitally.",
     category: "Web App",
+    category_id: "Aplikasi Web",
+    category_en: "Web App",
     tags: [
       "Web-Based Ticketing",
       "Online Reservation System",
@@ -478,10 +594,14 @@ export const projectsData: Project[] = [
     ],
     uploadedDate: "2026-05-01",
     collaborators: "1 Collaborator",
+    collaborators_id: "1 Kolaborator",
+    collaborators_en: "1 Collaborator",
     authors: [
       {
         name: "Mahendra Arya",
         role: "Web Developer",
+        role_id: "Pengembang Web",
+        role_en: "Web Developer",
         instagram: "karyasite",
       },
     ],

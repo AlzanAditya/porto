@@ -11,12 +11,15 @@ export const SplitWords: React.FC<SplitWordsProps> = ({
   className = "",
   wordClassName = "word inline-block",
 }) => {
-  const words = text.split(" ");
+  if (!text) return null;
+  const words = text.trim().split(/\s+/);
   return (
-    <span className={className}>
+    <span key={text} className={className}>
       {words.map((word, i) => (
-        <span key={i} className={wordClassName}>
-          {word}&nbsp;
+        <span key={`${word}-${i}`} className="inline-block pb-0.5">
+          <span className={wordClassName}>
+            {word}&nbsp;
+          </span>
         </span>
       ))}
     </span>

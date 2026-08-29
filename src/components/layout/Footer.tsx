@@ -2,6 +2,7 @@ import React, { useState, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
+import { useLanguage } from "../../context/LanguageContext";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -12,6 +13,7 @@ interface FooterProps {
 export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
   const [projectIdea, setProjectIdea] = useState("");
   const containerRef = useRef<HTMLElement>(null);
+  const { t } = useLanguage();
 
   useGSAP(
     () => {
@@ -56,10 +58,10 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
         <div className="flex flex-col gap-8 md:gap-12 justify-center items-center min-h-[50vh] md:min-h-[65vh] lg:min-h-[70vh] p-6 py-12 relative z-10">
           <div className="text-center flex flex-col items-center footer-text">
             <h2 className="text-3xl md:text-5xl lg:text-6xl font-semibold mb-3 md:mb-6 leading-tight text-text-primary">
-              Let's Build Something <br /> Great Together
+              {t("footer.ctaTitle")}
             </h2>
             <p className="text-sm md:text-lg w-[90%] md:w-[60%] text-text-secondary leading-relaxed font-medium">
-              Have an idea? Let's turn it into a scalable digital solution that drives real results.
+              {t("footer.ctaSubtitle")}
             </p>
           </div>
 
@@ -67,7 +69,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
           <div className="bg-white/90 border border-white backdrop-blur-md w-full max-w-md pl-6 pr-2 py-2 rounded-full flex gap-3 justify-between items-center shadow-lg">
             <input
               type="text"
-              placeholder="Tell me about your project…"
+              placeholder={t("footer.placeholder")}
               className="text-sm md:text-base focus:outline-none font-medium w-full text-text-primary placeholder:text-text-secondary/60 bg-transparent"
               value={projectIdea}
               onChange={(e) => setProjectIdea(e.target.value)}
@@ -83,8 +85,8 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               <span className="flex items-center gap-2 px-4 py-3 lg:py-2 lg:pr-2 text-sm md:text-base lg:gap-3 btn-hover">
                 <span className="hidden sm:block">
                   <span className="scroll-text flex">
-                    <span className="font-semibold">Send</span>
-                    <span className="font-semibold">Send</span>
+                    <span className="font-semibold">{t("footer.send")}</span>
+                    <span className="font-semibold">{t("footer.send")}</span>
                   </span>
                 </span>
                 <span className="p-1.5 lg:p-2 rounded-full transition-all duration-300 ease-in-out group-hover:bg-white/40">
@@ -139,7 +141,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               <strong className="text-lg font-semibold block text-text-primary">
                 Mahendra Arya | Karyasite
               </strong>
-              <p className="text-sm text-text-secondary">Available for Freelance Projects</p>
+              <p className="text-sm text-text-secondary">{t("footer.status")}</p>
             </div>
           </div>
 
@@ -152,7 +154,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                   href="/"
                   onClick={(e) => handleNav(e, "/")}
                 >
-                  Home
+                  {t("nav.home")}
                 </a>
               </li>
               <li>
@@ -161,7 +163,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                   href="/about"
                   onClick={(e) => handleNav(e, "/about")}
                 >
-                  About
+                  {t("nav.about")}
                 </a>
               </li>
               <li>
@@ -170,7 +172,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                   href="/projects"
                   onClick={(e) => handleNav(e, "/projects")}
                 >
-                  Project
+                  {t("nav.projects")}
                 </a>
               </li>
               <li>
@@ -179,7 +181,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                   href="/blogs"
                   onClick={(e) => handleNav(e, "/blogs")}
                 >
-                  Blogs
+                  {t("nav.blogs")}
                 </a>
               </li>
             </ul>
@@ -188,7 +190,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
           {/* Copyright */}
           <div className="flex justify-center md:justify-end">
             <span className="text-sm font-medium text-text-secondary text-center md:text-right">
-              © 2026 Karyasite. All rights reserved.
+              {t("footer.rights")}
             </span>
           </div>
         </div>
@@ -196,3 +198,4 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
     </footer>
   );
 };
+

@@ -5,8 +5,14 @@ export const blogsData: Blog[] = [
     "id": "7148175a-2db0-44ca-a18f-7fbaee97e907",
     "slug": "bangun-sistem-farming-leads-dengan-meta-ads-untuk-freelancer",
     "title": "Bangun Sistem Farming Leads Dengan Meta Ads Untuk Freelancer",
+    "title_id": "Bangun Sistem Farming Leads Dengan Meta Ads Untuk Freelancer",
+    "title_en": "Building a Meta Ads Lead Farming System for Freelancers",
     "category": "Freelance",
+    "category_id": "Freelance",
+    "category_en": "Freelance",
     "excerpt": "Jujur, aku sempat skeptis. Paid ads kayak Meta ads itu kesannya mahal, ribet, dan lebih cocok buat brand besar. Tapi aku liat banyak banget freelancer yang udah nyobain dan mereka berhasil dealing terus-terusan...",
+    "excerpt_id": "Jujur, aku sempat skeptis. Paid ads kayak Meta ads itu kesannya mahal, ribet, dan lebih cocok buat brand besar. Tapi aku liat banyak banget freelancer yang udah nyobain dan mereka berhasil dealing terus-terusan...",
+    "excerpt_en": "Honestly, I was skeptical at first. Paid ads like Meta Ads often seem expensive, complex, and only suitable for big brands. But when I set up a targeted system, I closed deals with high return on ad spend...",
     "coverImage": "/blogs/bangun-sistem-farming-leads-dengan-meta-ads-untuk-freelancer/cover.jpeg",
     "publishDate": "24 May 2026",
     "readTime": "5 min read",
@@ -20,6 +26,8 @@ export const blogsData: Blog[] = [
     "author": {
       "name": "Mahendra Arya",
       "role": "Web Developer",
+      "role_id": "Pengembang Web",
+      "role_en": "Web Developer",
       "avatar": "/avatar/photo-profile.jpeg"
     },
     "contentBlocks": [
@@ -309,8 +317,14 @@ export const blogsData: Blog[] = [
     "id": "053f9a45-d5d5-44df-b88a-d69de2f9c3b1",
     "slug": "cara-menjelaskan-hal-teknis-ke-klien-yang-bukan-programmer-pelajaran-dari-proyek-nyata",
     "title": "Cara Menjelaskan Hal Teknis ke Klien yang Bukan Programmer: Pelajaran dari Proyek Nyata",
+    "title_id": "Cara Menjelaskan Hal Teknis ke Klien yang Bukan Programmer: Pelajaran dari Proyek Nyata",
+    "title_en": "How to Explain Technical Concepts to Non-Programmer Clients: Lessons from Real Projects",
     "category": "Freelance",
+    "category_id": "Freelance",
+    "category_en": "Freelance",
     "excerpt": "Waktu itu aku lagi meeting bareng klien pertamaku, pemilik bisnis tour dan travel di Bali. Proyek pertama nih bos semangat masih membara. Sampai di bagian pembahasan teknis...",
+    "excerpt_id": "Waktu itu aku lagi meeting bareng klien pertamaku, pemilik bisnis tour dan travel di Bali. Proyek pertama nih bos semangat masih membara. Sampai di bagian pembahasan teknis...",
+    "excerpt_en": "During a meeting with my first client—a tour and travel business owner in Bali—I learned a crucial lesson: how to communicate complex tech concepts in simple, business-driven terms...",
     "coverImage": "/blogs/cara-menjelaskan-hal-teknis-ke-klien-yang-bukan-programmer-pelajaran-dari-proyek-nyata/cover.jpeg",
     "publishDate": "24 May 2026",
     "readTime": "5 min read",
@@ -323,6 +337,8 @@ export const blogsData: Blog[] = [
     "author": {
       "name": "Mahendra Arya",
       "role": "Web Developer",
+      "role_id": "Pengembang Web",
+      "role_en": "Web Developer",
       "avatar": "/avatar/photo-profile.jpeg"
     },
     "contentBlocks": [
@@ -813,8 +829,14 @@ export const blogsData: Blog[] = [
     "id": "33a91c3e-786d-4e79-8c59-948b5043159e",
     "slug": "rekomendasi-tech-stack-yang-aku-pakai-untuk-freelance-web-developer",
     "title": "Rekomendasi Tech Stack Yang Aku Pakai Untuk Freelance Web Developer",
+    "title_id": "Rekomendasi Tech Stack Yang Aku Pakai Untuk Freelance Web Developer",
+    "title_en": "My Recommended Tech Stack for Freelance Web Developers",
     "category": "Freelance",
+    "category_id": "Freelance",
+    "category_en": "Freelance",
     "excerpt": "Salah satu pertanyaan yang paling sering aku dapet dari sesama siswa IT adalah: \"belajar apa dulu buat freelance?\" Dan jawabannya nggak sesimple itu karena stack yang tepat tergantung dari klien...",
+    "excerpt_id": "Salah satu pertanyaan yang paling sering aku dapet dari sesama siswa IT adalah: \"belajar apa dulu buat freelance?\" Dan jawabannya nggak sesimple itu karena stack yang tepat tergantung dari klien...",
+    "excerpt_en": "One of the most frequent questions I receive from fellow IT students is: 'what should I learn first for freelancing?' The right stack depends on what your clients actually need...",
     "coverImage": "/blogs/rekomendasi-tech-stack-yang-aku-pakai-untuk-freelance-web-developer/cover.jpeg",
     "publishDate": "24 May 2026",
     "readTime": "5 min read",
@@ -829,6 +851,8 @@ export const blogsData: Blog[] = [
     "author": {
       "name": "Mahendra Arya",
       "role": "Web Developer",
+      "role_id": "Pengembang Web",
+      "role_en": "Web Developer",
       "avatar": "/avatar/photo-profile.jpeg"
     },
     "contentBlocks": [

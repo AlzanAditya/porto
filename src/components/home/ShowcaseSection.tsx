@@ -4,6 +4,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { Project } from "../../types";
 import { SplitWords } from "../common/SplitWords";
+import { useLanguage } from "../../context/LanguageContext";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -17,6 +18,7 @@ export const ShowcaseSection: React.FC<ShowcaseSectionProps> = ({
   onNavigate,
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
+  const { lang, t } = useLanguage();
 
   useGSAP(
     () => {
@@ -113,10 +115,10 @@ export const ShowcaseSection: React.FC<ShowcaseSectionProps> = ({
       {/* Header */}
       <div className="showcase-header flex flex-col lg:flex-row lg:items-center justify-between mb-8 md:mb-12 lg:mb-20">
         <h2 className="font-semibold text-3xl md:text-5xl mb-2 lg:mb-0 leading-[1.2]">
-          <SplitWords text="A Showcase of My Projects" />
+          <SplitWords text={t("showcase.title")} />
         </h2>
         <p className="md:text-lg font-medium text-text-secondary lg:w-[32%] lg:text-right">
-          Explore a selection of my latest and most meaningful projects.
+          {t("showcase.subtitle")}
         </p>
       </div>
 
@@ -132,7 +134,7 @@ export const ShowcaseSection: React.FC<ShowcaseSectionProps> = ({
                 className="group relative shrink-0 bg-linear-to-br from-primary/10 to-secondary/10 rounded-xl border border-foreground/5 overflow-hidden w-full h-56 md:h-64"
               >
                 <img
-                  alt={p.title}
+                  alt={lang === "id" && p.title_id ? p.title_id : p.title_en || p.title}
                   loading="lazy"
                   className="object-cover w-full h-full rounded-xl transition-transform duration-500 group-hover:scale-105"
                   src={p.images[0]}
@@ -149,7 +151,7 @@ export const ShowcaseSection: React.FC<ShowcaseSectionProps> = ({
                 className="group relative shrink-0 bg-linear-to-br from-primary/10 to-secondary/10 rounded-xl border border-foreground/5 overflow-hidden w-full h-56 md:h-64"
               >
                 <img
-                  alt={p.title}
+                  alt={lang === "id" && p.title_id ? p.title_id : p.title_en || p.title}
                   loading="lazy"
                   className="object-cover w-full h-full rounded-xl transition-transform duration-500 group-hover:scale-105"
                   src={p.images[0]}
@@ -166,7 +168,7 @@ export const ShowcaseSection: React.FC<ShowcaseSectionProps> = ({
                 className="group relative shrink-0 bg-linear-to-br from-primary/10 to-secondary/10 rounded-xl border border-foreground/5 overflow-hidden w-full h-56 md:h-64"
               >
                 <img
-                  alt={p.title}
+                  alt={lang === "id" && p.title_id ? p.title_id : p.title_en || p.title}
                   loading="lazy"
                   className="object-cover w-full h-full rounded-xl transition-transform duration-500 group-hover:scale-105"
                   src={p.images[0]}
@@ -203,13 +205,12 @@ export const ShowcaseSection: React.FC<ShowcaseSectionProps> = ({
                     9+
                   </strong>
                   <p className="showcase-modal-text font-medium text-xs md:text-sm text-text-secondary">
-                    Projects Published
+                    {t("showcase.publishedLabel")}
                   </p>
                 </div>
               </div>
               <p className="showcase-modal-text text-text-secondary text-sm md:text-base leading-relaxed">
-                Over the past 3 years, I've not only learned the theory but also
-                applied it through real-world projects and practical experience.
+                {t("showcase.desc")}
               </p>
             </div>
 
@@ -224,8 +225,8 @@ export const ShowcaseSection: React.FC<ShowcaseSectionProps> = ({
               >
                 <div className="flex gap-2 items-center justify-center w-full">
                   <span className="scroll-text flex">
-                    <span className="font-semibold">View Selected Projects</span>
-                    <span className="font-semibold">View Selected Projects</span>
+                    <span className="font-semibold">{t("showcase.cta")}</span>
+                    <span className="font-semibold">{t("showcase.cta")}</span>
                   </span>
                   <div className="p-1 rounded-full transition-all duration-300 ease-in-out group-hover:bg-white/40">
                     <svg
@@ -250,3 +251,4 @@ export const ShowcaseSection: React.FC<ShowcaseSectionProps> = ({
     </section>
   );
 };
+

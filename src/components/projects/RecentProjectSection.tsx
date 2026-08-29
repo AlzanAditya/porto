@@ -1,5 +1,6 @@
 import React from "react";
 import { Project } from "../../types";
+import { useLanguage } from "../../context/LanguageContext";
 
 interface RecentProjectSectionProps {
   project: Project;
@@ -10,6 +11,12 @@ export const RecentProjectSection: React.FC<RecentProjectSectionProps> = ({
   project,
   onNavigate,
 }) => {
+  const { lang, t } = useLanguage();
+
+  const title = (lang === "id" ? project.title_id : project.title_en) || project.title;
+  const overview = (lang === "id" ? project.overview_id : project.overview_en) || project.overview;
+  const category = (lang === "id" ? project.category_id : project.category_en) || project.category;
+
   const primaryImg =
     project.images[0] ||
     "/projects/Taksu Explore - Tour & Travel Booking/cover.png";
@@ -25,10 +32,10 @@ export const RecentProjectSection: React.FC<RecentProjectSectionProps> = ({
     >
       <div className="flex flex-col lg:flex-row lg:items-center justify-between mb-8 md:mb-12 lg:mb-20">
         <h2 className="recent-title font-semibold text-3xl md:text-5xl mb-2 lg:mb-0 leading-[1.2]">
-          Recently Delivered Projects
+          {t("projects.recentDeliveredTitle")}
         </h2>
         <p className="recent-desc md:text-lg font-medium text-text-secondary w-[80%] lg:w-[25%] lg:text-right">
-          Some of my latest work — built, tested, and shipped.
+          {t("projects.recentDeliveredSubtitle")}
         </p>
       </div>
 
@@ -44,7 +51,7 @@ export const RecentProjectSection: React.FC<RecentProjectSectionProps> = ({
           >
             <div className="w-full h-full shrink-0">
               <img
-                alt={project.title}
+                alt={title}
                 width="600"
                 height="300"
                 decoding="async"
@@ -54,7 +61,7 @@ export const RecentProjectSection: React.FC<RecentProjectSectionProps> = ({
             </div>
             <div className="w-full h-full shrink-0">
               <img
-                alt={`${project.title} alt`}
+                alt={`${title} alt`}
                 width="600"
                 height="300"
                 decoding="async"
@@ -73,13 +80,13 @@ export const RecentProjectSection: React.FC<RecentProjectSectionProps> = ({
                 onClick={() => onNavigate(`/projects/${project.slug}`)}
                 className="text-xl md:text-3xl font-medium mb-3 md:mb-5 cursor-pointer hover:text-primary transition-colors duration-300"
               >
-                {project.title}
+                {title}
               </h3>
               <div className="flex items-center gap-4">
                 <div className="flex items-center gap-3 bg-card rounded-full pl-3 pr-4 py-2 w-fit">
                   <div className="size-4 bg-linear-to-br from-primary to-secondary rounded-full"></div>
                   <strong className="text-xs md:text-sm font-semibold">
-                    {project.category}
+                    {category}
                   </strong>
                 </div>
                 <div className="text-text-secondary flex items-center gap-2 text-sm">
@@ -99,7 +106,7 @@ export const RecentProjectSection: React.FC<RecentProjectSectionProps> = ({
               </div>
             </div>
             <p className="text-text-secondary leading-relaxed line-clamp-3">
-              {project.overview}
+              {overview}
             </p>
           </div>
 
@@ -114,8 +121,8 @@ export const RecentProjectSection: React.FC<RecentProjectSectionProps> = ({
             >
               <div className="flex gap-3 items-center">
                 <span className="scroll-text flex">
-                  <span className="font-semibold">Project Detail</span>
-                  <span className="font-semibold">Project Detail</span>
+                  <span className="font-semibold">{t("projects.detailButton")}</span>
+                  <span className="font-semibold">{t("projects.detailButton")}</span>
                 </span>
                 <span className="lg:p-2 rounded-lg transition-all duration-300 ease-in-out group-hover:bg-text-primary">
                   <svg

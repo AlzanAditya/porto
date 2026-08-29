@@ -2,7 +2,7 @@ import React, { useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
-import { SplitWords } from "../common/SplitWords";
+import { useLanguage } from "../../context/LanguageContext";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -12,6 +12,7 @@ interface AboutSectionProps {
 
 export const AboutSection: React.FC<AboutSectionProps> = ({ onNavigate }) => {
   const containerRef = useRef<HTMLDivElement>(null);
+  const { lang, t } = useLanguage();
 
   useGSAP(
     () => {
@@ -203,26 +204,26 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onNavigate }) => {
         <div className="lg:col-span-6 flex flex-col gap-5 lg:gap-8">
           <div>
             <strong className="about-badge inline-block font-semibold text-lg">
-              Yoo! Call Me Arya
+              {t("about.badge")}
             </strong>
             <h2 className="about-title font-medium text-3xl md:text-5xl mt-3 leading-[1.2]">
               <span className="inline-block pb-1">
-                <span className="word inline-block">Hey,&nbsp;</span>
+                <span className="word inline-block">{t("about.heading1")}&nbsp;</span>
               </span>
               <span className="inline-block pb-1">
-                <span className="word inline-block">Tech&nbsp;</span>
+                <span className="word inline-block">{t("about.heading2")}&nbsp;</span>
               </span>
               <span className="inline-block pb-1">
-                <span className="word inline-block">Enthusiasts!&nbsp;</span>
+                <span className="word inline-block">{t("about.heading3")}&nbsp;</span>
               </span>
             </h2>
           </div>
           <div className="leading-[1.4] md:leading-normal flex flex-col gap-4 md:gap-5 md:text-lg">
             <p className="about-p">
-              I'm a software engineering student with over 3 years of experience as a web developer. I enjoy collaborating with teams and working closely with clients to build scalable digital solutions that help empower and grow their businesses.
+              {t("about.p1")}
             </p>
             <p className="about-p">
-              I love every part of the journey, learning new things and gaining experiences that continuously shape me into a better developer.
+              {t("about.p2")}
             </p>
           </div>
         </div>
@@ -269,7 +270,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onNavigate }) => {
                   </svg>
                 </div>
                 <strong className="text-black text-sm md:text-lg lg:text-sm 2xl:text-base font-semibold">
-                  Full-Stack Web Developer
+                  {t("about.tagDeveloper")}
                 </strong>
               </div>
             </div>
@@ -291,7 +292,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onNavigate }) => {
                   </svg>
                 </div>
                 <strong className="text-black text-sm md:text-lg lg:text-sm 2xl:text-base font-semibold">
-                  System Builder
+                  {t("about.tagSystem")}
                 </strong>
               </div>
             </div>
@@ -314,7 +315,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onNavigate }) => {
                   </svg>
                 </div>
                 <strong className="text-black text-sm md:text-lg lg:text-sm 2xl:text-base font-semibold">
-                  Content Creator
+                  {t("about.tagContent")}
                 </strong>
               </div>
             </div>
@@ -337,7 +338,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onNavigate }) => {
                   </svg>
                 </div>
                 <strong className="text-black text-sm md:text-lg lg:text-sm 2xl:text-base font-semibold">
-                  Bussines Growth
+                  {t("about.tagGrowth")}
                 </strong>
               </div>
             </div>
@@ -359,7 +360,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onNavigate }) => {
                   </svg>
                 </div>
                 <strong className="text-black text-sm md:text-lg lg:text-sm 2xl:text-base font-semibold">
-                  Digital Marketer
+                  {t("about.tagMarketer")}
                 </strong>
               </div>
             </div>
@@ -376,7 +377,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onNavigate }) => {
             </strong>
           </div>
           <p className="md:text-lg font-medium">
-            Years As IT Student
+            {t("about.statYears")}
           </p>
         </div>
 
@@ -395,8 +396,8 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onNavigate }) => {
             >
               <div className="flex gap-2 items-center">
                 <span className="scroll-text flex">
-                  <span className="font-semibold">My Works</span>
-                  <span className="font-semibold">My Works</span>
+                  <span className="font-semibold">{t("about.statWorksBtn")}</span>
+                  <span className="font-semibold">{t("about.statWorksBtn")}</span>
                 </span>
                 <div className="lg:p-2 rounded-full transition-all duration-300 ease-in-out group-hover:bg-white/40">
                   <svg
@@ -416,7 +417,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onNavigate }) => {
             </a>
           </div>
           <p className="md:text-lg font-medium">
-            Web &amp; System projects complete
+            {t("about.statProjects")}
           </p>
         </div>
 
@@ -427,10 +428,11 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onNavigate }) => {
             </strong>
           </div>
           <p className="md:text-lg font-medium">
-            Collaborate Projects
+            {t("about.statCollabs")}
           </p>
         </div>
       </div>
     </section>
   );
 };
+

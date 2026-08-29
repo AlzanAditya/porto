@@ -1,5 +1,6 @@
 import React from "react";
 import { Project } from "../../types";
+import { useLanguage } from "../../context/LanguageContext";
 
 interface ProjectGridItemProps {
   project: Project;
@@ -10,6 +11,11 @@ export const ProjectGridItem: React.FC<ProjectGridItemProps> = ({
   project,
   onNavigate,
 }) => {
+  const { lang } = useLanguage();
+
+  const title = (lang === "id" ? project.title_id : project.title_en) || project.title;
+  const category = (lang === "id" ? project.category_id : project.category_en) || project.category;
+
   const primaryImg =
     project.images[0] ||
     "/projects/Taksu Explore - Tour & Travel Booking/cover.png";
@@ -37,7 +43,7 @@ export const ProjectGridItem: React.FC<ProjectGridItemProps> = ({
             >
               <div className="w-full h-full shrink-0">
                 <img
-                  alt={project.title}
+                  alt={title}
                   loading="lazy"
                   width="800"
                   height="600"
@@ -48,7 +54,7 @@ export const ProjectGridItem: React.FC<ProjectGridItemProps> = ({
               </div>
               <div className="w-full h-full shrink-0">
                 <img
-                  alt={`${project.title} hover`}
+                  alt={`${title} hover`}
                   loading="lazy"
                   width="800"
                   height="600"
@@ -63,13 +69,13 @@ export const ProjectGridItem: React.FC<ProjectGridItemProps> = ({
           {/* Card Content */}
           <div>
             <h3 className="text-xl md:text-lg font-medium mb-3 px-2 group-hover:text-primary transition-colors duration-300 line-clamp-1">
-              {project.title}
+              {title}
             </h3>
             <div className="flex items-center gap-4">
               <div className="flex items-center gap-3 bg-card rounded-full pl-3 pr-4 py-2 w-fit group-hover:btn-hover">
                 <div className="size-4 bg-linear-to-br from-primary to-secondary rounded-full"></div>
                 <strong className="text-sm md:text-xs font-semibold">
-                  {project.category}
+                  {category}
                 </strong>
               </div>
               <div className="text-text-secondary flex items-center gap-2 text-sm md:text-xs">

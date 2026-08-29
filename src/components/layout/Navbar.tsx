@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useLanguage } from "../../context/LanguageContext";
 
 interface NavbarProps {
   currentPath: string;
@@ -7,6 +8,7 @@ interface NavbarProps {
 
 export const Navbar: React.FC<NavbarProps> = ({ currentPath, onNavigate }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { lang, setLang, t } = useLanguage();
 
   const handleNav = (e: React.MouseEvent, path: string) => {
     e.preventDefault();
@@ -33,8 +35,8 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath, onNavigate }) => {
           <strong className="text-lg md:text-xl font-semibold tracking-tight">KARYASITE</strong>
         </a>
 
-        {/* Right side navigation buttons */}
-        <div className="flex items-center gap-3">
+        {/* Right side navigation buttons & Menu */}
+        <div className="flex items-center gap-2 md:gap-3">
           {/* Collaborate Button (Desktop) */}
           <a
             href="#contact"
@@ -52,8 +54,8 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath, onNavigate }) => {
           >
             <button className="flex items-center cursor-pointer font-medium gap-2 group transition-all duration-300 ease-in-out bg-foreground px-4 py-3 btn-hover hidden md:flex rounded-xl text-text-primary hover:bg-neutral-200/80">
               <span className="scroll-text flex">
-                <span className="font-semibold">Collaborate With Me!</span>
-                <span className="font-semibold">Collaborate With Me!</span>
+                <span className="font-semibold">{t("nav.letsTalk")}</span>
+                <span className="font-semibold">{t("nav.letsTalk")}</span>
               </span>
             </button>
           </a>
@@ -62,10 +64,10 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath, onNavigate }) => {
           <div className="relative w-fit">
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="flex items-center cursor-pointer font-medium gap-2 group transition-all duration-300 ease-in-out bg-black text-white lg:pr-2 lg:pl-4 px-4 py-4 lg:py-2 btn-hover rounded-xl"
+              className="flex items-center cursor-pointer font-medium gap-2 group transition-all duration-300 ease-in-out bg-black text-white lg:pr-2 lg:pl-4 px-4 py-3.5 lg:py-2 btn-hover rounded-xl"
               aria-label="Toggle Navigation Menu"
             >
-              <span className="flex items-center gap-4">
+              <span className="flex items-center gap-3 lg:gap-4">
                 <span className="hidden lg:flex">
                   <span className="scroll-text flex">
                     <span className="font-semibold">Menu</span>
@@ -128,7 +130,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath, onNavigate }) => {
                         </svg>
                       </div>
                     </div>
-                    <span className="font-medium">Home</span>
+                    <span className="font-medium">{t("nav.home")}</span>
                   </a>
                 </li>
 
@@ -157,7 +159,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath, onNavigate }) => {
                         </svg>
                       </div>
                     </div>
-                    <span className="font-medium">Projects</span>
+                    <span className="font-medium">{t("nav.projects")}</span>
                   </a>
                 </li>
 
@@ -198,7 +200,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath, onNavigate }) => {
                         </svg>
                       </div>
                     </div>
-                    <span className="font-medium">Blogs</span>
+                    <span className="font-medium">{t("nav.blogs")}</span>
                   </a>
                 </li>
 
@@ -227,8 +229,36 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath, onNavigate }) => {
                         </svg>
                       </div>
                     </div>
-                    <span className="font-medium">About</span>
+                    <span className="font-medium">{t("nav.about")}</span>
                   </a>
+                </li>
+
+                {/* Bilingual Switcher inside Dropdown Menu - Clean, no background on container, active option has light grey background */}
+                <li className="w-full">
+                  <div className="flex items-center gap-1 p-1 rounded-xl text-text-secondary w-full">
+                    <button
+                      type="button"
+                      onClick={() => setLang("id")}
+                      className={`flex-1 py-2.5 rounded-xl text-sm font-semibold lowercase transition-all duration-300 cursor-pointer text-center ${
+                        lang === "id"
+                          ? "bg-foreground text-text-primary font-bold"
+                          : "bg-transparent text-text-secondary hover:text-text-primary"
+                      }`}
+                    >
+                      id
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setLang("en")}
+                      className={`flex-1 py-2.5 rounded-xl text-sm font-semibold lowercase transition-all duration-300 cursor-pointer text-center ${
+                        lang === "en"
+                          ? "bg-foreground text-text-primary font-bold"
+                          : "bg-transparent text-text-secondary hover:text-text-primary"
+                      }`}
+                    >
+                      en
+                    </button>
+                  </div>
                 </li>
 
                 {/* Mobile collaborate button in dropdown */}
@@ -251,8 +281,8 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath, onNavigate }) => {
                   >
                     <button className="flex items-center cursor-pointer font-medium gap-2 group transition-all duration-300 ease-in-out bg-foreground px-4 py-3 btn-hover w-full justify-center text-text-secondary rounded-xl">
                       <span className="scroll-text flex">
-                        <span className="font-semibold">Collaborate With Me!</span>
-                        <span className="font-semibold">Collaborate With Me!</span>
+                        <span className="font-semibold">{t("nav.letsTalk")}</span>
+                        <span className="font-semibold">{t("nav.letsTalk")}</span>
                       </span>
                     </button>
                   </a>
@@ -265,3 +295,4 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath, onNavigate }) => {
     </header>
   );
 };
+

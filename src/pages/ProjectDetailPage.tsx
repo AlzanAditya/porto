@@ -2,14 +2,14 @@ import React, { useRef, useState, useEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
-import { Project } from "../../types";
-import { useLanguage } from "../../context/LanguageContext";
-import { ProjectDetailHeader } from "./ProjectDetailHeader";
-import { ProjectDetailGallery } from "./ProjectDetailGallery";
-import { ProjectDetailOverview } from "./ProjectDetailOverview";
-import { ProjectDetailSidebar } from "./ProjectDetailSidebar";
-import { ProjectCollaboratorsModal } from "./ProjectCollaboratorsModal";
-import { ProjectImageLightbox } from "./ProjectImageLightbox";
+import { Project } from "../types";
+import { useLanguage } from "../context/LanguageContext";
+import { ProjectDetailHeader } from "../components/projects/ProjectDetailHeader";
+import { ProjectDetailGallery } from "../components/projects/ProjectDetailGallery";
+import { ProjectDetailOverview } from "../components/projects/ProjectDetailOverview";
+import { ProjectDetailSidebar } from "../components/projects/ProjectDetailSidebar";
+import { ProjectCollaboratorsModal } from "../components/projects/ProjectCollaboratorsModal";
+import { ProjectImageLightbox } from "../components/projects/ProjectImageLightbox";
 
 gsap.registerPlugin(ScrollTrigger);
 

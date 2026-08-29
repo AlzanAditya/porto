@@ -3,6 +3,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { SplitWords } from "../common/SplitWords";
+import { useLanguage } from "../../context/LanguageContext";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -12,6 +13,7 @@ interface HeroSectionProps {
 
 export const HeroSection: React.FC<HeroSectionProps> = ({ onNavigate }) => {
   const containerRef = useRef<HTMLDivElement>(null);
+  const { lang, t } = useLanguage();
 
   useGSAP(
     () => {
@@ -124,7 +126,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onNavigate }) => {
         <div className="hero-badge flex items-center gap-3 px-4 py-2 border border-text-secondary/30 w-fit rounded-full">
           <span className="size-3 bg-primary rounded-full animate-pulse"></span>
           <strong className="font-medium text-sm md:text-lg">
-            Mahendra Arya | Available For Freelance
+            {t("hero.availability")}
           </strong>
         </div>
 
@@ -132,30 +134,27 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onNavigate }) => {
         <div className="mt-6 md:mt-8 flex flex-col items-center text-center">
           <h1 className="hero-title font-semibold text-[32px] leading-[1.2] md:text-6xl md:leading-[1.3] mb-4 md:mb-6">
             <span className="inline-block pb-1">
-              <span className="word inline-block">Professional&nbsp;</span>
+              <span className="word inline-block">{t("hero.title1")}&nbsp;</span>
             </span>
             <span className="inline-block pb-1">
-              <span className="word inline-block">Website&nbsp;</span>
+              <span className="word inline-block">{t("hero.title2")}&nbsp;</span>
             </span>
             <span className="inline-block pb-1">
-              <span className="word inline-block">Developer&nbsp;</span>
+              <span className="word inline-block">{t("hero.title3")}&nbsp;</span>
             </span>
             <br className="hidden lg:block" />
             <span className="inline-block pb-1">
-              <span className="word inline-block">&amp;&nbsp;</span>
+              <span className="word inline-block">{t("hero.title4")}&nbsp;</span>
             </span>
             <span className="inline-block pb-1">
-              <span className="word inline-block">Creative&nbsp;</span>
+              <span className="word inline-block">{t("hero.title5")}&nbsp;</span>
             </span>
             <span className="inline-block pb-1">
-              <span className="word inline-block">Agency&nbsp;</span>
-            </span>
-            <span className="inline-block pb-1">
-              <span className="word inline-block">Founder&nbsp;</span>
+              <span className="word inline-block">{t("hero.title6")}&nbsp;</span>
             </span>
           </h1>
           <h2 className="hero-subtitle font-medium w-[90%] md:w-[50%] md:text-xl text-text-secondary">
-            <SplitWords text="I'm a freelance web developer building digital solutions that scale with your ideas." />
+            <SplitWords text={t("hero.subtitle")} />
           </h2>
         </div>
 
@@ -187,8 +186,8 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onNavigate }) => {
                 </svg>
               </span>
               <span className="scroll-text flex">
-                <span className="font-semibold">Let's Talk!</span>
-                <span className="font-semibold">Let's Talk!</span>
+                <span className="font-semibold">{t("hero.ctaTalk")}</span>
+                <span className="font-semibold">{t("hero.ctaTalk")}</span>
               </span>
             </div>
           </a>
@@ -203,8 +202,8 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onNavigate }) => {
           >
             <div className="flex gap-3 items-center">
               <span className="scroll-text flex">
-                <span className="font-semibold">View My Projects</span>
-                <span className="font-semibold">View My Projects</span>
+                <span className="font-semibold">{t("hero.ctaProjects")}</span>
+                <span className="font-semibold">{t("hero.ctaProjects")}</span>
               </span>
               <span className="lg:p-2 rounded-lg transition-all duration-300 ease-in-out group-hover:bg-text-primary">
                 <svg
@@ -298,3 +297,4 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onNavigate }) => {
     </section>
   );
 };
+

@@ -2,21 +2,21 @@ import React, { useState, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
-import { Project } from "../../types";
-import { useLanguage } from "../../context/LanguageContext";
-import { ProjectsHero } from "./ProjectsHero";
-import { RecentProjectSection } from "./RecentProjectSection";
-import { ProjectGridItem } from "./ProjectGridItem";
-import { ComingSoonCard } from "./ComingSoonCard";
+import { Project } from "../types";
+import { useLanguage } from "../context/LanguageContext";
+import { ProjectsHero } from "../components/projects/ProjectsHero";
+import { RecentProjectSection } from "../components/projects/RecentProjectSection";
+import { ProjectGridItem } from "../components/projects/ProjectGridItem";
+import { ComingSoonCard } from "../components/projects/ComingSoonCard";
 
 gsap.registerPlugin(ScrollTrigger);
 
-interface ProjectsViewProps {
+interface ProjectsPageProps {
   projects: Project[];
   onNavigate: (path: string) => void;
 }
 
-export const ProjectsView: React.FC<ProjectsViewProps> = ({
+export const ProjectsPage: React.FC<ProjectsPageProps> = ({
   projects,
   onNavigate,
 }) => {
@@ -98,13 +98,24 @@ export const ProjectsView: React.FC<ProjectsViewProps> = ({
             toggleActions: "play none none none",
           },
         })
-        .from(".recent-title", {
-          y: 30,
+        .from(".recent-badge", {
+          y: 20,
           opacity: 0,
-          filter: "blur(10px)",
-          duration: 1,
+          duration: 0.8,
           ease: "power3.out",
         })
+        .from(
+          ".recent-title .word",
+          {
+            y: 40,
+            opacity: 0,
+            filter: "blur(10px)",
+            duration: 1,
+            stagger: 0.05,
+            ease: "power3.out",
+          },
+          "-=0.6"
+        )
         .from(
           ".recent-desc",
           {
@@ -116,38 +127,39 @@ export const ProjectsView: React.FC<ProjectsViewProps> = ({
           "-=0.6"
         )
         .from(
-          ".recent-project-card",
+          ".recent-card",
           {
-            y: 40,
+            y: 60,
             opacity: 0,
             duration: 1,
             ease: "power3.out",
           },
-          "-=0.4"
+          "-=0.5"
         );
 
-      // Section 2: Everything I've Built
+      // Section 2: All Projects Grid
       gsap
         .timeline({
           scrollTrigger: {
-            trigger: "#all-projects-section",
+            trigger: "#all-projects",
             start: "top 70%",
             toggleActions: "play none none none",
           },
         })
-        .from(".everything-title", {
-          y: 30,
+        .from(".all-badge", {
+          y: 20,
           opacity: 0,
-          filter: "blur(10px)",
-          duration: 1,
+          duration: 0.8,
           ease: "power3.out",
         })
         .from(
-          ".everything-desc",
+          ".all-title .word",
           {
-            y: 20,
+            y: 40,
             opacity: 0,
-            duration: 0.8,
+            filter: "blur(10px)",
+            duration: 1,
+            stagger: 0.05,
             ease: "power3.out",
           },
           "-=0.6"
@@ -155,9 +167,9 @@ export const ProjectsView: React.FC<ProjectsViewProps> = ({
         .from(
           ".project-card-wrapper",
           {
-            y: 40,
+            y: 50,
             opacity: 0,
-            stagger: 0.08,
+            stagger: 0.1,
             duration: 0.8,
             ease: "power2.out",
             clearProps: "all",
@@ -172,12 +184,12 @@ export const ProjectsView: React.FC<ProjectsViewProps> = ({
     <div ref={containerRef} className="min-h-screen">
       {/* 1. Hero Section */}
       <ProjectsHero
-        activeCategory={selectedCategory}
-        onSelectCategory={(cat) => setSelectedCategory(cat)}
         categories={categories}
+        selectedCategory={selectedCategory}
+        onSelectCategory={setSelectedCategory}
       />
 
-      {/* 2. Recently Delivered Projects Section */}
+      {/* 2. Recently Delivered Project Section */}
       {recentProject && (
         <RecentProjectSection
           project={recentProject}
@@ -188,7 +200,7 @@ export const ProjectsView: React.FC<ProjectsViewProps> = ({
       {/* 3. Everything I've Built Section */}
       <section
         id="all-projects-section"
-        className="pt-12 lg:pt-20 px-4 md:px-12 lg:px-36 xl:px-48 2xl:container mx-auto overflow-x-hidden select-none"
+        className="pt-12 lg:pt-20 px-4 md:px-12 lg:px-36 xl:px-48 2xl:container mx-auto overflow-x-hidden select-none pb-16 md:pb-24"
       >
         <div className="flex flex-col lg:flex-row lg:items-center justify-between mb-8 md:mb-12 lg:mb-20">
           <h2 className="everything-title project-title font-semibold text-3xl md:text-5xl mb-2 lg:mb-0 leading-[1.2]">
@@ -209,7 +221,7 @@ export const ProjectsView: React.FC<ProjectsViewProps> = ({
             />
           ))}
 
-          {/* 10th Card: Coming Soon (shown when viewing all categories or web app) */}
+          {/* 10th Card: Coming Soon */}
           {(selectedCategory === "All" ||
             selectedCategory === "All Categories") && <ComingSoonCard />}
         </div>

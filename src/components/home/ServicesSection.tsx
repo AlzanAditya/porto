@@ -3,72 +3,105 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { SplitWords } from "../common/SplitWords";
+import { useLanguage } from "../../context/LanguageContext";
 
 gsap.registerPlugin(ScrollTrigger);
 
 interface SpecializeItem {
   number: string;
-  title: string;
-  description: string;
-  tags: string[];
+  titleKey: "services.0.title" | "services.1.title" | "services.2.title" | "services.3.title";
+  descKey: "services.0.desc" | "services.1.desc" | "services.2.desc" | "services.3.desc";
+  tags: { en: string[]; id: string[] };
   image: string;
 }
 
 const SPECIALIZE_DATA: SpecializeItem[] = [
   {
     number: "01.",
-    title: "Website Development",
-    description:
-      "Creating high-converting and scalable websites tailored for your business needs. From landing pages to full company profiles, I focus on blazing-fast speed, SEO, responsive design, and intuitive user experiences.",
-    tags: [
-      "React & Next.js",
-      "Full-Stack Architecture",
-      "Responsive UI/UX",
-      "Performance & SEO",
-      "Database Design",
-    ],
+    titleKey: "services.0.title",
+    descKey: "services.0.desc",
+    tags: {
+      en: [
+        "React & Next.js",
+        "Full-Stack Architecture",
+        "Responsive UI/UX",
+        "Performance & SEO",
+        "Database Design",
+      ],
+      id: [
+        "React & Next.js",
+        "Arsitektur Full-Stack",
+        "UI/UX Responsif",
+        "Performa & SEO",
+        "Desain Database",
+      ],
+    },
     image: "/assets/web-dev.jpeg",
   },
   {
     number: "02.",
-    title: "Digital System Builder",
-    description:
-      "Building efficient internal systems and automating repetitive tasks to streamline your business operations. I create custom CRM, dashboard, and automation flows that save you hundreds of hours.",
-    tags: [
-      "Custom CRM System",
-      "Workflow Automation",
-      "API Integration",
-      "Dashboard Management",
-      "Internal Tools Development",
-    ],
+    titleKey: "services.1.title",
+    descKey: "services.1.desc",
+    tags: {
+      en: [
+        "Custom CRM System",
+        "Workflow Automation",
+        "API Integration",
+        "Dashboard Management",
+        "Internal Tools Development",
+      ],
+      id: [
+        "Sistem CRM Kustom",
+        "Otomatisasi Alur Kerja",
+        "Integrasi API",
+        "Manajemen Dashboard",
+        "Pengembangan Tools Internal",
+      ],
+    },
     image: "/assets/system-builder.jpeg",
   },
   {
     number: "03.",
-    title: "WordPress Development",
-    description:
-      "Transforming your ideas into powerful, manageable, and SEO-friendly WordPress websites. From custom themes to advanced plugin integration, I ensure your site is fast, secure, and easy to maintain.",
-    tags: [
-      "Custom Theme Development",
-      "WooCommerce Expert",
-      "Performance Optimization",
-      "Elementor & Gutenberg",
-      "WordPress Security",
-    ],
+    titleKey: "services.2.title",
+    descKey: "services.2.desc",
+    tags: {
+      en: [
+        "Custom Theme Development",
+        "WooCommerce Expert",
+        "Performance Optimization",
+        "Elementor & Gutenberg",
+        "WordPress Security",
+      ],
+      id: [
+        "Pengembangan Tema Kustom",
+        "Ahli WooCommerce",
+        "Optimasi Performa",
+        "Elementor & Gutenberg",
+        "Keamanan WordPress",
+      ],
+    },
     image: "/assets/wordpress-service.jpeg",
   },
   {
     number: "04.",
-    title: "Digital Advertising",
-    description:
-      "Driving growth through strategic content and data-driven marketing. I help businesses build their digital presence, engage audiences, and convert followers into loyal customers.",
-    tags: [
-      "Social Media Ads",
-      "Search Engine Marketing",
-      "Conversion Tracking",
-      "Content Strategy",
-      "Audience Targeting",
-    ],
+    titleKey: "services.3.title",
+    descKey: "services.3.desc",
+    tags: {
+      en: [
+        "Social Media Ads",
+        "Search Engine Marketing",
+        "Conversion Tracking",
+        "Content Strategy",
+        "Audience Targeting",
+      ],
+      id: [
+        "Iklan Media Sosial",
+        "Pemasaran Mesin Pencari",
+        "Pelacakan Konversi",
+        "Strategi Konten",
+        "Penargetan Audiens",
+      ],
+    },
     image: "/assets/advertising.jpeg",
   },
 ];
@@ -90,6 +123,11 @@ const SpecializeAccordionItem: React.FC<SpecializeItemProps> = ({
   const contentRef = useRef<HTMLDivElement>(null);
   const imgRef = useRef<HTMLImageElement>(null);
   const curtainRef = useRef<HTMLDivElement>(null);
+  const { lang, t } = useLanguage();
+
+  const title = t(item.titleKey);
+  const desc = t(item.descKey);
+  const tags = lang === "id" ? item.tags.id : item.tags.en;
 
   useGSAP(
     () => {
@@ -148,7 +186,7 @@ const SpecializeAccordionItem: React.FC<SpecializeItemProps> = ({
             {item.number}
           </p>
           <h3 className="col-span-10 text-xl md:text-3xl font-medium text-text-primary group-hover:text-primary transition-colors duration-300">
-            {item.title}
+            {title}
           </h3>
           <div className="col-span-2 md:col-span-1 flex justify-end">
             <button
@@ -183,10 +221,10 @@ const SpecializeAccordionItem: React.FC<SpecializeItemProps> = ({
             {/* Description & Tags */}
             <div className="order-2 lg:order-2 lg:col-span-6">
               <p className="text-sm md:text-base mb-6 leading-relaxed text-text-secondary">
-                {item.description}
+                {desc}
               </p>
               <div className="flex flex-wrap gap-2 md:gap-x-3">
-                {item.tags.map((tag, tIdx) => (
+                {tags.map((tag, tIdx) => (
                   <span
                     key={tIdx}
                     className={`tag-item-${index} px-3 md:px-4 py-2 text-xs md:text-sm bg-white shadow-2xs border border-foreground/20 text-text-primary font-medium rounded-full opacity-0`}
@@ -205,7 +243,7 @@ const SpecializeAccordionItem: React.FC<SpecializeItemProps> = ({
               ></div>
               <img
                 ref={imgRef}
-                alt={item.title}
+                alt={title}
                 loading="lazy"
                 width="800"
                 height="400"
@@ -223,6 +261,7 @@ const SpecializeAccordionItem: React.FC<SpecializeItemProps> = ({
 export const ServicesSection: React.FC = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
   const containerRef = useRef<HTMLDivElement>(null);
+  const { lang, t } = useLanguage();
 
   useGSAP(
     () => {
@@ -269,10 +308,10 @@ export const ServicesSection: React.FC = () => {
       {/* Header */}
       <div className="spec-header flex flex-col lg:flex-row lg:items-center justify-between mb-8 md:mb-12 lg:mb-20">
         <h2 className="font-semibold text-3xl md:text-5xl mb-2 lg:mb-0 leading-[1.2]">
-          <SplitWords text="Solutions I Specialize In" />
+          <SplitWords text={t("services.title")} />
         </h2>
         <p className="md:text-lg font-medium text-text-secondary lg:w-[32%] lg:text-right">
-          A combination of technical and strategic skills designed for digital growth.
+          {t("services.subtitle")}
         </p>
       </div>
 
@@ -291,3 +330,4 @@ export const ServicesSection: React.FC = () => {
     </section>
   );
 };
+

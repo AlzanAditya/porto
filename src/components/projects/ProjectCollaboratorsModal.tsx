@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { Collaborator } from "../../types";
+import { useLanguage } from "../../context/LanguageContext";
 
 interface ProjectCollaboratorsModalProps {
   isOpen: boolean;
@@ -14,6 +15,8 @@ export const ProjectCollaboratorsModal: React.FC<ProjectCollaboratorsModalProps>
   collaborators,
   projectTitle,
 }) => {
+  const { t } = useLanguage();
+
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
@@ -65,7 +68,7 @@ export const ProjectCollaboratorsModal: React.FC<ProjectCollaboratorsModalProps>
             </span>
             <div>
               <h3 className="text-xl md:text-2xl font-bold text-text-primary leading-tight">
-                Project Collaborators
+                {t("collaboratorsModal.title")}
               </h3>
               <p className="text-xs md:text-sm text-text-secondary truncate max-w-[260px] md:max-w-xs">
                 {projectTitle}
@@ -158,7 +161,7 @@ export const ProjectCollaboratorsModal: React.FC<ProjectCollaboratorsModalProps>
             })
           ) : (
             <div className="p-4 bg-white rounded-xl text-center text-text-secondary text-sm">
-              No collaborator details listed for this project.
+              {t("collaboratorsModal.noDetails")}
             </div>
           )}
         </div>

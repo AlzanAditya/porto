@@ -1,26 +1,19 @@
 import React, { useState, useEffect } from "react";
+import { LanguageProvider } from "./context/LanguageContext";
 import { Navbar } from "./components/layout/Navbar";
 import { Footer } from "./components/layout/Footer";
 import { CustomCursor } from "./components/layout/CustomCursor";
-import { HeroSection } from "./components/home/HeroSection";
-import { TextMarquee } from "./components/common/TextMarquee";
-import { AboutSection } from "./components/home/AboutSection";
-import { LatestProjectsSection } from "./components/home/LatestProjectsSection";
-import { ServicesSection } from "./components/home/ServicesSection";
-import { SkillsSection } from "./components/home/SkillsSection";
-import { ShowcaseSection } from "./components/home/ShowcaseSection";
-import { ContactSection } from "./components/home/ContactSection";
-import { RecentBlogsSection } from "./components/home/RecentBlogsSection";
-import { AboutPageView } from "./components/about/AboutPageView";
-import { ProjectsView } from "./components/projects/ProjectsView";
-import { ProjectDetailPage } from "./components/projects/ProjectDetailPage";
-import { BlogsView } from "./components/blogs/BlogsView";
-import { BlogDetailPage } from "./components/blogs/BlogDetailPage";
 import { ProgressiveBlur } from "./components/common/ProgressiveBlur";
+import { HomePage } from "./pages/HomePage";
+import { AboutPage } from "./pages/AboutPage";
+import { ProjectsPage } from "./pages/ProjectsPage";
+import { ProjectDetailPage } from "./pages/ProjectDetailPage";
+import { BlogsPage } from "./pages/BlogsPage";
+import { BlogDetailPage } from "./pages/BlogDetailPage";
 import { projectsData } from "./data/projectsData";
 import { blogsData } from "./data/blogsData";
 
-export default function App() {
+function AppContent() {
   const [currentPath, setCurrentPath] = useState<string>(() => {
     if (typeof window !== "undefined") {
       return window.location.pathname || "/";
@@ -84,35 +77,29 @@ export default function App() {
     // 3. Projects Catalog: /projects
     if (currentPath === "/projects") {
       return (
-        <ProjectsView projects={projectsData} onNavigate={navigate} />
+        <ProjectsPage projects={projectsData} onNavigate={navigate} />
       );
     }
 
     // 4. Blogs View: /blogs or /blog
     if (currentPath === "/blogs" || currentPath === "/blog") {
       return (
-        <BlogsView blogs={blogsData} onNavigate={navigate} />
+        <BlogsPage blogs={blogsData} onNavigate={navigate} />
       );
     }
 
     // 5. About Page: /about
     if (currentPath === "/about") {
-      return <AboutPageView onNavigate={navigate} />;
+      return <AboutPage onNavigate={navigate} />;
     }
 
-    // 6. Home View: default /
+    // 6. Home Page: default /
     return (
-      <main className="flex flex-col w-full overflow-x-clip">
-        <HeroSection onNavigate={navigate} />
-        <TextMarquee />
-        <AboutSection onNavigate={navigate} />
-        <LatestProjectsSection projects={projectsData} onNavigate={navigate} />
-        <ServicesSection />
-        <SkillsSection />
-        <ShowcaseSection projects={projectsData} onNavigate={navigate} />
-        <ContactSection />
-        <RecentBlogsSection blogs={blogsData} onNavigate={navigate} />
-      </main>
+      <HomePage
+        projects={projectsData}
+        blogs={blogsData}
+        onNavigate={navigate}
+      />
     );
   };
 
@@ -126,3 +113,12 @@ export default function App() {
     </div>
   );
 }
+
+export default function App() {
+  return (
+    <LanguageProvider>
+      <AppContent />
+    </LanguageProvider>
+  );
+}
+

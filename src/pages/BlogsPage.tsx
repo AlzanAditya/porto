@@ -2,19 +2,19 @@ import React, { useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
-import { Blog } from "../../types";
-import { useLanguage } from "../../context/LanguageContext";
-import { BlogsHero } from "./BlogsHero";
-import { BlogCardItem } from "./BlogCardItem";
+import { Blog } from "../types";
+import { useLanguage } from "../context/LanguageContext";
+import { BlogsHero } from "../components/blogs/BlogsHero";
+import { BlogCardItem } from "../components/blogs/BlogCardItem";
 
 gsap.registerPlugin(ScrollTrigger);
 
-interface BlogsViewProps {
+interface BlogsPageProps {
   blogs: Blog[];
   onNavigate: (path: string) => void;
 }
 
-export const BlogsView: React.FC<BlogsViewProps> = ({ blogs, onNavigate }) => {
+export const BlogsPage: React.FC<BlogsPageProps> = ({ blogs, onNavigate }) => {
   const { lang } = useLanguage();
   const containerRef = useRef<HTMLDivElement>(null);
 

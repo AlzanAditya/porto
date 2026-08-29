@@ -3,11 +3,13 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { SplitWords } from "../common/SplitWords";
+import { useLanguage } from "../../context/LanguageContext";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export const SkillsSection: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
+  const { lang, t } = useLanguage();
 
   useGSAP(
     () => {
@@ -127,8 +129,8 @@ export const SkillsSection: React.FC = () => {
 
   const cards = [
     {
-      title: "Problem? Let's Fix It",
-      desc: "I don't just build — I solve problems. Every project starts with understanding the challenge and turning it into a working solution.",
+      title: t("why.0.title"),
+      desc: t("why.0.desc"),
       icon: (
         <svg
           stroke="currentColor"
@@ -145,8 +147,8 @@ export const SkillsSection: React.FC = () => {
       ),
     },
     {
-      title: "Think First, Build Smart",
-      desc: "I focus on strategy before execution — making sure everything we build actually makes sense and delivers impact.",
+      title: t("why.1.title"),
+      desc: t("why.1.desc"),
       icon: (
         <svg
           stroke="currentColor"
@@ -163,8 +165,8 @@ export const SkillsSection: React.FC = () => {
       ),
     },
     {
-      title: "Flexible & Ready to Adapt",
-      desc: "Things change — and I adapt fast. Whether it's new ideas, revisions, or unexpected challenges, I stay flexible and solution-focused.",
+      title: t("why.2.title"),
+      desc: t("why.2.desc"),
       icon: (
         <svg
           stroke="currentColor"
@@ -187,8 +189,8 @@ export const SkillsSection: React.FC = () => {
       ),
     },
     {
-      title: "Built for Collaboration",
-      desc: "I enjoy working with other developers — sharing ideas, solving problems together, and building something better as a team.",
+      title: t("why.3.title"),
+      desc: t("why.3.desc"),
       icon: (
         <svg
           stroke="currentColor"
@@ -215,52 +217,54 @@ export const SkillsSection: React.FC = () => {
       {/* Header */}
       <div className="why-header flex flex-col lg:flex-row lg:items-center justify-between mb-8 md:mb-12 lg:mb-20">
         <h2 className="font-semibold text-3xl md:text-5xl mb-2 lg:mb-0 leading-[1.2]">
-          <SplitWords text="Why Partner With Me" />
+          <SplitWords text={t("why.title")} />
         </h2>
         <p className="md:text-lg font-medium text-text-secondary lg:w-[42%] lg:text-right">
-          I combine technical expertise, creativity, and strategy to build digital solutions that deliver real results.
+          {t("why.subtitle")}
         </p>
       </div>
 
       {/* Content Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-5">
-        {/* Visual Stage (Left) */}
-        <div className="why-visual h-[50vh] lg:h-auto lg:col-span-4 bg-card rounded-xl justify-center p-4">
+        {/* Visual Stage (Left) - Unclipped container allowing icons to break out over parent borders */}
+        <div className="why-visual h-[50vh] lg:h-auto lg:col-span-4 bg-card rounded-xl justify-center p-4 relative overflow-visible z-20">
+          {/* Inner clipped box only for the avatar character */}
           <div className="relative h-full rounded-xl bg-linear-to-br from-primary/10 to-secondary/10 overflow-hidden">
             <img
               alt="Collaboration"
               loading="lazy"
               width="500"
               height="400"
-              className="why-avatar absolute inset-0 left-auto top-auto md:min-w-120 lg:min-w-89 max-w-79 2xl:min-w-96 2xl:max-w-96 object-contain"
+              className="why-avatar absolute inset-0 left-auto top-auto md:min-w-120 lg:min-w-89 max-w-79 2xl:min-w-96 2xl:max-w-96 object-contain z-10"
               src="/avatar/why.png"
             />
-            {/* Floating Particles */}
-            <img
-              alt="github"
-              loading="lazy"
-              width="400"
-              height="400"
-              className="why-particle absolute inset-0 right-auto -left-8 md:left-34 lg:-left-14 top-26 w-24"
-              src="/icons/github-logo.png"
-            />
-            <img
-              alt="postman"
-              loading="lazy"
-              width="400"
-              height="400"
-              className="why-particle absolute inset-0 right-auto left-6 md:left-48 lg:-left-5 top-9 md:top-6 w-18"
-              src="/icons/postman-logo.png"
-            />
-            <img
-              alt="notion"
-              loading="lazy"
-              width="400"
-              height="400"
-              className="why-particle absolute inset-0 right-auto left-12 md:left-64 lg:left-12 -top-6 md:-top-6 w-12 md:w-16"
-              src="/icons/notion-logo.png"
-            />
           </div>
+
+          {/* Floating Logos - Freely crossing and protruding outside the parent component's edges */}
+          <img
+            alt="github"
+            loading="lazy"
+            width="400"
+            height="400"
+            className="why-particle absolute -left-6 md:-left-8 lg:-left-12 top-24 md:top-28 w-20 md:w-24 lg:w-28 z-40 pointer-events-none drop-shadow-2xl select-none"
+            src="/icons/github-logo.png"
+          />
+          <img
+            alt="postman"
+            loading="lazy"
+            width="400"
+            height="400"
+            className="why-particle absolute left-6 md:left-10 lg:left-8 -top-4 md:-top-7 w-16 md:w-20 lg:w-22 z-40 pointer-events-none drop-shadow-2xl select-none"
+            src="/icons/postman-logo.png"
+          />
+          <img
+            alt="notion"
+            loading="lazy"
+            width="400"
+            height="400"
+            className="why-particle absolute -right-3 md:-right-6 lg:-right-6 top-8 md:top-4 w-14 md:w-16 lg:w-18 z-40 pointer-events-none drop-shadow-2xl select-none"
+            src="/icons/notion-logo.png"
+          />
         </div>
 
         {/* 4 Cards (Right) */}
@@ -284,3 +288,4 @@ export const SkillsSection: React.FC = () => {
     </section>
   );
 };
+

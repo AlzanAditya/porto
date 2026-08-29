@@ -1,5 +1,6 @@
 import React from "react";
 import { Blog } from "../../types";
+import { useLanguage } from "../../context/LanguageContext";
 
 interface BlogCardItemProps {
   blog: Blog;
@@ -10,6 +11,11 @@ export const BlogCardItem: React.FC<BlogCardItemProps> = ({
   blog,
   onNavigate,
 }) => {
+  const { lang } = useLanguage();
+
+  const title = (lang === "id" ? blog.title_id : blog.title_en) || blog.title;
+  const excerpt = (lang === "id" ? blog.excerpt_id : blog.excerpt_en) || blog.excerpt;
+
   return (
     <div className="blog-card-wrapper">
       <a
@@ -25,7 +31,7 @@ export const BlogCardItem: React.FC<BlogCardItemProps> = ({
           {/* Card Media with smooth scale on hover */}
           <div className="overflow-hidden rounded-xl bg-card aspect-4/2.5 relative">
             <img
-              alt={blog.title}
+              alt={title}
               loading="lazy"
               decoding="async"
               className="group-hover:scale-110 transition-transform duration-500 ease-in-out object-cover will-change-transform rounded-xl w-full h-full"
@@ -61,10 +67,10 @@ export const BlogCardItem: React.FC<BlogCardItemProps> = ({
             <div className="px-2 flex-grow flex flex-col justify-between">
               <div>
                 <h3 className="blog-title text-xl lg:text-2xl font-medium mb-2 group-hover:text-primary transition-colors duration-300 line-clamp-2">
-                  {blog.title}
+                  {title}
                 </h3>
                 <p className="text-sm text-text-secondary leading-relaxed line-clamp-3">
-                  {blog.excerpt}
+                  {excerpt}
                 </p>
               </div>
             </div>

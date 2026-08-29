@@ -4,6 +4,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { SplitWords } from "../common/SplitWords";
 import { TextMarquee } from "../common/TextMarquee";
+import { useLanguage } from "../../context/LanguageContext";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -17,6 +18,7 @@ export const AboutPageView: React.FC<AboutPageViewProps> = ({ onNavigate }) => {
   const rightSliderRef = useRef<HTMLDivElement>(null);
   const galleryRef = useRef<HTMLDivElement>(null);
   const [openWorkExp, setOpenWorkExp] = useState<number | null>(0);
+  const { lang, t } = useLanguage();
 
   const galleryList = [
     "/gallery/laptop.jpeg",
@@ -152,7 +154,7 @@ export const AboutPageView: React.FC<AboutPageViewProps> = ({ onNavigate }) => {
         (context) => {
           const { isMobile } = context.conditions as { isMobile: boolean };
 
-          // Hero images & sliding window entrance
+          // Hero images & sliding window entrance (slider-window animates first, followed by phone and avatar)
           gsap
             .timeline({
               scrollTrigger: {
@@ -161,12 +163,23 @@ export const AboutPageView: React.FC<AboutPageViewProps> = ({ onNavigate }) => {
                 toggleActions: "play none none none",
               },
             })
-            .from(".hero-phone", {
-              y: 100,
+            .from(".slider-window", {
+              scale: 0.8,
               opacity: 0,
-              duration: 1.2,
-              ease: "power4.out",
+              duration: 1,
+              stagger: 0.2,
+              ease: "back.out(1.7)",
             })
+            .from(
+              ".hero-phone",
+              {
+                y: 100,
+                opacity: 0,
+                duration: 1.2,
+                ease: "power4.out",
+              },
+              "-=0.4"
+            )
             .from(
               ".hero-avatar",
               {
@@ -176,22 +189,8 @@ export const AboutPageView: React.FC<AboutPageViewProps> = ({ onNavigate }) => {
                 duration: 1.2,
                 ease: "power4.out",
               },
-              "-=0.5"
+              "-=0.6"
             );
-
-          gsap.from(".slider-window", {
-            scrollTrigger: {
-              trigger: ".hero-images",
-              start: "top 70%",
-              toggleActions: "play none none none",
-            },
-            scale: 0.8,
-            delay: 0.6,
-            opacity: 0,
-            duration: 1,
-            stagger: 0.2,
-            ease: "back.out(1.7)",
-          });
 
           gsap
             .timeline({
@@ -394,38 +393,38 @@ export const AboutPageView: React.FC<AboutPageViewProps> = ({ onNavigate }) => {
         <div className="flex flex-col items-center">
           <div className="hero-badge flex items-center gap-3 px-4 py-2 border border-text-secondary/30 w-fit rounded-full">
             <span className="size-3 bg-primary rounded-full animate-pulse"></span>
-            <strong className="font-medium text-sm md:text-lg">About Me</strong>
+            <strong className="font-medium text-sm md:text-lg">{t("aboutPage.badge")}</strong>
           </div>
 
           <div className="mt-6 md:mt-8 flex flex-col items-center text-center">
             <h1 className="hero-title font-semibold text-[32px] leading-[1.2] md:text-6xl md:leading-[1.3] mb-4 md:mb-6">
               <span className="inline-block pb-1">
-                <span className="word inline-block">Hi,&nbsp;</span>
+                <span className="word inline-block">{t("aboutPage.hero.title1")}&nbsp;</span>
               </span>
               <span className="inline-block pb-1">
-                <span className="word inline-block">I'm&nbsp;</span>
+                <span className="word inline-block">{t("aboutPage.hero.title2")}&nbsp;</span>
               </span>
               <span className="inline-block pb-1">
-                <span className="word inline-block">Mahendra&nbsp;</span>
+                <span className="word inline-block">{t("aboutPage.hero.title3")}&nbsp;</span>
               </span>
               <span className="inline-block pb-1">
-                <span className="word inline-block">Arya,&nbsp;</span>
+                <span className="word inline-block">{t("aboutPage.hero.title4")}&nbsp;</span>
               </span>
               <span className="inline-block pb-1">
-                <span className="word inline-block">The&nbsp;</span>
+                <span className="word inline-block">{t("aboutPage.hero.title5")}&nbsp;</span>
               </span>
               <br className="hidden lg:block" />{" "}
               <span className="inline-block pb-1">
-                <span className="word inline-block">developer&nbsp;</span>
+                <span className="word inline-block">{t("aboutPage.hero.title6")}&nbsp;</span>
               </span>
               <span className="inline-block pb-1">
-                <span className="word inline-block">behind&nbsp;</span>
+                <span className="word inline-block">{t("aboutPage.hero.title7")}&nbsp;</span>
               </span>
               <span className="inline-block pb-1">
-                <span className="word inline-block">the&nbsp;</span>
+                <span className="word inline-block">{t("aboutPage.hero.title8")}&nbsp;</span>
               </span>
               <span className="inline-block pb-1">
-                <span className="word inline-block">build.&nbsp;</span>
+                <span className="word inline-block">{t("aboutPage.hero.title9")}&nbsp;</span>
               </span>
             </h1>
           </div>
@@ -516,18 +515,7 @@ export const AboutPageView: React.FC<AboutPageViewProps> = ({ onNavigate }) => {
           {/* Left Column */}
           <div className="lg:col-span-4 flex flex-col gap-6 lg:gap-0 justify-between">
             <h2 className="text-2xl font-medium about-title">
-              <span className="inline-block pb-1">
-                <span className="word inline-block">Get&nbsp;</span>
-              </span>
-              <span className="inline-block pb-1">
-                <span className="word inline-block">To&nbsp;</span>
-              </span>
-              <span className="inline-block pb-1">
-                <span className="word inline-block">Know&nbsp;</span>
-              </span>
-              <span className="inline-block pb-1">
-                <span className="word inline-block">Me&nbsp;</span>
-              </span>
+              <SplitWords text={t("aboutPage.getToKnowMe")} />
             </h2>
 
             {/* Desktop blog image */}
@@ -546,12 +534,8 @@ export const AboutPageView: React.FC<AboutPageViewProps> = ({ onNavigate }) => {
           {/* Right Column */}
           <div className="lg:col-span-7 flex flex-col gap-8 lg:gap-0">
             <div className="flex flex-col gap-5 about-content text-text-secondary md:text-lg leading-relaxed">
-              <p>
-                I'm Mahendra Arya, a web developer with over 3 years of experience building websites and digital solutions. I didn't just learn from theory I've been actively working on real projects, handling different clients, and turning ideas into functional products. Along the way, I've also been involved in tech competitions, robotics, and IoT, which helped me sharpen my problem-solving skills and think beyond just code.
-              </p>
-              <p>
-                I enjoy the whole process of building from figuring out how things work to creating solutions that actually make an impact. I'm always curious, always learning, and always looking for new challenges that push me to grow, both as a developer and as a person.
-              </p>
+              <p>{t("aboutPage.bio1")}</p>
+              <p>{t("aboutPage.bio2")}</p>
             </div>
 
             {/* Mobile blog image */}
@@ -592,8 +576,8 @@ export const AboutPageView: React.FC<AboutPageViewProps> = ({ onNavigate }) => {
                     </svg>
                   </span>
                   <span className="scroll-text flex">
-                    <span className="font-semibold">Let's Talk!</span>
-                    <span className="font-semibold">Let's Talk!</span>
+                    <span className="font-semibold">{t("aboutPage.letsTalk")}</span>
+                    <span className="font-semibold">{t("aboutPage.letsTalk")}</span>
                   </span>
                 </div>
               </a>
@@ -606,8 +590,8 @@ export const AboutPageView: React.FC<AboutPageViewProps> = ({ onNavigate }) => {
               >
                 <div className="flex gap-3 items-center">
                   <span className="scroll-text flex">
-                    <span className="font-semibold">Read My CV</span>
-                    <span className="font-semibold">Read My CV</span>
+                    <span className="font-semibold">{t("aboutPage.readCv")}</span>
+                    <span className="font-semibold">{t("aboutPage.readCv")}</span>
                   </span>
                   <span className="lg:p-2 rounded-lg transition-all duration-300 ease-in-out group-hover:bg-text-primary">
                     <svg
@@ -637,10 +621,10 @@ export const AboutPageView: React.FC<AboutPageViewProps> = ({ onNavigate }) => {
       >
         <div className="blog-header flex flex-col lg:flex-row lg:items-center justify-between mb-8 md:mb-12 lg:mb-20">
           <h2 className="bg-title font-semibold text-3xl md:text-5xl mb-2 lg:mb-0 leading-[1.2]">
-            My Background in Tech
+            {t("aboutPage.bgTitle")}
           </h2>
           <p className="bg-desc md:text-lg font-medium text-text-secondary lg:w-[28%] lg:text-right">
-            Showcasing my journey, tools, and the work that defines my growth.
+            {t("aboutPage.bgSubtitle")}
           </p>
         </div>
 
@@ -648,7 +632,7 @@ export const AboutPageView: React.FC<AboutPageViewProps> = ({ onNavigate }) => {
           {/* Work Experience (Col 8) */}
           <div className="lg:col-span-8">
             <div className="p-4 py-5 md:p-5 bg-card rounded-xl h-full">
-              <h3 className="text-2xl font-medium mb-6 md:mb-8">My Work Experience</h3>
+              <h3 className="text-2xl font-medium mb-6 md:mb-8">{t("aboutPage.workExpTitle")}</h3>
               <div className="flex flex-col gap-3">
                 {/* Exp 1 */}
                 <div className="work-exp-item">
@@ -660,13 +644,13 @@ export const AboutPageView: React.FC<AboutPageViewProps> = ({ onNavigate }) => {
                     <div className="flex items-center justify-between">
                       <div className="flex flex-col gap-2">
                         <p className="font-medium text-text-secondary text-sm md:text-base">
-                          2025 - Present
+                          {t("aboutPage.exp1.period")}
                         </p>
                         <div className="flex flex-col md:flex-row md:items-center md:gap-3">
-                          <h4 className="text-lg md:text-xl font-medium">Cupsite Project</h4>
+                          <h4 className="text-lg md:text-xl font-medium">{t("aboutPage.exp1.company")}</h4>
                           <p className="text-xl hidden md:block">•</p>
                           <strong className="text-base md:text-lg text-text-secondary font-medium">
-                            Freelance Web Developer
+                            {t("aboutPage.exp1.role")}
                           </strong>
                         </div>
                       </div>
@@ -700,7 +684,7 @@ export const AboutPageView: React.FC<AboutPageViewProps> = ({ onNavigate }) => {
                     {openWorkExp === 0 && (
                       <div className="overflow-hidden pt-4">
                         <p className="text-text-secondary text-sm md:text-base font-medium border-foreground leading-relaxed">
-                          Developing and managing my own freelance agency, handling end-to-end website projects using WordPress and Laravel. I work closely with clients to build landing pages, company profiles, travel platforms, and e-commerce solutions, while also running Meta Ads campaigns to help drive traffic, leads, and measurable business growth.
+                          {t("aboutPage.exp1.desc")}
                         </p>
                       </div>
                     )}
@@ -717,13 +701,13 @@ export const AboutPageView: React.FC<AboutPageViewProps> = ({ onNavigate }) => {
                     <div className="flex items-center justify-between">
                       <div className="flex flex-col gap-2">
                         <p className="font-medium text-text-secondary text-sm md:text-base">
-                          2024 - Present
+                          {t("aboutPage.exp2.period")}
                         </p>
                         <div className="flex flex-col md:flex-row md:items-center md:gap-3">
-                          <h4 className="text-lg md:text-xl font-medium">SBX One Studio</h4>
+                          <h4 className="text-lg md:text-xl font-medium">{t("aboutPage.exp2.company")}</h4>
                           <p className="text-xl hidden md:block">•</p>
                           <strong className="text-base md:text-lg text-text-secondary font-medium">
-                            Co-Founder &amp; Lead Developer
+                            {t("aboutPage.exp2.role")}
                           </strong>
                         </div>
                       </div>
@@ -757,7 +741,7 @@ export const AboutPageView: React.FC<AboutPageViewProps> = ({ onNavigate }) => {
                     {openWorkExp === 1 && (
                       <div className="overflow-hidden pt-4">
                         <p className="text-text-secondary text-sm md:text-base font-medium border-foreground leading-relaxed">
-                          Co-founding and growing a studio that started from competition projects into a collaborative team of skilled creators. As a Lead Developer, I guide the development process, manage technical decisions, and ensure each project is built with clean structure, scalability, and strong performance across different digital solutions.
+                          {t("aboutPage.exp2.desc")}
                         </p>
                       </div>
                     )}
@@ -774,13 +758,13 @@ export const AboutPageView: React.FC<AboutPageViewProps> = ({ onNavigate }) => {
                     <div className="flex items-center justify-between">
                       <div className="flex flex-col gap-2">
                         <p className="font-medium text-text-secondary text-sm md:text-base">
-                          July 2024 - Dec 2024
+                          {t("aboutPage.exp3.period")}
                         </p>
                         <div className="flex flex-col md:flex-row md:items-center md:gap-3">
-                          <h4 className="text-lg md:text-xl font-medium">PT Timedoor Indonesia</h4>
+                          <h4 className="text-lg md:text-xl font-medium">{t("aboutPage.exp3.company")}</h4>
                           <p className="text-xl hidden md:block">•</p>
                           <strong className="text-base md:text-lg text-text-secondary font-medium">
-                            Internship Back-end Developer
+                            {t("aboutPage.exp3.role")}
                           </strong>
                         </div>
                       </div>
@@ -814,7 +798,7 @@ export const AboutPageView: React.FC<AboutPageViewProps> = ({ onNavigate }) => {
                     {openWorkExp === 2 && (
                       <div className="overflow-hidden pt-4">
                         <p className="text-text-secondary text-sm md:text-base font-medium border-foreground leading-relaxed">
-                          Completed a back-end development internship focused on strengthening core programming skills using PHP and Laravel. Gained hands-on experience in building APIs, managing databases, and understanding how scalable systems are structured, while working on real-world tasks that improved both technical and problem-solving abilities.
+                          {t("aboutPage.exp3.desc")}
                         </p>
                       </div>
                     )}
@@ -827,16 +811,16 @@ export const AboutPageView: React.FC<AboutPageViewProps> = ({ onNavigate }) => {
           {/* Achievements (Col 4) */}
           <div className="lg:col-span-4">
             <div className="p-4 py-5 md:p-5 bg-card rounded-xl h-full">
-              <h3 className="text-2xl font-medium mb-6 md:mb-8">Achievements</h3>
+              <h3 className="text-2xl font-medium mb-6 md:mb-8">{t("aboutPage.achievementsTitle")}</h3>
               <div className="flex flex-col gap-3">
                 <div className="achievement-item bg-white p-5 rounded-xl transition-colors duration-300 group">
                   <p className="font-medium text-text-secondary text-sm md:text-base mb-3">2026</p>
                   <div className="flex flex-col gap-1">
                     <h4 className="text-lg font-medium transition-colors duration-300">
-                      Junior Coder Certificate
+                      {t("aboutPage.achieve1.title")}
                     </h4>
                     <p className="text-sm font-medium text-text-secondary">
-                      LSP TIK Triatma Kompetensi
+                      {t("aboutPage.achieve1.org")}
                     </p>
                   </div>
                 </div>
@@ -844,10 +828,10 @@ export const AboutPageView: React.FC<AboutPageViewProps> = ({ onNavigate }) => {
                   <p className="font-medium text-text-secondary text-sm md:text-base mb-3">2025</p>
                   <div className="flex flex-col gap-1">
                     <h4 className="text-lg font-medium transition-colors duration-300">
-                      1st Web Development Competition
+                      {t("aboutPage.achieve2.title")}
                     </h4>
                     <p className="text-sm font-medium text-text-secondary">
-                      Konkiti Competition Vol. II
+                      {t("aboutPage.achieve2.org")}
                     </p>
                   </div>
                 </div>
@@ -855,10 +839,10 @@ export const AboutPageView: React.FC<AboutPageViewProps> = ({ onNavigate }) => {
                   <p className="font-medium text-text-secondary text-sm md:text-base mb-3">2024</p>
                   <div className="flex flex-col gap-1">
                     <h4 className="text-lg font-medium transition-colors duration-300">
-                      1st Web Development Competition
+                      {t("aboutPage.achieve3.title")}
                     </h4>
                     <p className="text-sm font-medium text-text-secondary">
-                      Tech Festival | Timedoor Indonesia
+                      {t("aboutPage.achieve3.org")}
                     </p>
                   </div>
                 </div>
@@ -870,7 +854,7 @@ export const AboutPageView: React.FC<AboutPageViewProps> = ({ onNavigate }) => {
           <div className="lg:col-span-4 overflow-y-hidden overflow-auto">
             <div className="p-4 py-5 md:p-5 bg-card rounded-xl h-full overflow-y-hidden flex flex-col justify-between w-full overflow-hidden">
               <h3 className="text-2xl font-medium mb-6 md:mb-8 lg:w-[50%]">
-                Technologies &amp; Tools I Use
+                {t("aboutPage.techToolsTitle")}
               </h3>
               <div className="flex flex-col gap-4">
                 {/* Techs scrolling left */}
@@ -914,29 +898,29 @@ export const AboutPageView: React.FC<AboutPageViewProps> = ({ onNavigate }) => {
           {/* Education (Col 4) */}
           <div className="lg:col-span-4">
             <div className="p-4 py-5 md:p-5 bg-card rounded-xl h-full">
-              <h3 className="text-2xl font-medium mb-6 md:mb-8">Education</h3>
+              <h3 className="text-2xl font-medium mb-6 md:mb-8">{t("aboutPage.educationTitle")}</h3>
               <div className="flex flex-col gap-3">
                 <div className="edu-item bg-white p-5 rounded-xl transition-colors duration-300 group">
                   <p className="font-medium text-text-secondary text-sm md:text-base mb-3">
-                    2026 - Now
+                    {t("aboutPage.edu1.period")}
                   </p>
                   <div className="flex flex-col gap-1">
                     <h4 className="text-lg font-medium transition-colors duration-300">
-                      Primakara University
+                      {t("aboutPage.edu1.school")}
                     </h4>
-                    <p className="text-sm font-medium text-text-secondary">S1 Informatika</p>
+                    <p className="text-sm font-medium text-text-secondary">{t("aboutPage.edu1.major")}</p>
                   </div>
                 </div>
                 <div className="edu-item bg-white p-5 rounded-xl transition-colors duration-300 group">
                   <p className="font-medium text-text-secondary text-sm md:text-base mb-3">
-                    2023 - 2026
+                    {t("aboutPage.edu2.period")}
                   </p>
                   <div className="flex flex-col gap-1">
                     <h4 className="text-lg font-medium transition-colors duration-300">
-                      SMK TI Bali Global Denpasar
+                      {t("aboutPage.edu2.school")}
                     </h4>
                     <p className="text-sm font-medium text-text-secondary">
-                      Rekayasa Perangkat Lunak
+                      {t("aboutPage.edu2.major")}
                     </p>
                   </div>
                 </div>
@@ -976,10 +960,10 @@ export const AboutPageView: React.FC<AboutPageViewProps> = ({ onNavigate }) => {
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-0">
           <div className="contact-header col-span-1 md:col-span-4">
             <h2 className="social-title font-medium text-4xl md:text-6xl mb-4 md:mb-6 leading-[1.1] tracking-tight">
-              Say Hello
+              {t("contact.sayHello")}
             </h2>
             <p className="social-desc md:text-lg font-medium text-text-secondary">
-              Feel free to reach out, connect, or just say hi, I'm always open to meeting new people.
+              {t("contact.sayHelloDesc")}
             </p>
           </div>
 
@@ -1150,3 +1134,4 @@ export const AboutPageView: React.FC<AboutPageViewProps> = ({ onNavigate }) => {
     </div>
   );
 };
+

@@ -2,9 +2,9 @@ import React, { useState, useRef, useEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
-import { Blog, BlogContentBlock } from "../../types";
-import { useLanguage } from "../../context/LanguageContext";
-import { BlogCardItem } from "./BlogCardItem";
+import { Blog, BlogContentBlock } from "../types";
+import { useLanguage } from "../context/LanguageContext";
+import { BlogCardItem } from "../components/blogs/BlogCardItem";
 import { ChevronRight, Calendar, Link as LinkIcon, Check } from "lucide-react";
 
 gsap.registerPlugin(ScrollTrigger);

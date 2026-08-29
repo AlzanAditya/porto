@@ -1,5 +1,6 @@
 import React from "react";
 import { Project, TechStackItem } from "../../types";
+import { useLanguage } from "../../context/LanguageContext";
 
 interface ProjectDetailSidebarProps {
   project: Project;
@@ -115,18 +116,20 @@ export const ProjectDetailSidebar: React.FC<ProjectDetailSidebarProps> = ({
   project,
   onOpenCollaborators,
 }) => {
-  const authorCount = project.authors?.length || (project.collaborators ? 1 : 0);
+  const { lang, t } = useLanguage();
+
+  const category = (lang === "id" ? project.category_id : project.category_en) || project.category;
+  const count = project.authors?.length || 1;
   const collaboratorsLabel =
-    project.collaborators ||
-    (project.authors && project.authors.length > 0
-      ? `${project.authors.length} Collaborator${project.authors.length > 1 ? "s" : ""}`
-      : "1 Collaborator");
+    lang === "id"
+      ? `${count} Kolaborator`
+      : `${count} Collaborator${count > 1 ? "s" : ""}`;
 
   // Format uploadedDate if it's in YYYY-MM-DD format
   let displayDate = project.uploadedDate;
   if (/^\d{4}-\d{2}-\d{2}$/.test(project.uploadedDate)) {
     const dateObj = new Date(project.uploadedDate);
-    displayDate = dateObj.toLocaleDateString("en-GB", {
+    displayDate = dateObj.toLocaleDateString(lang === "id" ? "id-ID" : "en-GB", {
       day: "2-digit",
       month: "short",
       year: "numeric",
@@ -146,7 +149,7 @@ export const ProjectDetailSidebar: React.FC<ProjectDetailSidebarProps> = ({
         {project.techStack && project.techStack.length > 0 && (
           <div id="sidebar-tech-stack-section">
             <h2 className="text-xl md:text-2xl font-medium mb-4 text-text-primary">
-              Tech Stack
+              {t("projectDetail.techStackTitle")}
             </h2>
             <div className="w-full overflow-hidden rounded-xl">
               <div className="flex gap-2 w-max justify-center w-full flex-wrap sm:flex-nowrap">
@@ -178,7 +181,7 @@ export const ProjectDetailSidebar: React.FC<ProjectDetailSidebarProps> = ({
         {/* Project Detail */}
         <div id="sidebar-project-detail-section">
           <h2 className="text-xl md:text-2xl font-medium mb-4 text-text-primary">
-            Project Detail
+            {t("projectDetail.detailTitle")}
           </h2>
           <div className="flex flex-col gap-2 md:gap-4 bg-white p-3 md:p-4 rounded-xl border border-foreground/5 shadow-2xs">
             {/* Category */}
@@ -198,7 +201,7 @@ export const ProjectDetailSidebar: React.FC<ProjectDetailSidebarProps> = ({
                 </svg>
               </span>
               <strong className="font-medium text-sm md:text-base text-text-primary">
-                {project.category}
+                {category}
               </strong>
             </div>
 
@@ -243,7 +246,7 @@ export const ProjectDetailSidebar: React.FC<ProjectDetailSidebarProps> = ({
                 </svg>
               </span>
               <strong className="font-medium text-sm md:text-base text-text-primary">
-                Uploaded : {displayDate}
+                {t("projectDetail.uploaded")}: {displayDate}
               </strong>
             </div>
           </div>

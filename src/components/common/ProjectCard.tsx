@@ -1,6 +1,7 @@
 import React from 'react';
 import { ArrowUpRight, Github, Users, Sparkles } from 'lucide-react';
 import { Project } from '../../types';
+import { useLanguage } from '../../context/LanguageContext';
 
 interface ProjectCardProps {
   project: Project;
@@ -8,7 +9,11 @@ interface ProjectCardProps {
 }
 
 export const ProjectCard: React.FC<ProjectCardProps> = ({ project, onSelect }) => {
+  const { lang, t } = useLanguage();
   const coverImage = project.images[0] || '/projects/Taksu Explore - Tour & Travel Booking/cover.png';
+
+  const title = (lang === "id" ? project.title_id : project.title_en) || project.title;
+  const overview = (lang === "id" ? project.overview_id : project.overview_en) || project.overview;
 
   return (
     <div
@@ -23,7 +28,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, onSelect }) =
       >
         <img
           src={coverImage}
-          alt={project.title}
+          alt={title}
           className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
           loading="lazy"
         />
@@ -32,7 +37,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, onSelect }) =
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
           <span className="text-white text-xs font-semibold px-3 py-1.5 rounded-full bg-white/20 backdrop-blur-md flex items-center gap-1.5">
             <Sparkles className="w-3 h-3 text-amber-300" />
-            Click to explore project
+            {t("projects.viewProject")}
           </span>
         </div>
 
@@ -72,12 +77,12 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, onSelect }) =
             onClick={() => onSelect(project.slug)}
             className="text-xl font-bold text-zinc-900 mb-2 group-hover:text-[#5e2cd1] transition-colors cursor-pointer line-clamp-1 font-['Satoshi']"
           >
-            {project.title}
+            {title}
           </h3>
 
           {/* Overview text */}
           <p className="text-zinc-600 text-sm line-clamp-2 leading-relaxed mb-4">
-            {project.overview}
+            {overview}
           </p>
         </div>
 
@@ -88,7 +93,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project, onSelect }) =
             onClick={() => onSelect(project.slug)}
             className="text-sm font-semibold text-[#5e2cd1] group-hover:text-[#4e22b3] flex items-center gap-1 transition-colors cursor-pointer"
           >
-            <span>View Details</span>
+            <span>{t("projects.viewDetails")}</span>
             <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
           </button>
 

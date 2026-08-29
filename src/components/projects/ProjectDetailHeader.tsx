@@ -1,5 +1,6 @@
 import React from "react";
 import { Project } from "../../types";
+import { useLanguage } from "../../context/LanguageContext";
 
 interface ProjectDetailHeaderProps {
   project: Project;
@@ -10,7 +11,11 @@ export const ProjectDetailHeader: React.FC<ProjectDetailHeaderProps> = ({
   project,
   onNavigate,
 }) => {
-  const words = project.title.split(" ");
+  const { lang, t } = useLanguage();
+
+  const title = (lang === "id" ? project.title_id : project.title_en) || project.title;
+  const category = (lang === "id" ? project.category_id : project.category_en) || project.category;
+  const words = title.split(" ");
   const sourceCodeUrl = project.sourceCodeUrl || project.githubUrl;
 
   return (
@@ -48,7 +53,7 @@ export const ProjectDetailHeader: React.FC<ProjectDetailHeaderProps> = ({
                 onNavigate("/projects");
               }}
             >
-              Projects
+              {t("projectDetail.breadcrumb.projects")}
             </a>
             <svg
               stroke="currentColor"
@@ -73,7 +78,7 @@ export const ProjectDetailHeader: React.FC<ProjectDetailHeaderProps> = ({
                 onNavigate("/projects");
               }}
             >
-              {project.category}
+              {category}
             </a>
             <svg
               stroke="currentColor"
@@ -93,7 +98,7 @@ export const ProjectDetailHeader: React.FC<ProjectDetailHeaderProps> = ({
               id="breadcrumb-current-title"
               className="breadcrumb-item text-text-primary font-medium whitespace-nowrap truncate max-w-64 md:max-w-82"
             >
-              {project.title}
+              {title}
             </span>
           </nav>
         </div>
@@ -140,8 +145,8 @@ export const ProjectDetailHeader: React.FC<ProjectDetailHeaderProps> = ({
                 </svg>
               </span>
               <span className="scroll-text flex">
-                <span className="font-semibold">View Demo</span>
-                <span className="font-semibold">View Demo</span>
+                <span className="font-semibold">{t("projectDetail.viewDemo")}</span>
+                <span className="font-semibold">{t("projectDetail.viewDemo")}</span>
               </span>
             </div>
           </a>
@@ -157,8 +162,8 @@ export const ProjectDetailHeader: React.FC<ProjectDetailHeaderProps> = ({
           >
             <div className="flex gap-3 items-center">
               <span className="scroll-text flex">
-                <span className="font-semibold">Source Code</span>
-                <span className="font-semibold">Source Code</span>
+                <span className="font-semibold">{t("projectDetail.sourceCode")}</span>
+                <span className="font-semibold">{t("projectDetail.sourceCode")}</span>
               </span>
               <span className="lg:p-2 rounded-lg transition-all duration-300 ease-in-out group-hover:bg-text-primary">
                 <svg

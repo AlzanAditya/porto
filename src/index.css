@@ -42,6 +42,16 @@ html {
   width: 100%;
 }
 
+/* Universal smooth color transition */
+a, button, input, textarea {
+  transition: color 0.2s ease-out, background-color 0.2s ease-out, border-color 0.2s ease-out;
+}
+
+.word {
+  display: inline-block;
+  will-change: transform, opacity;
+}
+
 body {
   background-color: var(--background);
   color: var(--text-primary);

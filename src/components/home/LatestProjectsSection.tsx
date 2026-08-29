@@ -4,6 +4,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { Project } from "../../types";
 import { SplitWords } from "../common/SplitWords";
+import { useLanguage } from "../../context/LanguageContext";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -17,6 +18,7 @@ export const LatestProjectsSection: React.FC<LatestProjectsSectionProps> = ({
   onNavigate,
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
+  const { lang, t } = useLanguage();
 
   useGSAP(
     () => {
@@ -71,50 +73,57 @@ export const LatestProjectsSection: React.FC<LatestProjectsSectionProps> = ({
       {/* Header */}
       <div className="flex flex-col lg:flex-row lg:items-center justify-between mb-8 md:mb-12 lg:mb-20">
         <h2 className="project-title font-semibold text-3xl md:text-5xl mb-2 lg:mb-0 leading-[1.2]">
-          <SplitWords text="My Latest Projects" />
+          <SplitWords text={t("latestProjects.title")} />
         </h2>
         <p className="project-desc md:text-lg font-medium text-text-secondary lg:w-[20%] lg:text-right">
-          Some cool stuff I've been working on lately.
+          {t("latestProjects.subtitle")}
         </p>
       </div>
 
       {/* Carousel Container */}
       <div className="project-carousel-container relative flex overflow-visible overflow-x-hidden rounded-xl group">
         <div className="flex gap-4 md:gap-6 animate-carousel hover:[animation-play-state:paused] py-4">
-          {carouselItems.map((project, idx) => (
-            <a
-              key={`${project.id}-${idx}`}
-              data-cursor="view"
-              className="shrink-0 group/card w-72 h-64 md:w-lg md:h-94 p-4 md:p-5 bg-linear-to-r from-primary/10 to-secondary/10 rounded-2xl md:rounded-3xl transition-all duration-500 hover:z-10 cursor-pointer border border-transparent block"
-              href={`/projects/${project.slug}`}
-              onClick={(e) => {
-                e.preventDefault();
-                onNavigate(`/projects/${project.slug}`);
-              }}
-            >
-              <div className="relative w-full h-full overflow-hidden rounded-xl md:rounded-2xl">
-                <img
-                  alt={project.title}
-                  loading="lazy"
-                  width="600"
-                  height="600"
-                  className="rounded-xl group-hover/card:brightness-60 md:rounded-2xl object-cover group-hover/card:scale-95 transition ease-in-out duration-500 w-full h-full shadow-lg"
-                  src={
-                    project.images[0] ||
-                    "/projects/Taksu Explore - Tour & Travel Booking/cover.png"
-                  }
-                />
-                <div className="absolute inset-0 flex flex-col justify-end p-6 opacity-0 group-hover/card:opacity-100 transition-opacity duration-300 pointer-events-none bg-gradient-to-t from-black/80 via-black/20 to-transparent rounded-xl md:rounded-2xl">
-                  <span className="text-white/80 text-xs font-medium uppercase tracking-wider">
-                    {project.category}
-                  </span>
-                  <h4 className="text-white text-lg md:text-xl font-semibold mt-1">
-                    {project.title}
-                  </h4>
+          {carouselItems.map((project, idx) => {
+            const projectTitle =
+              lang === "id" && project.title_id ? project.title_id : project.title_en || project.title;
+            const projectCategory =
+              lang === "id" && project.category_id ? project.category_id : project.category_en || project.category;
+
+            return (
+              <a
+                key={`${project.id}-${idx}`}
+                data-cursor="view"
+                className="shrink-0 group/card w-72 h-64 md:w-lg md:h-94 p-4 md:p-5 bg-linear-to-r from-primary/10 to-secondary/10 rounded-2xl md:rounded-3xl transition-all duration-500 hover:z-10 cursor-pointer border border-transparent block"
+                href={`/projects/${project.slug}`}
+                onClick={(e) => {
+                  e.preventDefault();
+                  onNavigate(`/projects/${project.slug}`);
+                }}
+              >
+                <div className="relative w-full h-full overflow-hidden rounded-xl md:rounded-2xl">
+                  <img
+                    alt={projectTitle}
+                    loading="lazy"
+                    width="600"
+                    height="600"
+                    className="rounded-xl group-hover/card:brightness-60 md:rounded-2xl object-cover group-hover/card:scale-95 transition ease-in-out duration-500 w-full h-full shadow-lg"
+                    src={
+                      project.images[0] ||
+                      "/projects/Taksu Explore - Tour & Travel Booking/cover.png"
+                    }
+                  />
+                  <div className="absolute inset-0 flex flex-col justify-end p-6 opacity-0 group-hover/card:opacity-100 transition-opacity duration-300 pointer-events-none bg-gradient-to-t from-black/80 via-black/20 to-transparent rounded-xl md:rounded-2xl">
+                    <span className="text-white/80 text-xs font-medium uppercase tracking-wider">
+                      {projectCategory}
+                    </span>
+                    <h4 className="text-white text-lg md:text-xl font-semibold mt-1">
+                      {projectTitle}
+                    </h4>
+                  </div>
                 </div>
-              </div>
-            </a>
-          ))}
+              </a>
+            );
+          })}
         </div>
       </div>
 
@@ -130,8 +139,8 @@ export const LatestProjectsSection: React.FC<LatestProjectsSectionProps> = ({
           <button className="flex items-center cursor-pointer font-medium gap-2 group transition-all duration-300 ease-in-out bg-foreground px-6 py-3.5 btn-hover rounded-xl text-text-primary hover:bg-neutral-200/80 shadow-xs">
             <div className="flex gap-2 items-center">
               <span className="scroll-text flex">
-                <span className="font-semibold">View All Projects</span>
-                <span className="font-semibold">View All Projects</span>
+                <span className="font-semibold">{t("latestProjects.viewAll")}</span>
+                <span className="font-semibold">{t("latestProjects.viewAll")}</span>
               </span>
               <svg
                 stroke="currentColor"
@@ -152,3 +161,4 @@ export const LatestProjectsSection: React.FC<LatestProjectsSectionProps> = ({
     </section>
   );
 };
+

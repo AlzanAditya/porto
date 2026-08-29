@@ -1,4 +1,5 @@
 import React from "react";
+import { useLanguage } from "../../context/LanguageContext";
 
 interface ProjectDetailOverviewProps {
   overview: string;
@@ -9,6 +10,8 @@ export const ProjectDetailOverview: React.FC<ProjectDetailOverviewProps> = ({
   overview,
   tags,
 }) => {
+  const { t } = useLanguage();
+
   return (
     <div
       id="project-detail-overview-column"
@@ -17,7 +20,7 @@ export const ProjectDetailOverview: React.FC<ProjectDetailOverviewProps> = ({
       {/* Project Overview */}
       <div id="project-overview-section" className="animate-overview">
         <h2 className="text-2xl md:text-3xl font-medium mb-3 md:mb-4 text-text-primary">
-          Project Overview
+          {t("projectDetail.overviewTitle")}
         </h2>
         <p className="md:text-lg font-medium text-text-secondary leading-relaxed">
           {overview}
@@ -28,7 +31,7 @@ export const ProjectDetailOverview: React.FC<ProjectDetailOverviewProps> = ({
       {tags && tags.length > 0 && (
         <div id="project-tags-section">
           <h3 className="text-xl md:text-2xl font-medium mb-5 animate-tags-title text-text-primary">
-            Project Tags
+            {t("projectDetail.tagsTitle")}
           </h3>
           <div className="flex flex-wrap gap-2 gap-y-3">
             {tags.map((tag, index) => (

@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { SplitWords } from "../common/SplitWords";
+import { useLanguage } from "../../context/LanguageContext";
 
 interface ProjectsHeroProps {
   activeCategory: string;
@@ -14,6 +15,7 @@ export const ProjectsHero: React.FC<ProjectsHeroProps> = ({
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const { t } = useLanguage();
 
   // Close dropdown on outside click
   useEffect(() => {
@@ -31,7 +33,7 @@ export const ProjectsHero: React.FC<ProjectsHeroProps> = ({
 
   const displayCategoryLabel =
     activeCategory === "All" || activeCategory === "all"
-      ? "Search by category"
+      ? t("projectsHero.searchByCategory")
       : activeCategory;
 
   return (
@@ -40,19 +42,19 @@ export const ProjectsHero: React.FC<ProjectsHeroProps> = ({
         <div className="flex flex-col items-center">
           {/* Hero Badge */}
           <div className="hero-badge flex items-center gap-3 px-4 py-2 border border-text-secondary/30 w-fit rounded-full">
-            <span className="size-3 bg-primary rounded-full"></span>
+            <span className="size-3 bg-primary rounded-full animate-pulse"></span>
             <strong className="font-medium text-sm md:text-lg">
-              Project Portofolio
+              {t("projectsHero.badge")}
             </strong>
           </div>
 
           {/* Hero Title and Subtitle */}
           <div className="mt-6 md:mt-8 flex flex-col items-center text-center">
             <h1 className="hero-title font-semibold text-[32px] leading-[1.2] md:text-6xl md:leading-[1.3] mb-2 md:mb-4">
-              <SplitWords text="Selected Projects" />
+              <SplitWords text={t("projectsHero.title")} />
             </h1>
             <h2 className="hero-subtitle font-medium lg:w-[90%] md:text-xl text-text-secondary">
-              From ideas to real projects that actually work.
+              {t("projectsHero.subtitle")}
             </h2>
           </div>
         </div>
@@ -103,7 +105,7 @@ export const ProjectsHero: React.FC<ProjectsHeroProps> = ({
                     : "text-text-secondary hover:text-text-primary hover:bg-neutral-50"
                 }`}
               >
-                <span>All Categories</span>
+                <span>{t("projectsHero.allCategories")}</span>
                 {(activeCategory === "All" || activeCategory === "all") && (
                   <span className="size-1.5 bg-primary rounded-full animate-pulse"></span>
                 )}

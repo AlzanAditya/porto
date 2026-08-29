@@ -3,6 +3,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { SplitWords } from "../common/SplitWords";
+import { useLanguage } from "../../context/LanguageContext";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -10,6 +11,7 @@ export const ContactSection: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
+  const { lang, t } = useLanguage();
 
   useGSAP(
     () => {
@@ -152,20 +154,20 @@ export const ContactSection: React.FC = () => {
                 src="/logo.png"
               />
             </div>
-            <h3 className="text-xl font-semibold text-text-primary">Connect With Me!</h3>
+            <h3 className="text-xl font-semibold text-text-primary">{t("contact.connectWithMe")}</h3>
           </div>
 
           <div className="w-full">
             <div className="flex flex-col gap-4 mb-6">
               <input
                 type="email"
-                placeholder="Enter Your Email"
+                placeholder={t("contact.placeholder.email")}
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 className="focus:outline-none focus:ring-2 focus:ring-primary/20 bg-card w-full rounded-xl font-medium px-5 py-4 transition-all text-text-primary placeholder:text-text-secondary/60"
               />
               <textarea
-                placeholder="Your Message"
+                placeholder={t("contact.placeholder.message")}
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
                 className="focus:outline-none focus:ring-2 focus:ring-primary/20 min-h-28 max-h-28 bg-card w-full rounded-xl font-medium px-5 py-4 transition-all text-text-primary placeholder:text-text-secondary/60"
@@ -183,8 +185,8 @@ export const ContactSection: React.FC = () => {
               >
                 <div className="flex gap-2 items-center">
                   <span className="scroll-text flex">
-                    <span className="font-semibold">Send Message</span>
-                    <span className="font-semibold">Send Message</span>
+                    <span className="font-semibold">{t("contact.sendMessage")}</span>
+                    <span className="font-semibold">{t("contact.sendMessage")}</span>
                   </span>
                   <div className="p-1.5 bg-white/20 rounded-full transition-all duration-300 ease-in-out group-hover:bg-white/40">
                     <svg
@@ -210,10 +212,10 @@ export const ContactSection: React.FC = () => {
         <div className="col-span-1 lg:col-span-7 flex flex-col gap-10 justify-center">
           <div className="contact-header">
             <h2 className="font-medium text-4xl md:text-6xl mb-4 md:mb-6 leading-[1.1] tracking-tight text-text-primary">
-              <SplitWords text="Say Hello" />
+              <SplitWords text={t("contact.sayHello")} />
             </h2>
             <p className="md:text-lg font-medium text-text-secondary lg:w-[85%] leading-relaxed">
-              Feel free to reach out, connect, or just say hi — I'm always open to meeting new people.
+              {t("contact.sayHelloDesc")}
             </p>
           </div>
 
@@ -281,3 +283,4 @@ export const ContactSection: React.FC = () => {
     </section>
   );
 };
+
