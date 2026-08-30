@@ -2,7 +2,8 @@
 
 @font-face {
   font-family: "Satoshi";
-  src: url("/font/Satoshi_Variable-s.p.0we6-2px855vh.woff2") format("woff2");
+  src: url("/font/Satoshi_Variable.woff2") format("woff2"),
+       url("/font/Satoshi_Variable-s.p.0we6-2px855vh.woff2") format("woff2");
   font-weight: 300 900;
   font-style: normal;
   font-display: swap;
@@ -10,13 +11,15 @@
 
 @font-face {
   font-family: "Satoshi";
-  src: url("/font/Satoshi_VariableItalic-s.p.14_dcl7erp6w3.woff2") format("woff2");
+  src: url("/font/Satoshi_VariableItalic.woff2") format("woff2"),
+       url("/font/Satoshi_VariableItalic-s.p.14_dcl7erp6w3.woff2") format("woff2");
   font-weight: 300 900;
   font-style: italic;
   font-display: swap;
 }
 
 :root {
+  --font-sans: "Satoshi", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   --font-satoshi: "Satoshi", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   --primary: #5e2cd1;
   --secondary: #5b8dff;
@@ -28,6 +31,8 @@
 }
 
 @theme {
+  --font-sans: "Satoshi", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-satoshi: "Satoshi", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   --color-primary: #5e2cd1;
   --color-secondary: #5b8dff;
   --color-background: #ffffff;
@@ -38,8 +43,12 @@
 }
 
 html {
-  overflow-x: hidden;
+  overflow-x: clip;
   width: 100%;
+}
+
+*, *::before, *::after {
+  font-family: var(--font-satoshi);
 }
 
 /* Universal smooth color transition */
@@ -56,13 +65,13 @@ body {
   background-color: var(--background);
   color: var(--text-primary);
   font-family: var(--font-satoshi);
-  overflow-x: hidden;
+  overflow-x: clip;
   width: 100%;
   max-width: 100vw;
 }
 
 #root {
-  overflow-x: hidden;
+  overflow-x: clip;
   max-width: 100vw;
 }
 

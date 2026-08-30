@@ -5,7 +5,7 @@ import { useGSAP } from "@gsap/react";
 import { Blog, BlogContentBlock } from "../../types";
 import { useLanguage } from "../../context/LanguageContext";
 import { BlogCardItem } from "./BlogCardItem";
-import { ChevronRight, Calendar, Link as LinkIcon, Check } from "lucide-react";
+import { ChevronRight, Link as LinkIcon, Check } from "lucide-react";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -55,6 +55,7 @@ export const BlogDetailPage: React.FC<BlogDetailPageProps> = ({
           opacity: 0,
           duration: 0.8,
           ease: "power3.out",
+          clearProps: "all",
         })
         .from(
           ".animate-title .word",
@@ -65,18 +66,9 @@ export const BlogDetailPage: React.FC<BlogDetailPageProps> = ({
             duration: 1.2,
             stagger: 0.08,
             ease: "power4.out",
+            clearProps: "all",
           },
           "-=0.6"
-        )
-        .from(
-          ".animate-date",
-          {
-            y: 20,
-            opacity: 0,
-            duration: 0.8,
-            ease: "power3.out",
-          },
-          "-=0.8"
         )
         .from(
           ".animate-author-bar",
@@ -85,6 +77,7 @@ export const BlogDetailPage: React.FC<BlogDetailPageProps> = ({
             opacity: 0,
             duration: 0.8,
             ease: "power3.out",
+            clearProps: "all",
           },
           "-=0.6"
         )
@@ -96,6 +89,7 @@ export const BlogDetailPage: React.FC<BlogDetailPageProps> = ({
             y: 40,
             duration: 1.2,
             ease: "power3.out",
+            clearProps: "all",
           },
           "-=0.8"
         )
@@ -106,6 +100,7 @@ export const BlogDetailPage: React.FC<BlogDetailPageProps> = ({
             opacity: 0,
             duration: 1.2,
             ease: "power3.out",
+            clearProps: "all",
           },
           "-=0.8"
         );
@@ -466,10 +461,10 @@ export const BlogDetailPage: React.FC<BlogDetailPageProps> = ({
       className="px-4 md:px-12 lg:px-36 xl:px-48 2xl:container mx-auto relative pb-16 md:pb-24"
     >
       {/* Main Grid: Left Sticky Cover Media + Right Article Info & Body */}
-      <div className="grid lg:grid-cols-12 mt-8 md:mt-12 gap-8 lg:gap-12 mb-8 md:mb-16">
-        {/* Left Column: Sticky Cover Image */}
-        <div className="lg:col-span-5 animate-image">
-          <div className="relative overflow-hidden lg:sticky top-24 rounded-xl aspect-4/5 bg-card w-full">
+      <div className="grid lg:grid-cols-12 mt-4 md:mt-8 gap-4 md:gap-6 lg:gap-8 mb-8 md:mb-16">
+        {/* Left Column: Sticky Cover Image on Desktop (spans full row height so sticky works until article ends) */}
+        <div className="lg:col-span-5 animate-image mb-4 lg:mb-0">
+          <div className="relative overflow-hidden lg:sticky lg:top-24 rounded-xl aspect-[4/2.5] lg:aspect-[4/5] bg-card w-full">
             <img
               src={blog.coverImage}
               alt={title}
@@ -481,20 +476,20 @@ export const BlogDetailPage: React.FC<BlogDetailPageProps> = ({
         </div>
 
         {/* Right Column: Header, Breadcrumb, Title, Meta, Author Bar, and Body */}
-        <div className="lg:col-span-7 flex flex-col">
+        <div className="lg:col-span-7 flex flex-col min-w-0">
           <div className="border-b mb-8 pb-8 border-black/10">
-            {/* Breadcrumb matching reference */}
-            <div className="animate-breadcrumb mb-6">
-              <nav className="flex items-center flex-wrap gap-2 gap-y-1 text-sm md:text-base font-medium select-none">
+            {/* Breadcrumb forced to strictly 1 single line with dynamic truncate */}
+            <div className="animate-breadcrumb mb-3 md:mb-4 w-full overflow-hidden">
+              <nav className="flex items-center flex-nowrap min-w-0 w-full gap-2 text-sm md:text-base font-medium select-none overflow-hidden">
                 <a
                   href="/blogs"
                   onClick={(e) => {
                     e.preventDefault();
                     onNavigate("/blogs");
                   }}
-                  className="breadcrumb-item text-text-secondary hover:text-text-primary transition-colors duration-300 whitespace-nowrap"
+                  className="breadcrumb-item shrink-0 text-text-secondary hover:text-text-primary transition-colors duration-300 whitespace-nowrap"
                 >
-                  {t("blogDetail.breadcrumbBlog")}
+                  {t("blogDetail.breadcrumb.blog") || "Blog"}
                 </a>
                 <ChevronRight className="breadcrumb-item text-text-secondary/40 text-lg shrink-0" />
                 <a
@@ -503,68 +498,62 @@ export const BlogDetailPage: React.FC<BlogDetailPageProps> = ({
                     e.preventDefault();
                     onNavigate("/blogs");
                   }}
-                  className="breadcrumb-item text-text-secondary hover:text-text-primary transition-colors duration-300 whitespace-nowrap"
+                  className="breadcrumb-item shrink-0 text-text-secondary hover:text-text-primary transition-colors duration-300 whitespace-nowrap capitalize"
                 >
                   {categoryName}
                 </a>
                 <ChevronRight className="breadcrumb-item text-text-secondary/40 text-lg shrink-0" />
-                <span className="breadcrumb-item text-text-primary font-medium whitespace-nowrap truncate max-w-64 md:max-w-82">
+                <span className="breadcrumb-item text-text-primary font-medium whitespace-nowrap truncate min-w-0 flex-1">
                   {title}
                 </span>
               </nav>
             </div>
 
             {/* Split Title for GSAP Staggered Entrance */}
-            <h1 className="text-2xl md:text-[32px] leading-[1.4] font-semibold text-text-primary animate-title mb-2.5">
+            <h1 className="text-2xl md:text-[32px] leading-[1.4] font-semibold text-text-primary animate-title mb-4">
               {renderSplitTitle(title)}
             </h1>
 
-            {/* Date Badge */}
-            <div className="animate-date flex items-center gap-4 mb-12">
-              <div className="bg-card p-2.5 rounded-xl w-fit border border-foreground/5">
-                <Calendar className="text-xl w-5 h-5 text-text-primary" />
-              </div>
-              <strong className="font-medium text-sm md:text-base">
-                {t("blogDetail.uploaded")} : {blog.publishDate}
-              </strong>
-            </div>
-
-            {/* Author Bar matching reference layout and styling */}
-            <div className="animate-author-bar flex items-center justify-between border-t border-b border-foreground/10 mt-8 py-3.5">
-              <div className="flex items-center gap-3.5">
-                <div className="size-11 rounded-full overflow-hidden bg-card relative border border-foreground/10">
+            {/* Author Bar: Author info on left, Date & Share Link on right */}
+            <div className="animate-author-bar flex items-center justify-between gap-3 md:gap-4 border-t border-b border-foreground/10 mt-6 md:mt-8 py-3.5">
+              <div className="flex items-center gap-3 md:gap-3.5 min-w-0">
+                <div className="size-10 md:size-11 rounded-full overflow-hidden bg-card relative border border-foreground/10 shrink-0">
                   <img
                     src={authorAvatar}
                     alt={authorName}
                     className="object-cover w-full h-full"
                   />
                 </div>
-                <div>
-                  <h4 className="font-semibold text-text-primary text-sm md:text-base mb-0.5">
+                <div className="min-w-0">
+                  <h4 className="font-semibold text-text-primary text-sm md:text-base mb-0.5 truncate">
                     {t("blogDetail.by")} {authorName}
                   </h4>
-                  <p className="text-xs text-text-secondary font-medium">
+                  <p className="text-xs text-text-secondary font-medium truncate">
                     {authorRole}
                   </p>
                 </div>
               </div>
 
-              {/* Share Link Interactive Button */}
-              <button
-                onClick={handleCopyLink}
-                className="px-4 py-3 btn-hover hidden md:flex items-center gap-2 rounded-xl bg-card border border-foreground/10 hover:border-foreground/20 text-text-primary transition-all duration-300 font-medium text-sm cursor-pointer"
-                title="Copy blog link"
-              >
-                {isCopied ? (
-                  <Check className="text-base md:text-lg text-emerald-500" />
-                ) : (
-                  <LinkIcon className="text-base md:text-lg" />
-                )}
-                <span className="scroll-text flex font-semibold overflow-hidden">
-                  <span>{isCopied ? t("blogDetail.copied") : t("blogDetail.shareLink")}</span>
-                  <span>{isCopied ? t("blogDetail.copied") : t("blogDetail.shareLink")}</span>
+              {/* Right side: Date (no calendar icon, no 'Uploaded:' prefix) + Share Link (icon only) */}
+              <div className="flex items-center gap-2.5 md:gap-4 shrink-0">
+                <span className="text-xs md:text-sm font-medium text-text-secondary whitespace-nowrap">
+                  {blog.publishDate}
                 </span>
-              </button>
+
+                {/* Share Link Interactive Button - Icon Only on mobile and desktop */}
+                <button
+                  onClick={handleCopyLink}
+                  className="p-2.5 md:p-3 btn-hover flex items-center justify-center rounded-xl bg-card border border-foreground/10 hover:border-foreground/20 text-text-primary transition-all duration-300 cursor-pointer"
+                  title="Copy blog link"
+                  aria-label="Copy blog link"
+                >
+                  {isCopied ? (
+                    <Check className="text-base md:text-lg text-emerald-500" />
+                  ) : (
+                    <LinkIcon className="text-base md:text-lg" />
+                  )}
+                </button>
+              </div>
             </div>
           </div>
 

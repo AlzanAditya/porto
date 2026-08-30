@@ -1,13 +1,77 @@
-import React from "react";
+import React, { useRef } from "react";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
 import { SplitWords } from "../common/SplitWords";
 import { useLanguage } from "../../context/LanguageContext";
 
-export const BlogsHero: React.FC = () => {
+interface BlogsHeroProps {
+  onComplete?: () => void;
+}
+
+export const BlogsHero: React.FC<BlogsHeroProps> = ({ onComplete }) => {
   const { t } = useLanguage();
+  const heroRef = useRef<HTMLElement>(null);
+
+  useGSAP(
+    () => {
+      gsap
+        .timeline()
+        .from(".hero-badge", {
+          y: 20,
+          opacity: 0,
+          duration: 0.8,
+          ease: "power3.out",
+        })
+        .from(
+          ".hero-title .word",
+          {
+            y: 40,
+            opacity: 0,
+            filter: "blur(10px)",
+            duration: 1.2,
+            stagger: 0.1,
+            ease: "power4.out",
+          },
+          "-=0.6"
+        )
+        .from(
+          ".hero-subtitle",
+          {
+            y: 20,
+            opacity: 0,
+            duration: 0.8,
+            ease: "power3.out",
+          },
+          "-=0.8"
+        )
+        .call(
+          () => {
+            if (onComplete) onComplete();
+          },
+          undefined,
+          "-=0.3"
+        )
+        .from(
+          ".hero-bg-particle",
+          {
+            scale: 0.8,
+            opacity: 0,
+            duration: 1.5,
+            stagger: 0.2,
+            ease: "power2.out",
+          },
+          "-=1.2"
+        );
+    },
+    { scope: heroRef }
+  );
 
   return (
-    <section className="px-4 pt-6 md:pt-8 2xl:container mx-auto relative min-h-[40vh] md:min-h-[45vh] 2xl:min-h-[40vh] overflow-y-visible select-none">
-      <div className="flex flex-col items-center gap-8 md:gap-12">
+    <section
+      ref={heroRef}
+      className="px-4 pt-6 md:pt-8 2xl:container mx-auto relative z-10 min-h-[40vh] md:min-h-[45vh] 2xl:min-h-[40vh] overflow-visible select-none"
+    >
+      <div className="flex flex-col items-center gap-8 md:gap-12 relative z-10">
         <div className="flex flex-col items-center">
           {/* Hero Badge */}
           <div className="hero-badge flex items-center gap-3 px-4 py-2 border border-text-secondary/30 w-fit rounded-full">
@@ -35,7 +99,7 @@ export const BlogsHero: React.FC = () => {
         width="900"
         height="900"
         decoding="async"
-        className="hero-bg-particle absolute -right-48 lg:-right-96 -bottom-32 lg:-bottom-72 -z-1 pointer-events-none select-none"
+        className="hero-bg-particle absolute -right-48 lg:-right-96 -bottom-32 lg:-bottom-72 z-0 pointer-events-none select-none opacity-50 md:opacity-90"
         src="/particle/purple.png"
       />
       <img
@@ -43,7 +107,7 @@ export const BlogsHero: React.FC = () => {
         width="900"
         height="900"
         decoding="async"
-        className="hero-bg-particle absolute -left-48 lg:-left-96 -bottom-32 lg:-bottom-72 -z-1 pointer-events-none select-none"
+        className="hero-bg-particle absolute -left-48 lg:-left-96 -bottom-32 lg:-bottom-72 z-0 pointer-events-none select-none opacity-50 md:opacity-90"
         src="/particle/blue.png"
       />
     </section>

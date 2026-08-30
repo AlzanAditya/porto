@@ -22,73 +22,35 @@ export const RecentBlogsSection: React.FC<RecentBlogsSectionProps> = ({
 
   useGSAP(
     () => {
-      const mm = gsap.matchMedia();
-
-      mm.add(
-        {
-          isDesktop: "(min-width: 1024px)",
-          isMobile: "(max-width: 1023px)",
+      // Header animation when it enters viewport
+      gsap.from(".blog-header", {
+        scrollTrigger: {
+          trigger: ".blog-header",
+          start: "top 75%",
+          toggleActions: "play none none none",
         },
-        (context) => {
-          const { isDesktop } = context.conditions as { isDesktop: boolean };
+        y: 40,
+        opacity: 0,
+        filter: "blur(10px)",
+        duration: 1,
+        ease: "power3.out",
+      });
 
-          if (isDesktop) {
-            gsap
-              .timeline({
-                scrollTrigger: {
-                  trigger: containerRef.current,
-                  start: "top 50%",
-                  toggleActions: "play none none none",
-                },
-              })
-              .from(".blog-header", {
-                y: 40,
-                opacity: 0,
-                filter: "blur(10px)",
-                duration: 1,
-                ease: "power3.out",
-              })
-              .from(
-                ".blog-card-wrapper",
-                {
-                  y: 60,
-                  opacity: 0,
-                  stagger: 0.15,
-                  duration: 1,
-                  ease: "power2.out",
-                  clearProps: "all",
-                },
-                "-=0.7"
-              );
-          } else {
-            gsap.from(".blog-header", {
-              scrollTrigger: {
-                trigger: ".blog-header",
-                start: "top 70%",
-                toggleActions: "play none none none",
-              },
-              y: 30,
-              opacity: 0,
-              filter: "blur(8px)",
-              duration: 1,
-            });
-            gsap.utils.toArray<HTMLElement>(".blog-card-wrapper").forEach((e) => {
-              gsap.from(e, {
-                scrollTrigger: {
-                  trigger: e,
-                  start: "top 85%",
-                  toggleActions: "play none none none",
-                },
-                y: 40,
-                opacity: 0,
-                duration: 1,
-                ease: "power2.out",
-                clearProps: "all",
-              });
-            });
-          }
-        }
-      );
+      // Individual blog cards enter 1 by 1 as they enter viewport
+      gsap.utils.toArray<HTMLElement>(".blog-card-wrapper").forEach((card) => {
+        gsap.from(card, {
+          scrollTrigger: {
+            trigger: card,
+            start: "top 80%",
+            toggleActions: "play none none none",
+          },
+          y: 50,
+          opacity: 0,
+          duration: 0.9,
+          ease: "power2.out",
+          clearProps: "all",
+        });
+      });
     },
     { scope: containerRef }
   );

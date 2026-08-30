@@ -116,56 +116,82 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onNavigate }) => {
                 "-=1"
               );
           } else {
-            // Mobile fallback animations
-            gsap.from(".about-badge", {
-              scrollTrigger: {
-                trigger: ".about-badge",
-                start: "top 85%",
-                toggleActions: "play none none none",
-              },
-              y: 20,
-              opacity: 0,
-              duration: 0.8,
-              ease: "power3.out",
-            });
-            gsap.from(".about-title", {
-              scrollTrigger: {
-                trigger: ".about-title",
-                start: "top 80%",
-                toggleActions: "play none none none",
-              },
-              y: 30,
-              opacity: 0,
-              duration: 0.8,
-              ease: "power3.out",
-            });
-            gsap.from(".about-p", {
-              scrollTrigger: {
-                trigger: ".about-p",
-                start: "top 80%",
-                toggleActions: "play none none none",
-              },
-              y: 30,
-              opacity: 0,
-              duration: 0.8,
-              stagger: 0.15,
-              ease: "power3.out",
-            });
-            gsap.from(".about-phone, .about-avatar", {
-              scrollTrigger: {
-                trigger: ".about-phone",
-                start: "top 80%",
-                toggleActions: "play none none none",
-              },
-              y: 50,
-              opacity: 0,
-              duration: 1,
-              ease: "power4.out",
-            });
+            gsap
+              .timeline({
+                scrollTrigger: {
+                  trigger: containerRef.current,
+                  start: "top 60%",
+                  toggleActions: "play none none none",
+                },
+              })
+              .from(".about-badge", {
+                y: 20,
+                opacity: 0,
+                duration: 0.8,
+                ease: "power3.out",
+              })
+              .from(
+                ".about-title .word",
+                {
+                  y: 30,
+                  opacity: 0,
+                  filter: "blur(10px)",
+                  stagger: 0.05,
+                  duration: 0.8,
+                  ease: "power3.out",
+                },
+                "-=0.4"
+              )
+              .from(
+                ".about-p",
+                {
+                  y: 20,
+                  opacity: 0,
+                  stagger: 0.2,
+                  duration: 0.8,
+                  ease: "power3.out",
+                },
+                "-=0.5"
+              );
+
+            gsap
+              .timeline({
+                scrollTrigger: {
+                  trigger: ".about-img-container",
+                  start: "top 80%",
+                  toggleActions: "play none none none",
+                },
+              })
+              .from(".about-phone", {
+                y: 80,
+                opacity: 0,
+                duration: 1.2,
+                ease: "power4.out",
+              })
+              .from(
+                ".about-avatar",
+                {
+                  y: 60,
+                  opacity: 0,
+                  filter: "blur(15px)",
+                  duration: 1.2,
+                  ease: "power4.out",
+                },
+                "-=1"
+              )
+              .from(
+                ".about-overlay",
+                {
+                  opacity: 0,
+                  duration: 1,
+                },
+                "-=0.5"
+              );
+
             gsap.from(".about-role-tag", {
               scrollTrigger: {
                 trigger: ".about-role-tag",
-                start: "top 85%",
+                start: "top 80%",
                 toggleActions: "play none none none",
               },
               scale: 0,
@@ -173,16 +199,18 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onNavigate }) => {
               duration: 0.8,
               stagger: 0.1,
               ease: "back.out(1.7)",
+              clearProps: "all",
             });
+
             gsap.from(".about-stat-card", {
               scrollTrigger: {
                 trigger: ".about-stat-card",
-                start: "top 85%",
+                start: "top 80%",
                 toggleActions: "play none none none",
               },
               y: 40,
               opacity: 0,
-              duration: 0.8,
+              duration: 1,
               stagger: 0.15,
               ease: "power3.out",
             });

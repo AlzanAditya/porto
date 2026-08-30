@@ -22,7 +22,7 @@ export const ProjectsView: React.FC<ProjectsViewProps> = ({
 }) => {
   const { lang, t } = useLanguage();
   const [selectedCategory, setSelectedCategory] = useState<string>("All");
-  const containerRef = useRef<HTMLDivElement>(null);
+  const gridSectionRef = useRef<HTMLElement>(null);
 
   const categories = ["Dashboard System", "Web App", "Website"];
 
@@ -47,129 +47,37 @@ export const ProjectsView: React.FC<ProjectsViewProps> = ({
 
   useGSAP(
     () => {
-      // Hero entrance animations
-      gsap
-        .timeline()
-        .from(".hero-badge", {
-          y: 20,
-          opacity: 0,
-          duration: 0.8,
-          ease: "power3.out",
-        })
-        .from(
-          ".hero-title .word",
-          {
-            y: 60,
-            opacity: 0,
-            filter: "blur(15px)",
-            duration: 1.2,
-            stagger: 0.08,
-            ease: "power4.out",
-          },
-          "-=0.5"
-        )
-        .from(
-          ".hero-subtitle",
-          {
-            y: 20,
-            opacity: 0,
-            duration: 0.8,
-            ease: "power3.out",
-          },
-          "-=0.6"
-        )
-        .from(
-          ".filter-wrapper",
-          {
-            y: 20,
-            opacity: 0,
-            duration: 0.8,
-            ease: "power2.out",
-          },
-          "-=0.4"
-        );
-
-      // Section 1: Recently Delivered Projects
       gsap
         .timeline({
           scrollTrigger: {
-            trigger: "#recent-projects",
-            start: "top 70%",
+            trigger: gridSectionRef.current,
+            start: "top 50%",
             toggleActions: "play none none none",
           },
         })
-        .from(".recent-title", {
-          y: 30,
+        .from(".project-title", {
+          y: 40,
           opacity: 0,
           filter: "blur(10px)",
-          duration: 1,
-          ease: "power3.out",
+          duration: 1.2,
+          ease: "power4.out",
         })
         .from(
-          ".recent-desc",
+          ".project-desc",
           {
             y: 20,
             opacity: 0,
             duration: 0.8,
             ease: "power3.out",
           },
-          "-=0.6"
-        )
-        .from(
-          ".recent-project-card",
-          {
-            y: 40,
-            opacity: 0,
-            duration: 1,
-            ease: "power3.out",
-          },
-          "-=0.4"
-        );
-
-      // Section 2: Everything I've Built
-      gsap
-        .timeline({
-          scrollTrigger: {
-            trigger: "#all-projects-section",
-            start: "top 70%",
-            toggleActions: "play none none none",
-          },
-        })
-        .from(".everything-title", {
-          y: 30,
-          opacity: 0,
-          filter: "blur(10px)",
-          duration: 1,
-          ease: "power3.out",
-        })
-        .from(
-          ".everything-desc",
-          {
-            y: 20,
-            opacity: 0,
-            duration: 0.8,
-            ease: "power3.out",
-          },
-          "-=0.6"
-        )
-        .from(
-          ".project-card-wrapper",
-          {
-            y: 40,
-            opacity: 0,
-            stagger: 0.08,
-            duration: 0.8,
-            ease: "power2.out",
-            clearProps: "all",
-          },
-          "-=0.4"
+          "-=0.8"
         );
     },
-    { scope: containerRef }
+    { scope: gridSectionRef }
   );
 
   return (
-    <div ref={containerRef} className="min-h-screen">
+    <div className="min-h-screen">
       {/* 1. Hero Section */}
       <ProjectsHero
         activeCategory={selectedCategory}
@@ -187,14 +95,15 @@ export const ProjectsView: React.FC<ProjectsViewProps> = ({
 
       {/* 3. Everything I've Built Section */}
       <section
+        ref={gridSectionRef}
         id="all-projects-section"
-        className="pt-12 lg:pt-20 px-4 md:px-12 lg:px-36 xl:px-48 2xl:container mx-auto overflow-x-hidden select-none"
+        className="pt-12 lg:pt-20 px-4 md:px-12 lg:px-36 xl:px-48 2xl:container mx-auto overflow-x-hidden select-none pb-16 md:pb-24"
       >
         <div className="flex flex-col lg:flex-row lg:items-center justify-between mb-8 md:mb-12 lg:mb-20">
-          <h2 className="everything-title project-title font-semibold text-3xl md:text-5xl mb-2 lg:mb-0 leading-[1.2]">
+          <h2 className="project-title font-semibold text-3xl md:text-5xl mb-2 lg:mb-0 leading-[1.2]">
             {t("projects.everythingBuiltTitle")}
           </h2>
-          <p className="everything-desc project-desc md:text-lg font-medium text-text-secondary lg:text-right">
+          <p className="project-desc md:text-lg font-medium text-text-secondary lg:text-right">
             {t("projects.everythingBuiltSubtitle")}
           </p>
         </div>

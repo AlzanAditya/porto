@@ -1,6 +1,11 @@
-import React from "react";
+import React, { useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
 import { Project } from "../../types";
 import { useLanguage } from "../../context/LanguageContext";
+
+gsap.registerPlugin(ScrollTrigger);
 
 interface ProjectGridItemProps {
   project: Project;
@@ -12,6 +17,24 @@ export const ProjectGridItem: React.FC<ProjectGridItemProps> = ({
   onNavigate,
 }) => {
   const { lang } = useLanguage();
+  const cardRef = useRef<HTMLDivElement>(null);
+
+  useGSAP(
+    () => {
+      gsap.from(cardRef.current, {
+        scrollTrigger: {
+          trigger: cardRef.current,
+          start: "top 80%",
+          toggleActions: "play none none none",
+        },
+        y: 50,
+        opacity: 0,
+        duration: 0.8,
+        ease: "power3.out",
+      });
+    },
+    { scope: cardRef }
+  );
 
   const title = (lang === "id" ? project.title_id : project.title_en) || project.title;
   const category = (lang === "id" ? project.category_id : project.category_en) || project.category;
@@ -25,7 +48,7 @@ export const ProjectGridItem: React.FC<ProjectGridItemProps> = ({
     "/projects/Taksu Explore - Tour & Travel Booking/content-1.png";
 
   return (
-    <div className="project-card-wrapper">
+    <div ref={cardRef} className="project-card-wrapper">
       <a
         href={`/projects/${project.slug}`}
         onClick={(e) => {

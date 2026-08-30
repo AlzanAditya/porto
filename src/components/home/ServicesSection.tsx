@@ -259,7 +259,7 @@ const SpecializeAccordionItem: React.FC<SpecializeItemProps> = ({
 };
 
 export const ServicesSection: React.FC = () => {
-  const [openIndex, setOpenIndex] = useState<number | null>(0);
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const { lang, t } = useLanguage();
 
@@ -290,7 +290,10 @@ export const ServicesSection: React.FC = () => {
             ease: "power3.out",
           },
           "-=0.6"
-        );
+        )
+        .call(() => {
+          setOpenIndex(0);
+        });
     },
     { scope: containerRef }
   );

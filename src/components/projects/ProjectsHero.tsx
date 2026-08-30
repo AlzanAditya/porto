@@ -1,21 +1,85 @@
 import React, { useState, useRef, useEffect } from "react";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
 import { SplitWords } from "../common/SplitWords";
 import { useLanguage } from "../../context/LanguageContext";
 
 interface ProjectsHeroProps {
-  activeCategory: string;
+  activeCategory?: string;
+  selectedCategory?: string;
   onSelectCategory: (category: string) => void;
   categories: string[];
 }
 
 export const ProjectsHero: React.FC<ProjectsHeroProps> = ({
   activeCategory,
+  selectedCategory,
   onSelectCategory,
   categories,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const heroRef = useRef<HTMLElement>(null);
   const { t } = useLanguage();
+
+  useGSAP(
+    () => {
+      gsap
+        .timeline()
+        .from(".hero-badge", {
+          y: 20,
+          opacity: 0,
+          duration: 0.8,
+          ease: "power3.out",
+        })
+        .from(
+          ".hero-title .word",
+          {
+            y: 40,
+            opacity: 0,
+            filter: "blur(10px)",
+            duration: 1.2,
+            stagger: 0.1,
+            ease: "power4.out",
+          },
+          "-=0.6"
+        )
+        .from(
+          ".hero-subtitle",
+          {
+            y: 20,
+            opacity: 0,
+            duration: 0.8,
+            ease: "power3.out",
+          },
+          "-=0.8"
+        )
+        .from(
+          ".filter-wrapper",
+          {
+            y: 20,
+            opacity: 0,
+            duration: 0.8,
+            ease: "power3.out",
+          },
+          "-=0.4"
+        )
+        .from(
+          ".hero-bg-particle",
+          {
+            scale: 0.8,
+            opacity: 0,
+            duration: 1.5,
+            stagger: 0.2,
+            ease: "power2.out",
+          },
+          "-=1.2"
+        );
+    },
+    { scope: heroRef }
+  );
+
+  const currentCategory = activeCategory || selectedCategory || "All";
 
   // Close dropdown on outside click
   useEffect(() => {
@@ -32,13 +96,16 @@ export const ProjectsHero: React.FC<ProjectsHeroProps> = ({
   }, []);
 
   const displayCategoryLabel =
-    activeCategory === "All" || activeCategory === "all"
-      ? t("projectsHero.searchByCategory")
-      : activeCategory;
+    currentCategory === "All" || currentCategory === "all" || currentCategory === "All Categories"
+      ? t("projectsHero.searchByCategory") || "Search by category"
+      : currentCategory;
 
   return (
-    <section className="px-4 pt-6 md:pt-8 2xl:container mx-auto relative min-h-[40vh] md:min-h-[45vh] 2xl:min-h-[40vh] overflow-y-clip md:overflow-y-visible">
-      <div className="flex flex-col items-center gap-8">
+    <section
+      ref={heroRef}
+      className="px-4 pt-6 md:pt-8 2xl:container mx-auto relative z-30 min-h-[40vh] md:min-h-[45vh] 2xl:min-h-[40vh] overflow-visible select-none"
+    >
+      <div className="flex flex-col items-center gap-8 relative z-10">
         <div className="flex flex-col items-center">
           {/* Hero Badge */}
           <div className="hero-badge flex items-center gap-3 px-4 py-2 border border-text-secondary/30 w-fit rounded-full">
@@ -60,7 +127,7 @@ export const ProjectsHero: React.FC<ProjectsHeroProps> = ({
         </div>
 
         {/* Filter Dropdown */}
-        <div ref={dropdownRef} className="filter-wrapper relative z-40">
+        <div ref={dropdownRef} className="filter-wrapper relative z-50">
           <div className="relative">
             <button
               onClick={() => setIsOpen(!isOpen)}
@@ -88,7 +155,7 @@ export const ProjectsHero: React.FC<ProjectsHeroProps> = ({
             </button>
 
             <div
-              className={`absolute top-full left-0 mt-3 w-72 bg-white border border-neutral-100 rounded-2xl p-2 z-80 flex flex-col gap-1 origin-top transition-all duration-300 shadow-xl ${
+              className={`absolute top-full left-0 mt-3 w-72 bg-white border border-neutral-100 rounded-2xl p-2 z-50 flex flex-col gap-1 origin-top transition-all duration-300 shadow-xl ${
                 isOpen
                   ? "opacity-100 scale-100 pointer-events-auto translate-y-0"
                   : "opacity-0 scale-95 pointer-events-none -translate-y-2"
@@ -100,13 +167,13 @@ export const ProjectsHero: React.FC<ProjectsHeroProps> = ({
                   setIsOpen(false);
                 }}
                 className={`px-4 py-2.5 rounded-xl font-medium text-sm text-left transition-all duration-300 cursor-pointer flex items-center justify-between ${
-                  activeCategory === "All" || activeCategory === "all"
+                  currentCategory === "All" || currentCategory === "all" || currentCategory === "All Categories"
                     ? "bg-card/70 text-primary font-semibold"
                     : "text-text-secondary hover:text-text-primary hover:bg-neutral-50"
                 }`}
               >
                 <span>{t("projectsHero.allCategories")}</span>
-                {(activeCategory === "All" || activeCategory === "all") && (
+                {(currentCategory === "All" || currentCategory === "all" || currentCategory === "All Categories") && (
                   <span className="size-1.5 bg-primary rounded-full animate-pulse"></span>
                 )}
               </button>
@@ -119,13 +186,13 @@ export const ProjectsHero: React.FC<ProjectsHeroProps> = ({
                     setIsOpen(false);
                   }}
                   className={`px-4 py-2.5 rounded-xl font-medium text-sm text-left transition-all duration-300 cursor-pointer flex items-center justify-between ${
-                    activeCategory === cat
+                    currentCategory === cat
                       ? "bg-card/70 text-primary font-semibold"
                       : "text-text-secondary hover:text-text-primary hover:bg-neutral-50"
                   }`}
                 >
                   <span>{cat}</span>
-                  {activeCategory === cat && (
+                  {currentCategory === cat && (
                     <span className="size-1.5 bg-primary rounded-full animate-pulse"></span>
                   )}
                 </button>
@@ -141,7 +208,7 @@ export const ProjectsHero: React.FC<ProjectsHeroProps> = ({
         width="900"
         height="900"
         decoding="async"
-        className="hero-bg-particle absolute -right-48 lg:-right-96 -bottom-32 lg:-bottom-72 -z-1 pointer-events-none select-none"
+        className="hero-bg-particle absolute -right-48 lg:-right-96 -bottom-32 lg:-bottom-72 z-0 pointer-events-none select-none opacity-50 md:opacity-90"
         src="/particle/purple.png"
       />
       <img
@@ -149,7 +216,7 @@ export const ProjectsHero: React.FC<ProjectsHeroProps> = ({
         width="900"
         height="900"
         decoding="async"
-        className="hero-bg-particle absolute -left-48 lg:-left-96 -bottom-32 lg:-bottom-72 -z-1 pointer-events-none select-none"
+        className="hero-bg-particle absolute -left-48 lg:-left-96 -bottom-32 lg:-bottom-72 z-0 pointer-events-none select-none opacity-50 md:opacity-90"
         src="/particle/blue.png"
       />
     </section>

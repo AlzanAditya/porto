@@ -13,116 +13,84 @@ export const SkillsSection: React.FC = () => {
 
   useGSAP(
     () => {
-      const mm = gsap.matchMedia();
-
-      mm.add(
-        {
-          isDesktop: "(min-width: 768px)",
-          isMobile: "(max-width: 767px)",
+      // Header animation
+      gsap.from(".why-header", {
+        scrollTrigger: {
+          trigger: ".why-header",
+          start: "top 75%",
+          toggleActions: "play none none none",
         },
-        (context) => {
-          const { isDesktop } = context.conditions as { isDesktop: boolean };
+        y: 40,
+        opacity: 0,
+        filter: "blur(10px)",
+        duration: 1,
+        ease: "power3.out",
+      });
 
-          if (isDesktop) {
-            gsap
-              .timeline({
-                scrollTrigger: {
-                  trigger: containerRef.current,
-                  start: "top 50%",
-                  toggleActions: "play none none none",
-                },
-              })
-              .from(".why-header", {
-                y: 40,
-                opacity: 0,
-                filter: "blur(10px)",
-                duration: 1,
-                ease: "power3.out",
-              })
-              .from(
-                ".why-avatar",
-                {
-                  y: 80,
-                  opacity: 0,
-                  filter: "blur(15px)",
-                  duration: 1.2,
-                  ease: "power4.out",
-                },
-                "-=0.6"
-              )
-              .from(
-                ".why-particle",
-                {
-                  scale: 0,
-                  opacity: 0,
-                  duration: 1.2,
-                  stagger: 0.1,
-                  ease: "back.out(1.7)",
-                },
-                "-=0.8"
-              )
-              .from(
-                ".why-card",
-                {
-                  y: 50,
-                  opacity: 0,
-                  scale: 0.9,
-                  rotationX: 15,
-                  stagger: 0.15,
-                  duration: 1,
-                  ease: "back.out(1.4)",
-                },
-                "-=0.8"
-              )
-              .fromTo(
-                ".why-card-icon",
-                { scale: 0, opacity: 0, rotation: -15 },
-                {
-                  scale: 1,
-                  opacity: 1,
-                  rotation: 0,
-                  stagger: 0.15,
-                  duration: 0.8,
-                  ease: "back.out(1.7)",
-                },
-                "-=0.7"
-              );
-          } else {
-            gsap.from(".why-header", {
-              scrollTrigger: {
-                trigger: ".why-header",
-                start: "top 70%",
-                toggleActions: "play none none none",
-              },
-              y: 30,
-              opacity: 0,
-              duration: 1,
-            });
-            gsap.from(".why-avatar", {
-              scrollTrigger: {
-                trigger: ".why-visual",
-                start: "top 70%",
-                toggleActions: "play none none none",
-              },
-              y: 50,
-              opacity: 0,
-              filter: "blur(10px)",
-              duration: 1,
-            });
-            gsap.from(".why-card", {
-              scrollTrigger: {
-                trigger: ".why-cards",
-                start: "top 70%",
-                toggleActions: "play none none none",
-              },
-              y: 40,
-              opacity: 0,
-              stagger: 0.15,
-              duration: 0.8,
-            });
-          }
+      // Visual stage (Avatar & Particles)
+      gsap
+        .timeline({
+          scrollTrigger: {
+            trigger: ".why-visual",
+            start: "top 75%",
+            toggleActions: "play none none none",
+          },
+        })
+        .from(".why-avatar", {
+          y: 70,
+          opacity: 0,
+          filter: "blur(12px)",
+          duration: 1.2,
+          ease: "power4.out",
+        })
+        .from(
+          ".why-particle",
+          {
+            scale: 0,
+            opacity: 0,
+            duration: 1,
+            stagger: 0.12,
+            ease: "back.out(1.7)",
+          },
+          "-=0.7"
+        );
+
+      // 4 Cards animate 1 by 1 as each card enters the viewport
+      gsap.utils.toArray<HTMLElement>(".why-card").forEach((card) => {
+        const icon = card.querySelector(".why-card-icon");
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: card,
+            start: "top 80%",
+            toggleActions: "play none none none",
+          },
+        });
+
+        tl.from(card, {
+          y: 40,
+          opacity: 0,
+          scale: 0.94,
+          duration: 0.8,
+          ease: "back.out(1.4)",
+          clearProps: "transform,opacity",
+        });
+
+        if (icon) {
+          tl.fromTo(
+            icon,
+            { scale: 0, opacity: 0, rotation: -15 },
+            {
+              scale: 1,
+              opacity: 1,
+              rotation: 0,
+              duration: 0.6,
+              ease: "back.out(1.7)",
+              clearProps: "transform,opacity",
+            },
+            "-=0.5"
+          );
         }
-      );
+      });
     },
     { scope: containerRef }
   );
@@ -226,45 +194,42 @@ export const SkillsSection: React.FC = () => {
 
       {/* Content Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-5">
-        {/* Visual Stage (Left) - Unclipped container allowing icons to break out over parent borders */}
-        <div className="why-visual h-[50vh] lg:h-auto lg:col-span-4 bg-card rounded-xl justify-center p-4 relative overflow-visible z-20">
-          {/* Inner clipped box only for the avatar character */}
-          <div className="relative h-full rounded-xl bg-linear-to-br from-primary/10 to-secondary/10 overflow-hidden">
+        {/* Visual Stage (Left) */}
+        <div className="why-visual h-[50vh] lg:h-auto lg:col-span-4 bg-card rounded-xl justify-center p-4">
+          <div className="relative h-full rounded-xl bg-linear-to-br from-primary/10 to-secondary/10">
             <img
               alt="Collaboration"
               loading="lazy"
               width="500"
               height="400"
-              className="why-avatar absolute inset-0 left-auto top-auto md:min-w-120 lg:min-w-89 max-w-79 2xl:min-w-96 2xl:max-w-96 object-contain z-10"
+              className="why-avatar absolute inset-0 left-auto top-auto md:min-w-120 lg:min-w-89 max-w-79 2xl:min-w-96 2xl:max-w-96"
               src="/avatar/why.png"
             />
+            <img
+              alt="particle"
+              loading="lazy"
+              width="400"
+              height="400"
+              className="why-particle absolute inset-0 right-auto -left-8 md:left-34 lg:-left-14 top-26 w-24"
+              src="/icons/github-logo.png"
+            />
+            <img
+              alt="particle"
+              loading="lazy"
+              width="400"
+              height="400"
+              className="why-particle absolute inset-0 right-auto left-6 md:left-48 lg:-left-5 top-9 md:top-6 w-18"
+              src="/icons/postman-logo.png"
+            />
+            <img
+              alt="particle"
+              loading="lazy"
+              width="400"
+              height="400"
+              className="why-particle absolute inset-0 right-auto left-12 md:left-64 lg:left-12 -top-6 md:-top-6 w-12 md:w-16"
+              src="/icons/notion-logo.png"
+            />
           </div>
-
-          {/* Floating Logos - Freely crossing and protruding outside the parent component's edges */}
-          <img
-            alt="github"
-            loading="lazy"
-            width="400"
-            height="400"
-            className="why-particle absolute -left-6 md:-left-8 lg:-left-12 top-24 md:top-28 w-20 md:w-24 lg:w-28 z-40 pointer-events-none drop-shadow-2xl select-none"
-            src="/icons/github-logo.png"
-          />
-          <img
-            alt="postman"
-            loading="lazy"
-            width="400"
-            height="400"
-            className="why-particle absolute left-6 md:left-10 lg:left-8 -top-4 md:-top-7 w-16 md:w-20 lg:w-22 z-40 pointer-events-none drop-shadow-2xl select-none"
-            src="/icons/postman-logo.png"
-          />
-          <img
-            alt="notion"
-            loading="lazy"
-            width="400"
-            height="400"
-            className="why-particle absolute -right-3 md:-right-6 lg:-right-6 top-8 md:top-4 w-14 md:w-16 lg:w-18 z-40 pointer-events-none drop-shadow-2xl select-none"
-            src="/icons/notion-logo.png"
-          />
         </div>
 
         {/* 4 Cards (Right) */}

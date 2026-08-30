@@ -1,6 +1,11 @@
-import React from "react";
+import React, { useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
 import { Project } from "../../types";
 import { useLanguage } from "../../context/LanguageContext";
+
+gsap.registerPlugin(ScrollTrigger);
 
 interface RecentProjectSectionProps {
   project: Project;
@@ -12,6 +17,50 @@ export const RecentProjectSection: React.FC<RecentProjectSectionProps> = ({
   onNavigate,
 }) => {
   const { lang, t } = useLanguage();
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useGSAP(
+    () => {
+      gsap
+        .timeline({
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 80%",
+            toggleActions: "play none none none",
+          },
+        })
+        .from(".recent-title", {
+          y: 40,
+          opacity: 0,
+          filter: "blur(10px)",
+          duration: 1.2,
+          delay: 1.5,
+          ease: "power4.out",
+        })
+        .from(
+          ".recent-desc",
+          {
+            y: 20,
+            opacity: 0,
+            duration: 0.8,
+            ease: "power3.out",
+          },
+          "-=0.8"
+        )
+        .from(
+          ".recent-project-card",
+          {
+            y: 50,
+            opacity: 0,
+            duration: 1,
+            stagger: 0.3,
+            ease: "power3.out",
+          },
+          "-=0.4"
+        );
+    },
+    { scope: sectionRef }
+  );
 
   const title = (lang === "id" ? project.title_id : project.title_en) || project.title;
   const overview = (lang === "id" ? project.overview_id : project.overview_en) || project.overview;
@@ -27,8 +76,9 @@ export const RecentProjectSection: React.FC<RecentProjectSectionProps> = ({
 
   return (
     <section
+      ref={sectionRef}
       id="recent-projects"
-      className="py-12 lg:py-20 px-4 md:px-12 lg:px-36 xl:px-48 2xl:container mx-auto overflow-x-hidden select-none"
+      className="py-12 lg:py-20 px-4 md:px-12 lg:px-36 xl:px-48 2xl:container mx-auto overflow-x-hidden select-none relative z-20 bg-background"
     >
       <div className="flex flex-col lg:flex-row lg:items-center justify-between mb-8 md:mb-12 lg:mb-20">
         <h2 className="recent-title font-semibold text-3xl md:text-5xl mb-2 lg:mb-0 leading-[1.2]">

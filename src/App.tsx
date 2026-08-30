@@ -104,7 +104,7 @@ function AppContent() {
   };
 
   return (
-    <div className="min-h-screen w-full overflow-x-hidden bg-background text-text-primary flex flex-col font-sans selection:bg-primary/20 selection:text-primary">
+    <div className="min-h-screen w-full overflow-x-clip bg-background text-text-primary flex flex-col font-sans selection:bg-primary/20 selection:text-primary">
       <CustomCursor />
       <Navbar currentPath={currentPath} onNavigate={navigate} />
       <div className="flex-1 w-full">{renderContent()}</div>

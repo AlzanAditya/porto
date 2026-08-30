@@ -105,12 +105,52 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onNavigate }) => {
             .from(".hero-particles, .hero-bg-particle", {
               scale: 0,
               opacity: 0,
-              duration: 1.5,
-              stagger: 0.2,
-              ease: "power2.out",
+              duration: 1.2,
+              stagger: 0.1,
+              ease: "back.out(1.7)",
+              delay: isMobile ? 0 : 0.8,
             });
         }
       );
+
+      gsap.to(".hero-particles, .hero-bg-particle", {
+        y: "random(-20, 20)",
+        x: "random(-15, 15)",
+        rotation: "random(-5, 5)",
+        duration: "random(3, 5)",
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut",
+        stagger: {
+          each: 0.2,
+          from: "random",
+        },
+      });
+
+      const handleMouseMove = (e: MouseEvent) => {
+        const { clientX, clientY } = e;
+        const xOffset = (clientX / window.innerWidth - 0.5) * 40;
+        const yOffset = (clientY / window.innerHeight - 0.5) * 40;
+
+        gsap.to(".hero-particles", {
+          x: (i) => xOffset * (i % 2 === 0 ? 1 : -1) * 0.5,
+          y: (i) => yOffset * (i % 3 === 0 ? 1 : -1) * 0.5,
+          duration: 1,
+          ease: "power2.out",
+          overwrite: "auto",
+        });
+
+        gsap.to(".hero-bg-particle", {
+          x: xOffset * 0.2,
+          y: yOffset * 0.2,
+          duration: 1.5,
+          ease: "power1.out",
+          overwrite: "auto",
+        });
+      };
+
+      window.addEventListener("mousemove", handleMouseMove);
+      return () => window.removeEventListener("mousemove", handleMouseMove);
     },
     { scope: containerRef }
   );
@@ -119,9 +159,9 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onNavigate }) => {
     <section
       ref={containerRef}
       id="home"
-      className="px-4 pt-6 md:pt-8 min-h-screen max-h-[112vh] md:max-h-[115vh] lg:max-h-[155vh] 2xl:max-h-[125vh] 2xl:container mx-auto relative overflow-y-clip select-none"
+      className="px-4 pt-6 md:pt-8 min-h-screen max-h-[112vh] md:max-h-[115vh] lg:max-h-[155vh] 2xl:max-h-[125vh] 2xl:container mx-auto relative overflow-hidden select-none isolate"
     >
-      <div className="flex flex-col items-center">
+      <div className="flex flex-col items-center relative z-10">
         {/* Availability Badge */}
         <div className="hero-badge flex items-center gap-3 px-4 py-2 border border-text-secondary/30 w-fit rounded-full">
           <span className="size-3 bg-primary rounded-full animate-pulse"></span>
@@ -284,14 +324,14 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onNavigate }) => {
         alt=""
         width="900"
         height="900"
-        className="hero-bg-particle absolute -right-48 lg:-right-96 bottom-48 lg:bottom-12 -z-1 pointer-events-none"
+        className="hero-bg-particle absolute -right-48 lg:-right-96 bottom-48 lg:bottom-12 z-0 pointer-events-none opacity-40 md:opacity-80"
         src="/particle/purple.png"
       />
       <img
         alt=""
         width="900"
         height="900"
-        className="hero-bg-particle absolute -left-48 lg:-left-96 -bottom-32 lg:-bottom-72 -z-1 pointer-events-none"
+        className="hero-bg-particle absolute -left-48 lg:-left-96 -bottom-32 lg:-bottom-72 z-0 pointer-events-none opacity-40 md:opacity-80"
         src="/particle/blue.png"
       />
     </section>

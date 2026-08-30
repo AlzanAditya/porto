@@ -10,7 +10,7 @@ export const translations = {
     "nav.switchLanguage": "Switch language",
 
     // Hero Section
-    "hero.availability": "Mahendra Arya | Available For Freelance",
+    "hero.availability": "Alzan Aditya | Available For Freelance",
     "hero.badge": "Available for Freelance & Project",
     "hero.greeting": "Hi, I'm",
     "hero.title": "Professional Website Developer & Creative Agency Founder",
@@ -30,13 +30,13 @@ export const translations = {
     "hero.roles.3": "Robotic Enthusiast",
 
     // About Preview Section (Home)
-    "about.badge": "Yoo! Call Me Arya",
+    "about.badge": "Yoo! Call Me Alzan",
     "about.heading1": "Hey,",
     "about.heading2": "Tech",
     "about.heading3": "Enthusiasts!",
     "about.header.title": "A Quick Glance of Me",
     "about.header.subtitle": "A brief overview of my background, focus, and passion for web development.",
-    "about.bio": "I'm Mahendra Arya, a web developer with over 3 years of experience building websites and digital systems. I don't just learn from theory—I've been actively working on real projects, handling diverse clients, and turning ideas into impactful digital products.",
+    "about.bio": "I'm Alzan Adytia Juniar, a web developer with over 3 years of experience building websites and digital systems. I don't just learn from theory—I've been actively working on real projects, handling diverse clients, and turning ideas into impactful digital products.",
     "about.p1": "I'm a software engineering student with over 3 years of experience as a web developer. I enjoy collaborating with teams and working closely with clients to build scalable digital solutions that help empower and grow their businesses.",
     "about.p2": "I love every part of the journey, learning new things and gaining experiences that continuously shape me into a better developer.",
     "about.tagDeveloper": "Full-Stack Web Developer",
@@ -196,6 +196,8 @@ export const translations = {
 
     // Blog Detail Page
     "blogDetail.breadcrumb.blog": "Blog",
+    "blogDetail.breadcrumbBlog": "Blog",
+    "blogDetail.breadcrumb": "Blog",
     "blogDetail.uploaded": "Uploaded",
     "blogDetail.by": "By",
     "blogDetail.shareLink": "Share Link",
@@ -227,9 +229,9 @@ export const translations = {
     "nav.switchLanguage": "Ganti bahasa",
 
     // Hero Section
-    "hero.availability": "Mahendra Arya | Siap Untuk Freelance",
+    "hero.availability": "Mahendra Arya | Siap Untuk Project",
     "hero.badge": "Tersedia untuk Freelance & Proyek",
-    "hero.greeting": "Halo, Saya",
+    "hero.greeting": "Halo, Panggil Saya Alzan",
     "hero.title": "Pengembang Website Profesional & Founder Agensi Kreatif",
     "hero.title1": "Pengembang",
     "hero.title2": "Website",
@@ -239,15 +241,15 @@ export const translations = {
     "hero.title6": "Creative Agency",
     "hero.subtitle": "Saya freelance web developer yang membangun solusi digital berskala tinggi untuk pertumbuhan ide dan bisnis Anda.",
     "hero.cta": "Mulai Diskusi",
-    "hero.ctaTalk": "Mulai Diskusi!",
-    "hero.ctaProjects": "Lihat Proyek Saya",
+    "hero.ctaTalk": "Yuk Diskusi!",
+    "hero.ctaProjects": "Proyek Saya",
     "hero.roles.0": "Solopreneur",
     "hero.roles.1": "Freelance Web Developer",
     "hero.roles.2": "Mahasiswa Rekayasa Perangkat Lunak",
     "hero.roles.3": "Penggiat Robotik",
 
     // About Preview Section (Home)
-    "about.badge": "Halo! Panggil Saya Arya",
+    "about.badge": "Halo! Saya Alzan",
     "about.heading1": "Halo,",
     "about.heading2": "Para Penggiat",
     "about.heading3": "Teknologi!",
@@ -274,15 +276,15 @@ export const translations = {
     "aboutPage.badge": "Tentang Saya",
     "aboutPage.hero.title1": "Halo,",
     "aboutPage.hero.title2": "Saya",
-    "aboutPage.hero.title3": "Mahendra",
-    "aboutPage.hero.title4": "Arya,",
+    "aboutPage.hero.title3": "Alzan",
+    "aboutPage.hero.title4": "Aditya,",
     "aboutPage.hero.title5": "Developer",
     "aboutPage.hero.title6": "di balik",
     "aboutPage.hero.title7": "setiap",
     "aboutPage.hero.title8": "karya",
     "aboutPage.hero.title9": "digital.",
     "aboutPage.getToKnowMe": "Mengenal Saya Lebih Dekat",
-    "aboutPage.bio1": "Saya Mahendra Arya, seorang web developer dengan pengalaman lebih dari 3 tahun dalam membangun website dan sistem solusi digital. Saya tidak sekadar belajar dari teori—saya aktif menggarap proyek-proyek riil, menangani berbagai kebutuhan klien, dan mewujudkan ide menjadi produk fungsional. Saya juga aktif dalam kompetisi teknologi, robotika, dan IoT yang terus mengasah kemampuan problem-solving saya.",
+    "aboutPage.bio1": "Saya Alzan Adytia Juniar, seorang web developer dengan pengalaman lebih dari 3 tahun dalam membangun website dan sistem solusi digital. Saya tidak sekadar belajar dari teori—saya aktif menggarap proyek-proyek riil, menangani berbagai kebutuhan klien, dan mewujudkan ide menjadi produk fungsional. Saya juga aktif dalam kompetisi teknologi, robotika, dan IoT yang terus mengasah kemampuan problem-solving saya.",
     "aboutPage.bio2": "Saya sangat menikmati proses membangun solusi mulai dari merumuskan alur sistem hingga menciptakan produk yang memberikan dampak nyata. Saya selalu ingin tahu, haus belajar, dan bersemangat mencari tantangan baru untuk terus bertumbuh.",
     "aboutPage.letsTalk": "Mulai Diskusi!",
     "aboutPage.readCv": "Lihat CV Saya",
@@ -413,6 +415,8 @@ export const translations = {
 
     // Blog Detail Page
     "blogDetail.breadcrumb.blog": "Blog",
+    "blogDetail.breadcrumbBlog": "Blog",
+    "blogDetail.breadcrumb": "Blog",
     "blogDetail.uploaded": "Diunggah",
     "blogDetail.by": "Oleh",
     "blogDetail.shareLink": "Bagikan Tautan",

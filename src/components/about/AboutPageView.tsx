@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
+import { motion, AnimatePresence } from "motion/react";
 import { SplitWords } from "../common/SplitWords";
 import { TextMarquee } from "../common/TextMarquee";
 import { useLanguage } from "../../context/LanguageContext";
@@ -135,85 +136,68 @@ export const AboutPageView: React.FC<AboutPageViewProps> = ({ onNavigate }) => {
         .from(
           ".hero-title .word",
           {
-            y: 60,
+            y: 40,
             opacity: 0,
-            filter: "blur(15px)",
+            filter: "blur(10px)",
             duration: 1.2,
-            stagger: 0.08,
+            stagger: 0.1,
             ease: "power4.out",
           },
-          "-=0.5"
+          "-=0.6"
+        )
+        .from(
+          ".hero-phone",
+          {
+            scale: 0.9,
+            opacity: 0,
+            filter: "blur(10px)",
+            duration: 1,
+            ease: "power3.out",
+          },
+          "-=0.8"
+        )
+        .from(
+          ".hero-avatar",
+          {
+            y: 60,
+            opacity: 0,
+            filter: "blur(10px)",
+            duration: 1.2,
+            ease: "power3.out",
+          },
+          "-=0.4"
         );
+
+      // Hero sliding windows
+      gsap.from(".slider-window", {
+        scrollTrigger: {
+          trigger: ".hero-images",
+          start: "top 70%",
+          toggleActions: "play none none none",
+        },
+        scale: 0.8,
+        delay: 0.6,
+        opacity: 0,
+        duration: 1,
+        stagger: 0.2,
+        ease: "back.out(1.7)",
+      });
 
       const mm = gsap.matchMedia();
       mm.add(
         {
-          isMobile: "(max-width: 767px)",
-          isDesktop: "(min-width: 768px)",
+          isMobile: "(max-width: 1023px)",
+          isDesktop: "(min-width: 1024px)",
         },
         (context) => {
-          const { isMobile } = context.conditions as { isMobile: boolean };
-
-          // Hero images & sliding window entrance (slider-window animates first, followed by phone and avatar)
-          gsap
-            .timeline({
-              scrollTrigger: {
-                trigger: ".hero-images",
-                start: "top 85%",
-                toggleActions: "play none none none",
-              },
-            })
-            .from(".slider-window", {
-              scale: 0.8,
-              opacity: 0,
-              duration: 1,
-              stagger: 0.2,
-              ease: "back.out(1.7)",
-            })
-            .from(
-              ".hero-phone",
-              {
-                y: 100,
-                opacity: 0,
-                duration: 1.2,
-                ease: "power4.out",
-              },
-              "-=0.4"
-            )
-            .from(
-              ".hero-avatar",
-              {
-                y: 80,
-                opacity: 0,
-                filter: "blur(15px)",
-                duration: 1.2,
-                ease: "power4.out",
-              },
-              "-=0.6"
-            );
-
-          gsap
-            .timeline({
-              scrollTrigger: {
-                trigger: ".hero-images",
-                start: isMobile ? "top 65%" : "top 85%",
-                toggleActions: "play none none none",
-              },
-            })
-            .from(".hero-bg-particle", {
-              scale: 0,
-              opacity: 0,
-              duration: 1.5,
-              stagger: 0.2,
-              ease: "power2.out",
-            });
+          const { isDesktop } = context.conditions as { isDesktop: boolean };
 
           // Section 1: About Me story (#about)
           gsap
             .timeline({
               scrollTrigger: {
                 trigger: "#about",
-                start: "top 70%",
+                start: isDesktop ? "top 70%" : "top 60%",
                 toggleActions: "play none none none",
               },
             })
@@ -221,38 +205,21 @@ export const AboutPageView: React.FC<AboutPageViewProps> = ({ onNavigate }) => {
               y: 40,
               opacity: 0,
               filter: "blur(10px)",
-              duration: 1,
-              stagger: 0.05,
-              ease: "power3.out",
+              duration: 1.2,
+              stagger: 0.1,
+              ease: "power4.out",
             })
             .from(
               ".about-content p",
               {
                 y: 30,
                 opacity: 0,
-                duration: 1,
+                filter: "blur(5px)",
+                duration: 0.8,
                 stagger: 0.2,
                 ease: "power3.out",
               },
               "-=0.6"
-            )
-            .to(
-              ".about-image-curtain",
-              {
-                xPercent: -100,
-                duration: 1.2,
-                ease: "power4.inOut",
-              },
-              "-=0.8"
-            )
-            .from(
-              ".about-image",
-              {
-                xPercent: 100,
-                duration: 1.2,
-                ease: "power4.inOut",
-              },
-              "<"
             )
             .from(
               ".about-btns",
@@ -262,7 +229,35 @@ export const AboutPageView: React.FC<AboutPageViewProps> = ({ onNavigate }) => {
                 duration: 0.8,
                 ease: "power3.out",
               },
-              "-=0.6"
+              "-=0.4"
+            )
+            .from(
+              ".about-image-wrapper",
+              {
+                y: 50,
+                opacity: 0,
+                duration: 1,
+                ease: "power3.out",
+              },
+              "-=0.4"
+            )
+            .to(
+              ".about-image-curtain",
+              {
+                yPercent: -100,
+                duration: 1.2,
+                ease: "power4.inOut",
+              },
+              "-=0.2"
+            )
+            .from(
+              ".about-image",
+              {
+                yPercent: 100,
+                duration: 1.2,
+                ease: "power4.inOut",
+              },
+              "<"
             );
 
           // Section 2: Background in Tech (#background)
@@ -275,11 +270,11 @@ export const AboutPageView: React.FC<AboutPageViewProps> = ({ onNavigate }) => {
               },
             })
             .from(".bg-title", {
-              y: 30,
+              y: 40,
               opacity: 0,
               filter: "blur(10px)",
-              duration: 1,
-              ease: "power3.out",
+              duration: 1.2,
+              ease: "power4.out",
             })
             .from(
               ".bg-desc",
@@ -289,7 +284,7 @@ export const AboutPageView: React.FC<AboutPageViewProps> = ({ onNavigate }) => {
                 duration: 0.8,
                 ease: "power3.out",
               },
-              "-=0.6"
+              "-=0.8"
             )
             .from(
               ".work-exp-item",
@@ -389,8 +384,8 @@ export const AboutPageView: React.FC<AboutPageViewProps> = ({ onNavigate }) => {
   return (
     <div ref={containerRef} className="min-h-screen overflow-x-clip">
       {/* SECTION 0: HERO */}
-      <section className="px-4 pt-6 md:pt-8 min-h-[80vh] md:min-h-screen max-h-[95vh] md:max-h-[115vh] lg:max-h-[130vh] 2xl:max-h-[110vh] 2xl:container mx-auto relative overflow-y-clip select-none">
-        <div className="flex flex-col items-center">
+      <section className="px-4 pt-6 md:pt-8 min-h-[80vh] md:min-h-screen max-h-[95vh] md:max-h-[115vh] lg:max-h-[130vh] 2xl:max-h-[110vh] 2xl:container mx-auto relative overflow-hidden select-none isolate">
+        <div className="flex flex-col items-center relative z-10">
           <div className="hero-badge flex items-center gap-3 px-4 py-2 border border-text-secondary/30 w-fit rounded-full">
             <span className="size-3 bg-primary rounded-full animate-pulse"></span>
             <strong className="font-medium text-sm md:text-lg">{t("aboutPage.badge")}</strong>
@@ -491,14 +486,14 @@ export const AboutPageView: React.FC<AboutPageViewProps> = ({ onNavigate }) => {
           alt=""
           width="900"
           height="900"
-          className="hero-bg-particle absolute -right-48 lg:-right-96 bottom-32 lg:-bottom-72 -z-1 pointer-events-none"
+          className="hero-bg-particle absolute -right-48 lg:-right-96 bottom-32 lg:-bottom-72 z-0 pointer-events-none opacity-40 md:opacity-80"
           src="/particle/purple.png"
         />
         <img
           alt=""
           width="900"
           height="900"
-          className="hero-bg-particle absolute -left-48 lg:-left-96 -bottom-32 lg:-bottom-72 -z-1 pointer-events-none"
+          className="hero-bg-particle absolute -left-48 lg:-left-96 -bottom-32 lg:-bottom-72 z-0 pointer-events-none opacity-40 md:opacity-80"
           src="/particle/blue.png"
         />
       </section>
@@ -681,13 +676,24 @@ export const AboutPageView: React.FC<AboutPageViewProps> = ({ onNavigate }) => {
                         </div>
                       </button>
                     </div>
-                    {openWorkExp === 0 && (
-                      <div className="overflow-hidden pt-4">
-                        <p className="text-text-secondary text-sm md:text-base font-medium border-foreground leading-relaxed">
-                          {t("aboutPage.exp1.desc")}
-                        </p>
-                      </div>
-                    )}
+                    <AnimatePresence initial={false}>
+                      {openWorkExp === 0 && (
+                        <motion.div
+                          key="exp-0"
+                          initial={{ height: 0, opacity: 0 }}
+                          animate={{ height: "auto", opacity: 1 }}
+                          exit={{ height: 0, opacity: 0 }}
+                          transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+                          className="overflow-hidden"
+                        >
+                          <div className="pt-4">
+                            <p className="text-text-secondary text-sm md:text-base font-medium border-foreground leading-relaxed">
+                              {t("aboutPage.exp1.desc")}
+                            </p>
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
                   </div>
                 </div>
 
@@ -738,13 +744,24 @@ export const AboutPageView: React.FC<AboutPageViewProps> = ({ onNavigate }) => {
                         </div>
                       </button>
                     </div>
-                    {openWorkExp === 1 && (
-                      <div className="overflow-hidden pt-4">
-                        <p className="text-text-secondary text-sm md:text-base font-medium border-foreground leading-relaxed">
-                          {t("aboutPage.exp2.desc")}
-                        </p>
-                      </div>
-                    )}
+                    <AnimatePresence initial={false}>
+                      {openWorkExp === 1 && (
+                        <motion.div
+                          key="exp-1"
+                          initial={{ height: 0, opacity: 0 }}
+                          animate={{ height: "auto", opacity: 1 }}
+                          exit={{ height: 0, opacity: 0 }}
+                          transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+                          className="overflow-hidden"
+                        >
+                          <div className="pt-4">
+                            <p className="text-text-secondary text-sm md:text-base font-medium border-foreground leading-relaxed">
+                              {t("aboutPage.exp2.desc")}
+                            </p>
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
                   </div>
                 </div>
 
@@ -795,13 +812,24 @@ export const AboutPageView: React.FC<AboutPageViewProps> = ({ onNavigate }) => {
                         </div>
                       </button>
                     </div>
-                    {openWorkExp === 2 && (
-                      <div className="overflow-hidden pt-4">
-                        <p className="text-text-secondary text-sm md:text-base font-medium border-foreground leading-relaxed">
-                          {t("aboutPage.exp3.desc")}
-                        </p>
-                      </div>
-                    )}
+                    <AnimatePresence initial={false}>
+                      {openWorkExp === 2 && (
+                        <motion.div
+                          key="exp-2"
+                          initial={{ height: 0, opacity: 0 }}
+                          animate={{ height: "auto", opacity: 1 }}
+                          exit={{ height: 0, opacity: 0 }}
+                          transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+                          className="overflow-hidden"
+                        >
+                          <div className="pt-4">
+                            <p className="text-text-secondary text-sm md:text-base font-medium border-foreground leading-relaxed">
+                              {t("aboutPage.exp3.desc")}
+                            </p>
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
                   </div>
                 </div>
               </div>
