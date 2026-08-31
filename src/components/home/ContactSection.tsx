@@ -109,28 +109,28 @@ export const ContactSection: React.FC = () => {
 
   const socials = [
     {
-      name: "Mahendra Arya",
+      name: "Alzan Adytia J.",
       type: "linkedin",
       icon: null,
-      url: "https://www.linkedin.com/in/karyasite-12a6a130b/",
+      url: "https://linkedin.com/in/alzanadytiajuniar",
     },
     {
-      name: "aryndraa",
+      name: "AlzanAditya",
       type: "github",
       icon: "/icons/github-logo.png",
-      url: "https://github.com/aryndraa",
+      url: "https://github.com/AlzanAditya",
     },
     {
-      name: "karyasite",
+      name: "@alzanaditya",
       type: "tiktok",
       icon: "/icons/tiktok.png",
-      url: "https://www.tiktok.com/@karyasite",
+      url: "https://www.tiktok.com/@alzanaditya",
     },
     {
-      name: "karyasite",
+      name: "@alzanaditya",
       type: "instagram",
       icon: "/icons/instagram.png",
-      url: "https://www.instagram.com/karyasite/",
+      url: "https://www.instagram.com/alzanaditya",
     },
   ];
 
@@ -146,7 +146,7 @@ export const ContactSection: React.FC = () => {
           <div className="flex flex-col gap-4 items-center">
             <div className="p-3 w-fit bg-linear-to-r from-primary/10 to-secondary/10 rounded-full">
               <img
-                alt="Mahendra Arya"
+                alt="Alzan Adytia J."
                 loading="lazy"
                 width="100"
                 height="100"
@@ -179,7 +179,7 @@ export const ContactSection: React.FC = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center cursor-pointer font-medium gap-2 group transition-all duration-300 ease-in-out bg-gradient-to-br from-primary to-secondary text-white px-6 btn-hover py-2.5 rounded-full"
-                href={`mailto:aryacoder1102@gmail.com?subject=Contact from ${encodeURIComponent(
+                href={`mailto:alzanadytia.j@gmail.com?subject=Contact from ${encodeURIComponent(
                   email
                 )}&body=${encodeURIComponent(message)}`}
               >

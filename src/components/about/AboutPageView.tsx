@@ -439,7 +439,7 @@ export const AboutPageView: React.FC<AboutPageViewProps> = ({ onNavigate }) => {
             width="910"
             height="1000"
             className="hero-avatar absolute inset-0 object-contain scale-150 md:scale-112 lg:scale-100 -translate-x-2 lg:translate-x-48 2xl:translate-x-70 translate-y-2 lg:-translate-y-41"
-            src="/avatar/about.png"
+            src="/avatar/about.webp"
           />
 
           {/* Right Slider Window */}
@@ -1005,7 +1005,7 @@ export const AboutPageView: React.FC<AboutPageViewProps> = ({ onNavigate }) => {
                 rel="noopener noreferrer"
                 data-cursor="visit"
                 className="p-4 flex flex-col gap-10 btn-hover rounded-xl group transition-all duration-300 bg-card hover:bg-white"
-                href="https://www.linkedin.com/in/karyasite-12a6a130b/"
+                href="https://linkedin.com/in/alzanadytiajuniar"
               >
                 <div className="flex items-center justify-between">
                   <div className="relative w-8 h-8 flex items-center justify-center">
@@ -1038,7 +1038,7 @@ export const AboutPageView: React.FC<AboutPageViewProps> = ({ onNavigate }) => {
                   </div>
                 </div>
                 <div>
-                  <h3 className="font-medium md:text-lg text-text-primary">Mahendra Arya</h3>
+                  <h3 className="font-medium md:text-lg text-text-primary">Alzan Adytia J.</h3>
                 </div>
               </a>
             </div>
@@ -1050,12 +1050,12 @@ export const AboutPageView: React.FC<AboutPageViewProps> = ({ onNavigate }) => {
                 rel="noopener noreferrer"
                 data-cursor="visit"
                 className="p-4 flex flex-col gap-10 btn-hover rounded-xl group transition-all duration-300 bg-card hover:bg-white"
-                href="https://github.com/aryndraa"
+                href="https://github.com/AlzanAditya"
               >
                 <div className="flex items-center justify-between">
                   <div className="relative w-8 h-8 flex items-center justify-center">
                     <img
-                      alt="aryndraa"
+                      alt="AlzanAditya"
                       className="object-contain w-full h-full"
                       src="/icons/github-logo.png"
                     />
@@ -1076,7 +1076,7 @@ export const AboutPageView: React.FC<AboutPageViewProps> = ({ onNavigate }) => {
                   </div>
                 </div>
                 <div>
-                  <h3 className="font-medium md:text-lg text-text-primary">aryndraa</h3>
+                  <h3 className="font-medium md:text-lg text-text-primary">AlzanAditya</h3>
                 </div>
               </a>
             </div>
@@ -1088,12 +1088,12 @@ export const AboutPageView: React.FC<AboutPageViewProps> = ({ onNavigate }) => {
                 rel="noopener noreferrer"
                 data-cursor="visit"
                 className="p-4 flex flex-col gap-10 btn-hover rounded-xl group transition-all duration-300 bg-card hover:bg-white"
-                href="https://www.tiktok.com/@karyasite"
+                href="https://www.tiktok.com/@alzanaditya"
               >
                 <div className="flex items-center justify-between">
                   <div className="relative w-8 h-8 flex items-center justify-center">
                     <img
-                      alt="karyasite"
+                      alt="@alzanaditya"
                       className="object-contain w-full h-full"
                       src="/icons/tiktok.png"
                     />
@@ -1114,7 +1114,7 @@ export const AboutPageView: React.FC<AboutPageViewProps> = ({ onNavigate }) => {
                   </div>
                 </div>
                 <div>
-                  <h3 className="font-medium md:text-lg text-text-primary">karyasite</h3>
+                  <h3 className="font-medium md:text-lg text-text-primary">@alzanaditya</h3>
                 </div>
               </a>
             </div>
@@ -1126,12 +1126,12 @@ export const AboutPageView: React.FC<AboutPageViewProps> = ({ onNavigate }) => {
                 rel="noopener noreferrer"
                 data-cursor="visit"
                 className="p-4 flex flex-col gap-10 btn-hover rounded-xl group transition-all duration-300 bg-card hover:bg-white"
-                href="https://www.instagram.com/karyasite/"
+                href="https://www.instagram.com/alzanaditya"
               >
                 <div className="flex items-center justify-between">
                   <div className="relative w-8 h-8 flex items-center justify-center">
                     <img
-                      alt="karyasite"
+                      alt="@alzanaditya"
                       className="object-contain w-full h-full"
                       src="/icons/instagram.png"
                     />
@@ -1152,7 +1152,7 @@ export const AboutPageView: React.FC<AboutPageViewProps> = ({ onNavigate }) => {
                   </div>
                 </div>
                 <div>
-                  <h3 className="font-medium md:text-lg text-text-primary">karyasite</h3>
+                  <h3 className="font-medium md:text-lg text-text-primary">@alzanaditya</h3>
                 </div>
               </a>
             </div>

@@ -1,6 +1,8 @@
 {
-  "name": "Karyasite",
+  "name": "PORTO V5",
   "description": "Personal portfolio, showcases, project catalog, and tech blog website",
   "requestFramePermissions": [],
-  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
 }

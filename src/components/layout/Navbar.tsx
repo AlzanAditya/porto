@@ -32,7 +32,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath, onNavigate }) => {
             className="object-cover rounded-lg size-10 md:size-12 shadow-md border-4 border-white"
             src="/logo.png"
           />
-          <strong className="text-lg md:text-xl font-semibold tracking-tight">KARYASITE</strong>
+          <strong className="text-lg md:text-xl font-semibold tracking-tight">ZANXA STUDIO</strong>
         </a>
 
         {/* Right side navigation buttons & Menu */}

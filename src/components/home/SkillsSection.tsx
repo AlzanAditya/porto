@@ -203,7 +203,7 @@ export const SkillsSection: React.FC = () => {
               width="500"
               height="400"
               className="why-avatar absolute inset-0 left-auto top-auto md:min-w-120 lg:min-w-89 max-w-79 2xl:min-w-96 2xl:max-w-96"
-              src="/avatar/why.png"
+              src="/avatar/why.webp"
             />
             <img
               alt="particle"

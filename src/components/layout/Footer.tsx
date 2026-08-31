@@ -78,7 +78,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center cursor-pointer font-medium gap-2 group transition-all duration-300 ease-in-out bg-gradient-to-br from-primary to-secondary text-white rounded-full shrink-0"
-              href={`mailto:aryacoder1102@gmail.com?subject=Project%20Inquiry&body=${encodeURIComponent(
+              href={`mailto:alzanadytia.j@gmail.com?subject=Project%20Inquiry&body=${encodeURIComponent(
                 projectIdea
               )}`}
             >
@@ -139,7 +139,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
             />
             <div>
               <strong className="text-lg font-semibold block text-text-primary">
-                Mahendra Arya | Karyasite
+                Alzan Adytia J. | ZANXA STUDIO
               </strong>
               <p className="text-sm text-text-secondary">{t("footer.status")}</p>
             </div>

@@ -1,11 +1,11 @@
 import { WorkExperience, Achievement, Education, TechItem } from '../types';
 
 export const personalInfo = {
-  name: 'Mahendra Arya',
-  brandName: 'KARYASITE',
-  badge: 'Mahendra Arya | Available For Freelance',
-  badge_id: 'Mahendra Arya | Tersedia untuk Freelance',
-  badge_en: 'Mahendra Arya | Available For Freelance',
+  name: 'Alzan Adytia J.',
+  brandName: 'ZANXA STUDIO',
+  badge: 'Alzan Aditya | Available For Freelance',
+  badge_id: 'Alzan Aditya | Tersedia untuk Freelance',
+  badge_en: 'Alzan Aditya | Available For Freelance',
   role: 'Professional Website Developer & Creative Agency Founder',
   role_id: 'Pengembang Website Profesional & Founder Agensi Kreatif',
   role_en: 'Professional Website Developer & Creative Agency Founder',
@@ -22,17 +22,18 @@ export const personalInfo = {
   bio_en:
     "I'm a software engineering student with over 3 years of experience as a web developer. I enjoy collaborating with teams and working closely with clients to build scalable digital solutions that help empower and grow their businesses.\n\nI love every part of the journey, learning new things and gaining experiences that continuously shape me into a better developer.",
   shortBio:
-    "I'm Mahendra Arya, a web developer with over 3 years of experience building websites and digital solutions. I didn't just learn from theory—I've been actively working on real projects, handling different clients, and turning ideas into impactful digital products.",
+    "I'm Alzan Adytia J., a web developer with over 3 years of experience building websites and digital solutions. I didn't just learn from theory—I've been actively working on real projects, handling different clients, and turning ideas into impactful digital products.",
   shortBio_id:
-    "Saya Mahendra Arya, seorang web developer dengan pengalaman lebih dari 3 tahun dalam membangun website dan solusi digital. Saya tidak hanya belajar dari teori—saya aktif mengerjakan proyek nyata, menangani berbagai klien, dan mengubah ide menjadi produk digital yang berdampak nyata.",
+    "Saya Alzan Adytia J., seorang web developer dengan pengalaman lebih dari 3 tahun dalam membangun website dan solusi digital. Saya tidak hanya belajar dari teori—saya aktif mengerjakan proyek nyata, menangani berbagai klien, dan mengubah ide menjadi produk digital yang berdampak nyata.",
   shortBio_en:
-    "I'm Mahendra Arya, a web developer with over 3 years of experience building websites and digital solutions. I didn't just learn from theory—I've been actively working on real projects, handling different clients, and turning ideas into impactful digital products.",
-  avatar: '/avatar/BebArya.webp',
-  email: 'aryacoder1102@gmail.com',
+    "I'm Alzan Adytia J., a web developer with over 3 years of experience building websites and digital solutions. I didn't just learn from theory—I've been actively working on real projects, handling different clients, and turning ideas into impactful digital products.",
+  avatar: '/avatar/photo-profile.jpeg',
+  email: 'alzanadytia.j@gmail.com',
   whatsapp: '+6281234567890',
-  instagram: 'https://instagram.com/aryndraa',
-  github: 'https://github.com/aryndraa',
-  tiktok: 'https://tiktok.com/@karyasite',
+  instagram: 'https://instagram.com/alzanaditya',
+  github: 'https://github.com/AlzanAditya',
+  tiktok: 'https://tiktok.com/@alzanaditya',
+  linkedin: 'https://linkedin.com/in/alzanadytiajuniar',
   location: 'Bali, Indonesia',
   stats: [
     {

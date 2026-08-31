@@ -451,7 +451,7 @@ export const BlogDetailPage: React.FC<BlogDetailPageProps> = ({
   };
 
   const categoryName = blog.category || blog.tags?.[0] || "Freelance";
-  const authorName = blog.author?.name || "Mahendra Arya";
+  const authorName = blog.author?.name || "Alzan Aditya";
   const authorRole = blog.author?.role || "Web Developer";
   const authorAvatar = blog.author?.avatar || "/avatar/photo-profile.jpeg";
 

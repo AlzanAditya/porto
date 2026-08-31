@@ -12,7 +12,7 @@ interface LanguageContextType {
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
-const STORAGE_KEY = "karyasite_lang";
+const STORAGE_KEY = "alzanaditya_lang";
 
 /**
  * Sensor to detect if the user is from Indonesia

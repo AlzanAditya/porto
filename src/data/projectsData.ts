@@ -24,8 +24,8 @@ export const projectsData: Project[] = [
       "Online Reservation System",
     ],
     demoUrl: undefined,
-    githubUrl: "https://github.com/aryndraa/taksu-explore",
-    sourceCodeUrl: "https://github.com/aryndraa/taksu-explore",
+    githubUrl: "https://github.com/AlzanAditya/taksu-explore",
+    sourceCodeUrl: "https://github.com/AlzanAditya/taksu-explore",
     images: [
       "/projects/Taksu Explore - Tour & Travel Booking/cover.png",
       "/projects/Taksu Explore - Tour & Travel Booking/content-1.png",
@@ -39,11 +39,11 @@ export const projectsData: Project[] = [
     collaborators_en: "2 Collaborators",
     authors: [
       {
-        name: "Mahendra Arya",
+        name: "Alzan Aditya",
         role: "Web Developer",
         role_id: "Pengembang Web",
         role_en: "Web Developer",
-        instagram: "karyasite",
+        instagram: "alzanaditya",
       },
       {
         name: "Ryan Permana",
@@ -95,8 +95,8 @@ export const projectsData: Project[] = [
       "Business Operations",
     ],
     demoUrl: "",
-    githubUrl: "https://github.com/aryndraa/taksu-erp",
-    sourceCodeUrl: "https://github.com/aryndraa/taksu-erp",
+    githubUrl: "https://github.com/AlzanAditya/taksu-erp",
+    sourceCodeUrl: "https://github.com/AlzanAditya/taksu-erp",
     images: [
       "/projects/Taksu Explore - Travel Operational System/cover.png",
       "/projects/Taksu Explore - Travel Operational System/content-1.png",
@@ -110,11 +110,11 @@ export const projectsData: Project[] = [
     collaborators_en: "1 Collaborator",
     authors: [
       {
-        name: "Mahendra Arya",
+        name: "Alzan Aditya",
         role: "System Developer",
         role_id: "Pengembang Sistem",
         role_en: "System Developer",
-        instagram: "karyasite",
+        instagram: "alzanaditya",
       },
     ],
     techStack: [
@@ -181,11 +181,11 @@ export const projectsData: Project[] = [
     collaborators_en: "4 Collaborators",
     authors: [
       {
-        name: "Mahendra Arya",
+        name: "Alzan Aditya",
         role: "UI Designer",
         role_id: "Desainer UI",
         role_en: "UI Designer",
-        instagram: "karyasite",
+        instagram: "alzanaditya",
       },
       {
         name: "Ryan Permana",
@@ -245,8 +245,8 @@ export const projectsData: Project[] = [
       "Modern Web Platform",
     ],
     demoUrl: undefined,
-    githubUrl: "https://github.com/aryndraa/perpusku-web",
-    sourceCodeUrl: "https://github.com/aryndraa/perpusku-web",
+    githubUrl: "https://github.com/AlzanAditya/perpusku-web",
+    sourceCodeUrl: "https://github.com/AlzanAditya/perpusku-web",
     images: [
       "/projects/Perpusku - Smart Library Platform/cover.png",
       "/projects/Perpusku - Smart Library Platform/content-1.png",
@@ -259,11 +259,11 @@ export const projectsData: Project[] = [
     collaborators_en: "1 Collaborator",
     authors: [
       {
-        name: "Mahendra Arya",
+        name: "Alzan Aditya",
         role: "Full Stack Developer",
         role_id: "Pengembang Full Stack",
         role_en: "Full Stack Developer",
-        instagram: "karyasite",
+        instagram: "alzanaditya",
       },
     ],
     techStack: [
@@ -309,8 +309,8 @@ export const projectsData: Project[] = [
       "Available For Production",
     ],
     demoUrl: "https://luxury-surya-nitya.vercel.app/",
-    githubUrl: "https://github.com/aryndraa/luxury-surya-nitya",
-    sourceCodeUrl: "https://github.com/aryndraa/luxury-surya-nitya",
+    githubUrl: "https://github.com/AlzanAditya/luxury-surya-nitya",
+    sourceCodeUrl: "https://github.com/AlzanAditya/luxury-surya-nitya",
     images: [
       "/projects/Luxury Surya Nitya/cover.jpeg",
       "/projects/Luxury Surya Nitya/content-1.jpeg",
@@ -323,11 +323,11 @@ export const projectsData: Project[] = [
     collaborators_en: "1 Collaborator",
     authors: [
       {
-        name: "Mahendra Arya",
+        name: "Alzan Aditya",
         role: "Web Developer",
         role_id: "Pengembang Web",
         role_en: "Web Developer",
-        instagram: "karyasite",
+        instagram: "alzanaditya",
       },
     ],
     techStack: [
@@ -374,8 +374,8 @@ export const projectsData: Project[] = [
       "Cashier Panel",
     ],
     demoUrl: "",
-    githubUrl: "https://github.com/aryndraa/pos-restaurant",
-    sourceCodeUrl: "https://github.com/aryndraa/pos-restaurant",
+    githubUrl: "https://github.com/AlzanAditya/pos-restaurant",
+    sourceCodeUrl: "https://github.com/AlzanAditya/pos-restaurant",
     images: [
       "/projects/Point Of Sale Restaurant/cover.jpeg",
       "/projects/Point Of Sale Restaurant/content-1.jpeg",
@@ -388,11 +388,11 @@ export const projectsData: Project[] = [
     collaborators_en: "1 Collaborator",
     authors: [
       {
-        name: "Mahendra Arya",
+        name: "Alzan Aditya",
         role: "System Developer",
         role_id: "Pengembang Sistem",
         role_en: "System Developer",
-        instagram: "karyasite",
+        instagram: "alzanaditya",
       },
     ],
     techStack: [
@@ -439,8 +439,8 @@ export const projectsData: Project[] = [
       "HealthTech",
     ],
     demoUrl: "",
-    githubUrl: "https://github.com/aryndraa/DocLink",
-    sourceCodeUrl: "https://github.com/aryndraa/DocLink",
+    githubUrl: "https://github.com/AlzanAditya/DocLink",
+    sourceCodeUrl: "https://github.com/AlzanAditya/DocLink",
     images: [
       "/projects/DocLink - Doctor & Patient Appointment/cover.jpeg",
       "/projects/DocLink - Doctor & Patient Appointment/content-1.jpeg",
@@ -453,11 +453,11 @@ export const projectsData: Project[] = [
     collaborators_en: "3 Collaborators",
     authors: [
       {
-        name: "Mahendra Arya",
+        name: "Alzan Aditya",
         role: "Full Stack Developer",
         role_id: "Pengembang Full Stack",
         role_en: "Full Stack Developer",
-        instagram: "karyasite",
+        instagram: "alzanaditya",
       },
       {
         name: "Ryan Permana",
@@ -521,8 +521,8 @@ export const projectsData: Project[] = [
       "ERP",
     ],
     demoUrl: "",
-    githubUrl: "https://github.com/aryndraa/perpusku-erp",
-    sourceCodeUrl: "https://github.com/aryndraa/perpusku-erp",
+    githubUrl: "https://github.com/AlzanAditya/perpusku-erp",
+    sourceCodeUrl: "https://github.com/AlzanAditya/perpusku-erp",
     images: [
       "/projects/Perpusku - ERP Library Management System/cover.png",
       "/projects/Perpusku - ERP Library Management System/content-1.png",
@@ -536,11 +536,11 @@ export const projectsData: Project[] = [
     collaborators_en: "1 Collaborator",
     authors: [
       {
-        name: "Mahendra Arya",
+        name: "Alzan Aditya",
         role: "System Developer",
         role_id: "Pengembang Sistem",
         role_en: "System Developer",
-        instagram: "karyasite",
+        instagram: "alzanaditya",
       },
     ],
     techStack: [
@@ -587,8 +587,8 @@ export const projectsData: Project[] = [
       "Movie Listings",
     ],
     demoUrl: "https://timedoor-academy-final-project.vercel.app/",
-    githubUrl: "https://github.com/aryndraa/timedoor-academy-final-project",
-    sourceCodeUrl: "https://github.com/aryndraa/timedoor-academy-final-project",
+    githubUrl: "https://github.com/AlzanAditya/timedoor-academy-final-project",
+    sourceCodeUrl: "https://github.com/AlzanAditya/timedoor-academy-final-project",
     images: [
       "/projects/Aurora Cinema - Ticket Booking/cover.jpeg",
     ],
@@ -598,11 +598,11 @@ export const projectsData: Project[] = [
     collaborators_en: "1 Collaborator",
     authors: [
       {
-        name: "Mahendra Arya",
+        name: "Alzan Aditya",
         role: "Web Developer",
         role_id: "Pengembang Web",
         role_en: "Web Developer",
-        instagram: "karyasite",
+        instagram: "alzanaditya",
       },
     ],
     techStack: [
