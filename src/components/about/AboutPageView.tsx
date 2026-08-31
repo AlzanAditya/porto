@@ -764,74 +764,6 @@ export const AboutPageView: React.FC<AboutPageViewProps> = ({ onNavigate }) => {
                     </AnimatePresence>
                   </div>
                 </div>
-
-                {/* Exp 3 */}
-                <div className="work-exp-item">
-                  <div
-                    data-cursor="Read"
-                    onClick={() => setOpenWorkExp(openWorkExp === 2 ? null : 2)}
-                    className="bg-white cursor-pointer flex flex-col group btn-hover transition duration-400 ease-in-out p-5 rounded-xl hover:bg-foreground"
-                  >
-                    <div className="flex items-center justify-between">
-                      <div className="flex flex-col gap-2">
-                        <p className="font-medium text-text-secondary text-sm md:text-base">
-                          {t("aboutPage.exp3.period")}
-                        </p>
-                        <div className="flex flex-col md:flex-row md:items-center md:gap-3">
-                          <h4 className="text-lg md:text-xl font-medium">{t("aboutPage.exp3.company")}</h4>
-                          <p className="text-xl hidden md:block">•</p>
-                          <strong className="text-base md:text-lg text-text-secondary font-medium">
-                            {t("aboutPage.exp3.role")}
-                          </strong>
-                        </div>
-                      </div>
-                      <button
-                        className={`flex items-center cursor-pointer font-medium gap-2 group transition-all duration-300 ease-in-out size-9 md:size-12 rounded-full btn-hover transition-colors duration-300 ${
-                          openWorkExp === 2
-                            ? "bg-gradient-to-br from-primary to-secondary text-white"
-                            : "bg-foreground text-text-primary"
-                        }`}
-                      >
-                        <div className="flex items-center justify-center w-full">
-                          <svg
-                            stroke="currentColor"
-                            fill="currentColor"
-                            strokeWidth="0"
-                            viewBox="0 0 448 512"
-                            className="text-lg md:text-2xl"
-                            height="1em"
-                            width="1em"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            {openWorkExp === 2 ? (
-                              <path d="M432 256c0 17.7-14.3 32-32 32L48 288c-17.7 0-32-14.3-32-32s14.3-32 32-32l352 0c17.7 0 32 14.3 32 32z"></path>
-                            ) : (
-                              <path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 144L48 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l144 0 0 144c0 17.7 14.3 32 32 32s32-14.3 32-32l0-144 144 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-144 0 0-144z"></path>
-                            )}
-                          </svg>
-                        </div>
-                      </button>
-                    </div>
-                    <AnimatePresence initial={false}>
-                      {openWorkExp === 2 && (
-                        <motion.div
-                          key="exp-2"
-                          initial={{ height: 0, opacity: 0 }}
-                          animate={{ height: "auto", opacity: 1 }}
-                          exit={{ height: 0, opacity: 0 }}
-                          transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-                          className="overflow-hidden"
-                        >
-                          <div className="pt-4">
-                            <p className="text-text-secondary text-sm md:text-base font-medium border-foreground leading-relaxed">
-                              {t("aboutPage.exp3.desc")}
-                            </p>
-                          </div>
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
-                  </div>
-                </div>
               </div>
             </div>
           </div>
@@ -923,11 +855,11 @@ export const AboutPageView: React.FC<AboutPageViewProps> = ({ onNavigate }) => {
             </div>
           </div>
 
-          {/* Education (Col 4) */}
-          <div className="lg:col-span-4">
+          {/* Education (Col 8) */}
+          <div className="lg:col-span-8">
             <div className="p-4 py-5 md:p-5 bg-card rounded-xl h-full">
               <h3 className="text-2xl font-medium mb-6 md:mb-8">{t("aboutPage.educationTitle")}</h3>
-              <div className="flex flex-col gap-3">
+              <div className="grid sm:grid-cols-2 gap-3">
                 <div className="edu-item bg-white p-5 rounded-xl transition-colors duration-300 group">
                   <p className="font-medium text-text-secondary text-sm md:text-base mb-3">
                     {t("aboutPage.edu1.period")}
@@ -956,7 +888,8 @@ export const AboutPageView: React.FC<AboutPageViewProps> = ({ onNavigate }) => {
             </div>
           </div>
 
-          {/* Photo Gallery Carousel (Col 4) */}
+          {/* TEMPORARILY DISABLED: Photo Gallery Carousel (Col 4) */}
+          {/*
           <div className="lg:col-span-4">
             <div
               ref={galleryRef}
@@ -977,6 +910,7 @@ export const AboutPageView: React.FC<AboutPageViewProps> = ({ onNavigate }) => {
               </div>
             </div>
           </div>
+          */}
         </div>
       </section>
 
