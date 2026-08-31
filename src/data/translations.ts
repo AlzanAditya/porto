@@ -10,7 +10,7 @@ export const translations = {
     "nav.switchLanguage": "Switch language",
 
     // Hero Section
-    "hero.availability": "Alzan Aditya | Available For Freelance",
+    "hero.availability": "Available For Freelance",
     "hero.badge": "Available for Freelance & Project",
     "hero.greeting": "Hi, I'm",
     "hero.title": "Professional Website Developer & Creative Agency Founder",
@@ -36,7 +36,7 @@ export const translations = {
     "about.heading3": "Enthusiasts!",
     "about.header.title": "A Quick Glance of Me",
     "about.header.subtitle": "A brief overview of my background, focus, and passion for web development.",
-    "about.bio": "I'm Alzan Adytia J., a web developer with over 3 years of experience building websites and digital systems. I don't just learn from theory—I've been actively working on real projects, handling diverse clients, and turning ideas into impactful digital products.",
+    "about.bio": "I'm Alzan Aditya, a web developer with over 3 years of experience building websites and digital systems. I don't just learn from theory—I've been actively working on real projects, handling diverse clients, and turning ideas into impactful digital products.",
     "about.p1": "I'm a software engineering student with over 3 years of experience as a web developer. I enjoy collaborating with teams and working closely with clients to build scalable digital solutions that help empower and grow their businesses.",
     "about.p2": "I love every part of the journey, learning new things and gaining experiences that continuously shape me into a better developer.",
     "about.tagDeveloper": "Full-Stack Web Developer",
@@ -65,7 +65,7 @@ export const translations = {
     "aboutPage.hero.title8": "the",
     "aboutPage.hero.title9": "build.",
     "aboutPage.getToKnowMe": "Get To Know Me",
-    "aboutPage.bio1": "I'm Alzan Adytia J., a web developer with over 3 years of experience building websites and digital solutions. I didn't just learn from theory I've been actively working on real projects, handling different clients, and turning ideas into functional products. Along the way, I've also been involved in tech competitions, robotics, and IoT, which helped me sharpen my problem-solving skills and think beyond just code.",
+    "aboutPage.bio1": "I'm Alzan Aditya, a web developer with over 3 years of experience building websites and digital solutions. I didn't just learn from theory I've been actively working on real projects, handling different clients, and turning ideas into functional products. Along the way, I've also been involved in tech competitions, robotics, and IoT, which helped me sharpen my problem-solving skills and think beyond just code.",
     "aboutPage.bio2": "I enjoy the whole process of building from figuring out how things work to creating solutions that actually make an impact. I'm always curious, always learning, and always looking for new challenges that push me to grow, both as a developer and as a person.",
     "aboutPage.letsTalk": "Let's Talk!",
     "aboutPage.readCv": "Read My CV",
@@ -215,7 +215,7 @@ export const translations = {
     "footer.subtitle": "Have an exciting project or idea in mind? Let's connect and make it happen.",
     "footer.quickLinks": "Quick Links",
     "footer.contact": "Contact",
-    "footer.rights": "2026 ZANXA STUDIO. All Rights Reserved.",
+    "footer.rights": "2026 Alzan Aditya. All Rights Reserved.",
   },
 
   id: {
@@ -229,7 +229,7 @@ export const translations = {
     "nav.switchLanguage": "Ganti bahasa",
 
     // Hero Section
-    "hero.availability": "Alzan Aditya | Siap Untuk Freelance",
+    "hero.availability": "Siap Untuk Freelance",
     "hero.badge": "Tersedia untuk Freelance & Proyek",
     "hero.greeting": "Halo, Saya",
     "hero.title": "Pengembang Website Profesional & Founder Agensi Kreatif",
@@ -240,9 +240,9 @@ export const translations = {
     "hero.title5": "Founder",
     "hero.title6": "Creative Agency",
     "hero.subtitle": "Saya freelance web developer yang membangun solusi digital berskala tinggi untuk pertumbuhan ide dan bisnis Anda.",
-    "hero.cta": "Mulai Diskusi",
-    "hero.ctaTalk": "Mulai Diskusi!",
-    "hero.ctaProjects": "Lihat Proyek Saya",
+    "hero.cta": "Yuk Diskusi",
+    "hero.ctaTalk": "Yuk Diskusi!",
+    "hero.ctaProjects": "Proyek Saya",
     "hero.roles.0": "Solopreneur",
     "hero.roles.1": "Freelance Web Developer",
     "hero.roles.2": "Mahasiswa Rekayasa Perangkat Lunak",
@@ -255,7 +255,7 @@ export const translations = {
     "about.heading3": "Teknologi!",
     "about.header.title": "Sekilas Tentang Saya",
     "about.header.subtitle": "Gambaran singkat tentang latar belakang, fokus, dan dedikasi saya di dunia web development.",
-    "about.bio": "Saya Alzan Adytia J., seorang web developer dengan pengalaman lebih dari 3 tahun dalam membangun website dan sistem digital. Saya tidak hanya belajar dari teori—saya aktif mengerjakan proyek nyata, menangani berbagai klien, dan mengubah ide menjadi produk digital yang berdampak nyata.",
+    "about.bio": "Saya Alzan Aditya, seorang web developer dengan pengalaman lebih dari 3 tahun dalam membangun website dan sistem digital. Saya tidak hanya belajar dari teori—saya aktif mengerjakan proyek nyata, menangani berbagai klien, dan mengubah ide menjadi produk digital yang berdampak nyata.",
     "about.p1": "Saya seorang mahasiswa rekayasa perangkat lunak dengan pengalaman lebih dari 3 tahun sebagai pengembang web. Saya senang berkolaborasi dengan tim dan bekerja sama erat dengan klien untuk membangun solusi digital terukur yang memberdayakan dan mengembangkan bisnis mereka.",
     "about.p2": "Saya menikmati setiap bagian dari perjalanan ini, mempelajari hal-hal baru dan memperoleh pengalaman yang terus membentuk saya menjadi pengembang yang lebih baik.",
     "about.tagDeveloper": "Full-Stack Web Developer",
@@ -284,9 +284,9 @@ export const translations = {
     "aboutPage.hero.title8": "karya",
     "aboutPage.hero.title9": "digital.",
     "aboutPage.getToKnowMe": "Mengenal Saya Lebih Dekat",
-    "aboutPage.bio1": "Saya Alzan Adytia J., seorang web developer dengan pengalaman lebih dari 3 tahun dalam membangun website dan sistem solusi digital. Saya tidak sekadar belajar dari teori—saya aktif menggarap proyek-proyek riil, menangani berbagai kebutuhan klien, dan mewujudkan ide menjadi produk fungsional. Saya juga aktif dalam kompetisi teknologi, robotika, dan IoT yang terus mengasah kemampuan problem-solving saya.",
+    "aboutPage.bio1": "Saya Alzan Aditya, seorang web developer dengan pengalaman lebih dari 3 tahun dalam membangun website dan sistem solusi digital. Saya tidak sekadar belajar dari teori—saya aktif menggarap proyek-proyek riil, menangani berbagai kebutuhan klien, dan mewujudkan ide menjadi produk fungsional. Saya juga aktif dalam kompetisi teknologi, robotika, dan IoT yang terus mengasah kemampuan problem-solving saya.",
     "aboutPage.bio2": "Saya sangat menikmati proses membangun solusi mulai dari merumuskan alur sistem hingga menciptakan produk yang memberikan dampak nyata. Saya selalu ingin tahu, haus belajar, dan bersemangat mencari tantangan baru untuk terus bertumbuh.",
-    "aboutPage.letsTalk": "Mulai Diskusi!",
+    "aboutPage.letsTalk": "Yuk Diskusi!",
     "aboutPage.readCv": "Lihat CV Saya",
     "aboutPage.bgTitle": "Latar Belakang Saya di Dunia Teknologi",
     "aboutPage.bgSubtitle": "Menampilkan perjalanan karier, perangkat kerja, dan pencapaian yang membentuk dedikasi saya.",
@@ -434,7 +434,7 @@ export const translations = {
     "footer.subtitle": "Punya proyek atau ide menarik? Mari berdiskusi dan wujudkan bersama.",
     "footer.quickLinks": "Tautan Cepat",
     "footer.contact": "Kontak",
-    "footer.rights": "2026 ZANXA STUDIO. All Rights Reserved.",
+    "footer.rights": "2026 Alzan Aditya. Hak Cipta Dilindungi.",
   },
 } as const;
 

@@ -37,16 +37,18 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
   const projectCover =
     project.images && project.images.length > 0
       ? project.images[0]
-      : "/banner.webp";
+      : "/banner.jpg";
 
   useSeo({
-    title: `${title} | Project Case Study - Alzan Adytia J.`,
+    title: `${title} | Project Case Study - Alzan Aditya`,
     description: overview,
     image: projectCover,
     url: `/projects/${project.slug}`,
     type: "article",
     tags: project.tags,
-    author: project.authors?.[0]?.name || "Alzan Adytia J.",
+    category: project.category,
+    publishedTime: project.uploadedDate,
+    author: project.authors?.[0]?.name || "Alzan Aditya",
   });
 
   useEffect(() => {

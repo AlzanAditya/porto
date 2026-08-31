@@ -1,11 +1,11 @@
 import { WorkExperience, Achievement, Education, TechItem } from '../types';
 
 export const personalInfo = {
-  name: 'Alzan Adytia J.',
-  brandName: 'ZANXA STUDIO',
-  badge: 'Alzan Aditya | Available For Freelance',
-  badge_id: 'Alzan Aditya | Tersedia untuk Freelance',
-  badge_en: 'Alzan Aditya | Available For Freelance',
+  name: 'Alzan Aditya',
+  brandName: 'Alzan Aditya',
+  badge: 'Available For Freelance',
+  badge_id: 'Siap Untuk Freelance',
+  badge_en: 'Available For Freelance',
   role: 'Professional Website Developer & Creative Agency Founder',
   role_id: 'Pengembang Website Profesional & Founder Agensi Kreatif',
   role_en: 'Professional Website Developer & Creative Agency Founder',
@@ -16,17 +16,17 @@ export const personalInfo = {
     "Saya seorang freelance web developer yang membangun solusi digital berskala tinggi sesuai ide bisnis Anda.",
   heroSubtitle_en:
     "I'm a freelance web developer building digital solutions that scale with your ideas.",
-  bio: "I'm a software engineering student with over 3 years of experience as a web developer. I enjoy collaborating with teams and working closely with clients to build scalable digital solutions that help empower and grow their businesses.\n\nI love every part of the journey, learning new things and gaining experiences that continuously shape me into a better developer.",
+  bio: "Welcome to my portfolio, the personal portfolio of Alzan Aditya, a professional website developer and freelancer. Explore my portfolio projects, achievements, awards, and technical blog insights.",
   bio_id:
-    "Saya adalah mahasiswa rekayasa perangkat lunak dengan pengalaman lebih dari 3 tahun sebagai pengembang web. Saya senang berkolaborasi dengan tim dan bekerja sama secara erat dengan klien untuk membangun solusi digital yang skalabel guna memberdayakan dan mengembangkan bisnis mereka.\n\nSaya menikmati setiap bagian dari perjalanan ini, mempelajari hal-hal baru dan mengumpulkan pengalaman yang terus membentuk saya menjadi developer yang lebih baik.",
+    "Selamat datang di portofolio saya, portofolio pribadi Alzan Aditya, seorang pengembang website profesional dan freelancer. Jelajahi proyek portofolio, pencapaian, penghargaan, dan wawasan blog teknis saya.",
   bio_en:
-    "I'm a software engineering student with over 3 years of experience as a web developer. I enjoy collaborating with teams and working closely with clients to build scalable digital solutions that help empower and grow their businesses.\n\nI love every part of the journey, learning new things and gaining experiences that continuously shape me into a better developer.",
+    "Welcome to my portfolio, the personal portfolio of Alzan Aditya, a professional website developer and freelancer. Explore my portfolio projects, achievements, awards, and technical blog insights.",
   shortBio:
-    "I'm Alzan Adytia J., a web developer with over 3 years of experience building websites and digital solutions. I didn't just learn from theory—I've been actively working on real projects, handling different clients, and turning ideas into impactful digital products.",
+    "Welcome to my portfolio, the personal portfolio of Alzan Aditya, a professional website developer and freelancer. Explore my portfolio projects, achievements, awards, and technical blog insights.",
   shortBio_id:
-    "Saya Alzan Adytia J., seorang web developer dengan pengalaman lebih dari 3 tahun dalam membangun website dan solusi digital. Saya tidak hanya belajar dari teori—saya aktif mengerjakan proyek nyata, menangani berbagai klien, dan mengubah ide menjadi produk digital yang berdampak nyata.",
+    "Selamat datang di portofolio saya, portofolio pribadi Alzan Aditya, seorang pengembang website profesional dan freelancer.",
   shortBio_en:
-    "I'm Alzan Adytia J., a web developer with over 3 years of experience building websites and digital solutions. I didn't just learn from theory—I've been actively working on real projects, handling different clients, and turning ideas into impactful digital products.",
+    "Welcome to my portfolio, the personal portfolio of Alzan Aditya, a professional website developer and freelancer. Explore my portfolio projects, achievements, awards, and technical blog insights.",
   avatar: '/avatar/photo-profile.jpeg',
   email: 'alzanadytia.j@gmail.com',
   whatsapp: '+6281234567890',

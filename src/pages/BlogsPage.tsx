@@ -19,10 +19,10 @@ export const BlogsPage: React.FC<BlogsPageProps> = ({ blogs, onNavigate }) => {
   const { lang } = useLanguage();
 
   useSeo({
-    title: "Tech Blogs & Freelance Guides | Alzan Adytia J.",
+    title: "Tech Blogs & Freelance Guides | Alzan Aditya",
     description:
-      "Articles, client communication tips, tech stack recommendations, and insights into modern web development by Alzan Adytia J.",
-    image: "/banner.webp",
+      "Articles, client communication tips, tech stack recommendations, and insights into modern web development by Alzan Aditya.",
+    image: "/banner.jpg",
     url: "/blogs",
     type: "blog",
   });

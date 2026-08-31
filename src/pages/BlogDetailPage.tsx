@@ -29,17 +29,18 @@ export const BlogDetailPage: React.FC<BlogDetailPageProps> = ({
   const content = (lang === "id" ? blog.content_id : blog.content_en) || blog.content;
   const excerpt = (lang === "id" ? blog.excerpt_id : blog.excerpt_en) || blog.excerpt;
 
-  const blogCover = blog.coverImage || "/banner.webp";
+  const blogCover = blog.coverImage || "/banner.jpg";
 
   useSeo({
-    title: `${title} | Alzan Adytia J.`,
+    title: `${title} | Alzan Aditya`,
     description: excerpt || content.slice(0, 160),
     image: blogCover,
     url: `/blogs/${blog.slug}`,
     type: "article",
     tags: blog.tags,
+    category: blog.category,
     publishedTime: blog.publishDate,
-    author: blog.author?.name || "Alzan Adytia J.",
+    author: blog.author?.name || "Alzan Aditya",
   });
 
   const relatedBlogs = allBlogs

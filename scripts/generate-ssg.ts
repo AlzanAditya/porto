@@ -22,8 +22,8 @@ interface PageMeta {
 }
 
 const DIST_DIR = path.resolve(process.cwd(), "dist");
-const BASE_URL = process.env.SITE_URL || "https://karyasite.com";
-const DEFAULT_4_3_IMAGE = "/banner.webp";
+const BASE_URL = process.env.SITE_URL || "https://alzan.zanxa.studio";
+const DEFAULT_4_3_IMAGE = "/banner.jpg";
 
 function escapeHtml(str: string): string {
   return str
@@ -83,13 +83,14 @@ function generateHtmlWithMeta(baseHtml: string, meta: PageMeta): string {
     <link rel="image_src" href="${absoluteImageUrl}" />
 
     <!-- Open Graph / Facebook / WhatsApp -->
-    <meta property="og:site_name" content="${escapeHtml(personalInfo.name)} - Portfolio & Blog" />
+    <meta property="og:site_name" content="${escapeHtml(personalInfo.name)} | Personal Portfolio & Blog Insights" />
     <meta property="og:title" content="${fullTitle}" />
     <meta property="og:description" content="${cleanDesc}" />
     <meta property="og:type" content="${pageType}" />
     <meta property="og:url" content="${canonicalUrl}" />
     <meta property="og:image" content="${absoluteImageUrl}" />
     <meta property="og:image:secure_url" content="${absoluteImageUrl}" />
+    <meta property="og:image:type" content="${absoluteImageUrl.endsWith('.png') ? 'image/png' : absoluteImageUrl.endsWith('.webp') ? 'image/webp' : 'image/jpeg'}" />
     <meta property="og:image:alt" content="${imageAlt}" />
     <meta property="og:image:width" content="${meta.imageWidth || 1200}" />
     <meta property="og:image:height" content="${meta.imageHeight || (meta.image === DEFAULT_4_3_IMAGE ? 900 : 630)}" />
@@ -190,12 +191,13 @@ export function runSSG() {
   pages.push({
     route: "/",
     outputPath: ["index.html"],
-    title: `${personalInfo.name} | ${personalInfo.role}`,
-    description: personalInfo.bio.slice(0, 190) + "...",
+    title: "Alzan Aditya | Personal Portfolio & Blog Insights",
+    description:
+      "Welcome to my portfolio, the personal portfolio of Alzan Aditya, a professional website developer and freelancer. Explore my portfolio projects, achievements, awards, and technical blog insights.",
     image: DEFAULT_4_3_IMAGE,
     imageWidth: 1200,
     imageHeight: 900,
-    imageAlt: `${personalInfo.name} Portfolio Cover 4:3`,
+    imageAlt: "Alzan Aditya Portfolio Cover 4:3",
     type: "website",
     author: personalInfo.name,
     jsonLd: {
@@ -205,7 +207,8 @@ export function runSSG() {
       url: BASE_URL,
       image: ensureAbsoluteUrl(personalInfo.avatar),
       jobTitle: personalInfo.role,
-      description: personalInfo.shortBio,
+      description:
+        "Welcome to my portfolio, the personal portfolio of Alzan Aditya, a professional website developer and freelancer. Explore my portfolio projects, achievements, awards, and technical blog insights.",
       sameAs: [
         personalInfo.github,
         personalInfo.instagram,

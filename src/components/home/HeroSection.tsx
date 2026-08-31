@@ -204,7 +204,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onNavigate }) => {
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center cursor-pointer font-medium gap-2 group transition-all duration-300 ease-in-out bg-gradient-to-br from-primary to-secondary text-white px-4 py-3 lg:pl-2 lg:py-2 rounded-xl btn-hover"
-            href="mailto:aryacoder1102@gmail.com"
+            href="mailto:alzanadytia.j@gmail.com"
           >
             <div className="flex gap-3 items-center">
               <span className="lg:p-2 rounded-lg transition-all duration-300 ease-in-out group-hover:bg-white/40">

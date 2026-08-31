@@ -24,10 +24,10 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({
   const { lang, t } = useLanguage();
 
   useSeo({
-    title: "Featured Projects & Systems | Alzan Adytia J.",
+    title: "Featured Projects & Systems | Alzan Aditya",
     description:
-      "Explore high-impact web applications, tour & travel reservation systems, smart library platforms, and ERP management platforms built by Alzan Adytia J.",
-    image: "/banner.webp",
+      "Explore high-impact web applications, tour & travel reservation systems, smart library platforms, and ERP management platforms built by Alzan Aditya.",
+    image: "/banner.jpg",
     url: "/projects",
     type: "website",
   });

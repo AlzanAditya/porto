@@ -23,10 +23,10 @@ export const HomePage: React.FC<HomePageProps> = ({
   onNavigate,
 }) => {
   useSeo({
-    title: "Alzan Adytia J. | Professional Website Developer & Creative Agency Founder",
+    title: "Alzan Aditya | Personal Portfolio & Blog Insights",
     description:
-      "Personal portfolio, showcases, project catalog, and tech blog website of Alzan Adytia J. Building modern digital solutions that scale with your ideas.",
-    image: "/banner.webp",
+      "Welcome to my portfolio, the personal portfolio of Alzan Aditya, a professional website developer and freelancer. Explore my portfolio projects, achievements, awards, and technical blog insights.",
+    image: "/banner.jpg",
     url: "/",
     type: "website",
   });

@@ -139,7 +139,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
             />
             <div>
               <strong className="text-lg font-semibold block text-text-primary">
-                Alzan Adytia J. | ZANXA STUDIO
+                Alzan Adytia J.
               </strong>
               <p className="text-sm text-text-secondary">{t("footer.status")}</p>
             </div>
