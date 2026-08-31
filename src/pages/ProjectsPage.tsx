@@ -8,6 +8,7 @@ import { ProjectsHero } from "../components/projects/ProjectsHero";
 import { RecentProjectSection } from "../components/projects/RecentProjectSection";
 import { ProjectGridItem } from "../components/projects/ProjectGridItem";
 import { ComingSoonCard } from "../components/projects/ComingSoonCard";
+import { useSeo } from "../hooks/useSeo";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -21,6 +22,15 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({
   onNavigate,
 }) => {
   const { lang, t } = useLanguage();
+
+  useSeo({
+    title: "Featured Projects & Systems | Alzan Adytia J.",
+    description:
+      "Explore high-impact web applications, tour & travel reservation systems, smart library platforms, and ERP management platforms built by Alzan Adytia J.",
+    image: "/banner.webp",
+    url: "/projects",
+    type: "website",
+  });
   const [selectedCategory, setSelectedCategory] = useState<string>("All");
   const gridSectionRef = useRef<HTMLElement>(null);
 

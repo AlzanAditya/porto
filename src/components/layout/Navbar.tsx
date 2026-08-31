@@ -30,7 +30,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath, onNavigate }) => {
             width="100"
             height="100"
             className="object-cover rounded-lg size-10 md:size-12 shadow-md border-4 border-white"
-            src="/logo.png"
+            src="/logo.webp"
           />
           <strong className="text-lg md:text-xl font-semibold tracking-tight">ZANXA STUDIO</strong>
         </a>

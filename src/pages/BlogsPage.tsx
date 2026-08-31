@@ -6,6 +6,7 @@ import { Blog } from "../types";
 import { useLanguage } from "../context/LanguageContext";
 import { BlogsHero } from "../components/blogs/BlogsHero";
 import { BlogCardItem } from "../components/blogs/BlogCardItem";
+import { useSeo } from "../hooks/useSeo";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -16,6 +17,15 @@ interface BlogsPageProps {
 
 export const BlogsPage: React.FC<BlogsPageProps> = ({ blogs, onNavigate }) => {
   const { lang } = useLanguage();
+
+  useSeo({
+    title: "Tech Blogs & Freelance Guides | Alzan Adytia J.",
+    description:
+      "Articles, client communication tips, tech stack recommendations, and insights into modern web development by Alzan Adytia J.",
+    image: "/banner.webp",
+    url: "/blogs",
+    type: "blog",
+  });
   const [isHeroComplete, setIsHeroComplete] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
 

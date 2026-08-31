@@ -6,6 +6,7 @@ import { Blog, BlogContentBlock } from "../types";
 import { useLanguage } from "../context/LanguageContext";
 import { BlogCardItem } from "../components/blogs/BlogCardItem";
 import { ChevronRight, Link as LinkIcon, Check } from "lucide-react";
+import { useSeo } from "../hooks/useSeo";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -26,6 +27,20 @@ export const BlogDetailPage: React.FC<BlogDetailPageProps> = ({
 
   const title = (lang === "id" ? blog.title_id : blog.title_en) || blog.title;
   const content = (lang === "id" ? blog.content_id : blog.content_en) || blog.content;
+  const excerpt = (lang === "id" ? blog.excerpt_id : blog.excerpt_en) || blog.excerpt;
+
+  const blogCover = blog.coverImage || "/banner.webp";
+
+  useSeo({
+    title: `${title} | Alzan Adytia J.`,
+    description: excerpt || content.slice(0, 160),
+    image: blogCover,
+    url: `/blogs/${blog.slug}`,
+    type: "article",
+    tags: blog.tags,
+    publishedTime: blog.publishDate,
+    author: blog.author?.name || "Alzan Adytia J.",
+  });
 
   const relatedBlogs = allBlogs
     .filter((b) => b.id !== blog.id && b.slug !== blog.slug)

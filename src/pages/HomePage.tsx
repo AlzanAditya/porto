@@ -9,6 +9,7 @@ import { ShowcaseSection } from "../components/home/ShowcaseSection";
 import { ContactSection } from "../components/home/ContactSection";
 import { RecentBlogsSection } from "../components/home/RecentBlogsSection";
 import { Project, Blog } from "../types";
+import { useSeo } from "../hooks/useSeo";
 
 interface HomePageProps {
   projects: Project[];
@@ -21,6 +22,14 @@ export const HomePage: React.FC<HomePageProps> = ({
   blogs,
   onNavigate,
 }) => {
+  useSeo({
+    title: "Alzan Adytia J. | Professional Website Developer & Creative Agency Founder",
+    description:
+      "Personal portfolio, showcases, project catalog, and tech blog website of Alzan Adytia J. Building modern digital solutions that scale with your ideas.",
+    image: "/banner.webp",
+    url: "/",
+    type: "website",
+  });
   return (
     <main className="flex flex-col w-full overflow-x-clip">
       <HeroSection onNavigate={onNavigate} />

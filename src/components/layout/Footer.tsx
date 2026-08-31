@@ -135,7 +135,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               width="60"
               height="60"
               className="object-cover rounded-full size-14 shadow-md border-2 border-white"
-              src="/logo.png"
+              src="/logo.webp"
             />
             <div>
               <strong className="text-lg font-semibold block text-text-primary">

@@ -1,11 +1,21 @@
 import React from "react";
 import { AboutPageView } from "../components/about/AboutPageView";
+import { useSeo } from "../hooks/useSeo";
 
 interface AboutPageProps {
   onNavigate: (path: string) => void;
 }
 
 export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
+  useSeo({
+    title: "About Me | Alzan Adytia J. - Web Developer",
+    description:
+      "Learn more about Alzan Adytia J., a passionate web developer and software engineering student building scalable web applications and digital products.",
+    image: "/banner.webp",
+    url: "/about",
+    type: "profile",
+  });
+
   return <AboutPageView onNavigate={onNavigate} />;
 };
 

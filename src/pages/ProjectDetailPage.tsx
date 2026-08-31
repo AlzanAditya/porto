@@ -10,6 +10,7 @@ import { ProjectDetailOverview } from "../components/projects/ProjectDetailOverv
 import { ProjectDetailSidebar } from "../components/projects/ProjectDetailSidebar";
 import { ProjectCollaboratorsModal } from "../components/projects/ProjectCollaboratorsModal";
 import { ProjectImageLightbox } from "../components/projects/ProjectImageLightbox";
+import { useSeo } from "../hooks/useSeo";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -32,6 +33,21 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
 
   const title = (lang === "id" ? project.title_id : project.title_en) || project.title;
   const overview = (lang === "id" ? project.overview_id : project.overview_en) || project.overview;
+
+  const projectCover =
+    project.images && project.images.length > 0
+      ? project.images[0]
+      : "/banner.webp";
+
+  useSeo({
+    title: `${title} | Project Case Study - Alzan Adytia J.`,
+    description: overview,
+    image: projectCover,
+    url: `/projects/${project.slug}`,
+    type: "article",
+    tags: project.tags,
+    author: project.authors?.[0]?.name || "Alzan Adytia J.",
+  });
 
   useEffect(() => {
     window.scrollTo(0, 0);
