@@ -117,7 +117,7 @@ export const ContactSection: React.FC = () => {
     {
       name: "AlzanAditya",
       type: "github",
-      icon: "/icons/github-logo.png",
+      icon: "/logos/github.png",
       url: "https://github.com/AlzanAditya",
     },
     {

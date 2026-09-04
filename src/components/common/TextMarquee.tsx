@@ -1,10 +1,12 @@
 import React from "react";
 
 const MARQUEE_ITEMS = [
-  { text: "Solopreneur", star: "/particle/star-purple.svg" },
-  { text: "Freelance Web Developer", star: "/particle/star-blue.svg" },
-  { text: "Software engineer student", star: "/particle/star-purple.svg" },
-  { text: "Robotic Enthusiast", star: "/particle/star-blue.svg" },
+  { text: "Website Developer", star: "/particle/star-purple.svg" },
+  { text: "Businesses System Builder", star: "/particle/star-blue.svg" },
+  { text: "Content Creator", star: "/particle/star-purple.svg" },
+  { text: "Website Developer", star: "/particle/star-blue.svg" },
+  { text: "Businesses System Builder", star: "/particle/star-purple.svg" },
+  { text: "Content Creator", star: "/particle/star-blue.svg" },
 ];
 
 export const TextMarquee: React.FC = () => {

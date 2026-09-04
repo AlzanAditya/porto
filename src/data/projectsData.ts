@@ -81,9 +81,9 @@ export const projectsData: Project[] = [
       "Panel Admin Taksu Explore adalah sistem manajemen operasional lengkap yang dibuat untuk menyederhanakan dan mengotomatiskan operasional bisnis travel dalam satu platform terpusat. Memungkinkan admin mengelola paket tour, layanan transportasi, pemesanan, penjadwalan, dan koordinasi agen secara efisien, serta mengelola konten web seperti blog dan galeri.",
     overview_en:
       "The Taksu Explore Admin Panel is a comprehensive management system built to simplify and streamline travel business operations in one centralized platform. It enables administrators to manage tour packages, transportation services, bookings, schedules, and agent coordination efficiently, while also providing tools to maintain website content.",
-    category: "Dashboard System",
-    category_id: "Sistem Dashboard",
-    category_en: "Dashboard System",
+    category: "Business System",
+    category_id: "Business System",
+    category_en: "Business System",
     tags: [
       "Travel Management System",
       "Booking Management",
@@ -358,9 +358,9 @@ export const projectsData: Project[] = [
       "Sistem POS Restoran lengkap untuk mengelola seluruh operasional restoran melalui tiga panel utama: Admin, Kasir, dan Dapur (Kitchen Display System). Mendukung pesanan real-time, manajemen menu & voucher, pencatatan transaksi cepat, dan pemantauan laporan penjualan harian.",
     overview_en:
       "This Restaurant POS system provides a complete solution for managing restaurant operations through three main panels: Admin, Cashier, and Kitchen. It supports real-time order processing, menu management, voucher handling, and fast, accurate transaction recording.",
-    category: "Dashboard System",
-    category_id: "Sistem Dashboard",
-    category_en: "Dashboard System",
+    category: "Business System",
+    category_id: "Business System",
+    category_en: "Business System",
     tags: [
       "Laravel 12",
       "Real-Time Order",
@@ -427,9 +427,9 @@ export const projectsData: Project[] = [
       "DocLink adalah solusi digital inovatif yang dirancang untuk meningkatkan efisiensi rumah sakit dan klinik dengan menyederhanakan manajemen jadwal temu janji pasien dan dokter. Mempermudah penjadwalan, koordinasi poliklinik, dan rekam medis secara terorganisir.",
     overview_en:
       "DocLink is a powerful digital solution designed to elevate hospital performance by streamlining the management of patient–doctor appointments across Indonesia. It simplifies scheduling, improves coordination, and ensures that patient and doctor management run efficiently.",
-    category: "Dashboard System",
-    category_id: "Sistem Dashboard",
-    category_en: "Dashboard System",
+    category: "Business System",
+    category_id: "Business System",
+    category_en: "Business System",
     tags: [
       "Appointment Booking System",
       "Patient Management",
@@ -506,9 +506,9 @@ export const projectsData: Project[] = [
       "Sistem ERP Manajemen Perpustakaan modern yang dibangun dengan Laravel 12 dan Filament v3. Menawarkan arsitektur multi-role untuk mengelola koleksi buku, data keanggotaan, sirkulasi peminjaman dan pengembalian, kalkulasi denda, serta reservasi ruangan perpustakaan.",
     overview_en:
       "A modern Library Management System built with Laravel 12 and Filament v3, designed to streamline and optimize library operations through a powerful multi-role architecture, handling book collections, memberships, borrowing, fines, and room reservations.",
-    category: "Dashboard System",
-    category_id: "Sistem Dashboard",
-    category_en: "Dashboard System",
+    category: "Business System",
+    category_id: "Business System",
+    category_en: "Business System",
     tags: [
       "Admin Panel",
       "CRUD",

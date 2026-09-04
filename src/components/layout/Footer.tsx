@@ -8,42 +8,53 @@ gsap.registerPlugin(ScrollTrigger);
 
 interface FooterProps {
   onNavigate: (path: string) => void;
+  currentPath?: string;
 }
 
-export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
+export const Footer: React.FC<FooterProps> = ({ onNavigate, currentPath }) => {
   const [projectIdea, setProjectIdea] = useState("");
   const containerRef = useRef<HTMLElement>(null);
   const { t } = useLanguage();
 
   useGSAP(
     () => {
-      gsap
-        .timeline({
+      // Ensure initial visibility before animation or if ScrollTrigger doesn't fire
+      const ctx = gsap.context(() => {
+        gsap.timeline({
           scrollTrigger: {
             trigger: containerRef.current,
-            start: "top 70%",
+            start: "top 85%",
             toggleActions: "play none none none",
+            refreshPriority: -1,
+            onRefresh: (self) => {
+              // If footer is already visible in viewport on mount, play immediately
+              if (self.progress > 0) {
+                gsap.set([".footer-content", ".footer-text"], {
+                  opacity: 1,
+                  y: 0,
+                  scale: 1,
+                  clearProps: "transform,opacity",
+                });
+              }
+            },
           },
         })
-        .from(".footer-content", {
-          y: 60,
-          opacity: 0,
-          scale: 0.95,
-          duration: 1.2,
-          ease: "power3.out",
-        })
-        .from(
+        .fromTo(
+          ".footer-content",
+          { y: 50, opacity: 0, scale: 0.96 },
+          { y: 0, opacity: 1, scale: 1, duration: 1.1, ease: "power3.out" }
+        )
+        .fromTo(
           ".footer-text",
-          {
-            y: 30,
-            opacity: 0,
-            duration: 1,
-            ease: "power3.out",
-          },
+          { y: 25, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.9, ease: "power3.out" },
           "-=0.6"
         );
+      }, containerRef);
+
+      return () => ctx.revert();
     },
-    { scope: containerRef }
+    { scope: containerRef, dependencies: [currentPath] }
   );
 
   const handleNav = (e: React.MouseEvent, path: string) => {

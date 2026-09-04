@@ -211,7 +211,7 @@ export const SkillsSection: React.FC = () => {
               width="400"
               height="400"
               className="why-particle absolute inset-0 right-auto -left-8 md:left-34 lg:-left-14 top-26 w-24"
-              src="/icons/github-logo.png"
+              src="/logos/github.png"
             />
             <img
               alt="particle"
@@ -219,7 +219,7 @@ export const SkillsSection: React.FC = () => {
               width="400"
               height="400"
               className="why-particle absolute inset-0 right-auto left-6 md:left-48 lg:-left-5 top-9 md:top-6 w-18"
-              src="/icons/postman-logo.png"
+              src="/logos/postman.png"
             />
             <img
               alt="particle"
@@ -227,7 +227,7 @@ export const SkillsSection: React.FC = () => {
               width="400"
               height="400"
               className="why-particle absolute inset-0 right-auto left-12 md:left-64 lg:left-12 -top-6 md:-top-6 w-12 md:w-16"
-              src="/icons/notion-logo.png"
+              src="/logos/notion.png"
             />
           </div>
         </div>

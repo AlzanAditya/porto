@@ -2,8 +2,7 @@
 
 @font-face {
   font-family: "Satoshi";
-  src: url("/font/Satoshi_Variable.woff2") format("woff2"),
-       url("/font/Satoshi_Variable-s.p.0we6-2px855vh.woff2") format("woff2");
+  src: url("/fonts/Satoshi_Variable.woff2") format("woff2");
   font-weight: 300 900;
   font-style: normal;
   font-display: swap;
@@ -11,8 +10,7 @@
 
 @font-face {
   font-family: "Satoshi";
-  src: url("/font/Satoshi_VariableItalic.woff2") format("woff2"),
-       url("/font/Satoshi_VariableItalic-s.p.14_dcl7erp6w3.woff2") format("woff2");
+  src: url("/fonts/Satoshi_VariableItalic.woff2") format("woff2");
   font-weight: 300 900;
   font-style: italic;
   font-display: swap;
@@ -286,6 +284,13 @@ body {
 
 .animate-radar {
   animation: radar-pulse 1.2s ease-out infinite;
+}
+
+.loading-bar {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  border-radius: 9999px;
 }
 
 /* Hover Pauses */

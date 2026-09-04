@@ -22,13 +22,11 @@ export const AboutPageView: React.FC<AboutPageViewProps> = ({ onNavigate }) => {
   const { lang, t } = useLanguage();
 
   const galleryList = [
-    "/gallery/laptop.jpeg",
-    "/gallery/image1.jpeg",
-    "/gallery/image2.jpeg",
-    "/gallery/image3.jpeg",
-    "/gallery/image4.jpeg",
-    "/gallery/image5.jpeg",
-    "/gallery/laptop.jpeg",
+    "/gallery/gallery-1.jpeg",
+    "/gallery/gallery-2.jpeg",
+    "/gallery/gallery-3.jpeg",
+    "/gallery/gallery-4.jpeg",
+    "/gallery/gallery-5.jpeg",
   ];
 
   const heroProjectList = [
@@ -47,20 +45,21 @@ export const AboutPageView: React.FC<AboutPageViewProps> = ({ onNavigate }) => {
   const techIcons = [
     "/icons/react.png",
     "/icons/nextjs.png",
-    "/icons/laravel.png",
-    "/icons/wordpress.png",
+    "/icons/vitejs.png",
     "/icons/tailwind.png",
-    "/icons/alpine-js.png",
-    "/icons/inertia-js.png",
-    "/icons/laravel-livewire.png",
+    "/icons/shadcn-ui.png",
+    "/icons/tanstack.png",
     "/icons/supabase.png",
   ];
 
   const toolIcons = [
     "/icons/github.png",
     "/icons/vercel.png",
-    "/icons/tiktok.png",
-    "/icons/instagram.png",
+    "/icons/cloudflare.png",
+    "/icons/aistudio-google.png",
+    "/icons/chatgpt.png",
+    "/icons/claude.png",
+    "/icons/antigravity.png",
   ];
 
   // GSAP Right Slider (reverse slide up loop)
@@ -432,7 +431,7 @@ export const AboutPageView: React.FC<AboutPageViewProps> = ({ onNavigate }) => {
             width="600"
             height="1000"
             className="hero-phone w-auto h-auto -z-2"
-            src="/phone/hero.png"
+            src="/assets/phone.png"
           />
           <img
             alt="avatar"
@@ -991,7 +990,7 @@ export const AboutPageView: React.FC<AboutPageViewProps> = ({ onNavigate }) => {
                     <img
                       alt="AlzanAditya"
                       className="object-contain w-full h-full"
-                      src="/icons/github-logo.png"
+                      src="/logos/github.png"
                     />
                   </div>
                   <div className="p-3 bg-card group-hover:bg-primary rounded-full transition-all duration-400 ease-in-out">

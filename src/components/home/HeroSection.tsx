@@ -287,21 +287,21 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onNavigate }) => {
           width="230"
           height="200"
           className="hero-particles absolute inset-0 -top-20 lg:top-0 -left-26 md:left-0 object-contain lg:ml-68 translate-y-2 drop-shadow-lg scale-65 md:scale-80 lg:scale-100"
-          src="/icons/nextjs-logo.png"
+          src="/logos/nextjs.png"
         />
         <img
           alt="laravel"
           width="160"
           height="160"
           className="hero-particles absolute inset-0 object-contain rotate-30 -left-24 lg:left-0 md:ml-32 lg:ml-52 top-28 md:top-36 lg:top-64 drop-shadow-lg scale-65 md:scale-96 lg:scale-100"
-          src="/icons/laravel-logo.png"
+          src="/logos/laravel.png"
         />
         <img
           alt="wordpress"
           width="200"
           height="200"
           className="hero-particles absolute inset-0 object-contain -rotate-20 -left-18 lg:left-0 lg:ml-64 top-58 md:top-68 lg:top-120 scale-65 lg:scale-100 drop-shadow-lg"
-          src="/icons/wordpress-logo.png"
+          src="/logos/wordpress.png"
         />
         <img
           alt="ads"

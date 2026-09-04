@@ -211,7 +211,6 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
                     onClick={(e) => {
                       e.preventDefault();
                       onNavigate(`/projects/${p.slug}`);
-                      window.scrollTo({ top: 0, behavior: "smooth" });
                     }}
                     className="group flex flex-col gap-3 bg-card p-4 rounded-2xl border border-foreground/5 hover:border-primary/40 transition-all duration-300 shadow-2xs"
                   >

@@ -106,5 +106,41 @@ export function useSeo({
     if (category) {
       setMetaTag("property", "article:section", category);
     }
+
+    // Dynamic Schema.org JSON-LD for Articles & Blog Posts
+    let ldScript = document.querySelector('script[data-dynamic-seo="true"]') as HTMLScriptElement | null;
+    if (type === "article" || type === "blog") {
+      if (!ldScript) {
+        ldScript = document.createElement("script");
+        ldScript.type = "application/ld+json";
+        ldScript.setAttribute("data-dynamic-seo", "true");
+        document.head.appendChild(ldScript);
+      }
+      ldScript.textContent = JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": currentUrl,
+        },
+        "headline": fullTitle,
+        "description": description,
+        "image": [fullImageUrl],
+        "datePublished": publishedTime || "2026-01-01",
+        "author": {
+          "@type": "Person",
+          "name": author || "Alzan Aditya",
+          "url": typeof window !== "undefined" ? window.location.origin : "https://alzan.zanxa.studio",
+        },
+        "publisher": {
+          "@type": "Person",
+          "name": "Alzan Aditya",
+          "url": typeof window !== "undefined" ? window.location.origin : "https://alzan.zanxa.studio",
+        },
+        "keywords": tags.join(", "),
+      });
+    } else if (ldScript) {
+      ldScript.remove();
+    }
   }, [title, description, image, url, type, author, publishedTime, tags, category, imageWidth, imageHeight]);
 }

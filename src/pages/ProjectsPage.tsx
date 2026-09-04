@@ -34,14 +34,15 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({
   const [selectedCategory, setSelectedCategory] = useState<string>("All");
   const gridSectionRef = useRef<HTMLElement>(null);
 
-  const categories = ["Dashboard System", "Web App", "Website"];
+  const categories = ["Website", "Business System", "Web App"];
 
   const filteredProjects =
     selectedCategory === "All" || selectedCategory === "All Categories"
       ? projects
       : projects.filter((p) => {
-          if (selectedCategory === "Dashboard System") {
+          if (selectedCategory === "Business System" || selectedCategory === "Dashboard System") {
             return (
+              p.category === "Business System" ||
               p.category === "Dashboard System" ||
               p.category === "System & ERP"
             );
