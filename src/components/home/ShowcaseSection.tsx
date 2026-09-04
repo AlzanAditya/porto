@@ -5,6 +5,7 @@ import { useGSAP } from "@gsap/react";
 import { Project } from "../../types";
 import { SplitWords } from "../common/SplitWords";
 import { useLanguage } from "../../context/LanguageContext";
+import { Button } from "../ui/button";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -215,35 +216,34 @@ export const ShowcaseSection: React.FC<ShowcaseSectionProps> = ({
             </div>
 
             <div className="mt-6 showcase-modal-text">
-              <a
-                className="flex items-center cursor-pointer font-medium gap-2 group transition-all duration-300 ease-in-out bg-gradient-to-br from-primary to-secondary text-white px-5 py-3 rounded-xl btn-hover shadow-md w-full justify-center"
+              <Button
+                variant="primary"
+                shape="rounded-xl"
+                fullWidth
+                scrollText
+                className="shadow-md"
                 href="/projects"
                 onClick={(e) => {
                   e.preventDefault();
                   onNavigate("/projects");
                 }}
+                iconRight={
+                  <svg
+                    stroke="currentColor"
+                    fill="currentColor"
+                    strokeWidth="0"
+                    viewBox="0 0 448 512"
+                    className="-rotate-45"
+                    height="1em"
+                    width="1em"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"></path>
+                  </svg>
+                }
               >
-                <div className="flex gap-2 items-center justify-center w-full">
-                  <span className="scroll-text flex">
-                    <span className="font-semibold">{t("showcase.cta")}</span>
-                    <span className="font-semibold">{t("showcase.cta")}</span>
-                  </span>
-                  <div className="p-1 rounded-full transition-all duration-300 ease-in-out group-hover:bg-white/40">
-                    <svg
-                      stroke="currentColor"
-                      fill="currentColor"
-                      strokeWidth="0"
-                      viewBox="0 0 448 512"
-                      className="-rotate-45"
-                      height="1em"
-                      width="1em"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"></path>
-                    </svg>
-                  </div>
-                </div>
-              </a>
+                {t("showcase.cta")}
+              </Button>
             </div>
           </div>
         </div>

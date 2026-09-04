@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useLanguage } from "../../context/LanguageContext";
+import { Button } from "../ui/button";
 
 interface NavbarProps {
   currentPath: string;
@@ -38,7 +39,12 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath, onNavigate }) => {
         {/* Right side navigation buttons & Menu */}
         <div className="flex items-center gap-2 md:gap-3">
           {/* Collaborate Button (Desktop) */}
-          <a
+          <Button
+            id="navbar-collaborate-button"
+            variant="secondary"
+            shape="rounded-xl"
+            scrollText
+            className="hidden md:inline-flex"
             href="#contact"
             onClick={(e) => {
               if (currentPath !== "/") {
@@ -52,19 +58,16 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath, onNavigate }) => {
               }
             }}
           >
-            <button className="flex items-center cursor-pointer font-medium gap-2 group transition-all duration-300 ease-in-out bg-foreground px-4 py-3 btn-hover hidden md:flex rounded-xl text-text-primary hover:bg-neutral-200/80">
-              <span className="scroll-text flex">
-                <span className="font-semibold">{t("nav.letsTalk")}</span>
-                <span className="font-semibold">{t("nav.letsTalk")}</span>
-              </span>
-            </button>
-          </a>
+            {t("nav.collaborate")}
+          </Button>
 
           {/* Menu Dropdown Button */}
           <div className="relative w-fit">
-            <button
+            <Button
+              variant="dark"
+              shape="rounded-xl"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="flex items-center cursor-pointer font-medium gap-2 group transition-all duration-300 ease-in-out bg-black text-white lg:pr-2 lg:pl-4 px-4 py-3.5 lg:py-2 btn-hover rounded-xl"
+              className="lg:pr-2 lg:pl-4 px-4 py-3.5 lg:py-2"
               aria-label="Toggle Navigation Menu"
             >
               <span className="flex items-center gap-3 lg:gap-4">
@@ -91,7 +94,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath, onNavigate }) => {
                   </svg>
                 </span>
               </span>
-            </button>
+            </Button>
 
             {/* Dropdown Menu */}
             <nav
@@ -263,8 +266,12 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath, onNavigate }) => {
 
                 {/* Mobile collaborate button in dropdown */}
                 <li className="w-full mt-2 md:hidden">
-                  <a
-                    className="w-full block"
+                  <Button
+                    variant="secondary"
+                    shape="rounded-xl"
+                    fullWidth
+                    scrollText
+                    className="text-text-secondary"
                     href="#contact"
                     onClick={(e) => {
                       if (currentPath !== "/") {
@@ -279,13 +286,8 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath, onNavigate }) => {
                       }
                     }}
                   >
-                    <button className="flex items-center cursor-pointer font-medium gap-2 group transition-all duration-300 ease-in-out bg-foreground px-4 py-3 btn-hover w-full justify-center text-text-secondary rounded-xl">
-                      <span className="scroll-text flex">
-                        <span className="font-semibold">{t("nav.letsTalk")}</span>
-                        <span className="font-semibold">{t("nav.letsTalk")}</span>
-                      </span>
-                    </button>
-                  </a>
+                    {t("nav.letsTalk")}
+                  </Button>
                 </li>
               </ul>
             </nav>

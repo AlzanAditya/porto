@@ -4,6 +4,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { SplitWords } from "../common/SplitWords";
 import { useLanguage } from "../../context/LanguageContext";
+import { Button } from "../ui/button";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -175,35 +176,35 @@ export const ContactSection: React.FC = () => {
             </div>
 
             <div className="flex justify-end">
-              <a
+              <Button
+                variant="primary"
+                shape="rounded-full"
+                scrollText
+                className="px-6 py-2.5"
+                iconWrapper="circle"
+                iconWrapperClassName="bg-white/20"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center cursor-pointer font-medium gap-2 group transition-all duration-300 ease-in-out bg-gradient-to-br from-primary to-secondary text-white px-6 btn-hover py-2.5 rounded-full"
                 href={`mailto:alzanadytia.j@gmail.com?subject=Contact from ${encodeURIComponent(
                   email
                 )}&body=${encodeURIComponent(message)}`}
+                iconRight={
+                  <svg
+                    stroke="currentColor"
+                    fill="currentColor"
+                    strokeWidth="0"
+                    viewBox="0 0 512 512"
+                    className="text-lg"
+                    height="1em"
+                    width="1em"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path d="M435.9 64.9l-367.1 160c-6.5 3.1-6.3 12.4.3 15.3l99.3 56.1c5.9 3.3 13.2 2.6 18.3-1.8l195.8-168.8c1.3-1.1 4.4-3.2 5.6-2 1.3 1.3-.7 4.3-1.8 5.6L216.9 320.1c-4.7 5.3-5.4 13.1-1.6 19.1l64.9 104.1c3.2 6.3 12.3 6.2 15.2-.2L447.2 76c3.3-7.2-4.2-14.5-11.3-11.1z"></path>
+                  </svg>
+                }
               >
-                <div className="flex gap-2 items-center">
-                  <span className="scroll-text flex">
-                    <span className="font-semibold">{t("contact.sendMessage")}</span>
-                    <span className="font-semibold">{t("contact.sendMessage")}</span>
-                  </span>
-                  <div className="p-1.5 bg-white/20 rounded-full transition-all duration-300 ease-in-out group-hover:bg-white/40">
-                    <svg
-                      stroke="currentColor"
-                      fill="currentColor"
-                      strokeWidth="0"
-                      viewBox="0 0 512 512"
-                      className="text-lg"
-                      height="1em"
-                      width="1em"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path d="M435.9 64.9l-367.1 160c-6.5 3.1-6.3 12.4.3 15.3l99.3 56.1c5.9 3.3 13.2 2.6 18.3-1.8l195.8-168.8c1.3-1.1 4.4-3.2 5.6-2 1.3 1.3-.7 4.3-1.8 5.6L216.9 320.1c-4.7 5.3-5.4 13.1-1.6 19.1l64.9 104.1c3.2 6.3 12.3 6.2 15.2-.2L447.2 76c3.3-7.2-4.2-14.5-11.3-11.1z"></path>
-                    </svg>
-                  </div>
-                </div>
-              </a>
+                {t("contact.sendMessage")}
+              </Button>
             </div>
           </div>
         </div>

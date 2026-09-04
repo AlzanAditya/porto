@@ -4,21 +4,24 @@ import { useGSAP } from "@gsap/react";
 
 interface LoadingScreenProps {
   isVisible: boolean;
-  isExiting: boolean;
+  /** Set to true to re-enable the loading screen; disabled by default */
+  enabled?: boolean;
+  isExiting?: boolean;
   onExitComplete?: () => void;
 }
 
 export const LoadingScreen: React.FC<LoadingScreenProps> = ({
   isVisible,
-  isExiting,
-  onExitComplete,
+  enabled = false,
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
-  const exitStartedRef = useRef(false);
 
-  // Lock scroll when visible, unlock when exiting or unmounted
+  // Disabled per user request (preserved for future use without deleting file)
+  const shouldRender = enabled && isVisible;
+
+  // Lock scroll when visible, unlock when unmounted or hidden
   useEffect(() => {
-    if (isVisible && !isExiting) {
+    if (shouldRender) {
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "unset";
@@ -26,59 +29,36 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({
     return () => {
       document.body.style.overflow = "unset";
     };
-  }, [isVisible, isExiting]);
+  }, [shouldRender]);
 
-  // Entrance animation matching reference 055205-j862gu.js exactly
+  // Fast crisp entrance animation when triggered
   useGSAP(
     () => {
-      if (!isVisible) return;
-      exitStartedRef.current = false;
-
-      // Reset transform in case of reuse
-      gsap.set(containerRef.current, { yPercent: 0 });
+      if (!shouldRender) return;
 
       // Entrance items
       gsap
         .timeline()
         .from(".loading-item", {
           opacity: 0,
-          y: 10,
-          duration: 0.8,
-          stagger: 0.15,
-          ease: "power3.out",
+          y: 8,
+          duration: 0.25,
+          stagger: 0.08,
+          ease: "power2.out",
         });
 
-      // Infinite loop on progress bar
+      // Continuous loop on progress bar
       gsap.to(".loading-bar", {
         left: "150%",
-        duration: 1.2,
+        duration: 1.0,
         ease: "power2.inOut",
         repeat: -1,
       });
     },
-    { scope: containerRef, dependencies: [isVisible] }
+    { scope: containerRef, dependencies: [shouldRender] }
   );
 
-  // Exit animation: curtain slides UP (yPercent: -100) revealing the page below
-  useEffect(() => {
-    if (isExiting && containerRef.current && !exitStartedRef.current) {
-      exitStartedRef.current = true;
-      document.body.style.overflow = "unset";
-
-      gsap.to(containerRef.current, {
-        yPercent: -100,
-        duration: 0.8,
-        ease: "power3.inOut",
-        onComplete: () => {
-          if (onExitComplete) {
-            onExitComplete();
-          }
-        },
-      });
-    }
-  }, [isExiting, onExitComplete]);
-
-  if (!isVisible) {
+  if (!shouldRender) {
     return null;
   }
 

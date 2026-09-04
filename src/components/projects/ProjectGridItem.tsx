@@ -4,6 +4,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { Project } from "../../types";
 import { useLanguage } from "../../context/LanguageContext";
+import { Badge } from "../ui/badge";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -95,12 +96,11 @@ export const ProjectGridItem: React.FC<ProjectGridItemProps> = ({
               {title}
             </h3>
             <div className="flex items-center gap-4">
-              <div className="flex items-center gap-3 bg-card rounded-full pl-3 pr-4 py-2 w-fit group-hover:btn-hover">
-                <div className="size-4 bg-linear-to-br from-primary to-secondary rounded-full"></div>
-                <strong className="text-sm md:text-xs font-semibold">
-                  {category}
-                </strong>
-              </div>
+              <Badge
+                type="category"
+                className="group-hover:btn-hover"
+                label={category}
+              />
               <div className="text-text-secondary flex items-center gap-2 text-sm md:text-xs">
                 <svg
                   stroke="currentColor"

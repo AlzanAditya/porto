@@ -3,6 +3,8 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { useLanguage } from "../../context/LanguageContext";
+import { Button } from "../ui/button";
+import { Badge } from "../ui/badge";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -283,8 +285,10 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onNavigate }) => {
           <div className="absolute -bottom-4 flex flex-wrap justify-center gap-2 left-0 right-0">
             {/* 1. Full-Stack Web Developer */}
             <div className="about-role-tag">
-              <div className="flex items-center gap-3 bg-linear-to-r from-white/80 to-white/90 border border-white w-fit pr-3 md:pr-4 pl-1.5 md:pl-2 py-1.5 md:py-2 rounded-full shadow-xs">
-                <div className="bg-linear-to-br from-primary to-secondary text-white p-1.5 rounded-full">
+              <Badge
+                type="point"
+                label={t("about.tagDeveloper")}
+                icon={
                   <svg
                     stroke="currentColor"
                     fill="currentColor"
@@ -296,17 +300,16 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onNavigate }) => {
                   >
                     <path d="M392.8 1.2c-17-4.9-34.7 5-39.6 22l-128 448c-4.9 17 5 34.7 22 39.6s34.7-5 39.6-22l128-448c4.9-17-5-34.7-22-39.6zm80.6 120.1c-12.5 12.5-12.5 32.8 0 45.3L562.7 256l-89.4 89.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l112-112c12.5-12.5 12.5-32.8 0-45.3l-112-112c-12.5-12.5-32.8-12.5-45.3 0zm-306.7 0c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3l112 112c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l89.4-89.4c12.5-12.5 12.5-32.8 0-45.3z"></path>
                   </svg>
-                </div>
-                <strong className="text-black text-sm md:text-lg lg:text-sm 2xl:text-base font-semibold">
-                  {t("about.tagDeveloper")}
-                </strong>
-              </div>
+                }
+              />
             </div>
 
             {/* 2. System Builder */}
             <div className="about-role-tag">
-              <div className="flex items-center gap-3 bg-linear-to-r from-white/80 to-white/90 border border-white w-fit pr-3 md:pr-4 pl-1.5 md:pl-2 py-1.5 md:py-2 rounded-full shadow-xs">
-                <div className="bg-linear-to-br from-primary to-secondary text-white p-1.5 rounded-full">
+              <Badge
+                type="point"
+                label={t("about.tagSystem")}
+                icon={
                   <svg
                     stroke="currentColor"
                     fill="currentColor"
@@ -318,17 +321,16 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onNavigate }) => {
                   >
                     <path d="M413.967 276.8c1.06-6.235 1.06-13.518 1.06-20.8s-1.06-13.518-1.06-20.8l44.667-34.318c4.26-3.118 5.319-8.317 2.13-13.518L418.215 115.6c-2.129-4.164-8.507-6.235-12.767-4.164l-53.186 20.801c-10.638-8.318-23.394-15.601-36.16-20.801l-7.448-55.117c-1.06-4.154-5.319-8.318-10.638-8.318h-85.098c-5.318 0-9.577 4.164-10.637 8.318l-8.508 55.117c-12.767 5.2-24.464 12.482-36.171 20.801l-53.186-20.801c-5.319-2.071-10.638 0-12.767 4.164L49.1 187.365c-2.119 4.153-1.061 10.399 2.129 13.518L96.97 235.2c0 7.282-1.06 13.518-1.06 20.8s1.06 13.518 1.06 20.8l-44.668 34.318c-4.26 3.118-5.318 8.317-2.13 13.518L92.721 396.4c2.13 4.164 8.508 6.235 12.767 4.164l53.187-20.801c10.637 8.318 23.394 15.601 36.16 20.801l8.508 55.117c1.069 5.2 5.318 8.318 10.637 8.318h85.098c5.319 0 9.578-4.164 10.638-8.318l8.518-55.117c12.757-5.2 24.464-12.482 36.16-20.801l53.187 20.801c5.318 2.071 10.637 0 12.767-4.164l42.549-71.765c2.129-4.153 1.06-10.399-2.13-13.518l-46.8-34.317zm-158.499 52c-41.489 0-74.46-32.235-74.46-72.8s32.971-72.8 74.46-72.8 74.461 32.235 74.461 72.8-32.972 72.8-74.461 72.8z"></path>
                   </svg>
-                </div>
-                <strong className="text-black text-sm md:text-lg lg:text-sm 2xl:text-base font-semibold">
-                  {t("about.tagSystem")}
-                </strong>
-              </div>
+                }
+              />
             </div>
 
             {/* 3. Content Creator */}
             <div className="about-role-tag">
-              <div className="flex items-center gap-3 bg-linear-to-r from-white/80 to-white/90 border border-white w-fit pr-3 md:pr-4 pl-1.5 md:pl-2 py-1.5 md:py-2 rounded-full shadow-xs">
-                <div className="bg-linear-to-br from-primary to-secondary text-white p-1.5 rounded-full">
+              <Badge
+                type="point"
+                label={t("about.tagContent")}
+                icon={
                   <svg
                     stroke="currentColor"
                     fill="currentColor"
@@ -341,17 +343,16 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onNavigate }) => {
                   >
                     <path d="M362.7 19.3L314.3 67.7 444.3 197.7l48.4-48.4c25-25 25-65.5 0-90.5L453.3 19.3c-25-25-65.5-25-90.5 0zm-71 71L58.6 323.5c-10.4 10.4-18 23.3-22.2 37.4L1 481.2C-1.5 489.7 .8 498.8 7 505s15.3 8.5 23.7 6.1l120.3-35.4c14.1-4.2 27-11.8 37.4-22.2L421.7 220.3 291.7 90.3z"></path>
                   </svg>
-                </div>
-                <strong className="text-black text-sm md:text-lg lg:text-sm 2xl:text-base font-semibold">
-                  {t("about.tagContent")}
-                </strong>
-              </div>
+                }
+              />
             </div>
 
             {/* 4. Business Growth */}
             <div className="about-role-tag">
-              <div className="flex items-center gap-3 bg-linear-to-r from-white/80 to-white/90 border border-white w-fit pr-3 md:pr-4 pl-1.5 md:pl-2 py-1.5 md:py-2 rounded-full shadow-xs">
-                <div className="bg-linear-to-br from-primary to-secondary text-white p-1.5 rounded-full">
+              <Badge
+                type="point"
+                label={t("about.tagGrowth")}
+                icon={
                   <svg
                     stroke="currentColor"
                     fill="currentColor"
@@ -364,17 +365,16 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onNavigate }) => {
                     <path fill="none" d="M0 0h24v24H0z"></path>
                     <path d="M9.19 6.35c-2.04 2.29-3.44 5.58-3.57 5.89L2 10.69l4.05-4.05c.47-.47 1.15-.68 1.81-.55l1.33.26zM11.17 17s3.74-1.55 5.89-3.7c5.4-5.4 4.5-9.62 4.21-10.57-.95-.3-5.17-1.19-10.57 4.21C8.55 9.09 7 12.83 7 12.83L11.17 17zm6.48-2.19c-2.29 2.04-5.58 3.44-5.89 3.57L13.31 22l4.05-4.05c.47-.47.68-1.15.55-1.81l-.26-1.33zM9 18c0 .83-.34 1.58-.88 2.12C6.94 21.3 2 22 2 22s.7-4.94 1.88-6.12A2.996 2.996 0 0 1 9 18zm4-9c0-1.1.9-2 2-2s2 .9 2 2-.9 2-2 2-2-.9-2-2z"></path>
                   </svg>
-                </div>
-                <strong className="text-black text-sm md:text-lg lg:text-sm 2xl:text-base font-semibold">
-                  {t("about.tagGrowth")}
-                </strong>
-              </div>
+                }
+              />
             </div>
 
             {/* 5. Digital Marketer */}
             <div className="about-role-tag">
-              <div className="flex items-center gap-3 bg-linear-to-r from-white/80 to-white/90 border border-white w-fit pr-3 md:pr-4 pl-1.5 md:pl-2 py-1.5 md:py-2 rounded-full shadow-xs">
-                <div className="bg-linear-to-br from-primary to-secondary text-white p-1.5 rounded-full">
+              <Badge
+                type="point"
+                label={t("about.tagMarketer")}
+                icon={
                   <svg
                     stroke="currentColor"
                     fill="currentColor"
@@ -386,11 +386,8 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onNavigate }) => {
                   >
                     <path d="M64 64c0-17.7-14.3-32-32-32S0 46.3 0 64L0 400c0 44.2 35.8 80 80 80l400 0c17.7 0 32-14.3 32-32s-14.3-32-32-32L80 416c-8.8 0-16-7.2-16-16L64 64zm406.6 86.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L320 210.7l-57.4-57.4c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L240 221.3l57.4 57.4c12.5 12.5 32.8 12.5 45.3 0l128-128z"></path>
                   </svg>
-                </div>
-                <strong className="text-black text-sm md:text-lg lg:text-sm 2xl:text-base font-semibold">
-                  {t("about.tagMarketer")}
-                </strong>
-              </div>
+                }
+              />
             </div>
           </div>
         </div>
@@ -414,35 +411,32 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onNavigate }) => {
             <strong className="text-5xl font-medium">
               32<span className="text-secondary">+</span>
             </strong>
-            <a
-              className="flex items-center cursor-pointer font-medium gap-2 group transition-all duration-300 ease-in-out bg-gradient-to-br from-primary to-secondary text-white px-4 btn-hover lg:pr-2 lg:py-2 py-2 rounded-full"
+            <Button
+              variant="primary"
+              shape="rounded-full"
+              scrollText
               href="/projects"
               onClick={(e) => {
                 e.preventDefault();
                 onNavigate("/projects");
               }}
+              iconRight={
+                <svg
+                  stroke="currentColor"
+                  fill="currentColor"
+                  strokeWidth="0"
+                  viewBox="0 0 448 512"
+                  className="-rotate-45"
+                  height="1em"
+                  width="1em"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"></path>
+                </svg>
+              }
             >
-              <div className="flex gap-2 items-center">
-                <span className="scroll-text flex">
-                  <span className="font-semibold">{t("about.statWorksBtn")}</span>
-                  <span className="font-semibold">{t("about.statWorksBtn")}</span>
-                </span>
-                <div className="lg:p-2 rounded-full transition-all duration-300 ease-in-out group-hover:bg-white/40">
-                  <svg
-                    stroke="currentColor"
-                    fill="currentColor"
-                    strokeWidth="0"
-                    viewBox="0 0 448 512"
-                    className="-rotate-45"
-                    height="1em"
-                    width="1em"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"></path>
-                  </svg>
-                </div>
-              </div>
-            </a>
+              {t("about.statWorksBtn")}
+            </Button>
           </div>
           <p className="md:text-lg font-medium">
             {t("about.statProjects")}

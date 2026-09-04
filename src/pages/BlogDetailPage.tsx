@@ -7,6 +7,7 @@ import { useLanguage } from "../context/LanguageContext";
 import { BlogCardItem } from "../components/blogs/BlogCardItem";
 import { ChevronRight, Link as LinkIcon, Check } from "lucide-react";
 import { useSeo } from "../hooks/useSeo";
+import { Breadcrumb } from "../components/common/breadcrumb";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -494,36 +495,29 @@ export const BlogDetailPage: React.FC<BlogDetailPageProps> = ({
         {/* Right Column: Header, Breadcrumb, Title, Meta, Author Bar, and Body */}
         <div className="lg:col-span-7 flex flex-col min-w-0">
           <div className="border-b mb-8 pb-8 border-black/10">
-            {/* Breadcrumb forced to strictly 1 single line with dynamic truncate */}
-            <div className="animate-breadcrumb mb-3 md:mb-4 w-full overflow-hidden">
-              <nav className="flex items-center flex-nowrap min-w-0 w-full gap-2 text-sm md:text-base font-medium select-none overflow-hidden">
-                <a
-                  href="/blogs"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    onNavigate("/blogs");
-                  }}
-                  className="breadcrumb-item shrink-0 text-text-secondary hover:text-text-primary transition-colors duration-300 whitespace-nowrap"
-                >
-                  {t("blogDetail.breadcrumb.blog") || "Blog"}
-                </a>
-                <ChevronRight className="breadcrumb-item text-text-secondary/40 text-lg shrink-0" />
-                <a
-                  href="/blogs"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    onNavigate("/blogs");
-                  }}
-                  className="breadcrumb-item shrink-0 text-text-secondary hover:text-text-primary transition-colors duration-300 whitespace-nowrap capitalize"
-                >
-                  {categoryName}
-                </a>
-                <ChevronRight className="breadcrumb-item text-text-secondary/40 text-lg shrink-0" />
-                <span className="breadcrumb-item text-text-primary font-medium whitespace-nowrap truncate min-w-0 flex-1">
-                  {title}
-                </span>
-              </nav>
-            </div>
+            {/* Unified Breadcrumb */}
+            <Breadcrumb
+              className="mb-3 md:mb-4 w-full"
+              items={[
+                {
+                  id: "breadcrumb-blog-link",
+                  label: t("blogDetail.breadcrumb.blog") || "Blog",
+                  href: "/blogs",
+                  onClick: () => onNavigate("/blogs"),
+                },
+                {
+                  id: "breadcrumb-category-link",
+                  label: categoryName,
+                  href: "/blogs",
+                  onClick: () => onNavigate("/blogs"),
+                },
+                {
+                  id: "breadcrumb-current-title",
+                  label: title,
+                  isCurrent: true,
+                },
+              ]}
+            />
 
             {/* Split Title for GSAP Staggered Entrance */}
             <h1 className="text-2xl md:text-[32px] leading-[1.4] font-semibold text-text-primary animate-title mb-4">

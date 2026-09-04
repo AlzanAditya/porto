@@ -4,6 +4,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { SplitWords } from "../common/SplitWords";
 import { useLanguage } from "../../context/LanguageContext";
+import { Button } from "../ui/button";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -111,6 +112,25 @@ interface SpecializeItemProps {
   item: SpecializeItem;
   isOpen: boolean;
   onToggle: () => void;
+  buttonConfig?: ServicesButtonConfig;
+}
+
+export interface ServicesButtonConfig {
+  /** Ensure the toggle button is a mathematically perfect 1:1 circle */
+  perfectCircle?: boolean;
+  /** Size styling for the toggle button */
+  size?: "sm" | "md" | "lg" | "responsive";
+  /** Custom additional classes */
+  className?: string;
+}
+
+export const DEFAULT_SERVICES_BUTTON_CONFIG: ServicesButtonConfig = {
+  perfectCircle: true,
+  size: "responsive",
+};
+
+export interface ServicesSectionProps {
+  buttonConfig?: ServicesButtonConfig;
 }
 
 const SpecializeAccordionItem: React.FC<SpecializeItemProps> = ({
@@ -118,6 +138,7 @@ const SpecializeAccordionItem: React.FC<SpecializeItemProps> = ({
   item,
   isOpen,
   onToggle,
+  buttonConfig,
 }) => {
   const itemRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
@@ -128,6 +149,16 @@ const SpecializeAccordionItem: React.FC<SpecializeItemProps> = ({
   const title = t(item.titleKey);
   const desc = t(item.descKey);
   const tags = lang === "id" ? item.tags.id : item.tags.en;
+
+  const isCircle = buttonConfig?.perfectCircle ?? true;
+  const sizeClasses =
+    buttonConfig?.size === "sm"
+      ? "w-8 h-8 min-w-8 min-h-8"
+      : buttonConfig?.size === "md"
+      ? "w-10 h-10 min-w-10 min-h-10"
+      : buttonConfig?.size === "lg"
+      ? "w-12 h-12 min-w-12 min-h-12"
+      : "w-9 h-9 min-w-9 min-h-9 md:w-12 md:h-12 md:min-w-12 md:min-h-12";
 
   useGSAP(
     () => {
@@ -189,18 +220,23 @@ const SpecializeAccordionItem: React.FC<SpecializeItemProps> = ({
             {title}
           </h3>
           <div className="col-span-2 md:col-span-1 flex justify-end">
-            <button
-              className={`flex items-center justify-center cursor-pointer font-medium gap-2 group transition-all duration-300 ease-in-out size-9 md:size-12 rounded-full btn-hover ${
-                isOpen ? "bg-primary text-white" : "bg-foreground text-text-primary"
-              }`}
+            <Button
+              id={`service-toggle-${index}`}
+              variant="circle-toggle"
+              shape="circle"
+              isCircle={isCircle}
+              isOpen={isOpen}
               aria-label="Toggle details"
+              className={`${sizeClasses} rounded-full aspect-square shrink-0 flex items-center justify-center p-0 transition-all duration-300 ${
+                isOpen ? "bg-primary text-white" : ""
+              } ${buttonConfig?.className || ""}`.trim()}
             >
               <svg
                 stroke="currentColor"
                 fill="currentColor"
                 strokeWidth="0"
                 viewBox="0 0 448 512"
-                className={`text-lg md:text-2xl transition-transform duration-300 ${
+                className={`text-lg md:text-2xl transition-transform duration-300 pointer-events-none ${
                   isOpen ? "rotate-45" : ""
                 }`}
                 height="1em"
@@ -209,7 +245,7 @@ const SpecializeAccordionItem: React.FC<SpecializeItemProps> = ({
               >
                 <path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 144L48 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l144 0 0 144c0 17.7 14.3 32 32 32s32-14.3 32-32l0-144 144 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-144 0 0-144z"></path>
               </svg>
-            </button>
+            </Button>
           </div>
         </div>
 
@@ -258,7 +294,9 @@ const SpecializeAccordionItem: React.FC<SpecializeItemProps> = ({
   );
 };
 
-export const ServicesSection: React.FC = () => {
+export const ServicesSection: React.FC<ServicesSectionProps> = ({
+  buttonConfig = DEFAULT_SERVICES_BUTTON_CONFIG,
+}) => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const { lang, t } = useLanguage();
@@ -327,6 +365,7 @@ export const ServicesSection: React.FC = () => {
             item={item}
             isOpen={openIndex === idx}
             onToggle={() => toggleItem(idx)}
+            buttonConfig={buttonConfig}
           />
         ))}
       </div>

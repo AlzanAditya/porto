@@ -101,15 +101,25 @@ body {
 
 .scroll-text {
   height: 1.5rem;
+  display: inline-flex;
   flex-direction: column;
   justify-content: center;
-  display: flex;
   position: relative;
   overflow: hidden;
 }
 
 .scroll-text span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: inherit;
+  height: 100%;
+  line-height: 1;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.scroll-text span:first-child {
+  transform: translateY(0);
+  opacity: 1;
 }
 
 .group:hover .scroll-text span:first-child {
@@ -117,17 +127,18 @@ body {
   opacity: 0;
 }
 
-.group:hover .scroll-text span:last-child {
-  transform: translateY(100%);
-  opacity: 1;
+.scroll-text span:last-child {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  transform: translateY(-100%);
+  opacity: 0;
 }
 
-.scroll-text span:last-child {
-  top: -100%;
-  left: 0;
-  opacity: 0;
-  width: 100%;
-  position: absolute;
+.group:hover .scroll-text span:last-child {
+  transform: translateY(0);
+  opacity: 1;
 }
 
 .btn-hover {

@@ -3,6 +3,7 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { SplitWords } from "../common/SplitWords";
 import { useLanguage } from "../../context/LanguageContext";
+import { Button } from "../ui/button";
 
 interface ProjectsHeroProps {
   activeCategory?: string;
@@ -129,30 +130,36 @@ export const ProjectsHero: React.FC<ProjectsHeroProps> = ({
         {/* Filter Dropdown */}
         <div ref={dropdownRef} className="filter-wrapper relative z-50">
           <div className="relative">
-            <button
+            <Button
+              variant="card"
+              shape="rounded-full"
+              shine={false}
               onClick={() => setIsOpen(!isOpen)}
-              className="flex items-center cursor-pointer font-medium gap-2 group transition-all duration-300 ease-in-out bg-card text-text-primary justify-between w-72 pl-6 pr-4 py-3 rounded-full border border-neutral-100/50 hover:border-neutral-200/80 shadow-xs"
+              className="justify-between w-72 pl-6 pr-4 py-3 border border-neutral-100/50 hover:border-neutral-200/80 shadow-xs"
+              iconWrapper="none"
+              iconRight={
+                <div className="size-9 flex items-center justify-center group-hover:btn-hover bg-linear-to-br from-primary to-secondary text-white rounded-full btn-hover transition-transform duration-300">
+                  <svg
+                    stroke="currentColor"
+                    fill="currentColor"
+                    strokeWidth="0"
+                    viewBox="0 0 512 512"
+                    className={`text-lg text-white transition-transform duration-300 ${
+                      isOpen ? "rotate-180" : ""
+                    }`}
+                    height="1em"
+                    width="1em"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z"></path>
+                  </svg>
+                </div>
+              }
             >
-              <p className="font-medium text-text-secondary">
+              <span className="font-medium text-text-secondary">
                 {displayCategoryLabel}
-              </p>
-              <div className="size-9 flex items-center justify-center group-hover:btn-hover bg-linear-to-br from-primary to-secondary text-white rounded-full btn-hover transition-transform duration-300">
-                <svg
-                  stroke="currentColor"
-                  fill="currentColor"
-                  strokeWidth="0"
-                  viewBox="0 0 512 512"
-                  className={`text-lg text-white transition-transform duration-300 ${
-                    isOpen ? "rotate-180" : ""
-                  }`}
-                  height="1em"
-                  width="1em"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z"></path>
-                </svg>
-              </div>
-            </button>
+              </span>
+            </Button>
 
             <div
               className={`absolute top-full left-0 mt-3 w-72 bg-white border border-neutral-100 rounded-2xl p-2 z-50 flex flex-col gap-1 origin-top transition-all duration-300 shadow-xl ${

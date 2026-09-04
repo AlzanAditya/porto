@@ -1,6 +1,7 @@
 import React from "react";
 import { Blog } from "../../types";
 import { useLanguage } from "../../context/LanguageContext";
+import { Badge } from "../ui/badge";
 
 interface BlogCardItemProps {
   blog: Blog;
@@ -42,12 +43,10 @@ export const BlogCardItem: React.FC<BlogCardItemProps> = ({
           {/* Card Details & Meta */}
           <div className="flex flex-col gap-4 flex-grow">
             <div className="flex gap-6">
-              <div className="flex gap-3 items-center bg-card px-4 py-2 rounded-full">
-                <div className="size-3 bg-linear-to-br from-primary to-secondary text-white rounded-full"></div>
-                <strong className="font-semibold text-sm">
-                  {blog.tags[0] || "Freelance"}
-                </strong>
-              </div>
+              <Badge
+                type="category"
+                label={blog.tags[0] || "Freelance"}
+              />
               <div className="text-text-secondary flex items-center gap-2 text-sm">
                 <svg
                   stroke="currentColor"

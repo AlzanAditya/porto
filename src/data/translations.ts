@@ -7,6 +7,7 @@ export const translations = {
     "nav.blogs": "Blogs",
     "nav.contact": "Contact",
     "nav.letsTalk": "Let's Talk",
+    "nav.collaborate": "Collaborate With Me!",
     "nav.switchLanguage": "Switch language",
 
     // Hero Section
@@ -224,6 +225,7 @@ export const translations = {
     "nav.blogs": "Blog",
     "nav.contact": "Kontak",
     "nav.letsTalk": "Hubungi Saya",
+    "nav.collaborate": "Collaborate With Me!",
     "nav.switchLanguage": "Ganti bahasa",
 
     // Hero Section

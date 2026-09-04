@@ -214,7 +214,7 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
                     }}
                     className="group flex flex-col gap-3 bg-card p-4 rounded-2xl border border-foreground/5 hover:border-primary/40 transition-all duration-300 shadow-2xs"
                   >
-                    <div className="overflow-hidden rounded-xl h-48 bg-white">
+                    <div className="overflow-hidden rounded-xl h-48 w-full bg-white relative">
                       <img
                         alt={pTitle}
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 rounded-xl"

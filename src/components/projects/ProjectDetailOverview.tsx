@@ -1,5 +1,6 @@
 import React from "react";
 import { useLanguage } from "../../context/LanguageContext";
+import { Badge } from "../ui/badge";
 
 interface ProjectDetailOverviewProps {
   overview: string;
@@ -35,12 +36,12 @@ export const ProjectDetailOverview: React.FC<ProjectDetailOverviewProps> = ({
           </h3>
           <div className="flex flex-wrap gap-2 gap-y-3">
             {tags.map((tag, index) => (
-              <strong
+              <Badge
                 key={index}
-                className="px-4 py-2 bg-card rounded-lg text-sm md:text-base font-medium inline-block animate-tags text-text-primary border border-foreground/5 shadow-2xs"
-              >
-                {tag}
-              </strong>
+                type="simple"
+                className="animate-tags"
+                label={tag}
+              />
             ))}
           </div>
         </div>

@@ -3,6 +3,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { useLanguage } from "../../context/LanguageContext";
+import { Button } from "../ui/button";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -85,37 +86,36 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, currentPath }) => {
               value={projectIdea}
               onChange={(e) => setProjectIdea(e.target.value)}
             />
-            <a
+            <Button
+              id="footer-cta-send-btn"
+              variant="primary"
+              shape="rounded-full"
+              scrollText
+              className="shrink-0 aspect-square sm:aspect-auto flex items-center justify-center p-2.5 sm:px-4 sm:py-2 sm:gap-2 text-sm md:text-base"
+              labelClassName="hidden sm:inline-flex"
+              iconWrapper="none"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center cursor-pointer font-medium gap-2 group transition-all duration-300 ease-in-out bg-gradient-to-br from-primary to-secondary text-white rounded-full shrink-0"
               href={`mailto:alzanadytia.j@gmail.com?subject=Project%20Inquiry&body=${encodeURIComponent(
                 projectIdea
               )}`}
+              iconRight={
+                <svg
+                  stroke="currentColor"
+                  fill="currentColor"
+                  strokeWidth="0"
+                  viewBox="0 0 512 512"
+                  className="text-sm transition-all duration-300 ease-in-out group-hover:scale-120"
+                  height="1em"
+                  width="1em"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path d="M498.1 5.6c10.1 7 15.4 19.1 13.5 31.2l-64 416c-1.5 9.7-7.4 18.2-16 23s-18.9 5.4-28 1.6L284 427.7l-68.5 74.1c-8.9 9.7-22.9 12.9-35.2 8.1S160 493.2 160 480l0-83.6c0-4 1.5-7.8 4.2-10.8L331.8 202.8c5.8-6.3 5.6-16-.4-22s-15.7-6.4-22-.7L106 360.8 17.7 316.6C7.1 311.3 .3 300.7 0 288.9s5.9-22.8 16.1-28.7l448-256c10.7-6.1 23.9-5.5 34 1.4z"></path>
+                </svg>
+              }
             >
-              <span className="flex items-center gap-2 px-4 py-3 lg:py-2 lg:pr-2 text-sm md:text-base lg:gap-3 btn-hover">
-                <span className="hidden sm:block">
-                  <span className="scroll-text flex">
-                    <span className="font-semibold">{t("footer.send")}</span>
-                    <span className="font-semibold">{t("footer.send")}</span>
-                  </span>
-                </span>
-                <span className="p-1.5 lg:p-2 rounded-full transition-all duration-300 ease-in-out group-hover:bg-white/40">
-                  <svg
-                    stroke="currentColor"
-                    fill="currentColor"
-                    strokeWidth="0"
-                    viewBox="0 0 512 512"
-                    className="text-sm transition-all duration-300 ease-in-out group-hover:scale-120"
-                    height="1em"
-                    width="1em"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path d="M498.1 5.6c10.1 7 15.4 19.1 13.5 31.2l-64 416c-1.5 9.7-7.4 18.2-16 23s-18.9 5.4-28 1.6L284 427.7l-68.5 74.1c-8.9 9.7-22.9 12.9-35.2 8.1S160 493.2 160 480l0-83.6c0-4 1.5-7.8 4.2-10.8L331.8 202.8c5.8-6.3 5.6-16-.4-22s-15.7-6.4-22-.7L106 360.8 17.7 316.6C7.1 311.3 .3 300.7 0 288.9s5.9-22.8 16.1-28.7l448-256c10.7-6.1 23.9-5.5 34 1.4z"></path>
-                  </svg>
-                </span>
-              </span>
-            </a>
+              {t("footer.send")}
+            </Button>
           </div>
         </div>
 

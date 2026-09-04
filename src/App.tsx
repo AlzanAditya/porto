@@ -18,37 +18,6 @@ import { LanguageProvider } from "./context/LanguageContext";
 
 gsap.registerPlugin(ScrollTrigger);
 
-/**
- * Determines if the target route requires the reference loading screen.
- * Based on the reference Next.js App Router architecture:
- * - /projects and /projects/:slug have loading.tsx
- * - /blogs/:slug (or /blog/:slug) has loading.tsx
- * - /, /about, and /blogs (list) DO NOT have loading.tsx
- */
-const shouldShowLoading = (path: string): boolean => {
-  const clean = path.split("?")[0].split("#")[0];
-
-  // 1. Projects listing: /projects
-  if (clean === "/projects" || clean === "/projects/") {
-    return true;
-  }
-
-  // 2. Project detail: /projects/:slug
-  if (clean.startsWith("/projects/") && clean.length > "/projects/".length) {
-    return true;
-  }
-
-  // 3. Blog detail: /blogs/:slug or /blog/:slug (NOT /blogs or /blog catalog)
-  if (
-    (clean.startsWith("/blogs/") && clean.length > "/blogs/".length) ||
-    (clean.startsWith("/blog/") && clean.length > "/blog/".length)
-  ) {
-    return true;
-  }
-
-  return false;
-};
-
 function AppContent() {
   const [currentPath, setCurrentPath] = useState<string>(() => {
     if (typeof window !== "undefined") {
@@ -57,30 +26,13 @@ function AppContent() {
     return "/";
   });
 
-  // Only show loading screen on initial load if the route actually requires it
-  const [isLoading, setIsLoading] = useState<boolean>(() => {
-    if (typeof window !== "undefined") {
-      return shouldShowLoading(window.location.pathname || "/");
-    }
-    return false;
-  });
-  const [isExiting, setIsExiting] = useState<boolean>(false);
+  // Loading screen component is preserved but disabled per user preference
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   // Disable browser automatic scroll restoration to avoid jumping to old positions
   useEffect(() => {
     if (typeof window !== "undefined" && "scrollRestoration" in window.history) {
       window.history.scrollRestoration = "manual";
-    }
-  }, []);
-
-  // Handle initial page load if direct route requires loading screen
-  useEffect(() => {
-    if (isLoading) {
-      // Brief duration for entrance animation (~350ms), then slide up
-      const timer = setTimeout(() => {
-        setIsExiting(true);
-      }, 350);
-      return () => clearTimeout(timer);
     }
   }, []);
 
@@ -97,46 +49,28 @@ function AppContent() {
       }
     }
 
-    // Immediately jump to the absolute top of the page
+    // If navigating to the exact same page, just scroll to top
+    if (path === currentPath) {
+      window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+      return;
+    }
+
+    // Instant seamless navigation (loading screen disabled)
     window.scrollTo({ top: 0, left: 0, behavior: "instant" as ScrollBehavior });
     document.documentElement.scrollTop = 0;
     document.body.scrollTop = 0;
 
-    const needsLoading = shouldShowLoading(path);
+    window.history.pushState(null, "", path);
+    setCurrentPath(path);
+    ScrollTrigger.refresh();
 
-    if (needsLoading) {
-      // Show loading screen
-      setIsLoading(true);
-      setIsExiting(false);
-
-      // Brief transition delay (~350ms) matching reference route preparation
-      // Does NOT wait for all images/assets so top-text entrance animations are visible as curtain lifts
+    // If target URL contains a hash, scroll to it after rendering
+    if (path.includes("#")) {
+      const hash = path.substring(path.indexOf("#"));
       setTimeout(() => {
-        window.scrollTo({ top: 0, left: 0, behavior: "instant" as ScrollBehavior });
-        document.documentElement.scrollTop = 0;
-        document.body.scrollTop = 0;
-
-        window.history.pushState(null, "", path);
-        setCurrentPath(path);
-
-        // Trigger curtain slide-up precisely as the new page component mounts
-        setIsExiting(true);
-        ScrollTrigger.refresh();
-      }, 350);
-    } else {
-      // Direct navigation for /, /about, /blogs listing without loading screen
-      window.history.pushState(null, "", path);
-      setCurrentPath(path);
-      ScrollTrigger.refresh();
-
-      // If target URL contains a hash, scroll to it after rendering
-      if (path.includes("#")) {
-        const hash = path.substring(path.indexOf("#"));
-        setTimeout(() => {
-          const el = document.querySelector(hash);
-          if (el) el.scrollIntoView({ behavior: "smooth" });
-        }, 50);
-      }
+        const el = document.querySelector(hash);
+        if (el) el.scrollIntoView({ behavior: "smooth" });
+      }, 50);
     }
   };
 
@@ -144,35 +78,21 @@ function AppContent() {
   useEffect(() => {
     const handlePopState = () => {
       const nextPath = window.location.pathname || "/";
+      if (nextPath === currentPath) return;
+
       window.scrollTo({ top: 0, left: 0, behavior: "instant" as ScrollBehavior });
       document.documentElement.scrollTop = 0;
       document.body.scrollTop = 0;
-
-      if (shouldShowLoading(nextPath)) {
-        setIsLoading(true);
-        setIsExiting(false);
-        setTimeout(() => {
-          window.scrollTo({ top: 0, left: 0, behavior: "instant" as ScrollBehavior });
-          document.documentElement.scrollTop = 0;
-          document.body.scrollTop = 0;
-          setCurrentPath(nextPath);
-          setIsExiting(true);
-          ScrollTrigger.refresh();
-        }, 350);
-      } else {
-        setCurrentPath(nextPath);
-        ScrollTrigger.refresh();
-      }
+      setCurrentPath(nextPath);
+      ScrollTrigger.refresh();
     };
 
     window.addEventListener("popstate", handlePopState);
     return () => window.removeEventListener("popstate", handlePopState);
-  }, []);
+  }, [currentPath]);
 
   const handleExitComplete = () => {
     setIsLoading(false);
-    setIsExiting(false);
-    ScrollTrigger.refresh();
   };
 
   const renderContent = () => {
@@ -241,11 +161,8 @@ function AppContent() {
 
   return (
     <div className="min-h-screen w-full overflow-x-clip bg-background text-text-primary flex flex-col font-sans selection:bg-primary/20 selection:text-primary relative">
-      <LoadingScreen
-        isVisible={isLoading}
-        isExiting={isExiting}
-        onExitComplete={handleExitComplete}
-      />
+      {/* LoadingScreen component preserved but disabled per user preference */}
+      <LoadingScreen isVisible={false} enabled={false} />
       <CustomCursor />
       <Navbar currentPath={currentPath} onNavigate={navigate} />
       <div id="main-content-container" className="flex-1 w-full">

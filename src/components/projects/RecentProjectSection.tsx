@@ -4,6 +4,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { Project } from "../../types";
 import { useLanguage } from "../../context/LanguageContext";
+import { Button } from "../ui/button";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -161,35 +162,31 @@ export const RecentProjectSection: React.FC<RecentProjectSectionProps> = ({
           </div>
 
           <div className="flex items-center gap-3">
-            <a
-              className="flex items-center cursor-pointer font-medium gap-2 group transition-all duration-300 ease-in-out bg-foreground px-4 py-3 lg:pr-2 lg:py-2 rounded-xl btn-hover"
+            <Button
+              variant="secondary"
+              scrollText
               href={`/projects/${project.slug}`}
               onClick={(e) => {
                 e.preventDefault();
                 onNavigate(`/projects/${project.slug}`);
               }}
+              iconRight={
+                <svg
+                  stroke="currentColor"
+                  fill="currentColor"
+                  strokeWidth="0"
+                  viewBox="0 0 448 512"
+                  className="text-lg -rotate-45 transition-all duration-300 ease-in-out group-hover:scale-120 group-hover:text-background"
+                  height="1em"
+                  width="1em"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"></path>
+                </svg>
+              }
             >
-              <div className="flex gap-3 items-center">
-                <span className="scroll-text flex">
-                  <span className="font-semibold">{t("projects.detailButton")}</span>
-                  <span className="font-semibold">{t("projects.detailButton")}</span>
-                </span>
-                <span className="lg:p-2 rounded-lg transition-all duration-300 ease-in-out group-hover:bg-text-primary">
-                  <svg
-                    stroke="currentColor"
-                    fill="currentColor"
-                    strokeWidth="0"
-                    viewBox="0 0 448 512"
-                    className="text-lg -rotate-45 transition-all duration-300 ease-in-out group-hover:scale-120 group-hover:text-background"
-                    height="1em"
-                    width="1em"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"></path>
-                  </svg>
-                </span>
-              </div>
-            </a>
+              {t("projects.detailButton")}
+            </Button>
           </div>
         </div>
       </div>

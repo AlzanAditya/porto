@@ -5,6 +5,7 @@ import { useGSAP } from "@gsap/react";
 import { Project } from "../../types";
 import { SplitWords } from "../common/SplitWords";
 import { useLanguage } from "../../context/LanguageContext";
+import { Button } from "../ui/button";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -129,34 +130,34 @@ export const LatestProjectsSection: React.FC<LatestProjectsSectionProps> = ({
 
       {/* View All Projects Button */}
       <div className="flex justify-center mt-10 md:mt-14">
-        <a
+        <Button
+          variant="secondary"
+          size="lg"
+          shape="rounded-xl"
+          scrollText
+          iconWrapper="none"
           href="/projects"
           onClick={(e) => {
             e.preventDefault();
             onNavigate("/projects");
           }}
+          iconRight={
+            <svg
+              stroke="currentColor"
+              fill="currentColor"
+              strokeWidth="0"
+              viewBox="0 0 448 512"
+              className="text-base -rotate-45 transition-transform duration-300 group-hover:scale-120"
+              height="1em"
+              width="1em"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"></path>
+            </svg>
+          }
         >
-          <button className="flex items-center cursor-pointer font-medium gap-2 group transition-all duration-300 ease-in-out bg-foreground px-6 py-3.5 btn-hover rounded-xl text-text-primary hover:bg-neutral-200/80 shadow-xs">
-            <div className="flex gap-2 items-center">
-              <span className="scroll-text flex">
-                <span className="font-semibold">{t("latestProjects.viewAll")}</span>
-                <span className="font-semibold">{t("latestProjects.viewAll")}</span>
-              </span>
-              <svg
-                stroke="currentColor"
-                fill="currentColor"
-                strokeWidth="0"
-                viewBox="0 0 448 512"
-                className="text-base -rotate-45 transition-transform duration-300 group-hover:scale-120"
-                height="1em"
-                width="1em"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"></path>
-              </svg>
-            </div>
-          </button>
-        </a>
+          {t("latestProjects.viewAll")}
+        </Button>
       </div>
     </section>
   );
