@@ -289,6 +289,62 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath, onNavigate }) => {
                     {t("nav.letsTalk")}
                   </Button>
                 </li>
+
+                {/* Apps Section: Yobss & Zanxa Studio */}
+                <li className="w-full mt-3 pt-3 border-t border-foreground/10 space-y-1">
+                  <div className="px-2 py-1 text-xs font-semibold uppercase tracking-wider text-text-secondary/70">
+                    Apps
+                  </div>
+                  <a
+                    id="navbar-menu-yobss"
+                    className={`flex items-center gap-3 p-2 rounded-xl group transition-all duration-300 ease-in-out cursor-pointer ${
+                      currentPath.startsWith("/apps/yoobs") || currentPath.startsWith("/apps/yobss")
+                        ? "bg-foreground text-text-primary"
+                        : "text-text-secondary hover:bg-foreground hover:text-text-primary"
+                    }`}
+                    href="/apps/yoobs"
+                    onClick={(e) => handleNav(e, "/apps/yoobs")}
+                  >
+                    <div className="size-10 rounded-lg overflow-hidden shadow-md border-2 border-white shrink-0 flex items-center justify-center bg-white">
+                      <img
+                        src="/logos/yobss.png"
+                        alt="Yobss"
+                        width="40"
+                        height="40"
+                        className="w-full h-full object-cover rounded-lg group-hover:scale-105 transition-all duration-300"
+                      />
+                    </div>
+                    <div className="flex flex-col">
+                      <span className="font-medium text-text-primary leading-tight">Yobss</span>
+                      <span className="text-xs text-text-secondary">Business System</span>
+                    </div>
+                  </a>
+
+                  <a
+                    id="navbar-menu-zanxa-studio"
+                    className={`flex items-center gap-3 p-2 rounded-xl group transition-all duration-300 ease-in-out cursor-pointer ${
+                      currentPath.startsWith("/apps/zanxa")
+                        ? "bg-foreground text-text-primary"
+                        : "text-text-secondary hover:bg-foreground hover:text-text-primary"
+                    }`}
+                    href="/apps/zanxa-studio"
+                    onClick={(e) => handleNav(e, "/apps/zanxa-studio")}
+                  >
+                    <div className="size-10 rounded-lg overflow-hidden shadow-md border-2 border-white shrink-0 flex items-center justify-center bg-white">
+                      <img
+                        src="/logos/zanxa-studio.png"
+                        alt="Zanxa Studio"
+                        width="40"
+                        height="40"
+                        className="w-full h-full object-cover rounded-lg group-hover:scale-105 transition-all duration-300"
+                      />
+                    </div>
+                    <div className="flex flex-col">
+                      <span className="font-medium text-text-primary leading-tight">Zanxa Studio</span>
+                      <span className="text-xs text-text-secondary">Web Agency</span>
+                    </div>
+                  </a>
+                </li>
               </ul>
             </nav>
           </div>

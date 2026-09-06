@@ -2,30 +2,37 @@ import React, { useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
-import { SplitWords } from "../common/SplitWords";
-import { useLanguage } from "../../context/LanguageContext";
-import { Button } from "../ui/button";
-import { Badge } from "../ui/badge";
+import { SplitWords } from "../../common/SplitWords";
+import { Button } from "../../ui/button";
+import { Badge } from "../../ui/badge";
+import { useLanguage } from "../../../context/LanguageContext";
+import { home as zanxaHome } from "../../../locales/zanxastudio/home";
 
 gsap.registerPlugin(ScrollTrigger);
 
-interface HeroSectionProps {
-  onNavigate: (path: string) => void;
+interface ZanxaStudioHeroSectionProps {
+  onNavigate?: (path: string) => void;
 }
 
-export const HeroSection: React.FC<HeroSectionProps> = ({ onNavigate }) => {
+export const ZanxaStudioHeroSection: React.FC<ZanxaStudioHeroSectionProps> = ({
+  onNavigate,
+}) => {
   const containerRef = useRef<HTMLDivElement>(null);
-  const { lang, t } = useLanguage();
+  const { lang } = useLanguage();
+  const content = zanxaHome[lang];
 
   useGSAP(
     () => {
       const tl = gsap.timeline();
+
+      // Entrance animation matching Yobss & HeroSection.tsx
       tl.from(".hero-badge", {
         y: 20,
         opacity: 0,
         duration: 0.8,
         ease: "power3.out",
       });
+
       tl.from(
         ".hero-title .word",
         {
@@ -38,6 +45,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onNavigate }) => {
         },
         "-=0.5"
       );
+
       tl.from(
         ".hero-subtitle .word",
         {
@@ -50,6 +58,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onNavigate }) => {
         },
         "-=0.8"
       );
+
       tl.from(
         ".hero-btns",
         {
@@ -61,6 +70,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onNavigate }) => {
         "-=0.6"
       );
 
+      // Match media for phone, avatar, and floating image particles
       const mm = gsap.matchMedia();
       mm.add(
         {
@@ -94,149 +104,135 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onNavigate }) => {
                 ease: "power4.out",
               },
               "-=0.5"
-            );
-
-          gsap
-            .timeline({
-              scrollTrigger: {
-                trigger: ".hero-images",
-                start: isMobile ? "top 65%" : "top 85%",
-                toggleActions: "play none none none",
+            )
+            .from(
+              ".hero-particles",
+              {
+                scale: 0.5,
+                opacity: 0,
+                filter: "blur(10px)",
+                duration: 1,
+                stagger: isMobile ? 0.08 : 0.15,
+                ease: "back.out(1.5)",
               },
-            })
-            .from(".hero-particles, .hero-bg-particle", {
-              scale: 0,
-              opacity: 0,
-              duration: 1.2,
-              stagger: 0.1,
-              ease: "back.out(1.7)",
-              delay: isMobile ? 0 : 0.8,
-            });
+              "-=0.8"
+            );
         }
       );
 
-      gsap.to(".hero-particles, .hero-bg-particle", {
-        y: "random(-20, 20)",
-        x: "random(-15, 15)",
-        rotation: "random(-5, 5)",
-        duration: "random(3, 5)",
+      // Continuous floating physics on tech particles
+      gsap.to(".hero-particles", {
+        y: -10,
+        rotation: "+=2",
+        duration: 3,
         repeat: -1,
         yoyo: true,
         ease: "sine.inOut",
-        stagger: {
-          each: 0.2,
-          from: "random",
-        },
+        stagger: 0.3,
       });
 
+      // Subtle parallax response to mouse movement
       const handleMouseMove = (e: MouseEvent) => {
         const { clientX, clientY } = e;
-        const xOffset = (clientX / window.innerWidth - 0.5) * 40;
-        const yOffset = (clientY / window.innerHeight - 0.5) * 40;
+        const xPos = (clientX / window.innerWidth - 0.5) * 20;
+        const yPos = (clientY / window.innerHeight - 0.5) * 20;
 
-        gsap.to(".hero-particles", {
-          x: (i) => xOffset * (i % 2 === 0 ? 1 : -1) * 0.5,
-          y: (i) => yOffset * (i % 3 === 0 ? 1 : -1) * 0.5,
+        gsap.to(".hero-avatar", {
+          x: xPos * 0.8,
+          y: yPos * 0.8,
           duration: 1,
           ease: "power2.out",
-          overwrite: "auto",
         });
 
-        gsap.to(".hero-bg-particle", {
-          x: xOffset * 0.2,
-          y: yOffset * 0.2,
-          duration: 1.5,
+        gsap.to(".hero-phone", {
+          x: -xPos * 0.5,
+          y: -yPos * 0.5,
+          duration: 1.2,
+          ease: "power2.out",
+        });
+
+        gsap.to(".hero-particles", {
+          x: xPos * 1.2,
+          y: yPos * 1.2,
+          duration: 0.8,
           ease: "power1.out",
-          overwrite: "auto",
         });
       };
 
       window.addEventListener("mousemove", handleMouseMove);
       return () => window.removeEventListener("mousemove", handleMouseMove);
     },
-    { scope: containerRef }
+    { scope: containerRef, dependencies: [lang] }
   );
+
+  const handleCtaClick = (e: React.MouseEvent, path: string) => {
+    e.preventDefault();
+    if (onNavigate) {
+      onNavigate(path);
+    } else {
+      window.location.href = path;
+    }
+  };
+
+  // Split title words for animation
+  const titleWords = content.hero.title.split(" ");
 
   return (
     <section
       ref={containerRef}
-      id="home"
+      id="hero"
       className="px-4 pt-6 md:pt-8 min-h-[115vh] max-h-[128vh] md:max-h-[132vh] lg:max-h-[178vh] 2xl:max-h-[145vh] 2xl:container mx-auto relative overflow-hidden select-none isolate"
     >
       <div className="flex flex-col items-center relative z-10">
-        {/* Availability Badge */}
+        {/* Badge: «Available for Projects» with orange indicator dot */}
         <Badge
           type="header"
           className="hero-badge"
-          label={t("hero.availability")}
+          label={content.hero.badge}
+          dotClassName="!bg-orange-500 shadow-[0_0_8px_rgba(249,115,22,0.8)]"
         />
 
-        {/* Title and Subtitle */}
+        {/* Heading & Description */}
         <div className="mt-6 md:mt-8 flex flex-col items-center text-center">
-          <h1 className="hero-title font-semibold text-[32px] leading-[1.2] md:text-6xl md:leading-[1.3] mb-4 md:mb-6">
-            <span className="inline-block pb-1">
-              <span className="word inline-block">{t("hero.title1")}&nbsp;</span>
-            </span>
-            <span className="inline-block pb-1">
-              <span className="word inline-block">{t("hero.title2")}&nbsp;</span>
-            </span>
-            <span className="inline-block pb-1">
-              <span className="word inline-block">{t("hero.title3")}&nbsp;</span>
-            </span>
-            <br className="hidden lg:block" />
-            <span className="inline-block pb-1">
-              <span className="word inline-block">{t("hero.title4")}&nbsp;</span>
-            </span>
-            <span className="inline-block pb-1">
-              <span className="word inline-block">{t("hero.title5")}&nbsp;</span>
-            </span>
-            <span className="inline-block pb-1">
-              <span className="word inline-block">{t("hero.title6")}&nbsp;</span>
-            </span>
+          <h1 className="hero-title font-semibold text-[32px] leading-[1.2] md:text-6xl md:leading-[1.3] mb-4 md:mb-6 max-w-4xl">
+            {titleWords.map((word, idx) => (
+              <React.Fragment key={idx}>
+                <span className="inline-block pb-1">
+                  <span className="word inline-block">{word}&nbsp;</span>
+                </span>
+                {idx === Math.floor(titleWords.length / 2) && (
+                  <br className="hidden lg:block" />
+                )}
+              </React.Fragment>
+            ))}
           </h1>
-          <h2 className="hero-subtitle font-medium w-[90%] md:w-[50%] md:text-xl text-text-secondary">
-            <SplitWords text={t("hero.subtitle")} />
+
+          <h2 className="hero-subtitle font-medium w-[90%] md:w-[54%] md:text-xl text-text-secondary">
+            <SplitWords text={content.hero.description} />
           </h2>
         </div>
 
-        {/* Action Buttons */}
+        {/* Action Buttons: Primary CTA (Solid Orange, portfolio shadow) & Secondary CTA (Portfolio Gray) */}
         <div className="hero-btns mt-8 md:mt-16 flex items-center gap-3">
+          {/* Primary CTA: Let's Talk! with Solid Orange & portfolio shadow */}
           <Button
+            id="zanxa-primary-cta"
             variant="primary"
             scrollText
-            href="mailto:alzanadytia.j@gmail.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            iconLeft={
-              <svg
-                stroke="currentColor"
-                fill="none"
-                strokeWidth="2"
-                viewBox="0 0 24 24"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="text-xl transition-all duration-300 ease-in-out group-hover:scale-120"
-                height="1em"
-                width="1em"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path d="M5 4h4l2 5l-2.5 1.5a11 11 0 0 0 5 5l1.5 -2.5l5 2v4a2 2 0 0 1 -2 2a16 16 0 0 1 -15 -15a2 2 0 0 1 2 -2"></path>
-                <path d="M15 7a2 2 0 0 1 2 2"></path>
-                <path d="M15 3a6 6 0 0 1 6 6"></path>
-              </svg>
-            }
+            href="/#contact"
+            onClick={(e) => handleCtaClick(e, "/#contact")}
+            className="!bg-orange-500 hover:!bg-orange-600 shadow-xs text-white"
           >
-            {t("hero.ctaTalk")}
+            {content.hero.ctaPrimary}
           </Button>
 
+          {/* Secondary CTA: View our Work with Portfolio Gray styling */}
           <Button
+            id="zanxa-secondary-cta"
             variant="secondary"
             scrollText
             href="/projects"
-            onClick={(e) => {
-              e.preventDefault();
-              onNavigate("/projects");
-            }}
+            onClick={(e) => handleCtaClick(e, "/projects")}
             iconRight={
               <svg
                 stroke="currentColor"
@@ -252,12 +248,12 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onNavigate }) => {
               </svg>
             }
           >
-            {t("hero.ctaProjects")}
+            {content.hero.ctaSecondary}
           </Button>
         </div>
       </div>
 
-      {/* Visual Composition */}
+      {/* Visual Composition matching HeroSection.tsx (Phone, Avatar, and floating particles) */}
       <div className="hero-images flex flex-col items-center mt-20 lg:mt-12 scale-82 md:scale-86 lg:scale-72 relative">
         <img
           alt="phone"
@@ -274,7 +270,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onNavigate }) => {
           src="/avatar/main.webp"
         />
 
-        {/* Floating tech particles matching ref_index.html */}
+        {/* Floating tech particles matching HeroSection.tsx */}
         <img
           alt="nextjs"
           width="230"
@@ -312,7 +308,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onNavigate }) => {
         />
       </div>
 
-      {/* Atmospheric glow spheres */}
+      {/* Atmospheric glow particles matching portfolio */}
       <img
         alt=""
         width="900"
@@ -330,4 +326,3 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onNavigate }) => {
     </section>
   );
 };
-

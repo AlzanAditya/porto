@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Navbar } from "./components/layout/Navbar";
+import { NavbarApps } from "./components/layout/NavbarApps";
 import { Footer } from "./components/layout/Footer";
 import { CustomCursor } from "./components/layout/CustomCursor";
 import { ProgressiveBlur } from "./components/common/ProgressiveBlur";
@@ -12,6 +13,8 @@ import { BlogsPage } from "./pages/BlogsPage";
 import { AboutPage } from "./pages/AboutPage";
 import { ProjectDetailPage } from "./pages/ProjectDetailPage";
 import { BlogDetailPage } from "./pages/BlogDetailPage";
+import { YobssPage } from "./pages/apps/YobssPage";
+import { ZanxaStudioPage } from "./pages/apps/ZanxaStudioPage";
 import { projectsData } from "./data/projectsData";
 import { blogsData } from "./data/blogsData";
 import { LanguageProvider } from "./context/LanguageContext";
@@ -96,6 +99,14 @@ function AppContent() {
   };
 
   const renderContent = () => {
+    // 0. Apps: /apps/yoobs (and alias /apps/yobss), /apps/zanxa-studio
+    if (currentPath.startsWith("/apps/yoobs") || currentPath.startsWith("/apps/yobss")) {
+      return <YobssPage onNavigate={navigate} />;
+    }
+    if (currentPath.startsWith("/apps/zanxa-studio") || currentPath.startsWith("/apps/zanxastudio")) {
+      return <ZanxaStudioPage onNavigate={navigate} />;
+    }
+
     // 1. Project Detail: /projects/:slug
     if (currentPath.startsWith("/projects/")) {
       const slug = currentPath.replace("/projects/", "").split("/")[0];
@@ -159,17 +170,25 @@ function AppContent() {
     );
   };
 
+  const isAppsRoute = currentPath.startsWith("/apps/");
+
   return (
     <div className="min-h-screen w-full overflow-x-clip bg-background text-text-primary flex flex-col font-sans selection:bg-primary/20 selection:text-primary relative">
       {/* LoadingScreen component preserved but disabled per user preference */}
       <LoadingScreen isVisible={false} enabled={false} />
       <CustomCursor />
-      <Navbar currentPath={currentPath} onNavigate={navigate} />
+      {isAppsRoute ? (
+        <NavbarApps currentPath={currentPath} onNavigate={navigate} />
+      ) : (
+        <Navbar currentPath={currentPath} onNavigate={navigate} />
+      )}
       <div id="main-content-container" className="flex-1 w-full">
         {renderContent()}
       </div>
       <ProgressiveBlur />
-      <Footer key={currentPath} currentPath={currentPath} onNavigate={navigate} />
+      {!isAppsRoute && (
+        <Footer key={currentPath} currentPath={currentPath} onNavigate={navigate} />
+      )}
     </div>
   );
 }
