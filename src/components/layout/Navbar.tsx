@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Home, CodeXml, FileText, User } from "lucide-react";
 import { useLanguage } from "../../context/LanguageContext";
 import { Button } from "../ui/button";
 
@@ -115,22 +116,9 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath, onNavigate }) => {
                     href="/"
                     onClick={(e) => handleNav(e, "/")}
                   >
-                    <div className="p-2.5 bg-foreground group-hover:bg-white transition-all duration-300 ease-in-out rounded-lg">
-                      <div className="group-hover:scale-120 transition duration-300 ease-in-out text-lg text-text-primary">
-                        <svg
-                          stroke="currentColor"
-                          fill="none"
-                          strokeWidth="2"
-                          viewBox="0 0 24 24"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          height="1em"
-                          width="1em"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
-                          <polyline points="9 22 9 12 15 12 15 22"></polyline>
-                        </svg>
+                    <div className="p-2.5 bg-foreground group-hover:bg-white transition-all duration-300 ease-in-out rounded-lg flex items-center justify-center">
+                      <div className={`group-hover:scale-120 transition duration-300 ease-in-out ${currentPath === "/" ? "text-text-primary" : "text-text-secondary group-hover:text-text-primary"}`}>
+                        <Home className="w-5 h-5" strokeWidth={1.5} />
                       </div>
                     </div>
                     <span className="font-medium">{t("nav.home")}</span>
@@ -147,19 +135,9 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath, onNavigate }) => {
                     href="/projects"
                     onClick={(e) => handleNav(e, "/projects")}
                   >
-                    <div className="p-2.5 bg-foreground group-hover:bg-white transition-all duration-300 ease-in-out rounded-lg">
-                      <div className="group-hover:scale-120 transition duration-300 ease-in-out text-lg text-text-primary">
-                        <svg
-                          stroke="currentColor"
-                          fill="currentColor"
-                          strokeWidth="0"
-                          viewBox="0 0 640 512"
-                          height="1em"
-                          width="1em"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path d="M392.8 1.2c-17-4.9-34.7 5-39.6 22l-128 448c-4.9 17 5 34.7 22 39.6s34.7-5 39.6-22l128-448c4.9-17-5-34.7-22-39.6zm80.6 120.1c-12.5 12.5-12.5 32.8 0 45.3L562.7 256l-89.4 89.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l112-112c12.5-12.5 12.5-32.8 0-45.3l-112-112c-12.5-12.5-32.8-12.5-45.3 0zm-306.7 0c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3l112 112c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l89.4-89.4c12.5-12.5 12.5-32.8 0-45.3z"></path>
-                        </svg>
+                    <div className="p-2.5 bg-foreground group-hover:bg-white transition-all duration-300 ease-in-out rounded-lg flex items-center justify-center">
+                      <div className={`group-hover:scale-120 transition duration-300 ease-in-out ${currentPath.startsWith("/projects") ? "text-text-primary" : "text-text-secondary group-hover:text-text-primary"}`}>
+                        <CodeXml className="w-5 h-5" strokeWidth={1.5} />
                       </div>
                     </div>
                     <span className="font-medium">{t("nav.projects")}</span>
@@ -176,31 +154,9 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath, onNavigate }) => {
                     href="/blogs"
                     onClick={(e) => handleNav(e, "/blogs")}
                   >
-                    <div className="p-2.5 bg-foreground group-hover:bg-white transition-all duration-300 ease-in-out rounded-lg">
-                      <div className="group-hover:scale-120 transition duration-300 ease-in-out text-lg text-text-primary">
-                        <svg
-                          stroke="currentColor"
-                          fill="currentColor"
-                          strokeWidth="0"
-                          viewBox="0 0 512 512"
-                          height="1em"
-                          width="1em"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            fill="none"
-                            strokeLinejoin="round"
-                            strokeWidth="32"
-                            d="M416 221.25V416a48 48 0 0 1-48 48H144a48 48 0 0 1-48-48V96a48 48 0 0 1 48-48h98.75a32 32 0 0 1 22.62 9.37l141.26 141.26a32 32 0 0 1 9.37 22.62z"
-                          ></path>
-                          <path
-                            fill="none"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth="32"
-                            d="M256 56v120a32 32 0 0 0 32 32h120m-232 80h160m-160 80h160"
-                          ></path>
-                        </svg>
+                    <div className="p-2.5 bg-foreground group-hover:bg-white transition-all duration-300 ease-in-out rounded-lg flex items-center justify-center">
+                      <div className={`group-hover:scale-120 transition duration-300 ease-in-out ${currentPath.startsWith("/blogs") ? "text-text-primary" : "text-text-secondary group-hover:text-text-primary"}`}>
+                        <FileText className="w-5 h-5" strokeWidth={1.5} />
                       </div>
                     </div>
                     <span className="font-medium">{t("nav.blogs")}</span>
@@ -217,19 +173,9 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath, onNavigate }) => {
                     href="/about"
                     onClick={(e) => handleNav(e, "/about")}
                   >
-                    <div className="p-2.5 bg-foreground group-hover:bg-white transition-all duration-300 ease-in-out rounded-lg">
-                      <div className="group-hover:scale-120 transition duration-300 ease-in-out text-lg text-text-primary">
-                        <svg
-                          stroke="currentColor"
-                          fill="currentColor"
-                          strokeWidth="0"
-                          viewBox="0 0 512 512"
-                          height="1em"
-                          width="1em"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path d="M406.5 399.6C387.4 352.9 341.5 320 288 320l-64 0c-53.5 0-99.4 32.9-118.5 79.6C69.9 362.2 48 311.7 48 256C48 141.1 141.1 48 256 48s208 93.1 208 208c0 55.7-21.9 106.2-57.5 143.6zm-40.1 32.7C334.4 452.4 296.6 464 256 464s-78.4-11.6-110.5-31.7c7.3-36.7 39.7-64.3 78.5-64.3l64 0c38.8 0 71.2 27.6 78.5 64.3zM256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-272a40 40 0 1 1 0-80 40 40 0 1 1 0 80zm-88-40a88 88 0 1 0 176 0 88 88 0 1 0 -176 0z"></path>
-                        </svg>
+                    <div className="p-2.5 bg-foreground group-hover:bg-white transition-all duration-300 ease-in-out rounded-lg flex items-center justify-center">
+                      <div className={`group-hover:scale-120 transition duration-300 ease-in-out ${currentPath === "/about" ? "text-text-primary" : "text-text-secondary group-hover:text-text-primary"}`}>
+                        <User className="w-5 h-5" strokeWidth={1.5} />
                       </div>
                     </div>
                     <span className="font-medium">{t("nav.about")}</span>
@@ -290,10 +236,10 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath, onNavigate }) => {
                   </Button>
                 </li>
 
-                {/* Apps Section: Yobss & Zanxa Studio */}
+                {/* Other Section: Yobss & Zanxa Studio */}
                 <li className="w-full mt-3 pt-3 border-t border-foreground/10 space-y-1">
-                  <div className="px-2 py-1 text-xs font-semibold uppercase tracking-wider text-text-secondary/70">
-                    Apps
+                  <div className="px-2 py-1 text-xs font-semibold tracking-wider text-text-secondary/70">
+                    {t("nav.other") || (lang === "id" ? "Lainnya" : "Other")}
                   </div>
                   <a
                     id="navbar-menu-yobss"

@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronRight } from "lucide-react";
 
 interface ProjectDetailGalleryProps {
   images: string[];
@@ -25,11 +25,20 @@ export const ProjectDetailGallery: React.FC<ProjectDetailGalleryProps> = ({
   const sliderImages = images.slice(1);
 
   const [activeSlide, setActiveSlide] = useState(0);
+  const [hasMovedToNext, setHasMovedToNext] = useState(false);
 
-  // Reset active slide when project images change
+  // Reset active slide and navigation tracking when project images change
   useEffect(() => {
     setActiveSlide(0);
+    setHasMovedToNext(false);
   }, [images]);
+
+  // Once moved away from the first slide, mark as moved so the button never re-appears
+  useEffect(() => {
+    if (activeSlide > 0) {
+      setHasMovedToNext(true);
+    }
+  }, [activeSlide]);
 
   // Touch and swipe gesture handling
   const touchStartX = useRef<number>(0);
@@ -120,6 +129,7 @@ export const ProjectDetailGallery: React.FC<ProjectDetailGalleryProps> = ({
   };
 
   const handleNextSlide = () => {
+    setHasMovedToNext(true);
     setActiveSlide((prev) => (prev < sliderImages.length - 1 ? prev + 1 : prev));
   };
 
@@ -155,9 +165,6 @@ export const ProjectDetailGallery: React.FC<ProjectDetailGalleryProps> = ({
             className="w-full h-auto rounded-xl cursor-pointer transition-transform duration-500 active:scale-98 block"
             src={coverImage}
           />
-          <div className="absolute top-2.5 left-2.5 bg-black/60 backdrop-blur-md text-white text-[11px] font-medium px-2.5 py-0.5 rounded-full shadow-xs">
-            Cover
-          </div>
         </div>
 
         {/* 2. Swipeable Content Images (image-1, image-2, etc.) */}
@@ -197,23 +204,8 @@ export const ProjectDetailGallery: React.FC<ProjectDetailGalleryProps> = ({
                 ))}
               </div>
 
-              {/* Discreet Navigation Arrows for touch/click convenience */}
-              {activeSlide > 0 && (
-                <button
-                  type="button"
-                  id="mobile-gallery-prev-btn"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    handlePrevSlide();
-                  }}
-                  className="absolute left-2.5 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-black/50 hover:bg-black/70 text-white backdrop-blur-md flex items-center justify-center transition-all duration-200 z-10 shadow-xs cursor-pointer active:scale-90"
-                  aria-label="Previous image"
-                >
-                  <ChevronLeft className="w-4 h-4" />
-                </button>
-              )}
-
-              {activeSlide < sliderImages.length - 1 && (
+              {/* Next Slide Button: Only appears on image-1 (slide 0) and once moved to other images, does not appear anymore */}
+              {sliderImages.length > 1 && activeSlide === 0 && !hasMovedToNext && (
                 <button
                   type="button"
                   id="mobile-gallery-next-btn"
@@ -227,16 +219,9 @@ export const ProjectDetailGallery: React.FC<ProjectDetailGalleryProps> = ({
                   <ChevronRight className="w-4 h-4" />
                 </button>
               )}
-
-              {/* Counter Badge */}
-              <div className="absolute top-2.5 right-2.5 z-10 bg-black/60 backdrop-blur-md text-white text-[11px] font-medium px-2.5 py-0.5 rounded-full flex items-center gap-1 shadow-xs">
-                <span>{activeSlide + 1}</span>
-                <span className="text-white/60">/</span>
-                <span>{sliderImages.length}</span>
-              </div>
             </div>
 
-            {/* Indicator Dots Below Image: Active is Purple (ungu) & 2x wider pill, Inactive are Gray (abu) */}
+            {/* Indicator Dots Below Image: Active is Purple & 2x wider pill, Inactive are faded softer/whiter */}
             {sliderImages.length > 1 && (
               <div
                 id="mobile-gallery-indicator-dots"
@@ -257,7 +242,7 @@ export const ProjectDetailGallery: React.FC<ProjectDetailGalleryProps> = ({
                       className={`h-2 rounded-full transition-all duration-300 ease-out cursor-pointer ${
                         isActive
                           ? "w-6 bg-primary shadow-xs"
-                          : "w-2 bg-zinc-300 dark:bg-zinc-700 hover:bg-zinc-400"
+                          : "w-2 bg-zinc-200/60 dark:bg-zinc-700/40 hover:bg-zinc-300"
                       }`}
                     />
                   );

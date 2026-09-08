@@ -12,10 +12,15 @@ export const home = {
       ctaSecondary: "View our Work",
     },
     nav: {
+      home: "Home",
+      work: "Work",
+      testimonial: "Testimonial",
+      pricing: "Pricing",
+      about: "About",
+      contact: "Contact",
       overview: "Overview",
       services: "Services",
       portfolio: "Portfolio",
-      contact: "Let's Talk!",
     },
   },
   id: {
@@ -31,10 +36,15 @@ export const home = {
       ctaSecondary: "Portofolio Kami",
     },
     nav: {
+      home: "Beranda",
+      work: "Portofolio",
+      testimonial: "Testimoni",
+      pricing: "Harga",
+      about: "Tentang",
+      contact: "Kontak",
       overview: "Ringkasan",
       services: "Layanan",
       portfolio: "Portofolio",
-      contact: "Mulai Diskusi",
     },
   },
 };

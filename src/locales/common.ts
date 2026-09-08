@@ -9,7 +9,8 @@ export const common = {
       letsTalk: "Let's Talk",
       collaborate: "Collaborate With Me!",
       switchLanguage: "Switch language",
-      apps: "Apps",
+      apps: "Other",
+      other: "Other",
     },
     footer: {
       ctaTitle: "Let's Build Something Great Together",
@@ -35,7 +36,8 @@ export const common = {
       letsTalk: "Hubungi Saya",
       collaborate: "Collaborate With Me!",
       switchLanguage: "Ganti bahasa",
-      apps: "Aplikasi",
+      apps: "Lainnya",
+      other: "Lainnya",
     },
     footer: {
       ctaTitle: "Let's Build Something Great Together",

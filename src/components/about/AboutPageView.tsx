@@ -8,6 +8,9 @@ import { TextMarquee } from "../common/TextMarquee";
 import { useLanguage } from "../../context/LanguageContext";
 import { Button } from "../ui/button";
 import { Badge } from "../ui/badge";
+import { TextTitle, TextDesc } from "../ui/Text";
+import { RecordList } from "../common/RecordList";
+import { SocialGrid } from "../Section/ContactSection";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -287,56 +290,44 @@ export const AboutPageView: React.FC<AboutPageViewProps> = ({ onNavigate }) => {
               },
               "-=0.8"
             )
-            .from(
+            .fromTo(
               ".work-exp-item",
+              { y: 30, opacity: 0 },
               {
-                y: 40,
-                opacity: 0,
-                duration: 0.8,
-                stagger: 0.15,
+                y: 0,
+                opacity: 1,
+                duration: 0.6,
+                stagger: 0.1,
                 ease: "power3.out",
+                clearProps: "all",
               },
               "-=0.4"
             )
-            .from(
+            .fromTo(
               ".achievement-item",
+              { y: 30, opacity: 0 },
               {
-                y: 40,
-                opacity: 0,
-                duration: 0.8,
-                stagger: 0.15,
+                y: 0,
+                opacity: 1,
+                duration: 0.6,
+                stagger: 0.1,
                 ease: "power3.out",
-              },
-              "-=0.6"
-            )
-            .from(
-              ".edu-item",
-              {
-                y: 40,
-                opacity: 0,
-                duration: 0.8,
-                stagger: 0.15,
-                ease: "power3.out",
-              },
-              "-=0.6"
-            )
-            .to(
-              ".image-slider-curtain",
-              {
-                xPercent: -100,
-                duration: 1.2,
-                ease: "power4.inOut",
+                clearProps: "all",
               },
               "-=0.4"
             )
-            .from(
-              ".image-slider-inner",
+            .fromTo(
+              ".edu-item",
+              { y: 30, opacity: 0 },
               {
-                xPercent: 100,
-                duration: 1.2,
-                ease: "power4.inOut",
+                y: 0,
+                opacity: 1,
+                duration: 0.6,
+                stagger: 0.1,
+                ease: "power3.out",
+                clearProps: "all",
               },
-              "<"
+              "-=0.4"
             );
 
           // Section 3: Say Hello
@@ -379,7 +370,7 @@ export const AboutPageView: React.FC<AboutPageViewProps> = ({ onNavigate }) => {
         }
       );
     },
-    { scope: containerRef }
+    { scope: containerRef, dependencies: [lang] }
   );
 
   return (
@@ -622,101 +613,24 @@ export const AboutPageView: React.FC<AboutPageViewProps> = ({ onNavigate }) => {
           <div className="lg:col-span-8">
             <div className="p-4 py-5 md:p-5 bg-card rounded-xl h-full">
               <h3 className="text-2xl font-medium mb-6 md:mb-8">{t("aboutPage.workExpTitle")}</h3>
-              <div className="flex flex-col gap-3">
-                {/* Exp 1 */}
-                <div className="work-exp-item">
-                  <div
-                    data-cursor="Read"
-                    onClick={() => setOpenWorkExp(openWorkExp === 0 ? null : 0)}
-                    className="bg-white cursor-pointer flex flex-col group btn-hover transition duration-400 ease-in-out p-5 rounded-xl"
-                  >
-                    <div className="flex items-center justify-between">
-                      <div className="flex flex-col gap-2">
-                        <p className="font-medium text-text-secondary text-sm md:text-base">
-                          {t("aboutPage.exp1.period")}
-                        </p>
-                        <div className="flex flex-col md:flex-row md:items-center md:gap-3">
-                          <h4 className="text-lg md:text-xl font-medium">{t("aboutPage.exp1.company")}</h4>
-                          <p className="text-xl hidden md:block">•</p>
-                          <strong className="text-base md:text-lg text-text-secondary font-medium">
-                            {t("aboutPage.exp1.role")}
-                          </strong>
-                        </div>
-                      </div>
-                      <Button
-                        variant="circle-toggle"
-                        isOpen={openWorkExp === 0}
-                        aria-label={openWorkExp === 0 ? "Collapse details" : "Expand details"}
-                      />
-                    </div>
-                    <AnimatePresence initial={false}>
-                      {openWorkExp === 0 && (
-                        <motion.div
-                          key="exp-0"
-                          initial={{ height: 0, opacity: 0 }}
-                          animate={{ height: "auto", opacity: 1 }}
-                          exit={{ height: 0, opacity: 0 }}
-                          transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-                          className="overflow-hidden"
-                        >
-                          <div className="pt-4">
-                            <p className="text-text-secondary text-sm md:text-base font-medium border-foreground leading-relaxed">
-                              {t("aboutPage.exp1.desc")}
-                            </p>
-                          </div>
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
-                  </div>
-                </div>
-
-                {/* Exp 2 */}
-                <div className="work-exp-item">
-                  <div
-                    data-cursor="Read"
-                    onClick={() => setOpenWorkExp(openWorkExp === 1 ? null : 1)}
-                    className="bg-white cursor-pointer flex flex-col group btn-hover transition duration-400 ease-in-out p-5 rounded-xl hover:bg-foreground"
-                  >
-                    <div className="flex items-center justify-between">
-                      <div className="flex flex-col gap-2">
-                        <p className="font-medium text-text-secondary text-sm md:text-base">
-                          {t("aboutPage.exp2.period")}
-                        </p>
-                        <div className="flex flex-col md:flex-row md:items-center md:gap-3">
-                          <h4 className="text-lg md:text-xl font-medium">{t("aboutPage.exp2.company")}</h4>
-                          <p className="text-xl hidden md:block">•</p>
-                          <strong className="text-base md:text-lg text-text-secondary font-medium">
-                            {t("aboutPage.exp2.role")}
-                          </strong>
-                        </div>
-                      </div>
-                      <Button
-                        variant="circle-toggle"
-                        isOpen={openWorkExp === 1}
-                        aria-label={openWorkExp === 1 ? "Collapse details" : "Expand details"}
-                      />
-                    </div>
-                    <AnimatePresence initial={false}>
-                      {openWorkExp === 1 && (
-                        <motion.div
-                          key="exp-1"
-                          initial={{ height: 0, opacity: 0 }}
-                          animate={{ height: "auto", opacity: 1 }}
-                          exit={{ height: 0, opacity: 0 }}
-                          transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-                          className="overflow-hidden"
-                        >
-                          <div className="pt-4">
-                            <p className="text-text-secondary text-sm md:text-base font-medium border-foreground leading-relaxed">
-                              {t("aboutPage.exp2.desc")}
-                            </p>
-                          </div>
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
-                  </div>
-                </div>
-              </div>
+              <RecordList
+                type="accordion"
+                itemClassName="work-exp-item"
+                items={[
+                  {
+                    period: t("aboutPage.exp1.period"),
+                    title: t("aboutPage.exp1.company"),
+                    subtitle: t("aboutPage.exp1.role"),
+                    description: t("aboutPage.exp1.desc"),
+                  },
+                  {
+                    period: t("aboutPage.exp2.period"),
+                    title: t("aboutPage.exp2.company"),
+                    subtitle: t("aboutPage.exp2.role"),
+                    description: t("aboutPage.exp2.desc"),
+                  },
+                ]}
+              />
             </div>
           </div>
 
@@ -724,41 +638,28 @@ export const AboutPageView: React.FC<AboutPageViewProps> = ({ onNavigate }) => {
           <div className="lg:col-span-4">
             <div className="p-4 py-5 md:p-5 bg-card rounded-xl h-full">
               <h3 className="text-2xl font-medium mb-6 md:mb-8">{t("aboutPage.achievementsTitle")}</h3>
-              <div className="flex flex-col gap-3">
-                <div className="achievement-item bg-white p-5 rounded-xl transition-colors duration-300 group">
-                  <p className="font-medium text-text-secondary text-sm md:text-base mb-3">2026</p>
-                  <div className="flex flex-col gap-1">
-                    <h4 className="text-lg font-medium transition-colors duration-300">
-                      {t("aboutPage.achieve1.title")}
-                    </h4>
-                    <p className="text-sm font-medium text-text-secondary">
-                      {t("aboutPage.achieve1.org")}
-                    </p>
-                  </div>
-                </div>
-                <div className="achievement-item bg-white p-5 rounded-xl transition-colors duration-300 group">
-                  <p className="font-medium text-text-secondary text-sm md:text-base mb-3">2025</p>
-                  <div className="flex flex-col gap-1">
-                    <h4 className="text-lg font-medium transition-colors duration-300">
-                      {t("aboutPage.achieve2.title")}
-                    </h4>
-                    <p className="text-sm font-medium text-text-secondary">
-                      {t("aboutPage.achieve2.org")}
-                    </p>
-                  </div>
-                </div>
-                <div className="achievement-item bg-white p-5 rounded-xl transition-colors duration-300 group">
-                  <p className="font-medium text-text-secondary text-sm md:text-base mb-3">2024</p>
-                  <div className="flex flex-col gap-1">
-                    <h4 className="text-lg font-medium transition-colors duration-300">
-                      {t("aboutPage.achieve3.title")}
-                    </h4>
-                    <p className="text-sm font-medium text-text-secondary">
-                      {t("aboutPage.achieve3.org")}
-                    </p>
-                  </div>
-                </div>
-              </div>
+              <RecordList
+                type="card"
+                layout="stack"
+                itemClassName="achievement-item"
+                items={[
+                  {
+                    period: "2026",
+                    title: t("aboutPage.achieve1.title"),
+                    subtitle: t("aboutPage.achieve1.org"),
+                  },
+                  {
+                    period: "2025",
+                    title: t("aboutPage.achieve2.title"),
+                    subtitle: t("aboutPage.achieve2.org"),
+                  },
+                  {
+                    period: "2024",
+                    title: t("aboutPage.achieve3.title"),
+                    subtitle: t("aboutPage.achieve3.org"),
+                  },
+                ]}
+              />
             </div>
           </div>
 
@@ -811,32 +712,23 @@ export const AboutPageView: React.FC<AboutPageViewProps> = ({ onNavigate }) => {
           <div className="lg:col-span-8">
             <div className="p-4 py-5 md:p-5 bg-card rounded-xl h-full">
               <h3 className="text-2xl font-medium mb-6 md:mb-8">{t("aboutPage.educationTitle")}</h3>
-              <div className="grid sm:grid-cols-2 gap-3">
-                <div className="edu-item bg-white p-5 rounded-xl transition-colors duration-300 group">
-                  <p className="font-medium text-text-secondary text-sm md:text-base mb-3">
-                    {t("aboutPage.edu1.period")}
-                  </p>
-                  <div className="flex flex-col gap-1">
-                    <h4 className="text-lg font-medium transition-colors duration-300">
-                      {t("aboutPage.edu1.school")}
-                    </h4>
-                    <p className="text-sm font-medium text-text-secondary">{t("aboutPage.edu1.major")}</p>
-                  </div>
-                </div>
-                <div className="edu-item bg-white p-5 rounded-xl transition-colors duration-300 group">
-                  <p className="font-medium text-text-secondary text-sm md:text-base mb-3">
-                    {t("aboutPage.edu2.period")}
-                  </p>
-                  <div className="flex flex-col gap-1">
-                    <h4 className="text-lg font-medium transition-colors duration-300">
-                      {t("aboutPage.edu2.school")}
-                    </h4>
-                    <p className="text-sm font-medium text-text-secondary">
-                      {t("aboutPage.edu2.major")}
-                    </p>
-                  </div>
-                </div>
-              </div>
+              <RecordList
+                type="card"
+                layout="grid"
+                itemClassName="edu-item"
+                items={[
+                  {
+                    period: t("aboutPage.edu1.period"),
+                    title: t("aboutPage.edu1.school"),
+                    subtitle: t("aboutPage.edu1.major"),
+                  },
+                  {
+                    period: t("aboutPage.edu2.period"),
+                    title: t("aboutPage.edu2.school"),
+                    subtitle: t("aboutPage.edu2.major"),
+                  },
+                ]}
+              />
             </div>
           </div>
 
@@ -883,165 +775,8 @@ export const AboutPageView: React.FC<AboutPageViewProps> = ({ onNavigate }) => {
 
           <div className="hidden lg:block col-span-2"></div>
 
-          <div className="col-span-1 md:col-span-6 grid grid-cols-2 gap-4 md:gap-5">
-            {/* LinkedIn */}
-            <div className="social-item">
-              <a
-                target="_blank"
-                rel="noopener noreferrer"
-                data-cursor="visit"
-                className="p-4 flex flex-col gap-10 btn-hover rounded-xl group transition-all duration-300 bg-card hover:bg-white"
-                href="https://linkedin.com/in/alzanadytiajuniar"
-              >
-                <div className="flex items-center justify-between">
-                  <div className="relative w-8 h-8 flex items-center justify-center">
-                    <svg
-                      stroke="currentColor"
-                      fill="currentColor"
-                      strokeWidth="0"
-                      viewBox="0 0 448 512"
-                      className="w-7 h-7 text-[#0A66C2]"
-                      height="1em"
-                      width="1em"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path d="M100.28 448H7.4V148.9h92.88zM53.79 108.1C24.09 108.1 0 83.5 0 53.8a53.79 53.79 0 0 1 107.58 0c0 29.7-24.1 54.3-53.79 54.3zM447.9 448h-92.68V302.4c0-34.7-.7-79.2-48.29-79.2-48.29 0-55.69 37.7-55.69 76.7V448h-92.78V148.9h89.08v40.8h1.3c12.4-23.5 42.69-48.3 87.88-48.3 94 0 111.28 61.9 111.28 142.3V448z"></path>
-                    </svg>
-                  </div>
-                  <div className="p-3 bg-card group-hover:bg-primary rounded-full transition-all duration-400 ease-in-out">
-                    <svg
-                      stroke="currentColor"
-                      fill="currentColor"
-                      strokeWidth="0"
-                      viewBox="0 0 448 512"
-                      className="-rotate-45 text-primary transition-all duration-400 ease-in-out group-hover:text-background text-lg"
-                      height="1em"
-                      width="1em"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"></path>
-                    </svg>
-                  </div>
-                </div>
-                <div>
-                  <h3 className="font-medium md:text-lg text-text-primary">Alzan Aditya</h3>
-                </div>
-              </a>
-            </div>
-
-            {/* GitHub */}
-            <div className="social-item">
-              <a
-                target="_blank"
-                rel="noopener noreferrer"
-                data-cursor="visit"
-                className="p-4 flex flex-col gap-10 btn-hover rounded-xl group transition-all duration-300 bg-card hover:bg-white"
-                href="https://github.com/AlzanAditya"
-              >
-                <div className="flex items-center justify-between">
-                  <div className="relative w-8 h-8 flex items-center justify-center">
-                    <img
-                      alt="AlzanAditya"
-                      className="object-contain w-full h-full"
-                      src="/logos/github.png"
-                    />
-                  </div>
-                  <div className="p-3 bg-card group-hover:bg-primary rounded-full transition-all duration-400 ease-in-out">
-                    <svg
-                      stroke="currentColor"
-                      fill="currentColor"
-                      strokeWidth="0"
-                      viewBox="0 0 448 512"
-                      className="-rotate-45 text-primary transition-all duration-400 ease-in-out group-hover:text-background text-lg"
-                      height="1em"
-                      width="1em"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"></path>
-                    </svg>
-                  </div>
-                </div>
-                <div>
-                  <h3 className="font-medium md:text-lg text-text-primary">AlzanAditya</h3>
-                </div>
-              </a>
-            </div>
-
-            {/* TikTok */}
-            <div className="social-item">
-              <a
-                target="_blank"
-                rel="noopener noreferrer"
-                data-cursor="visit"
-                className="p-4 flex flex-col gap-10 btn-hover rounded-xl group transition-all duration-300 bg-card hover:bg-white"
-                href="https://www.tiktok.com/@alzanaditya"
-              >
-                <div className="flex items-center justify-between">
-                  <div className="relative w-8 h-8 flex items-center justify-center">
-                    <img
-                      alt="@alzanaditya"
-                      className="object-contain w-full h-full"
-                      src="/icons/tiktok.png"
-                    />
-                  </div>
-                  <div className="p-3 bg-card group-hover:bg-primary rounded-full transition-all duration-400 ease-in-out">
-                    <svg
-                      stroke="currentColor"
-                      fill="currentColor"
-                      strokeWidth="0"
-                      viewBox="0 0 448 512"
-                      className="-rotate-45 text-primary transition-all duration-400 ease-in-out group-hover:text-background text-lg"
-                      height="1em"
-                      width="1em"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"></path>
-                    </svg>
-                  </div>
-                </div>
-                <div>
-                  <h3 className="font-medium md:text-lg text-text-primary">@alzanaditya</h3>
-                </div>
-              </a>
-            </div>
-
-            {/* Instagram */}
-            <div className="social-item">
-              <a
-                target="_blank"
-                rel="noopener noreferrer"
-                data-cursor="visit"
-                className="p-4 flex flex-col gap-10 btn-hover rounded-xl group transition-all duration-300 bg-card hover:bg-white"
-                href="https://www.instagram.com/alzanaditya"
-              >
-                <div className="flex items-center justify-between">
-                  <div className="relative w-8 h-8 flex items-center justify-center">
-                    <img
-                      alt="@alzanaditya"
-                      className="object-contain w-full h-full"
-                      src="/icons/instagram.png"
-                    />
-                  </div>
-                  <div className="p-3 bg-card group-hover:bg-primary rounded-full transition-all duration-400 ease-in-out">
-                    <svg
-                      stroke="currentColor"
-                      fill="currentColor"
-                      strokeWidth="0"
-                      viewBox="0 0 448 512"
-                      className="-rotate-45 text-primary transition-all duration-400 ease-in-out group-hover:text-background text-lg"
-                      height="1em"
-                      width="1em"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"></path>
-                    </svg>
-                  </div>
-                </div>
-                <div>
-                  <h3 className="font-medium md:text-lg text-text-primary">@alzanaditya</h3>
-                </div>
-              </a>
-            </div>
+          <div className="col-span-1 md:col-span-6">
+            <SocialGrid variant="card" />
           </div>
         </div>
       </section>

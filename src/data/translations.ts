@@ -21,6 +21,8 @@ function flattenLocale(lang: "en" | "id"): Record<string, string> {
     "nav.letsTalk": c.nav.letsTalk,
     "nav.collaborate": c.nav.collaborate,
     "nav.switchLanguage": c.nav.switchLanguage,
+    "nav.other": c.nav.other || c.nav.apps,
+    "nav.apps": c.nav.apps,
 
     // Home Hero
     "hero.availability": h.hero.availability,

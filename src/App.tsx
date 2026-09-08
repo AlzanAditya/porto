@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Navbar } from "./components/layout/Navbar";
-import { NavbarApps } from "./components/layout/NavbarApps";
+import { NavbarInline } from "./components/layout/NavbarInline";
 import { Footer } from "./components/layout/Footer";
 import { CustomCursor } from "./components/layout/CustomCursor";
 import { ProgressiveBlur } from "./components/common/ProgressiveBlur";
@@ -112,6 +112,9 @@ function AppContent() {
       const slug = currentPath.replace("/projects/", "").split("/")[0];
       const matchedProject =
         projectsData.find((p) => p.slug === slug || p.id === slug) ||
+        (slug === "taksu-explore-tour-and-travel-booking"
+          ? projectsData.find((p) => p.slug === "yobss-your-business-system")
+          : null) ||
         projectsData[0];
 
       return (
@@ -178,7 +181,7 @@ function AppContent() {
       <LoadingScreen isVisible={false} enabled={false} />
       <CustomCursor />
       {isAppsRoute ? (
-        <NavbarApps currentPath={currentPath} onNavigate={navigate} />
+        <NavbarInline currentPath={currentPath} onNavigate={navigate} />
       ) : (
         <Navbar currentPath={currentPath} onNavigate={navigate} />
       )}

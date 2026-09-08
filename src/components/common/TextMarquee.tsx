@@ -36,7 +36,10 @@ export const TextMarquee: React.FC = () => {
       data-cursor="ROLES"
       className="relative isolate z-30 w-[110%] -ml-[5%] overflow-hidden bg-text-primary border-y border-foreground/5 py-6 md:py-8 select-none -rotate-3 md:-rotate-1 -translate-y-4"
     >
-      <div className="flex whitespace-nowrap animate-marquee group w-max">
+      <div
+        className="flex whitespace-nowrap animate-marquee group w-max"
+        style={{ animationDuration: "75s" }}
+      >
         {repeated.map((item, idx) => (
           <div
             key={idx}

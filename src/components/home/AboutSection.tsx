@@ -5,6 +5,7 @@ import { useGSAP } from "@gsap/react";
 import { useLanguage } from "../../context/LanguageContext";
 import { Button } from "../ui/button";
 import { Badge } from "../ui/badge";
+import { StatCards } from "../common/StatCards";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -394,66 +395,56 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onNavigate }) => {
       </div>
 
       {/* Stat Cards Grid */}
-      <div className="grid grid-cols-2 lg:grid-cols-12 gap-4 md:gap-5">
-        <div className="about-stat-card lg:col-span-3 order-first lg:order-1 bg-linear-to-r from-primary/10 to-secondary/10 p-4 rounded-xl flex flex-col gap-4 md:gap-5">
-          <div>
-            <strong className="text-5xl font-medium">
-              3<span className="text-primary">+</span>
-            </strong>
-          </div>
-          <p className="md:text-lg font-medium">
-            {t("about.statYears")}
-          </p>
-        </div>
-
-        <div className="about-stat-card lg:col-span-5 order-last lg:order-2 col-span-2 bg-linear-to-r from-primary/10 to-secondary/10 p-4 rounded-xl flex flex-col gap-4 md:gap-5">
-          <div className="flex items-start justify-between">
-            <strong className="text-5xl font-medium">
-              32<span className="text-secondary">+</span>
-            </strong>
-            <Button
-              variant="primary"
-              shape="rounded-full"
-              scrollText
-              href="/projects"
-              onClick={(e) => {
-                e.preventDefault();
-                onNavigate("/projects");
-              }}
-              iconRight={
-                <svg
-                  stroke="currentColor"
-                  fill="currentColor"
-                  strokeWidth="0"
-                  viewBox="0 0 448 512"
-                  className="-rotate-45"
-                  height="1em"
-                  width="1em"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"></path>
-                </svg>
-              }
-            >
-              {t("about.statWorksBtn")}
-            </Button>
-          </div>
-          <p className="md:text-lg font-medium">
-            {t("about.statProjects")}
-          </p>
-        </div>
-
-        <div className="about-stat-card lg:col-span-4 order-2 lg:order-3 bg-linear-to-r from-primary/10 to-secondary/10 p-4 rounded-xl flex flex-col gap-4 md:gap-5">
-          <div>
-            <strong className="text-5xl font-medium">
-              12<span className="text-primary">+</span>
-            </strong>
-          </div>
-          <p className="md:text-lg font-medium">
-            {t("about.statCollabs")}
-          </p>
-        </div>
-      </div>
+      <StatCards
+        items={[
+          {
+            value: 3,
+            suffix: "+",
+            suffixColor: "primary",
+            label: t("about.statYears"),
+          },
+          {
+            value: 32,
+            suffix: "+",
+            suffixColor: "secondary",
+            label: t("about.statProjects"),
+            action: (
+              <Button
+                variant="primary"
+                shape="rounded-full"
+                scrollText
+                href="/projects"
+                onClick={(e) => {
+                  e.preventDefault();
+                  onNavigate("/projects");
+                }}
+                iconRight={
+                  <svg
+                    stroke="currentColor"
+                    fill="currentColor"
+                    strokeWidth="0"
+                    viewBox="0 0 448 512"
+                    className="-rotate-45"
+                    height="1em"
+                    width="1em"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"></path>
+                  </svg>
+                }
+              >
+                {t("about.statWorksBtn")}
+              </Button>
+            ),
+          },
+          {
+            value: 12,
+            suffix: "+",
+            suffixColor: "primary",
+            label: t("about.statCollabs"),
+          },
+        ]}
+      />
     </section>
   );
 };

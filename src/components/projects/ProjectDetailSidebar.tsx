@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Project, TechStackItem } from "../../types";
 import { useLanguage } from "../../context/LanguageContext";
 
@@ -119,22 +119,62 @@ export const ProjectDetailSidebar: React.FC<ProjectDetailSidebarProps> = ({
   const { lang, t } = useLanguage();
 
   const category = (lang === "id" ? project.category_id : project.category_en) || project.category;
-  const count = project.authors?.length || 1;
+  const count = project.authors?.length || 0;
   const collaboratorsLabel =
-    lang === "id"
-      ? `${count} Kolaborator`
-      : `${count} Collaborator${count > 1 ? "s" : ""}`;
+    (lang === "id" ? project.collaborators_id : project.collaborators_en) ||
+    project.collaborators ||
+    (lang === "id"
+      ? `${count > 0 ? count : 1} Kolaborator`
+      : `${count > 0 ? count : 1} Collaborator${count > 1 ? "s" : ""}`);
 
   // Format uploadedDate if it's in YYYY-MM-DD format
   let displayDate = project.uploadedDate;
   if (/^\d{4}-\d{2}-\d{2}$/.test(project.uploadedDate)) {
-    const dateObj = new Date(project.uploadedDate);
+    const [year, month, day] = project.uploadedDate.split("-").map(Number);
+    const dateObj = new Date(year, month - 1, day);
     displayDate = dateObj.toLocaleDateString(lang === "id" ? "id-ID" : "en-GB", {
-      day: "2-digit",
-      month: "short",
+      day: "numeric",
+      month: "long",
       year: "numeric",
     });
   }
+
+  const techContainerRef = useRef<HTMLDivElement>(null);
+  const [isOverflowing, setIsOverflowing] = useState(() =>
+    project.techStack ? project.techStack.length * 78 > 340 : false
+  );
+
+  useEffect(() => {
+    const checkOverflow = () => {
+      if (techContainerRef.current && project.techStack) {
+        const containerWidth = techContainerRef.current.clientWidth;
+        const itemWidth = 70;
+        const gap = 8;
+        const totalItemsWidth =
+          project.techStack.length * itemWidth +
+          Math.max(0, project.techStack.length - 1) * gap;
+
+        setIsOverflowing(totalItemsWidth > containerWidth);
+      }
+    };
+
+    checkOverflow();
+
+    const observer = new ResizeObserver(() => {
+      checkOverflow();
+    });
+
+    if (techContainerRef.current) {
+      observer.observe(techContainerRef.current);
+    }
+
+    window.addEventListener("resize", checkOverflow);
+
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("resize", checkOverflow);
+    };
+  }, [project.techStack]);
 
   return (
     <div
@@ -151,29 +191,67 @@ export const ProjectDetailSidebar: React.FC<ProjectDetailSidebarProps> = ({
             <h2 className="text-xl md:text-2xl font-medium mb-4 text-text-primary">
               {t("projectDetail.techStackTitle")}
             </h2>
-            <div className="w-full overflow-hidden rounded-xl">
-              <div className="flex gap-2 w-max justify-center w-full flex-wrap sm:flex-nowrap">
-                {project.techStack.map((item, idx) => {
-                  const tech = getTechLogoUrl(item);
-                  return (
-                    <div
-                      key={idx}
-                      className="bg-white p-4 rounded-xl min-w-17.5 h-17.5 flex items-center justify-center shadow-2xs border border-foreground/5"
-                      title={tech.name}
-                    >
-                      <img
-                        alt={tech.name}
-                        loading="lazy"
-                        width="60"
-                        height="60"
-                        decoding="async"
-                        className="object-contain w-9 md:min-w-12 h-9 md:h-12"
-                        src={tech.url}
-                      />
-                    </div>
-                  );
-                })}
-              </div>
+            <div
+              ref={techContainerRef}
+              className="relative w-full overflow-hidden rounded-xl group"
+            >
+              {isOverflowing ? (
+                <>
+                  {/* Subtle edge fade masks */}
+                  <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-4 bg-gradient-to-r from-card to-transparent z-10" />
+                  <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-4 bg-gradient-to-l from-card to-transparent z-10" />
+
+                  {/* Infinite Carousel: Pauses on hover, resumes on unhover */}
+                  <div
+                    className="flex gap-2 animate-marquee w-max pr-2 hover:[animation-play-state:paused] group-hover:[animation-play-state:paused]"
+                    style={{ animationDuration: "25s" }}
+                  >
+                    {[...project.techStack, ...project.techStack].map((item, idx) => {
+                      const tech = getTechLogoUrl(item);
+                      return (
+                        <div
+                          key={idx}
+                          className="bg-white p-4 rounded-xl min-w-17.5 h-17.5 flex items-center justify-center shadow-2xs border border-foreground/5 shrink-0 transition-transform duration-200 hover:scale-105"
+                          title={tech.name}
+                        >
+                          <img
+                            alt={tech.name}
+                            loading="lazy"
+                            width="60"
+                            height="60"
+                            decoding="async"
+                            className="object-contain w-9 md:min-w-12 h-9 md:h-12"
+                            src={tech.url}
+                          />
+                        </div>
+                      );
+                    })}
+                  </div>
+                </>
+              ) : (
+                <div className="flex gap-2 justify-center w-full flex-wrap sm:flex-nowrap">
+                  {project.techStack.map((item, idx) => {
+                    const tech = getTechLogoUrl(item);
+                    return (
+                      <div
+                        key={idx}
+                        className="bg-white p-4 rounded-xl min-w-17.5 h-17.5 flex items-center justify-center shadow-2xs border border-foreground/5 shrink-0 transition-transform duration-200 hover:scale-105"
+                        title={tech.name}
+                      >
+                        <img
+                          alt={tech.name}
+                          loading="lazy"
+                          width="60"
+                          height="60"
+                          decoding="async"
+                          className="object-contain w-9 md:min-w-12 h-9 md:h-12"
+                          src={tech.url}
+                        />
+                      </div>
+                    );
+                  })}
+                </div>
+              )}
             </div>
           </div>
         )}
@@ -220,13 +298,19 @@ export const ProjectDetailSidebar: React.FC<ProjectDetailSidebarProps> = ({
                   <path d="M144 0a80 80 0 1 1 0 160A80 80 0 1 1 144 0zM512 0a80 80 0 1 1 0 160A80 80 0 1 1 512 0zM0 298.7C0 239.8 47.8 192 106.7 192h74.7c58.8 0 106.7 47.8 106.7 106.7V352h-288V298.7zM352 352v-53.3c0-58.8 47.8-106.7 106.7-106.7h74.7c58.8 0 106.7 47.8 106.7 106.7V352H352zm-32-128a64 64 0 1 1 0-128 64 64 0 1 1 0 128zm-64 160c0-35.3 28.7-64 64-64h64c35.3 0 64 28.7 64 64v32H256v-32z"></path>
                 </svg>
               </span>
-              <button
-                id="sidebar-collaborators-button"
-                onClick={onOpenCollaborators}
-                className="font-medium text-sm md:text-base text-text-primary hover:underline cursor-pointer transition-colors duration-300 text-left underline-offset-4"
-              >
-                {collaboratorsLabel}
-              </button>
+              {project.authors && project.authors.length > 0 ? (
+                <button
+                  id="sidebar-collaborators-button"
+                  onClick={onOpenCollaborators}
+                  className="font-medium text-sm md:text-base text-text-primary hover:underline cursor-pointer transition-colors duration-300 text-left underline-offset-4"
+                >
+                  {collaboratorsLabel}
+                </button>
+              ) : (
+                <span className="font-medium text-sm md:text-base text-text-primary">
+                  {collaboratorsLabel}
+                </span>
+              )}
             </div>
 
             {/* Uploaded Date */}

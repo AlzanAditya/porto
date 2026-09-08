@@ -33,6 +33,15 @@ export interface Project {
   demoUrl?: string;
   githubUrl?: string;
   sourceCodeUrl?: string;
+  demoLabel?: string;
+  demoLabel_id?: string;
+  demoLabel_en?: string;
+  primaryButtonIcon?: 'call' | 'eye' | 'arrow';
+  secondaryButtonLabel?: string;
+  secondaryButtonLabel_id?: string;
+  secondaryButtonLabel_en?: string;
+  secondaryButtonUrl?: string;
+  secondaryButtonIcon?: 'call' | 'arrow';
   images: string[];
   uploadedDate: string;
   collaborators?: string;

@@ -14,6 +14,7 @@ interface PageMeta {
   imageWidth?: number;
   imageHeight?: number;
   type?: "website" | "article" | "profile" | "blog";
+  siteName?: string;
   author?: string;
   publishedTime?: string;
   category?: string;
@@ -83,7 +84,7 @@ function generateHtmlWithMeta(baseHtml: string, meta: PageMeta): string {
     <link rel="image_src" href="${absoluteImageUrl}" />
 
     <!-- Open Graph / Facebook / WhatsApp -->
-    <meta property="og:site_name" content="${escapeHtml(personalInfo.name)} | Personal Portfolio & Blog Insights" />
+    <meta property="og:site_name" content="${escapeHtml(meta.siteName || `${personalInfo.name} | Personal Portfolio & Blog Insights`)}" />
     <meta property="og:title" content="${fullTitle}" />
     <meta property="og:description" content="${cleanDesc}" />
     <meta property="og:type" content="${pageType}" />
@@ -287,6 +288,11 @@ export function runSSG() {
       outPaths.push(`projects/${project.id}.html`);
     }
 
+    if (project.slug === "yobss-your-business-system") {
+      outPaths.push("projects/taksu-explore-tour-and-travel-booking/index.html");
+      outPaths.push("projects/taksu-explore-tour-and-travel-booking.html");
+    }
+
     pages.push({
       route: `/projects/${project.slug}`,
       outputPath: outPaths,
@@ -362,6 +368,92 @@ export function runSSG() {
       },
     });
   }
+
+  // 7. Yobss Application (/apps/yoobs and /apps/yobss)
+  pages.push({
+    route: "/apps/yoobs",
+    outputPath: [
+      "apps/yoobs/index.html",
+      "apps/yoobs.html",
+      "apps/yobss/index.html",
+      "apps/yobss.html",
+    ],
+    title: "Yobss - Your Business System | Platform Modular Manajemen Bisnis",
+    description:
+      "YOBSS (Your Business System) adalah platform business management modular yang dirancang untuk membantu perusahaan mengelola proses bisnis, aset, operasional, inventory, maintenance, workforce, dan pelaporan terpadu.",
+    image: "/logos/yobss.png",
+    imageWidth: 256,
+    imageHeight: 256,
+    imageAlt: "Logo YOBSS - Your Business System",
+    type: "website",
+    siteName: "Yobss - Your Business System",
+    author: personalInfo.name,
+    category: "Business Management System",
+    tags: [
+      "Asset Management",
+      "Multi-Role",
+      "inventory",
+      "worker management",
+      "service Management",
+      "Reporting System",
+    ],
+    jsonLd: {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      name: "YOBSS - Your Business System",
+      description:
+        "Platform business management modular yang dirancang untuk membantu perusahaan mengelola berbagai proses bisnis dan operasional dalam satu sistem yang terstruktur.",
+      applicationCategory: "BusinessApplication",
+      image: ensureAbsoluteUrl("/logos/yobss.png"),
+      operatingSystem: "Web Browser",
+      author: {
+        "@type": "Person",
+        name: personalInfo.name,
+      },
+    },
+  });
+
+  // 8. Zanxa Studio Application (/apps/zanxa-studio and /apps/zanxastudio)
+  pages.push({
+    route: "/apps/zanxa-studio",
+    outputPath: [
+      "apps/zanxa-studio/index.html",
+      "apps/zanxa-studio.html",
+      "apps/zanxastudio/index.html",
+      "apps/zanxastudio.html",
+    ],
+    title: "Zanxa Studio | Creative Web Agency & Digital Solutions",
+    description:
+      "Zanxa Studio adalah studio pengembangan website profesional oleh Alzan Aditya yang berfokus membangun website modern, sistem bisnis digital terintegrasi, dan solusi kreatif berkinerja tinggi.",
+    image: "/logos/zanxa-studio.png",
+    imageWidth: 256,
+    imageHeight: 256,
+    imageAlt: "Logo Zanxa Studio",
+    type: "website",
+    siteName: "Zanxa Studio",
+    author: personalInfo.name,
+    category: "Web Development Agency",
+    tags: [
+      "Web Design",
+      "Web Development",
+      "Custom ERP",
+      "Digital Transformation",
+      "Creative Agency",
+    ],
+    jsonLd: {
+      "@context": "https://schema.org",
+      "@type": "ProfessionalService",
+      name: "Zanxa Studio",
+      description:
+        "Studio pengembangan website profesional berfokus membangun website modern, scalable business systems, dan solusi digital kreatif.",
+      image: ensureAbsoluteUrl("/logos/zanxa-studio.png"),
+      founder: {
+        "@type": "Person",
+        name: personalInfo.name,
+      },
+      url: `${BASE_URL}/apps/zanxa-studio`,
+    },
+  });
 
   // Generate HTML files
   let fileCount = 0;

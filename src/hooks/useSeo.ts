@@ -6,6 +6,7 @@ export interface SeoProps {
   image?: string;
   url?: string;
   type?: "website" | "article" | "profile" | "blog";
+  siteName?: string;
   author?: string;
   publishedTime?: string;
   tags?: string[];
@@ -20,6 +21,7 @@ export function useSeo({
   image = "/banner.jpg",
   url,
   type = "website",
+  siteName = "Alzan Aditya | Personal Portfolio & Blog Insights",
   author = "Alzan Aditya",
   publishedTime,
   tags = [],
@@ -73,7 +75,7 @@ export function useSeo({
     setMetaTag("name", "robots", "index, follow");
 
     // Open Graph
-    setMetaTag("property", "og:site_name", "Alzan Aditya | Personal Portfolio & Blog Insights");
+    setMetaTag("property", "og:site_name", siteName);
     setMetaTag("property", "og:title", fullTitle);
     setMetaTag("property", "og:description", description);
     setMetaTag("property", "og:type", type);
