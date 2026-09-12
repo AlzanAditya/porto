@@ -3,17 +3,17 @@ import { motion } from "motion/react";
 import {
   Home,
   Sparkles,
-  Layers,
   CreditCard,
   MessageSquareQuote,
   Send,
   Briefcase,
-  User,
 } from "lucide-react";
 import { useLanguage } from "../../context/LanguageContext";
+import { useAnimation } from "../../context/AnimationContext";
 import { Button } from "../ui/button";
 import { home as yobssLocale } from "../../locales/yobss/home";
 import { home as zanxaLocale } from "../../locales/zanxastudio/home";
+import { home as satuCeritaLocale } from "../../locales/satucerita/home";
 
 export interface NavbarInlineItem {
   id: string;
@@ -77,35 +77,51 @@ export const NavbarInline: React.FC<NavbarInlineProps> = ({
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeCenterId, setActiveCenterId] = useState<string | null>(null);
   const { lang, setLang } = useLanguage();
+  const { animationsEnabled, toggleAnimations } = useAnimation();
 
+  const isSatuCerita =
+    currentPath.startsWith("/apps/satu-cerita") ||
+    currentPath.startsWith("/apps/satucerita");
   const isZanxa = currentPath.startsWith("/apps/zanxa");
 
   // Effective branding
   const effectiveBrandName =
-    brandName || (isZanxa ? "Zanxa Studio" : "Yobss");
+    brandName || (isSatuCerita ? "Satu Cerita" : isZanxa ? "Zanxa Studio" : "Yobss");
   const effectiveBrandSubtitle =
     brandSubtitle !== undefined
       ? brandSubtitle
+      : isSatuCerita
+      ? "Digital Invitation"
       : isZanxa
       ? "Web Agency"
       : "Business System";
   const effectiveLogoSrc =
-    logoSrc || (isZanxa ? "/logos/zanxa-studio.png" : "/logos/yobss.png");
+    logoSrc ||
+    (isSatuCerita
+      ? "/logos/satucerita.png"
+      : isZanxa
+      ? "/logos/zanxastudio.png"
+      : "/logos/yobss.png");
   const effectiveLogoAlt = logoAlt || `${effectiveBrandName} Logo`;
   const effectiveHomePath =
-    homePath || (isZanxa ? "/apps/zanxa-studio" : "/apps/yoobs");
+    homePath ||
+    (isSatuCerita
+      ? "/apps/satu-cerita"
+      : isZanxa
+      ? "/apps/zanxa-studio"
+      : "/apps/yoobs");
 
   // Locales
   const yContent = yobssLocale[lang];
   const zContent = zanxaLocale[lang];
+  const sContent = satuCeritaLocale[lang];
 
   // Default menu items for Yobss:
   // 1. Home / Beranda (hidden on desktop inline, navigated via logo/brand)
   // 2. Features / Fitur
-  // 3. Solutions / Solusi
-  // 4. Pricing / Harga
-  // 5. Testimonial / Testimoni
-  // 6. Contact / Kontak (Main CTA)
+  // 3. Pricing / Harga
+  // 4. Testimonial / Testimoni
+  // 5. Contact / Kontak (Main CTA)
   const defaultYobssItems: NavbarInlineItem[] = [
     {
       id: "home",
@@ -119,12 +135,6 @@ export const NavbarInline: React.FC<NavbarInlineProps> = ({
       label: yContent.nav.features || (lang === "id" ? "Fitur" : "Features"),
       href: "#features",
       icon: <Sparkles className="w-5 h-5" strokeWidth={1.5} />,
-    },
-    {
-      id: "solutions",
-      label: yContent.nav.solutions || (lang === "id" ? "Solusi" : "Solutions"),
-      href: "#solutions",
-      icon: <Layers className="w-5 h-5" strokeWidth={1.5} />,
     },
     {
       id: "pricing",
@@ -149,13 +159,12 @@ export const NavbarInline: React.FC<NavbarInlineProps> = ({
     },
   ];
 
-  // Default menu items for Zanxa Studio:
+  // Default menu items for Zanxa Studio (Blue gradient #516cff - #89bcf7, no orange):
   // 1. Home / Beranda (hidden on desktop inline, navigated via logo/brand)
   // 2. Work / Portofolio
   // 3. Testimonial / Testimoni
   // 4. Pricing / Harga
-  // 5. About / Tentang
-  // 6. Contact / Kontak (Main CTA)
+  // 5. Contact / Kontak (Main CTA)
   const defaultZanxaItems: NavbarInlineItem[] = [
     {
       id: "home",
@@ -183,22 +192,56 @@ export const NavbarInline: React.FC<NavbarInlineProps> = ({
       icon: <CreditCard className="w-5 h-5" strokeWidth={1.5} />,
     },
     {
-      id: "about",
-      label: zContent.nav.about || (lang === "id" ? "Tentang" : "About"),
-      href: "#about",
-      icon: <User className="w-5 h-5" strokeWidth={1.5} />,
-    },
-    {
       id: "contact",
       label: zContent.nav.contact || (lang === "id" ? "Kontak" : "Contact"),
       href: "/#contact",
       isMainCta: true,
       icon: <Send className="w-5 h-5" strokeWidth={1.5} />,
-      ctaClassName: "!bg-orange-500 hover:!bg-orange-600 text-white shadow-xs",
+      ctaClassName:
+        "!bg-gradient-to-r !from-[#516cff] !to-[#89bcf7] hover:opacity-95 text-white shadow-xs",
     },
   ];
 
-  const allItems = items || (isZanxa ? defaultZanxaItems : defaultYobssItems);
+  // Default menu items for Satu Cerita (Purple gradient #7d6aee - #ad9fff):
+  // Menu: home, themes, pricing, contact
+  const defaultSatuCeritaItems: NavbarInlineItem[] = [
+    {
+      id: "home",
+      label: sContent.nav.home || (lang === "id" ? "Beranda" : "Home"),
+      href: "/apps/satu-cerita",
+      isHome: true,
+      icon: <Home className="w-5 h-5" strokeWidth={1.5} />,
+    },
+    {
+      id: "themes",
+      label: sContent.nav.themes || (lang === "id" ? "Tema" : "Themes"),
+      href: "#themes",
+      icon: <Sparkles className="w-5 h-5" strokeWidth={1.5} />,
+    },
+    {
+      id: "pricing",
+      label: sContent.nav.pricing || (lang === "id" ? "Harga" : "Pricing"),
+      href: "#pricing",
+      icon: <CreditCard className="w-5 h-5" strokeWidth={1.5} />,
+    },
+    {
+      id: "contact",
+      label: sContent.nav.contact || (lang === "id" ? "Kontak" : "Contact"),
+      href: "#contact",
+      isMainCta: true,
+      icon: <Send className="w-5 h-5" strokeWidth={1.5} />,
+      ctaClassName:
+        "!bg-gradient-to-r !from-[#7d6aee] !to-[#ad9fff] hover:opacity-95 text-white shadow-xs",
+    },
+  ];
+
+  const allItems =
+    items ||
+    (isSatuCerita
+      ? defaultSatuCeritaItems
+      : isZanxa
+      ? defaultZanxaItems
+      : defaultYobssItems);
 
   // Separate center items from Home and Main CTA
   const homeItem = allItems.find((it) => it.isHome);
@@ -207,11 +250,18 @@ export const NavbarInline: React.FC<NavbarInlineProps> = ({
 
   // Indicator styling defaults
   const effectiveIndicatorColor =
-    activeIndicatorColor || (isZanxa ? "bg-orange-500" : "bg-emerald-500");
+    activeIndicatorColor ||
+    (isSatuCerita
+      ? "bg-[#7d6aee]"
+      : isZanxa
+      ? "bg-[#516cff]"
+      : "bg-emerald-500");
   const effectiveMainCtaClassName =
     mainCtaClassName ||
-    (isZanxa
-      ? "!bg-orange-500 hover:!bg-orange-600 text-white shadow-xs"
+    (isSatuCerita
+      ? "!bg-gradient-to-r !from-[#7d6aee] !to-[#ad9fff] hover:opacity-95 text-white shadow-xs"
+      : isZanxa
+      ? "!bg-gradient-to-r !from-[#516cff] !to-[#89bcf7] hover:opacity-95 text-white shadow-xs"
       : "!bg-gradient-to-r !from-emerald-500 !to-green-600 hover:!from-emerald-600 hover:!to-green-700 text-white shadow-xs");
 
   // Sync activeCenterId with URL hash if present
@@ -305,27 +355,43 @@ export const NavbarInline: React.FC<NavbarInlineProps> = ({
   return (
     <header className="sticky z-50 top-0 left-0 right-0 bg-linear-to-t from-background via-background/90 to-background/80 backdrop-blur-sm border-b border-white">
       <div className="relative 2xl:container mx-auto px-4 md:px-18 py-4 flex items-center justify-between">
-        {/* Brand & Logo (Clicking navigates to Home & clears center outline indicator) */}
-        <a
-          id="navbar-inline-brand"
-          className="flex items-center gap-3 md:gap-4 hover:opacity-85 transition-all duration-300 ease-in-out cursor-pointer group shrink-0 z-10"
-          href={effectiveHomePath}
-          onClick={handleHomeClick}
-          aria-label={`Navigate to ${effectiveBrandName} Home`}
-        >
-          <div className="size-10 md:size-12 rounded-lg overflow-hidden shadow-md border-2 border-white shrink-0 flex items-center justify-center bg-white">
-            <img
-              alt={effectiveLogoAlt}
-              width="100"
-              height="100"
-              className="w-full h-full object-cover rounded-lg group-hover:scale-105 transition-all duration-300"
-              src={effectiveLogoSrc}
-            />
-          </div>
-          <strong className="text-lg md:text-xl font-semibold tracking-tight text-text-primary whitespace-nowrap">
-            {effectiveBrandName}
-          </strong>
-        </a>
+        {/* Brand & Logo with Invisible Global Animation Switch Button */}
+        <div className="flex items-center gap-1 shrink-0 z-10">
+          <a
+            id="navbar-inline-brand"
+            className="flex items-center gap-3 md:gap-4 hover:opacity-85 transition-all duration-300 ease-in-out cursor-pointer group"
+            href={effectiveHomePath}
+            onClick={handleHomeClick}
+            aria-label={`Navigate to ${effectiveBrandName} Home`}
+          >
+            <div className="size-10 md:size-12 rounded-lg overflow-hidden shadow-md border-2 border-white shrink-0 flex items-center justify-center bg-white">
+              <img
+                alt={effectiveLogoAlt}
+                width="100"
+                height="100"
+                className="w-full h-full object-cover rounded-lg group-hover:scale-105 transition-all duration-300"
+                src={effectiveLogoSrc}
+              />
+            </div>
+            <strong className="text-lg md:text-xl font-semibold tracking-tight text-text-primary whitespace-nowrap">
+              {effectiveBrandName}
+            </strong>
+          </a>
+
+          {/* Invisible Global Animation Switch Button */}
+          <button
+            type="button"
+            id="navbar-inline-toggle-animations-btn"
+            onClick={toggleAnimations}
+            className="w-6 h-8 opacity-0 cursor-pointer focus:opacity-100 focus:outline-none focus:ring-2 focus:ring-primary/50 rounded transition-opacity"
+            title={animationsEnabled ? "Matikan animasi (Toggle animations off)" : "Nyalakan animasi (Toggle animations on)"}
+            aria-label={animationsEnabled ? "Matikan animasi secara global" : "Nyalakan animasi secara global"}
+          >
+            <span className="sr-only">
+              {animationsEnabled ? "Disable animations" : "Enable animations"}
+            </span>
+          </button>
+        </div>
 
         {/* Desktop Inline Center Menu: Absolute Centered (guarantees mathematical dead-center alignment) */}
         <nav

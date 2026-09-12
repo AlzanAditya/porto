@@ -184,12 +184,12 @@ export const ZanxaStudioHeroSection: React.FC<ZanxaStudioHeroSectionProps> = ({
       className="px-4 pt-6 md:pt-8 min-h-[115vh] max-h-[128vh] md:max-h-[132vh] lg:max-h-[178vh] 2xl:max-h-[145vh] 2xl:container mx-auto relative overflow-hidden select-none isolate"
     >
       <div className="flex flex-col items-center relative z-10">
-        {/* Badge: «Available for Projects» with orange indicator dot */}
+        {/* Badge: «Available for Projects» with blue indicator dot */}
         <Badge
           type="header"
           className="hero-badge"
           label={content.hero.badge}
-          dotClassName="!bg-orange-500 shadow-[0_0_8px_rgba(249,115,22,0.8)]"
+          dotClassName="!bg-[#516cff] shadow-[0_0_8px_rgba(81,108,255,0.8)]"
         />
 
         {/* Heading & Description */}
@@ -212,16 +212,16 @@ export const ZanxaStudioHeroSection: React.FC<ZanxaStudioHeroSectionProps> = ({
           </h2>
         </div>
 
-        {/* Action Buttons: Primary CTA (Solid Orange, portfolio shadow) & Secondary CTA (Portfolio Gray) */}
+        {/* Action Buttons: Primary CTA (Blue Gradient #516cff - #89bcf7) & Secondary CTA */}
         <div className="hero-btns mt-8 md:mt-16 flex items-center gap-3">
-          {/* Primary CTA: Let's Talk! with Solid Orange & portfolio shadow */}
+          {/* Primary CTA: Let's Talk! with Blue Gradient #516cff - #89bcf7 */}
           <Button
             id="zanxa-primary-cta"
             variant="primary"
             scrollText
             href="/#contact"
             onClick={(e) => handleCtaClick(e, "/#contact")}
-            className="!bg-orange-500 hover:!bg-orange-600 shadow-xs text-white"
+            className="!bg-gradient-to-r !from-[#516cff] !to-[#89bcf7] hover:opacity-95 shadow-md text-white border-0 font-medium"
           >
             {content.hero.ctaPrimary}
           </Button>

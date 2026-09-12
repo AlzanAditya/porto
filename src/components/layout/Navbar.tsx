@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Home, CodeXml, FileText, User } from "lucide-react";
 import { useLanguage } from "../../context/LanguageContext";
+import { useAnimation } from "../../context/AnimationContext";
 import { Button } from "../ui/button";
 
 interface NavbarProps {
@@ -11,6 +12,7 @@ interface NavbarProps {
 export const Navbar: React.FC<NavbarProps> = ({ currentPath, onNavigate }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { lang, setLang, t } = useLanguage();
+  const { animationsEnabled, toggleAnimations } = useAnimation();
 
   const handleNav = (e: React.MouseEvent, path: string) => {
     e.preventDefault();
@@ -21,21 +23,37 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath, onNavigate }) => {
   return (
     <header className="sticky z-50 top-0 left-0 right-0 bg-linear-to-t from-background via-background/90 to-background/80 backdrop-blur-sm border-b border-white">
       <div className="2xl:container mx-auto px-4 md:px-18 py-4 flex items-center justify-between">
-        {/* Logo */}
-        <a
-          className="flex items-center gap-3 md:gap-5 hover:opacity-75 transition-all duration-300 ease-in-out cursor-pointer"
-          href="#home"
-          onClick={(e) => handleNav(e, "/")}
-        >
-          <img
-            alt="Logo"
-            width="100"
-            height="100"
-            className="object-cover rounded-lg size-10 md:size-12 shadow-md border-4 border-white"
-            src="/logo.webp"
-          />
-          <strong className="text-lg md:text-xl font-semibold tracking-tight">Alzan Aditya</strong>
-        </a>
+        {/* Brand Logo & Title with Invisible Global Animation Toggle Button */}
+        <div className="flex items-center gap-1">
+          <a
+            className="flex items-center gap-3 md:gap-5 hover:opacity-75 transition-all duration-300 ease-in-out cursor-pointer"
+            href="#home"
+            onClick={(e) => handleNav(e, "/")}
+          >
+            <img
+              alt="Logo"
+              width="100"
+              height="100"
+              className="object-cover rounded-lg size-10 md:size-12 shadow-md border-4 border-white"
+              src="/logo.webp"
+            />
+            <strong className="text-lg md:text-xl font-semibold tracking-tight">Alzan Aditya</strong>
+          </a>
+
+          {/* Invisible Global Animation Switch Button */}
+          <button
+            type="button"
+            id="navbar-toggle-animations-btn"
+            onClick={toggleAnimations}
+            className="w-6 h-8 opacity-0 cursor-pointer focus:opacity-100 focus:outline-none focus:ring-2 focus:ring-primary/50 rounded transition-opacity"
+            title={animationsEnabled ? "Matikan animasi (Toggle animations off)" : "Nyalakan animasi (Toggle animations on)"}
+            aria-label={animationsEnabled ? "Matikan animasi secara global" : "Nyalakan animasi secara global"}
+          >
+            <span className="sr-only">
+              {animationsEnabled ? "Disable animations" : "Enable animations"}
+            </span>
+          </button>
+        </div>
 
         {/* Right side navigation buttons & Menu */}
         <div className="flex items-center gap-2 md:gap-3">
@@ -278,7 +296,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath, onNavigate }) => {
                   >
                     <div className="size-10 rounded-lg overflow-hidden shadow-md border-2 border-white shrink-0 flex items-center justify-center bg-white">
                       <img
-                        src="/logos/zanxa-studio.png"
+                        src="/logos/zanxastudio.png"
                         alt="Zanxa Studio"
                         width="40"
                         height="40"
@@ -288,6 +306,31 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath, onNavigate }) => {
                     <div className="flex flex-col">
                       <span className="font-medium text-text-primary leading-tight">Zanxa Studio</span>
                       <span className="text-xs text-text-secondary">Web Agency</span>
+                    </div>
+                  </a>
+
+                  <a
+                    id="navbar-menu-satu-cerita"
+                    className={`flex items-center gap-3 p-2 rounded-xl group transition-all duration-300 ease-in-out cursor-pointer ${
+                      currentPath.startsWith("/apps/satu-cerita") || currentPath.startsWith("/apps/satucerita")
+                        ? "bg-foreground text-text-primary"
+                        : "text-text-secondary hover:bg-foreground hover:text-text-primary"
+                    }`}
+                    href="/apps/satu-cerita"
+                    onClick={(e) => handleNav(e, "/apps/satu-cerita")}
+                  >
+                    <div className="size-10 rounded-lg overflow-hidden shadow-md border-2 border-white shrink-0 flex items-center justify-center bg-white">
+                      <img
+                        src="/logos/satucerita.png"
+                        alt="Satu Cerita"
+                        width="40"
+                        height="40"
+                        className="w-full h-full object-cover rounded-lg group-hover:scale-105 transition-all duration-300"
+                      />
+                    </div>
+                    <div className="flex flex-col">
+                      <span className="font-medium text-text-primary leading-tight">Satu Cerita</span>
+                      <span className="text-xs text-text-secondary">Digital Invitation</span>
                     </div>
                   </a>
                 </li>

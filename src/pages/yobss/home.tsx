@@ -1,5 +1,6 @@
 import React from "react";
 import { YobssHeroSection } from "../../components/apps/yobss/YobssHeroSection";
+import { PricingSection } from "../../components/Section/PricingSection";
 import { useSeo } from "../../hooks/useSeo";
 import { useLanguage } from "../../context/LanguageContext";
 import { home as yobssHome } from "../../locales/yobss/home";
@@ -27,8 +28,21 @@ export const YobssHomePage: React.FC<YobssHomePageProps> = ({ onNavigate }) => {
     <main className="flex flex-col w-full overflow-x-clip">
       <YobssHeroSection onNavigate={onNavigate} />
       <div id="features" className="scroll-mt-24" />
-      <div id="solutions" className="scroll-mt-24" />
-      <div id="pricing" className="scroll-mt-24" />
+      <PricingSection
+        id="pricing"
+        theme="emerald"
+        badge={lang === "id" ? "Investasi Sistem Bisnis" : "System Pricing & Plans"}
+        title={
+          lang === "id"
+            ? "Pilihan Paket Sistem Sesuai Skala Usaha"
+            : "Modular Business System Tailored for Growth"
+        }
+        subtitle={
+          lang === "id"
+            ? "Mulai dari kasir UMKM hingga Enterprise ERP terpadu. Dukungan teknis penuh dan data 100% milik Anda."
+            : "From modern retail POS to enterprise multi-branch ERP. Full technical support with complete data ownership."
+        }
+      />
       <div id="testimonial" className="scroll-mt-24" />
       <div id="contact" className="scroll-mt-24" />
       <div id="pre-order" className="scroll-mt-24" />

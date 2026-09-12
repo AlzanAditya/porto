@@ -322,3 +322,13 @@ body {
   animation-play-state: paused;
 }
 
+/* Global Disable Animations State */
+html.disable-animations *,
+html.disable-animations *::before,
+html.disable-animations *::after {
+  animation-duration: 0.0001s !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.0001s !important;
+  scroll-behavior: auto !important;
+}
+

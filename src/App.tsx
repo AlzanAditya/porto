@@ -4,7 +4,6 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Navbar } from "./components/layout/Navbar";
 import { NavbarInline } from "./components/layout/NavbarInline";
 import { Footer } from "./components/layout/Footer";
-import { CustomCursor } from "./components/layout/CustomCursor";
 import { ProgressiveBlur } from "./components/common/ProgressiveBlur";
 import { LoadingScreen } from "./components/common/LoadingScreen";
 import { HomePage } from "./pages/HomePage";
@@ -15,13 +14,17 @@ import { ProjectDetailPage } from "./pages/ProjectDetailPage";
 import { BlogDetailPage } from "./pages/BlogDetailPage";
 import { YobssPage } from "./pages/apps/YobssPage";
 import { ZanxaStudioPage } from "./pages/apps/ZanxaStudioPage";
+import { SatuCeritaPage } from "./pages/apps/SatuCeritaPage";
 import { projectsData } from "./data/projectsData";
 import { blogsData } from "./data/blogsData";
 import { LanguageProvider } from "./context/LanguageContext";
+import { AnimationProvider, useAnimation } from "./context/AnimationContext";
+import { MotionConfig } from "motion/react";
 
 gsap.registerPlugin(ScrollTrigger);
 
 function AppContent() {
+  const { animationsEnabled } = useAnimation();
   const [currentPath, setCurrentPath] = useState<string>(() => {
     if (typeof window !== "undefined") {
       return window.location.pathname || "/";
@@ -99,12 +102,15 @@ function AppContent() {
   };
 
   const renderContent = () => {
-    // 0. Apps: /apps/yoobs (and alias /apps/yobss), /apps/zanxa-studio
+    // 0. Apps: /apps/yoobs (and alias /apps/yobss), /apps/zanxa-studio, /apps/satu-cerita
     if (currentPath.startsWith("/apps/yoobs") || currentPath.startsWith("/apps/yobss")) {
       return <YobssPage onNavigate={navigate} />;
     }
     if (currentPath.startsWith("/apps/zanxa-studio") || currentPath.startsWith("/apps/zanxastudio")) {
       return <ZanxaStudioPage onNavigate={navigate} />;
+    }
+    if (currentPath.startsWith("/apps/satu-cerita") || currentPath.startsWith("/apps/satucerita")) {
+      return <SatuCeritaPage onNavigate={navigate} />;
     }
 
     // 1. Project Detail: /projects/:slug
@@ -176,30 +182,33 @@ function AppContent() {
   const isAppsRoute = currentPath.startsWith("/apps/");
 
   return (
-    <div className="min-h-screen w-full overflow-x-clip bg-background text-text-primary flex flex-col font-sans selection:bg-primary/20 selection:text-primary relative">
-      {/* LoadingScreen component preserved but disabled per user preference */}
-      <LoadingScreen isVisible={false} enabled={false} />
-      <CustomCursor />
-      {isAppsRoute ? (
-        <NavbarInline currentPath={currentPath} onNavigate={navigate} />
-      ) : (
-        <Navbar currentPath={currentPath} onNavigate={navigate} />
-      )}
-      <div id="main-content-container" className="flex-1 w-full">
-        {renderContent()}
+    <MotionConfig reducedMotion={animationsEnabled ? "never" : "always"}>
+      <div className="min-h-screen w-full overflow-x-clip bg-background text-text-primary flex flex-col font-sans selection:bg-primary/20 selection:text-primary relative">
+        {/* LoadingScreen component preserved but disabled per user preference */}
+        <LoadingScreen isVisible={false} enabled={false} />
+        {isAppsRoute ? (
+          <NavbarInline currentPath={currentPath} onNavigate={navigate} />
+        ) : (
+          <Navbar currentPath={currentPath} onNavigate={navigate} />
+        )}
+        <div id="main-content-container" className="flex-1 w-full">
+          {renderContent()}
+        </div>
+        <ProgressiveBlur />
+        {!isAppsRoute && (
+          <Footer key={currentPath} currentPath={currentPath} onNavigate={navigate} />
+        )}
       </div>
-      <ProgressiveBlur />
-      {!isAppsRoute && (
-        <Footer key={currentPath} currentPath={currentPath} onNavigate={navigate} />
-      )}
-    </div>
+    </MotionConfig>
   );
 }
 
 export default function App() {
   return (
     <LanguageProvider>
-      <AppContent />
+      <AnimationProvider>
+        <AppContent />
+      </AnimationProvider>
     </LanguageProvider>
   );
 }
